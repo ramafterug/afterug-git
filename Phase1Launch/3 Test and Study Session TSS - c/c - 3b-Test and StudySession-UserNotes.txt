@@ -1,0 +1,15 @@
+3. Test and Study Session common features
+b. User Notes
+
+
+User Notes - Add, Modify, Delete User notes
+
+1. Show a tiny mce text area titled as notes and allow the user to add a note
+
+2. Allow the user to modify the notes
+
+3. Allow user to delete his note
+
+4. If the user has some notes the notes will be displayed in html with a button called Edit. When user clicks the edit button the notes will be edited in TinyMce editor and saved when user completes the test or navigates to next question
+
+5. During fetch display all the existing notes the user has

@@ -1,0 +1,10 @@
+1. Test
+	c. % of users who marked this question as hard Medium and easy(So do u want to mark this question)
+
+
+1. Have a option for the user to rate this question difficulty as Hard, Medium or Easy and save status at end of test
+2. Display in Block if the question is hard or medium or easy. Highest percentage(% Hard, % Easy, % Medium) will be displayed
+3. Tell user that it was a hard question and yet you answered correctly which is good
+4. Tell user this is a medium or hard or Easy question you answered incorrectly. DO you want to mark this question
+
+

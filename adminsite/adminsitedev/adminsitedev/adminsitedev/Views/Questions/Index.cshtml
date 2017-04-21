@@ -1,0 +1,264 @@
+﻿@model IEnumerable<adminsitedev.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" style="table-layout: fixed;width: 100%;">
+    <tr>
+        <th></th>
+        <th style="overflow: hidden;width: 10%;">
+            @Html.DisplayNameFor(model => model.QuestionType)
+        </th>
+        <th style="overflow: hidden;width: 65%;">
+            @Html.DisplayNameFor(model => model.QuestionOriginal)
+        </th>
+        <th>
+            <label><b>A</b></label>
+        </th>
+        <th>
+            <label><b>B</b></label>
+        </th>
+        <th>
+            <label><b>C</b></label>
+        </th>
+        <th>
+            <label><b>D</b></label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectChoiceOriginal)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.QuestionMainCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionSubCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPreviousYearExamQuestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhichExam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhichYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionSpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceASpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceBSpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceCSpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceDSpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectChoiceSpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ErrorsSpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JustificationsFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReviewComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseReviewComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceAFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceBFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceCFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceDFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectChoiceFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionLive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceALive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceBLive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceCLive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChoiceDLive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectChoiceLive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCorrectChoiceVerified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsQuestionSpinned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFinalReviewCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPeerCrossReviewCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsQuestionReadyForLive)
+        </th>*@
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.QuestionID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.QuestionID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.QuestionID })
+            </td>
+            <td style="overflow: hidden;width: 10%;">
+                @Html.DisplayFor(modelItem => item.QuestionType)
+            </td>
+            <td style="overflow: hidden;width: 65%;">
+                @Html.Raw(item.QuestionOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChoiceAOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChoiceBOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChoiceCOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChoiceDOriginal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectChoiceOriginal)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.QuestionMainCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionSubCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPreviousYearExamQuestion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhichExam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhichYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionSpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceASpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceBSpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceCSpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceDSpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorrectChoiceSpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ErrorsSpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JustificationsFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewComments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponseReviewComments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceAFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceBFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceCFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceDFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorrectChoiceFinal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionLive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceALive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceBLive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceCLive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoiceDLive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorrectChoiceLive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCorrectChoiceVerified)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsQuestionSpinned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsFinalReviewCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPeerCrossReviewCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsQuestionReadyForLive)
+                </td>*@
+
+        </tr>
+    }
+
+</table>

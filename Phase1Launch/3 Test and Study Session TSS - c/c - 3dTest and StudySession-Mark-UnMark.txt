@@ -1,0 +1,10 @@
+3. Test and Study Session common features
+	d. Mark UnMark a word
+
+Mark UnMark a word
+
+1. User while in Test or StudySession should be able to Mark a word or unmark previously marked	 questions
+
+2. The marked status of a question will be fetched from DB and will be displayed in the test or Studysession page
+
+3. At the end of test if a word is marked or unmarked it will be saved to DB

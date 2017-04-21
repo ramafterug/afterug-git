@@ -1,0 +1,185 @@
+GET Questions and allied Data - TestNo and UserID
+
+var questionsQuery = (from b in QuestionsAfterUGs
+                                  where ((b.QuestionID >= (((testNo - 1) * 5) + 1) && b.QuestionID <= (testNo * 5)))
+                                  select new
+                                  {
+                                      b.QuestionID,
+                                      b.QuestionType,
+                                      b.Question,
+                                      b.IsQuestionReviewed,
+                                      b.IsQuestionSpinned,
+                                      b.IsCorrectChoiceVerified,
+                                      b.CorrectChoiceID,
+                                      b.Choices,
+                                      b.ForgetNotes,
+                                      b.QuestionTags,
+                                      b.UserAfterUGNotes,
+                                      b.UserNotes,
+                                      Attempts = b.Attempts.Where(a => a.UserID == userID)
+
+                                  }).ToList();
+
+Working and Testes in LinqPad
+Working and Tested in Visual Studio
+----------------------------------------------------------------------------------------------------------------
+Get New Tests List for a chapter with QuestionID's - ChapterID and UserID - C# Statements
+
+var Chapter1Questions = from Questions in QuestionsAfterUGs
+where (Questions.ChapterID == 1)
+select new {QuestionID = Questions.QuestionID};
+
+var NonMatchingChapter1 = (from Questions in Chapter1Questions
+where !TestChilds.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == 1) 
+select new  
+{QuestionID = Questions.QuestionID});
+
+Shuffle this data and pick only required amount of questions from DB.
+
+Working and Testes in LinqPad
+
+
+Get New Tests List for a chapter with QuestionID's - ChapterID and UserID - C# Statements - Dont show questions Excluded
+var Chapter1Questions = from Questions in QuestionsAfterUGs
+where (Questions.ChapterID == 1)
+select new {QuestionID = Questions.QuestionID};
+
+var NonMatchingChapter1 = (from Questions in Chapter1Questions
+where !TestChilds.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == 1) && !DontShowQuestions.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == 1)
+select new  
+{QuestionID = Questions.QuestionID});
+
+NonMatchingChapter1.Dump();
+----------------------------------------------------------------------------------------------------------------
+Get Random Questions for a Test - UserID - C# Expression - Dont show questions Excluded
+
+var RandomQuestions = (from Questions in QuestionsAfterUGs
+where !TestChilds.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == 1)  && !DontShowQuestions.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == 1)
+select new  {QuestionID = Questions.QuestionID}).ToList();
+
+RandomQuestions.Dump();
+
+
+Shuffle this data and pick desired no of questions from DB - http://stackoverflow.com/questions/273313/randomize-a-listt
+
+----------------------------------------------------------------------------------------------------------------
+Marked Questions Random Test
+
+var RandomQuestions = (from MarkedQuestions in TestMarkAQuestions
+ where (MarkedQuestions.UserID == 2)
+select new  {QuestionID = MarkedQuestions.QuestionID}).ToList();
+
+RandomQuestions.Dump();
+
+Shuffle the array and pick desired questionsids
+----------------------------------------------------------------------------------------------------------------
+Average Time taken for a question by all users - QuestionID
+
+double AverageTimeTakenForQuestion = Attempts.Where(averagetime => averagetime.QuestionID == 1).Average(attempts => attempts.TimeTaken);
+
+AverageTimeTakenForQuestion.Dump();
+----------------------------------------------------------------------------------------------------------------
+AverageTimeTaken FOr all Questions - Grouped by QuestionID
+
+var AverageTimeTakenForQuestion = Attempts
+               
+               .GroupBy(g => g.QuestionID, g => g.TimeTaken)
+               .Select( g => new
+                {
+                   QuestionID = g.Key,
+                   AverageTimeTaken = g.Average()
+                }); 
+		
+// For list of question or a specific question pass the list of QuestionIDs or Particular QuestionID in where clause
+// FOr a particular user pass on UserID in where condition
+//.Also you can filter for Test Or StudySession in where clause
+AverageTimeTakenForQuestion.Dump();
+----------------------------------------------------------------------------------------------------------------
+% of users who answers this question correctly and Incorrectly and Unanswered
+//Plan and create table first then query it
+
+
+----------------------------------------------------------------------------------------------------------------
+% of users who marked this question as hard Medium and easy(So do u want to mark this question)
+//Plan and create table first then query it
+
+
+----------------------------------------------------------------------------------------------------------------
+Show me all the Dont Show Question Again Questions. I want to review them
+//Plan and create table first then query it
+
+var varDontShowQuestions = (from Questions in DontShowQuestions
+where (Questions.UserID == 1)
+select new  {QuestionID = Questions.QuestionID}).ToList();
+
+varDontShowQuestions.Dump();
+
+----------------------------------------------------------------------------------------------------------------
+Get usernotes private for a question
+
+// Table UserNotes - Particular Users private note. He has not allowed to make his note public
+
+var UserPrivateNotes = (from PrivateNotes in UserNotes
+where (PrivateNotes.UserID == 1 && PrivateNotes.IsToBeDisplayed == true && PrivateNotes.QuestionID == 1)
+select new  {PrivateNotes.UserNotesID,PrivateNotes.UserID,PrivateNotes.QuestionID,PrivateNotes.NoteText}).ToList();
+
+UserPrivateNotes.Dump();
+
+
+Get public notes for the question
+
+var varPublicNotes = (from PublicNotes in UserNotes
+where (PublicNotes.IsToBeDisplayed == true && PublicNotes.IsApprovedForPublicDisplay == true && PublicNotes.QuestionID == 1)
+select new  {PublicNotes.UserNotesID,PublicNotes.UserID,PublicNotes.QuestionID,PublicNotes.NoteText}).ToList();
+
+varPublicNotes.Dump();
+
+
+----------------------------------------------------------------------------------------------------------------
+User Hard Random Test List
+
+var HardRandomForAUser = (from HardQuestions in QuestionDifficulties
+where (HardQuestions.DifficultyLevel == 3 && HardQuestions.UserWhoRatedDifficultyID == 1)
+select new  {HardQuestions.QuestionID}).ToList();
+
+HardRandomForAUser.Dump();
+
+Shuffle and get desired no of questions
+----------------------------------------------------------------------------------------------------------------
+User Medium Random Test List
+
+var MediumRandomForAUser = (from MediumQuestions in QuestionDifficulties
+where (MediumQuestions.DifficultyLevel == 2 && MediumQuestions.UserWhoRatedDifficultyID == 1)
+select new  {MediumQuestions.QuestionID}).ToList();
+
+MediumRandomForAUser.Dump();
+
+Shuffle and get desired no of questions
+
+
+----------------------------------------------------------------------------------------------------------------
+User Incorrect Random Test
+Get all inbcorrect Group by questionid and incorrect
+----------------------------------------------------------------------------------------------------------------
+User Unanswered Random Test
+Get all inbcorrect Group by questionid and incorrect
+----------------------------------------------------------------------------------------------------------------
+User Most time taken Random Test
+Most time taken is greater time than the average time taken for the question
+----------------------------------------------------------------------------------------------------------------
+Other users Hard Questions Random Test(highest % of Marked Hard)
+
+----------------------------------------------------------------------------------------------------------------
+Other users [Marked + Hard] Questions Random Test(highest % of Marked Hard)
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------

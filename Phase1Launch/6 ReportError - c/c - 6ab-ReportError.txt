@@ -1,0 +1,8 @@
+6. Report Error In
+	a. Question or Correct Answer choice
+
+1. Allow the user to report any error in question or choices(TinyMCE)
+2. Have a link report error which upon click will open tinymce editor
+3. Once the user submits the error a email is sent to content creator and Ram
+4. Save the reported error and after it should be reviewed and marked as live
+5. Notify users who previously attended the question - Send mail and show a alert in Dashboard

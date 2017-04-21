@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="adminsitedevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionType" Type="tinyint" Nullable="false" />
+          <Property Name="QuestionOriginal" Type="varchar(max)" Nullable="false" />
+          <Property Name="ChoiceAOriginal" Type="varchar(max)" Nullable="false" />
+          <Property Name="ChoiceBOriginal" Type="varchar(max)" Nullable="false" />
+          <Property Name="ChoiceCOriginal" Type="varchar(max)" Nullable="false" />
+          <Property Name="ChoiceDOriginal" Type="varchar(max)" Nullable="false" />
+          <Property Name="CorrectChoiceOriginal" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="BookPageNumber" Type="int" />
+          <Property Name="BookQuestionNumber" Type="int" />
+          <Property Name="OurQuestionNumber" Type="int" />
+          <Property Name="QuestionMainCategory" Type="varchar" MaxLength="100" />
+          <Property Name="QuestionSubCategory" Type="varchar" MaxLength="100" />
+          <Property Name="IsPreviousYearExamQuestion" Type="bit" Nullable="false" />
+          <Property Name="WhichExam" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WhichYear" Type="int" Nullable="false" />
+          <Property Name="QuestionSpinned" Type="varchar(max)" />
+          <Property Name="ChoiceASpinned" Type="varchar(max)" />
+          <Property Name="ChoiceBSpinned" Type="varchar(max)" />
+          <Property Name="ChoiceCSpinned" Type="varchar(max)" />
+          <Property Name="ChoiceDSpinned" Type="varchar(max)" />
+          <Property Name="CorrectChoiceSpinned" Type="varchar" MaxLength="1" />
+          <Property Name="ErrorsSpinned" Type="varchar(max)" />
+          <Property Name="JustificationsFinal" Type="varchar(max)" />
+          <Property Name="ReviewComments" Type="varchar(max)" />
+          <Property Name="ResponseReviewComments" Type="varchar(max)" />
+          <Property Name="QuestionFinal" Type="varchar(max)" />
+          <Property Name="ChoiceAFinal" Type="varchar(max)" />
+          <Property Name="ChoiceBFinal" Type="varchar(max)" />
+          <Property Name="ChoiceCFinal" Type="varchar(max)" />
+          <Property Name="ChoiceDFinal" Type="varchar(max)" />
+          <Property Name="CorrectChoiceFinal" Type="varchar" MaxLength="1" />
+          <Property Name="QuestionLive" Type="varchar(max)" />
+          <Property Name="ChoiceALive" Type="varchar(max)" />
+          <Property Name="ChoiceBLive" Type="varchar(max)" />
+          <Property Name="ChoiceCLive" Type="varchar(max)" />
+          <Property Name="ChoiceDLive" Type="varchar(max)" />
+          <Property Name="CorrectChoiceLive" Type="varchar" MaxLength="1" />
+          <Property Name="IsCorrectChoiceVerified" Type="bit" />
+          <Property Name="IsQuestionSpinned" Type="bit" />
+          <Property Name="IsFinalReviewCompleted" Type="bit" />
+          <Property Name="IsPeerCrossReviewCompleted" Type="bit" />
+          <Property Name="IsQuestionReadyForLive" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="adminsitedevModelStoreContainer">
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="adminsitedevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionType" Type="Byte" Nullable="false" />
+          <Property Name="QuestionOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChoiceAOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChoiceBOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChoiceCOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChoiceDOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CorrectChoiceOriginal" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionMainCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionSubCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsPreviousYearExamQuestion" Type="Boolean" Nullable="false" />
+          <Property Name="WhichExam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WhichYear" Type="Int32" Nullable="false" />
+          <Property Name="QuestionSpinned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceASpinned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceBSpinned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceCSpinned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceDSpinned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CorrectChoiceSpinned" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorsSpinned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JustificationsFinal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReviewComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseReviewComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionFinal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceAFinal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceBFinal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceCFinal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceDFinal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CorrectChoiceFinal" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionLive" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceALive" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceBLive" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceCLive" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoiceDLive" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CorrectChoiceLive" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IsCorrectChoiceVerified" Type="Boolean" />
+          <Property Name="IsQuestionSpinned" Type="Boolean" />
+          <Property Name="IsFinalReviewCompleted" Type="Boolean" />
+          <Property Name="IsPeerCrossReviewCompleted" Type="Boolean" />
+          <Property Name="IsQuestionReadyForLive" Type="Boolean" />
+          <Property Name="BookPageNumber" Type="Int32" />
+          <Property Name="BookQuestionNumber" Type="Int32" />
+          <Property Name="OurQuestionNumber" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="adminsitedevEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="adminsitedevModelStoreContainer" CdmEntityContainer="adminsitedevEntities1">
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="adminsitedevModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="OurQuestionNumber" ColumnName="OurQuestionNumber" />
+                <ScalarProperty Name="BookQuestionNumber" ColumnName="BookQuestionNumber" />
+                <ScalarProperty Name="BookPageNumber" ColumnName="BookPageNumber" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+                <ScalarProperty Name="QuestionOriginal" ColumnName="QuestionOriginal" />
+                <ScalarProperty Name="ChoiceAOriginal" ColumnName="ChoiceAOriginal" />
+                <ScalarProperty Name="ChoiceBOriginal" ColumnName="ChoiceBOriginal" />
+                <ScalarProperty Name="ChoiceCOriginal" ColumnName="ChoiceCOriginal" />
+                <ScalarProperty Name="ChoiceDOriginal" ColumnName="ChoiceDOriginal" />
+                <ScalarProperty Name="CorrectChoiceOriginal" ColumnName="CorrectChoiceOriginal" />
+                <ScalarProperty Name="QuestionMainCategory" ColumnName="QuestionMainCategory" />
+                <ScalarProperty Name="QuestionSubCategory" ColumnName="QuestionSubCategory" />
+                <ScalarProperty Name="IsPreviousYearExamQuestion" ColumnName="IsPreviousYearExamQuestion" />
+                <ScalarProperty Name="WhichExam" ColumnName="WhichExam" />
+                <ScalarProperty Name="WhichYear" ColumnName="WhichYear" />
+                <ScalarProperty Name="QuestionSpinned" ColumnName="QuestionSpinned" />
+                <ScalarProperty Name="ChoiceASpinned" ColumnName="ChoiceASpinned" />
+                <ScalarProperty Name="ChoiceBSpinned" ColumnName="ChoiceBSpinned" />
+                <ScalarProperty Name="ChoiceCSpinned" ColumnName="ChoiceCSpinned" />
+                <ScalarProperty Name="ChoiceDSpinned" ColumnName="ChoiceDSpinned" />
+                <ScalarProperty Name="CorrectChoiceSpinned" ColumnName="CorrectChoiceSpinned" />
+                <ScalarProperty Name="ErrorsSpinned" ColumnName="ErrorsSpinned" />
+                <ScalarProperty Name="JustificationsFinal" ColumnName="JustificationsFinal" />
+                <ScalarProperty Name="ReviewComments" ColumnName="ReviewComments" />
+                <ScalarProperty Name="ResponseReviewComments" ColumnName="ResponseReviewComments" />
+                <ScalarProperty Name="QuestionFinal" ColumnName="QuestionFinal" />
+                <ScalarProperty Name="ChoiceAFinal" ColumnName="ChoiceAFinal" />
+                <ScalarProperty Name="ChoiceBFinal" ColumnName="ChoiceBFinal" />
+                <ScalarProperty Name="ChoiceCFinal" ColumnName="ChoiceCFinal" />
+                <ScalarProperty Name="ChoiceDFinal" ColumnName="ChoiceDFinal" />
+                <ScalarProperty Name="CorrectChoiceFinal" ColumnName="CorrectChoiceFinal" />
+                <ScalarProperty Name="QuestionLive" ColumnName="QuestionLive" />
+                <ScalarProperty Name="ChoiceALive" ColumnName="ChoiceALive" />
+                <ScalarProperty Name="ChoiceBLive" ColumnName="ChoiceBLive" />
+                <ScalarProperty Name="ChoiceCLive" ColumnName="ChoiceCLive" />
+                <ScalarProperty Name="ChoiceDLive" ColumnName="ChoiceDLive" />
+                <ScalarProperty Name="CorrectChoiceLive" ColumnName="CorrectChoiceLive" />
+                <ScalarProperty Name="IsCorrectChoiceVerified" ColumnName="IsCorrectChoiceVerified" />
+                <ScalarProperty Name="IsQuestionSpinned" ColumnName="IsQuestionSpinned" />
+                <ScalarProperty Name="IsFinalReviewCompleted" ColumnName="IsFinalReviewCompleted" />
+                <ScalarProperty Name="IsPeerCrossReviewCompleted" ColumnName="IsPeerCrossReviewCompleted" />
+                <ScalarProperty Name="IsQuestionReadyForLive" ColumnName="IsQuestionReadyForLive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

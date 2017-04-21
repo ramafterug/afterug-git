@@ -1,0 +1,8 @@
+3
+a. Test and Study Session common features - Dont Show Again
+
+1. Allow user to select Dont show this question ever again - I know this question very well. I DO not want to waste my time on this question
+
+2. Store the question ID in a separate table |||DontShowQuestion Table|||. 
+
+3. QuestionID and Flag(True for dont show)

@@ -1,0 +1,330 @@
+﻿@model adminsitedev.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceAOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceAOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceBOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceBOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceCOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceCOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceDOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceDOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectChoiceOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectChoiceOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionMainCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionMainCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionSubCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionSubCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPreviousYearExamQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPreviousYearExamQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WhichExam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhichExam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WhichYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhichYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionSpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionSpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceASpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceASpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceBSpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceBSpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceCSpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceCSpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceDSpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceDSpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectChoiceSpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectChoiceSpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ErrorsSpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ErrorsSpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JustificationsFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JustificationsFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReviewComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReviewComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseReviewComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseReviewComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceAFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceAFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceBFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceBFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceCFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceCFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceDFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceDFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectChoiceFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectChoiceFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionLive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionLive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceALive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceALive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceBLive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceBLive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceCLive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceCLive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChoiceDLive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChoiceDLive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorrectChoiceLive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorrectChoiceLive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCorrectChoiceVerified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCorrectChoiceVerified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsQuestionSpinned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsQuestionSpinned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFinalReviewCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsFinalReviewCompleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPeerCrossReviewCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPeerCrossReviewCompleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsQuestionReadyForLive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsQuestionReadyForLive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

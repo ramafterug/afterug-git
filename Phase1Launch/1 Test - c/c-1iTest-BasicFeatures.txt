@@ -1,0 +1,23 @@
+1. Test
+	i. Basic Features
+
+Story
+
+1. It will be an any number of questions test. The no of questions will be dynamically determined by no of questions fetched
+
+2. The number of questions per test will be a value in Database !!!TableName, Column Name!!!
+
+3. Question, Choices will be fetched from DB and displayed. Radio buttons for choices will be there. First hit of radio button will be considered as answer.
+
+4. There will be a next button which will display next question
+
+5. If a question is answered correctly the score will be incremented to one and will be saved in database at the end of test
+
+6. Details fetched from Database
+		a. No of questions per test
+		b. Question, Choices
+		c. Previous attempts and hits
+
+7. Details to be saved to database
+		a. Score of a test
+		b. Attempts and Radio button Hits

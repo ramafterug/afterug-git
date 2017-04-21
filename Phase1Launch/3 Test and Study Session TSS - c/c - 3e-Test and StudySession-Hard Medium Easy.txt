@@ -1,0 +1,10 @@
+3. Test and Study Session common features
+e. Hard Medium Easy HME
+
+Hard Medium Easy HME Rate a question as Hard, Medium, Easy
+
+1. For every question show a block which has 3 icon buttons Hard, Medium and Easy.
+
+2. Allow user to select a icon button and rate a question as Hard, Medium and Easy
+
+3. While loading test and each question fetch its HME rating and show a question as (Hard or MEdium or Easy) and make it disabled and enable other two icon buttons. Example if the question is Hard in DB. The block will have HardButton Disabled or Hilited and other two buttons Medium and hard will be enabled to Mark. When Medium or Easy is chosed the previously disabled Hard button will now be enabled

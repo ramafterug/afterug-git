@@ -1,0 +1,18 @@
+
+8. Configure custom 
+	a. no of questions for Test and Study Sessions and review (Have a default value)
+	b. Study session. No of repetitions if correct(Have a default value)
+	c. Study session. No of repetitions if incorrect(Have a default value)
+
+
+1. DB will have default no of questions for and user can also change this from settings page
+	a. Test and Study Session
+	b. Review
+
+2. DB will have default no of repetitions if question answered correctly and no of repetitions if incorrect choice is selected and user can also change this from settings page
+	a. Test and Study session
+	b. Review
+
+3. Table Name, Column Names
+
+4. If user values are null get default values

@@ -1,0 +1,7 @@
+https://www.topcoder.com/getting-started/ - FOr user to learn about all features of the app
+-------------------------------------------------------------------------------------------------------
+
+Dashboard will be users start page everytime
+From dashboard he will go anywhere(Reviews - Weekly Reviews, 7 Days Reviews, 10 day review, Exisiting Test Retake or New Test, Existing StudySession or New StudySession, etc)
+He can return to dashboard anytime with a single click
+-------------------------------------------------------------------------------------------------------

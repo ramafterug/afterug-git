@@ -1,0 +1,69 @@
+11. TestMasterPage
+
+TestList COmponent
+
+	a. New Test .Get questions where questionid and UserID in test table is not present in QuestionsTable. Get the configured no of questions(Take 30)(For chapter wisde links query using chapter ID. Add chapterID in questions  table and chapter list in a separate table)
+
+1. Two columns will be displayed
+	a. Chapter wise tests
+	b. Random test
+
+Chapter wise tests
+	Select Questions From QuestionsTable where ChapterID is the supplied chapterid 
+		AND   QuestionID NOT in QuestionID(TestChild) AND supplied userID in UserID(TestChild)
+		Group by Default no of questions configured in the DB for that user for a test
+		Bind the questionids as array with those buttons
+
+	Loop for next Chapter in a similar way
+
+-------------------------------------------------
+INNER JOIN Returns matching rows
+
+ from Questions in QuestionsAfterUGs
+ join tc in TestChilds on Questions.QuestionID equals tc.QuestionID
+ where Questions.ChapterID == 1 && tc.UserID == 1
+    select Questions.QuestionID;
+--------------------------------------------------------------------------------
+from Questions in QuestionsAfterUGs
+join tc in TestChilds on Questions.QuestionID equals tc.QuestionID into tl_j
+from tc in tl_j.DefaultIfEmpty()
+where Questions.ChapterID == 1 && tc.UserID == 1
+select Questions.QuestionID
+	
+	
+---------------------------------------------------------------------------------------------
+(from Questions in QuestionsAfterUGs
+where !TestChilds.Any(f => f.QuestionID == Questions.QuestionID) && TestChilds.Any(f => f.UserID == 2)
+select new
+{QID = Questions.QuestionID, CID = Questions.ChapterID})
+
+--------------------------------------------------------------------------------------------------------------------
+Working seems good for performance 
+
+
+var Chapter1Questions = from Questions in QuestionsAfterUGs
+where (Questions.ChapterID == 1)
+select new {QuestionID = Questions.QuestionID};
+
+var NonMatchingChapter1 = (from Questions in Chapter1Questions
+where !TestChilds.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == 1) 
+select new  
+{QuestionID = Questions.QuestionID});
+
+
+
+NonMatchingChapter1.Dump();
+
+Working but Performance intensive
+
+var NonMatchingAllChapters = (from Questions in QuestionsAfterUGs
+where !TestChilds.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == 2) 
+select new  
+{QID = Questions.QuestionID, CID = Questions.ChapterID});
+
+var NonMatchingChapter1 = (from c1 in NonMatchingAllChapters
+where c1.CID == 1
+select new {c1.QID});
+
+NonMatchingChapter1.Dump();
+------------------------------------------------

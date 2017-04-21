@@ -1,0 +1,15 @@
+2. Study Session
+	i. Basic Features
+
+1. List of questions will be fetched from database 
+2. Questions can be random or in linear order within the study session not fetching
+3. Get the default of overridden user value of no of questions per study session from DB |||Table Name, Column Name|||
+4. Get the no of times question to be repeated if wrong or correct from DB. Default or User overidden |||Table Name, Column Name|||. Pop and push array based on the no oof times repetition if answered correctly or incorrectly
+5. Last question answered incorrectly by user problem reported by Bala. Todo
+6. On every hit show the user if his response is correct or incorrect
+7. Fetch and save Medium , Hard, Easy status
+8. Fetch the mark status and display in DB. Make the user mark or unmark a question. Save them after the study session is complete
+9. Show average time taken and save avarage time taken. Display your are good or bad based on average time taken for a question
+10. First hit will be considered as correct or incorrect
+11. Save attempts and hits at the end of study session
+

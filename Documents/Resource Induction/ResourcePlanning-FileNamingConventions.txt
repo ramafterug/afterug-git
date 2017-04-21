@@ -1,0 +1,29 @@
+Gayatri will dtp the content 
+	Q1to10-O.docx
+MainResource will spinn and make final output 
+	Q1to10-Oc-Sc-Fc-RRw.docx
+ReviewResporce will cross review the work
+	Q1to10-Oc-Sc-Fc-RRc.docx
+MainResource incorporates Review Comments back and forth between MainResource And Review Resource
+	Q1to10-Oc-Sc-Fc-RRc-RCw.docx
+MainResource adheres Review Comments
+	Q1to10-Oc-Sc-Fc-RRc-RCa.docx
+ReviewResource Accepts Changes by Main Resource
+	Q1to10-Oc-Sc-Fc-RRc-RCc-RRac.docx
+ReviewResource Rejects Changes by Main Resource
+	Q1to10-Oc-Sc-Fc-RRc-RCa-RRrc.docx
+
+LEGEND
+	Original - O
+	Spinned - S
+	Final - F
+	Complete - c
+	WIP - w
+	MainResource - MR
+	ReviewResource - RR
+	ReviewComments - RC
+	CommentsAdhered - c
+	Accept Changes - ac
+	Reject Changes - rc
+
+Legends are case sensitive. FIle names are also case sensitive

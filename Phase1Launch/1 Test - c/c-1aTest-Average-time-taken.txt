@@ -1,0 +1,12 @@
+1. Test
+	a. Average time taken for a question by all users - if he is good or bad in that question compared to other users can be displayed
+
+
+Average time taken for a question by all users all for test alone
+
+1. Save time taken for a question in Database at the end of test
+2. While displaying the test show him the average time taken by alkl users for that question.
+3. WHen the user takes more time on a question then a alert will be displayed that he has taken more time. May be hilite in Red
+4. WHen the user takes less time on a question then a alert will be displayed that he has taken less time and congrajulate him only if he has answered the question correctly. May be hilite in Green
+5. TO find average time select time taken for all users and compute an average in the SQL query or linq query
+6. Also show Maximum Time taken for a question among all users and also display minimum time taken. Show them only when the user max and min timetaken are only correct questions. DO this in the query

@@ -1,0 +1,97 @@
+Phase 1
+
+1. Test
+	i. Basic Features - Story Done
+	a. Average time taken for a question by all users - if he is good or bad in that question compared to other users can be displayed - Story Done
+	b. % of users who answers this question correctly and Incorrectly and Unanswered - Story Done
+	c. % of users who marked this question as hard Medium and easy(So do u want to mark this question) - Story Done
+
+
+2. Study Session
+	i. Basic Features - Story Done
+	a. Average time spent for a question by all users in study session - Story Done
+	b. % of users who answers this question correctly and Incorrectly in study session - Story Done
+
+
+3. Test and Study Session common features
+	a. Dont Show Again - I know this question very well do not show this again - Story Done
+	b. User Notes - Add, Modify, Delete User notes - Story Done
+	
+	d. Mark UnMark a word - Story Done
+	e. Hard Medium Easy HME Rate a question as Hard, Medium, Easy - Story Done
+	c. ImmediateSummary and Review ISR - All questions list page in a test with user response filtered by Marked, Incorrect, Unanswered, Hard, Medium, Most time taken - Refer Point 4 Basic Features
+
+4. Immediate Summary and Review ISR - after Post Study session Test - Story Done
+	i. Basic Features
+	a. Marked Question
+	b. Most Time Taken Questions. Study Most time taken questions greater than average time taken by all users alone(questions within the test) (30 or            40 or 50 or 60 questions. Default no of questions)
+	c. Incorrect
+	d. Unanswered
+	e. During all above summary display no of correct attempts and incorrect attempts of a question in the summary. Allow him to mark unmark a word or rate as medium , easy hard during summary
+
+
+6. Report Error In - Story Done
+	a. Question or Correct Answer choice - Story Done
+
+8. Configure custom  - Story Done
+	a. no of questions for Test and Study Sessions and review (Have a default value) - Story Done
+	b. Study session. No of repetitions if correct(Have a default value) - Story Done
+	c. Study session. No of repetitions if incorrect(Have a default value) - Story Done
+
+---------------------------------------------------------------------------------------------------------------
+11. TestMasterPage
+	a. New Test .Get questions where questionid and UserID in test table is not present in QuestionsTable. Get the configured no of questions(Take 30)(For chapter wisde links query using chapter ID. Add chapterID in questions  table and chapter list in a separate table)
+	b. Exisiting Test. Get testid for userid. Get questionid for testid. Pass on TestID
+	When starting fetch unique testid for the users and display as buttons which will have testID binded to them.also check if IsTestComplete for to be true
+
+12. Dashboard
+	a. In the dashboard show every test in Block with 4 marked questions, 3 Incorrect. Clicking that block will take him to the summary page(Immediate Summary Page after test)
+
+5. Reviews
+	i. Show questions for review I have taken in past 10 Days(Show no of questions next to that matching the condition), 7 Days, 1 MOnth. Ask him to select or select based on default value in DB	
+a. Weekly Reviews
+	b. Monthly Review
+	c. Study Marked questions alone (30 or 40 or 50 or 60 questions. Default no of questions)
+	d. Study Incorrect questions alone (30 or 40 or 50 or 60 questions. Default no of questions)
+	e. Study Unanswered questions alone (30 or 40 or 50 or 60 questions. Default no of questions)
+	f. Study Most time taken questions greater than average time taken by all users alone (All questions attended till now in all previous attended            test or 
+           study session)(30 or 40 or 50 or 60 questions. Default no of questions)
+	g. Study Hard questions alone (30 or 40 or 50 or 60 questions. Default no of questions)	
+	h. Study medium questions alone (30 or 40 or 50 or 60 questions. Default no of questions)
+	
+
+7. Reputation
+	How many user notes you show or how ill you determine its quality or how will priorotize which tand how many user notes to display
+	Bala - Have the data with you and may be at somepoint enable oit or use it for anything advanced or as per your desire, Make a reputed user earn money by his offerings on content to other users or to us
+
+---------------------------------------------------------------------------------------------------------------
+Miscelaneous thoughts:
+
+In the dashboard show every test in Block with 4 marked questions, 3 Incorrect. Clicking that block will take him to the summary page(Immediate Summary Page after test)
+
+From Attempt and Hit HIstory
+60% of the time you answered this question correct. Mark UnMark, Hard Medium Easy
+100% of the time you answered this question correctly - Shall we DontShowThis
+
+
+Review
+	Store timestamp(Added, Modified, ModifiedBy(UserID)) with each db record insert in all tables
+	
+
+When user scores very low in a test after study session . EMail or call him asking if he would want to pay and get better features
+---------------------------------------------------------------------------------------------------------------
+
+
+Problems
+	Last question wif answered incorrectly will be repeated continueously 3 to 5 times
+
+Additional features
+
+	TO do list for user. User can later mark if a item is complete or pending or more work required
+	Question will have tag. Question will have todo. So todo will be tied to tags of that question. What possibilities - Related questions, Related notes
+	Warn him based on TOdo. There are possible questions for exam . PRiotize his todo
+	Do not show any questiosn from this chapter further like do not show this question ever again to me
+	Chapter summary, How many questiosn or percentage completed(His progress).Chapter related  Statistics and control, Show me only these chapters. or i want to focus first on these chapters. Ignore this or these chapters
+
+Notifications
+10 users study a question. 11 thuser says the answer is wrong and corrects it not the 10 ppl who ahave already studied the question need to notified somehow

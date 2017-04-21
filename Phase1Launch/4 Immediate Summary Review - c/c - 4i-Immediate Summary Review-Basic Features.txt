@@ -1,0 +1,25 @@
+4. Immediate Summary and Review ISR - after Post Study session Test
+i. Basic Features
+
+Immediate Summary and Review ISR - Basic Features
+
+1. After every test or study session an Immedaite summary will be shown
+2. The view will Have 5 Rectagle block buttons
+	1. Review Marked Questions
+	2. Incorrectly Answered Questions
+	3. UnAnswered Questions
+	4. Most Time Taken Questions - Highest time taken to lowest time taken sort order
+	5. All Questions
+	6. Questions where your timetaken is more than average time taken for question by all users
+	7. All users rated Hard and Medium and he answered incorrect
+	8. ALl users rated easy and he answered incorrectly
+3. Below the rectangles the Question list will be shown using ngFor with 5 Items per page. Pagination links will be found
+	
+4. Questions along with choices will be shown. The correct Answer choice will be hilited in green and user answer will be hilited in red if wrong. Along the question and choices the user response of Correct, Incorrect, Marked , TIme taken status, Previous total attempts and % correct attempts  will be shown
+
+5. In each questions user should be allowed to 
+	a. Mark/Unmark question
+	b. Rate as Hard, Medium, Easy
+	c. Dont show again
+	
+	

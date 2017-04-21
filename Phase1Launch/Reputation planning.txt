@@ -1,0 +1,35 @@
+1 Resource should manage reputation(Reviews, Approval of user content)
+
+User Content
+	Report Mistakes or Factual Error in Questions
+	Report Incorrect Answer(Please include link or Links to your source)
+	Add Notes
+		Approve common notes or User specific notes so that it becomes live for all
+Reputation
+	(Level 0. New user) 
+		When user corrects error. Give him some points.(Manual Review must)
+		When user suggests a question. GIve him some points.(Ofcourse review will be there for the user suggested question)(Manual Review must)
+		When user adds common note. IF approved give him some points.(Manual Review must)
+		When user specific notes are good . Ask him a permission if we can show it to all. IF he says ok give him some points(Manual Review must)(check all level 2 level 3 users notes. While user adding his notes itself ask him can we show this all)
+
+	When user with certain level of points(Level 1. some points to some threshold of points) 
+
+		When user corrects error. Give him some points.(Manual Review must)
+		When user suggests a question. GIve him some points.(Ofcourse review will be there for the user suggested question)(Manual Review must)
+		When user adds common note. IF approved give him some points.(Manual Review must)
+		When user specific notes are good . Ask him a permission if we can show it to all. IF he says ok give him some points(Manual Review must)
+
+	When user with certain level of points(Level 2. level Basic threshold points to level 2 threshold points) 	
+		When user corrects error. Give him some points.(Manual Review/Users will rate him and give points. Recursive level1 user rates then more points, Level 2 user rates then more points, Level 0 user rates then no points)
+		When user suggests a question. GIve him some points.(Ofcourse review will be there for the user suggested question)(Manual Review/Users will rate him and give points. Recursive level1 user rates then more points, Level 2 user rates then more points, Level 0 user rates then no points)
+		When user adds common note. IF approved give him some points.(Manual Review/Users will rate him and give points. Recursive level1 user rates then more points, Level 2 user rates then more points, Level 0 user rates then no points)
+		When user specific notes are good . Ask him a permission if we can show it to all. IF he says ok give him some points(Manual Review/Users will rate him and give points. Recursive level1 user rates then more points, Level 2 user rates then more points, Level 0 user rates then no points)
+
+Follow User
+	If user reaches level 2(minimum) or level 3 other users can follow him. Sees his new notes, questions added by user, questions he rates as hard , medium, Important for exam, His marked questions,, his to do if he allows it to be public
+	
+---------------------------------------------------------------------------------------------------------------
+http://stackoverflow.com/help/whats-reputation
+http://stackoverflow.com/questions/8346249/rank-reputation-algorithm
+https://en.wikipedia.org/wiki/Reputation_system
+--------------------------------------------------------------------------------------------------------------
