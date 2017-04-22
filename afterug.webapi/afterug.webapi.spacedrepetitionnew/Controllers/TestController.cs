@@ -32,7 +32,7 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
             
 
 
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(questionsQuery, Newtonsoft.Json.Formatting.Indented,
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(NonMatchingChapter1, Newtonsoft.Json.Formatting.Indented,
                 new Newtonsoft.Json.JsonSerializerSettings()
                 {
                     ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
