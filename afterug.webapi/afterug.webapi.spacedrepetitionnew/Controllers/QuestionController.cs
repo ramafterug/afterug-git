@@ -18,7 +18,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
         // GET: api/Question
         public HttpResponseMessage Get()
         {
-            var db = new afterugdevEntities3();
+            var db = new afterugdevEntities4();
 
             var query = (from b in db.QuestionsAfterUG
                          select b).ToList();
@@ -40,7 +40,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
         [Route("api/Question/Test/{testNo}/User/{userID}")]
         public HttpResponseMessage GetTestQuestions(int testNo, int userID)
         {
-            var db = new afterugdevEntities3();
+            var db = new afterugdevEntities4();
 
             db.Configuration.ProxyCreationEnabled = false;
 
@@ -58,7 +58,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
                                       b.Choices,
                                       b.ForgetNotes,
                                       b.QuestionTags,
-                                      b.UserAfterUGNotes,
+                                      
                                       b.UserNotes,
                                       Attempts = b.Attempts.Where(a => a.UserID == userID)
 
@@ -80,11 +80,67 @@ namespace afterug.webapi.spacedrepetition.Controllers
 
         }
 
+
+
         // GET: api/Question/5
         public string Get(int id)
         {
             return "value";
         }
+
+
+        [HttpPost]
+        [Route("api/Questions")]
+        public HttpResponseMessage GetQuestionsByIDArray([FromBody]QuestionIDArrayAndUserID value)
+        {
+
+            int[] questionIDArray;
+            int userID;
+            questionIDArray = value.QuestionIDArray;
+            userID = value.UserID;
+            var db = new afterugdevEntities4();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var questionsQuery = (from b in db.QuestionsAfterUG.AsNoTracking()
+                                  where questionIDArray.Contains(b.QuestionID)
+                                  select new
+                                  {
+                                      b.QuestionID,
+                                      b.QuestionType,
+                                      b.Question,
+                                      b.IsQuestionReviewed,
+                                      b.IsQuestionSpinned,
+                                      b.IsCorrectChoiceVerified,
+                                      b.CorrectChoiceID,
+                                      b.Choices,
+                                      b.ForgetNotes,
+                                      b.QuestionTags,
+                                      
+                                      b.UserNotes,
+                                      Attempts = b.Attempts.Where(a => a.UserID == userID)
+
+                                  }).ToList();
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(questionsQuery, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+
+        }
+
+
+
+
 
         // POST: api/Question
         public void Post([FromBody]string value)
@@ -100,5 +156,11 @@ namespace afterug.webapi.spacedrepetition.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class QuestionIDArrayAndUserID
+    {
+        public int[] QuestionIDArray { get; set; }
+        public int UserID { get; set; }
     }
 }

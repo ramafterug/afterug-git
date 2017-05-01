@@ -12,11 +12,10 @@ namespace afterug.core.middlelayer
     using System;
     using System.Collections.Generic;
     
-    public partial class TestChild
+    public partial class DontShowQuestion
     {
-        public int TestID { get; set; }
+        public int DontShowQuestionID { get; set; }
         public int QuestionID { get; set; }
         public int UserID { get; set; }
-        public bool IsQuestionAttended { get; set; }
     }
 }

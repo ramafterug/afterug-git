@@ -13,10 +13,10 @@ namespace afterug.core.middlelayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class afterugdevEntities3 : DbContext
+    public partial class afterugdevEntities4 : DbContext
     {
-        public afterugdevEntities3()
-            : base("name=afterugdevEntities3")
+        public afterugdevEntities4()
+            : base("name=afterugdevEntities4")
         {
         }
     
@@ -28,19 +28,20 @@ namespace afterug.core.middlelayer
         public virtual DbSet<AfterUGNotePoints> AfterUGNotePoints { get; set; }
         public virtual DbSet<AfterUGNotePointsTags> AfterUGNotePointsTags { get; set; }
         public virtual DbSet<Attempts> Attempts { get; set; }
+        public virtual DbSet<Chapter> Chapter { get; set; }
         public virtual DbSet<Choices> Choices { get; set; }
+        public virtual DbSet<DontShowQuestion> DontShowQuestion { get; set; }
         public virtual DbSet<ForgetNotes> ForgetNotes { get; set; }
         public virtual DbSet<Hits> Hits { get; set; }
+        public virtual DbSet<QuestionDifficulty> QuestionDifficulty { get; set; }
         public virtual DbSet<QuestionsAfterUG> QuestionsAfterUG { get; set; }
         public virtual DbSet<QuestionsAfterUG_Backup> QuestionsAfterUG_Backup { get; set; }
         public virtual DbSet<QuestionTags> QuestionTags { get; set; }
         public virtual DbSet<Tags> Tags { get; set; }
-        public virtual DbSet<UserAfterUGNotes> UserAfterUGNotes { get; set; }
+        public virtual DbSet<TestChild> TestChild { get; set; }
+        public virtual DbSet<TestMarkAQuestion> TestMarkAQuestion { get; set; }
+        public virtual DbSet<TestMaster> TestMaster { get; set; }
         public virtual DbSet<UserNotes> UserNotes { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<TestMarkAQuestion> TestMarkAQuestion { get; set; }
-        public virtual DbSet<Chapter> Chapter { get; set; }
-        public virtual DbSet<TestChild> TestChild { get; set; }
-        public virtual DbSet<TestMaster> TestMaster { get; set; }
     }
 }

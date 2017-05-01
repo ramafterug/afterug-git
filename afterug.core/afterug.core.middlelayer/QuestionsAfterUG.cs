@@ -20,11 +20,10 @@ namespace afterug.core.middlelayer
             this.Attempts = new HashSet<Attempts>();
             this.Choices = new HashSet<Choices>();
             this.ForgetNotes = new HashSet<ForgetNotes>();
+            this.QuestionDifficulty = new HashSet<QuestionDifficulty>();
             this.QuestionTags = new HashSet<QuestionTags>();
-            this.UserAfterUGNotes = new HashSet<UserAfterUGNotes>();
-            this.UserNotes = new HashSet<UserNotes>();
             this.TestMarkAQuestion = new HashSet<TestMarkAQuestion>();
-            this.TestChild = new HashSet<TestChild>();
+            this.UserNotes = new HashSet<UserNotes>();
         }
     
         public int QuestionID { get; set; }
@@ -38,20 +37,18 @@ namespace afterug.core.middlelayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attempts> Attempts { get; set; }
+        public virtual Chapter Chapter { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Choices> Choices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ForgetNotes> ForgetNotes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuestionDifficulty> QuestionDifficulty { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionTags> QuestionTags { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserAfterUGNotes> UserAfterUGNotes { get; set; }
+        public virtual ICollection<TestMarkAQuestion> TestMarkAQuestion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserNotes> UserNotes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TestMarkAQuestion> TestMarkAQuestion { get; set; }
-        public virtual Chapter Chapter { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TestChild> TestChild { get; set; }
     }
 }

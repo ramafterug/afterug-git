@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="afterugdevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="afterugdevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AfterUGNotePoints">
           <Key>
             <PropertyRef Name="AfterUGNotePointID" />
@@ -31,6 +31,7 @@
           <Property Name="TestOrStudySession" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="TimeTaken" Type="bigint" Nullable="false" />
           <Property Name="UserFinalHitAnswer" Type="bigint" Nullable="false" />
+          <Property Name="AnswerStatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Chapter">
           <Key>
@@ -49,6 +50,14 @@
           <Property Name="ChoiceText" Type="varchar(max)" Nullable="false" />
           <Property Name="IsChoiceReviewed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="DontShowQuestion">
+          <Key>
+            <PropertyRef Name="DontShowQuestionID" />
+          </Key>
+          <Property Name="DontShowQuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ForgetNotes">
           <Key>
             <PropertyRef Name="ForgetNotesID" />
@@ -56,7 +65,7 @@
           <Property Name="ForgetNotesID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserWhoWantsToForgetNotesID" Type="int" Nullable="false" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
-          <Property Name="UserAfterUGNotesID" Type="int" Nullable="false" />
+          <Property Name="UserNotesID" Type="int" Nullable="false" />
           <Property Name="ForgetStatus" Type="bit" />
         </EntityType>
         <EntityType Name="Hits">
@@ -67,6 +76,15 @@
           <Property Name="AttemptID" Type="bigint" Nullable="false" />
           <Property Name="WhichNoOfHit" Type="tinyint" Nullable="false" />
           <Property Name="UserAnswerForTheHit" Type="bigint" />
+        </EntityType>
+        <EntityType Name="QuestionDifficulty">
+          <Key>
+            <PropertyRef Name="QuestionDifficultyID" />
+          </Key>
+          <Property Name="QuestionDifficultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="UserWhoRatedDifficultyID" Type="int" Nullable="false" />
+          <Property Name="DifficultyLevel" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="QuestionsAfterUG">
           <Key>
@@ -136,16 +154,6 @@
           <Property Name="IsTestOrStudySession" Type="bit" Nullable="false" />
           <Property Name="IsReview" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserAfterUGNotes">
-          <Key>
-            <PropertyRef Name="UserAfterUGNotesID" />
-          </Key>
-          <Property Name="UserAfterUGNotesID" Type="int" Nullable="false" />
-          <Property Name="UserWhoCreatedNotesID" Type="int" Nullable="false" />
-          <Property Name="QuestionID" Type="int" Nullable="false" />
-          <Property Name="IsToBeDisplayed" Type="bit" Nullable="false" />
-          <Property Name="NoteText" Type="varchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="UserNotes">
           <Key>
             <PropertyRef Name="UserNotesID" />
@@ -155,6 +163,8 @@
           <Property Name="QuestionID" Type="int" Nullable="false" />
           <Property Name="NoteText" Type="varchar(max)" Nullable="false" />
           <Property Name="IsToBeDisplayed" Type="bit" Nullable="false" />
+          <Property Name="IsApprovedForPublicDisplay" Type="bit" />
+          <Property Name="ApprovedByAdminUserID" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -173,6 +183,18 @@
             </Principal>
             <Dependent Role="AfterUGNotePointsTags">
               <PropertyRef Name="AfterUGNotePointID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApprovedByAdminUserID_UserNotes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserNotes">
+              <PropertyRef Name="ApprovedByAdminUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -236,6 +258,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_QuestionID_QuestionDifficulty_QuestionsAfterUG">
+          <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="1" />
+          <End Role="QuestionDifficulty" Type="Self.QuestionDifficulty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionsAfterUG">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionDifficulty">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionID_QuestionTags_QuestionsAfterUG">
           <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="1" />
           <End Role="QuestionTags" Type="Self.QuestionTags" Multiplicity="*" />
@@ -256,18 +290,6 @@
               <PropertyRef Name="QuestionID" />
             </Principal>
             <Dependent Role="TestMarkAQuestion">
-              <PropertyRef Name="QuestionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG">
-          <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="1" />
-          <End Role="UserAfterUGNotes" Type="Self.UserAfterUGNotes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="QuestionsAfterUG">
-              <PropertyRef Name="QuestionID" />
-            </Principal>
-            <Dependent Role="UserAfterUGNotes">
               <PropertyRef Name="QuestionID" />
             </Dependent>
           </ReferentialConstraint>
@@ -293,18 +315,6 @@
             </Principal>
             <Dependent Role="AfterUGNotePointsTags">
               <PropertyRef Name="TagID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes">
-          <End Role="UserAfterUGNotes" Type="Self.UserAfterUGNotes" Multiplicity="1" />
-          <End Role="ForgetNotes" Type="Self.ForgetNotes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserAfterUGNotes">
-              <PropertyRef Name="UserAfterUGNotesID" />
-            </Principal>
-            <Dependent Role="ForgetNotes">
-              <PropertyRef Name="UserAfterUGNotesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -356,15 +366,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users">
+        <Association Name="FK_UserNotesID_ForgetNotes_UserNotes">
+          <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="1" />
+          <End Role="ForgetNotes" Type="Self.ForgetNotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserNotes">
+              <PropertyRef Name="UserNotesID" />
+            </Principal>
+            <Dependent Role="ForgetNotes">
+              <PropertyRef Name="UserNotesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserAfterUGNotes" Type="Self.UserAfterUGNotes" Multiplicity="*" />
+          <End Role="QuestionDifficulty" Type="Self.QuestionDifficulty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="UserAfterUGNotes">
-              <PropertyRef Name="UserWhoCreatedNotesID" />
+            <Dependent Role="QuestionDifficulty">
+              <PropertyRef Name="UserWhoRatedDifficultyID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -398,8 +420,10 @@
           <EntitySet Name="Attempts" EntityType="Self.Attempts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Choices" EntityType="Self.Choices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DontShowQuestion" EntityType="Self.DontShowQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForgetNotes" EntityType="Self.ForgetNotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hits" EntityType="Self.Hits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionDifficulty" EntityType="Self.QuestionDifficulty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionsAfterUG" EntityType="Self.QuestionsAfterUG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionsAfterUG-Backup" EntityType="Self.QuestionsAfterUG-Backup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionTags" EntityType="Self.QuestionTags" Schema="dbo" store:Type="Tables" />
@@ -407,12 +431,15 @@
           <EntitySet Name="TestChild" EntityType="Self.TestChild" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestMarkAQuestion" EntityType="Self.TestMarkAQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestMaster" EntityType="Self.TestMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserAfterUGNotes" EntityType="Self.UserAfterUGNotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserNotes" EntityType="Self.UserNotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints" Association="Self.FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints">
             <End Role="AfterUGNotePoints" EntitySet="AfterUGNotePoints" />
             <End Role="AfterUGNotePointsTags" EntitySet="AfterUGNotePointsTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApprovedByAdminUserID_UserNotes_Users" Association="Self.FK_ApprovedByAdminUserID_UserNotes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserNotes" EntitySet="UserNotes" />
           </AssociationSet>
           <AssociationSet Name="FK_AttemptID_Hits_Attempts" Association="Self.FK_AttemptID_Hits_Attempts">
             <End Role="Attempts" EntitySet="Attempts" />
@@ -434,6 +461,10 @@
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
             <End Role="ForgetNotes" EntitySet="ForgetNotes" />
           </AssociationSet>
+          <AssociationSet Name="FK_QuestionID_QuestionDifficulty_QuestionsAfterUG" Association="Self.FK_QuestionID_QuestionDifficulty_QuestionsAfterUG">
+            <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
+            <End Role="QuestionDifficulty" EntitySet="QuestionDifficulty" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionID_QuestionTags_QuestionsAfterUG" Association="Self.FK_QuestionID_QuestionTags_QuestionsAfterUG">
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
             <End Role="QuestionTags" EntitySet="QuestionTags" />
@@ -442,10 +473,6 @@
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
             <End Role="TestMarkAQuestion" EntitySet="TestMarkAQuestion" />
           </AssociationSet>
-          <AssociationSet Name="FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG" Association="Self.FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG">
-            <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
-            <End Role="UserAfterUGNotes" EntitySet="UserAfterUGNotes" />
-          </AssociationSet>
           <AssociationSet Name="FK_QuestionID_UserNotes_QuestionsAfterUG" Association="Self.FK_QuestionID_UserNotes_QuestionsAfterUG">
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
             <End Role="UserNotes" EntitySet="UserNotes" />
@@ -453,10 +480,6 @@
           <AssociationSet Name="FK_TagID_AfterUGNotePointsTags_Tags" Association="Self.FK_TagID_AfterUGNotePointsTags_Tags">
             <End Role="Tags" EntitySet="Tags" />
             <End Role="AfterUGNotePointsTags" EntitySet="AfterUGNotePointsTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes" Association="Self.FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes">
-            <End Role="UserAfterUGNotes" EntitySet="UserAfterUGNotes" />
-            <End Role="ForgetNotes" EntitySet="ForgetNotes" />
           </AssociationSet>
           <AssociationSet Name="FK_UserID_Attempts_Users" Association="Self.FK_UserID_Attempts_Users">
             <End Role="Users" EntitySet="Users" />
@@ -474,9 +497,13 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserNotes" EntitySet="UserNotes" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users" Association="Self.FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users">
+          <AssociationSet Name="FK_UserNotesID_ForgetNotes_UserNotes" Association="Self.FK_UserNotesID_ForgetNotes_UserNotes">
+            <End Role="UserNotes" EntitySet="UserNotes" />
+            <End Role="ForgetNotes" EntitySet="ForgetNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users" Association="Self.FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="UserAfterUGNotes" EntitySet="UserAfterUGNotes" />
+            <End Role="QuestionDifficulty" EntitySet="QuestionDifficulty" />
           </AssociationSet>
           <AssociationSet Name="FK_UserWhoWantsToForgetNotesID_ForgetNotes_Users" Association="Self.FK_UserWhoWantsToForgetNotesID_ForgetNotes_Users">
             <End Role="Users" EntitySet="Users" />
@@ -487,7 +514,8 @@
             <End Role="QuestionTags" EntitySet="QuestionTags" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="afterugdevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -520,9 +548,19 @@
           <Property Name="TestOrStudySession" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TimeTaken" Type="Int64" Nullable="false" />
           <Property Name="UserFinalHitAnswer" Type="Int64" Nullable="false" />
+          <Property Name="AnswerStatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hits" Relationship="Self.FK_AttemptID_Hits_Attempts" FromRole="Attempts" ToRole="Hits" />
           <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_Attempts_QuestionsAfterUG" FromRole="Attempts" ToRole="QuestionsAfterUG" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UserID_Attempts_Users" FromRole="Attempts" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ChapterID" />
+          </Key>
+          <Property Name="ChapterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChapterName" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChapterDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_ChapterID_QuestionsAfterUG_Chapter" FromRole="Chapter" ToRole="QuestionsAfterUG" />
         </EntityType>
         <EntityType Name="Choices">
           <Key>
@@ -534,6 +572,14 @@
           <Property Name="IsChoiceReviewed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_Choices_QuestionsAfterUG" FromRole="Choices" ToRole="QuestionsAfterUG" />
         </EntityType>
+        <EntityType Name="DontShowQuestion">
+          <Key>
+            <PropertyRef Name="DontShowQuestionID" />
+          </Key>
+          <Property Name="DontShowQuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="ForgetNotes">
           <Key>
             <PropertyRef Name="ForgetNotesID" />
@@ -541,10 +587,10 @@
           <Property Name="ForgetNotesID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserWhoWantsToForgetNotesID" Type="Int32" Nullable="false" />
           <Property Name="QuestionID" Type="Int32" Nullable="false" />
-          <Property Name="UserAfterUGNotesID" Type="Int32" Nullable="false" />
+          <Property Name="UserNotesID" Type="Int32" Nullable="false" />
           <Property Name="ForgetStatus" Type="Boolean" />
           <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_ForgetNotes_QuestionsAfterUG" FromRole="ForgetNotes" ToRole="QuestionsAfterUG" />
-          <NavigationProperty Name="UserAfterUGNotes" Relationship="Self.FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes" FromRole="ForgetNotes" ToRole="UserAfterUGNotes" />
+          <NavigationProperty Name="UserNotes" Relationship="Self.FK_UserNotesID_ForgetNotes_UserNotes" FromRole="ForgetNotes" ToRole="UserNotes" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UserWhoWantsToForgetNotesID_ForgetNotes_Users" FromRole="ForgetNotes" ToRole="Users" />
         </EntityType>
         <EntityType Name="Hits">
@@ -557,6 +603,17 @@
           <Property Name="UserAnswerForTheHit" Type="Int64" />
           <NavigationProperty Name="Attempts" Relationship="Self.FK_AttemptID_Hits_Attempts" FromRole="Hits" ToRole="Attempts" />
         </EntityType>
+        <EntityType Name="QuestionDifficulty">
+          <Key>
+            <PropertyRef Name="QuestionDifficultyID" />
+          </Key>
+          <Property Name="QuestionDifficultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="UserWhoRatedDifficultyID" Type="Int32" Nullable="false" />
+          <Property Name="DifficultyLevel" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_QuestionDifficulty_QuestionsAfterUG" FromRole="QuestionDifficulty" ToRole="QuestionsAfterUG" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users" FromRole="QuestionDifficulty" ToRole="Users" />
+        </EntityType>
         <EntityType Name="QuestionsAfterUG">
           <Key>
             <PropertyRef Name="QuestionID" />
@@ -568,16 +625,15 @@
           <Property Name="IsQuestionSpinned" Type="Boolean" Nullable="false" />
           <Property Name="IsCorrectChoiceVerified" Type="Boolean" Nullable="false" />
           <Property Name="CorrectChoiceID" Type="Int64" Nullable="false" />
+          <Property Name="ChapterID" Type="Int32" />
           <NavigationProperty Name="Attempts" Relationship="Self.FK_QuestionID_Attempts_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="Attempts" />
+          <NavigationProperty Name="Chapter" Relationship="Self.FK_ChapterID_QuestionsAfterUG_Chapter" FromRole="QuestionsAfterUG" ToRole="Chapter" />
           <NavigationProperty Name="Choices" Relationship="Self.FK_QuestionID_Choices_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="Choices" />
           <NavigationProperty Name="ForgetNotes" Relationship="Self.FK_QuestionID_ForgetNotes_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="ForgetNotes" />
+          <NavigationProperty Name="QuestionDifficulty" Relationship="Self.FK_QuestionID_QuestionDifficulty_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="QuestionDifficulty" />
           <NavigationProperty Name="QuestionTags" Relationship="Self.FK_QuestionID_QuestionTags_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="QuestionTags" />
-          <NavigationProperty Name="UserAfterUGNotes" Relationship="Self.FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="UserAfterUGNotes" />
+          <NavigationProperty Name="TestMarkAQuestion" Relationship="Self.FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="TestMarkAQuestion" />
           <NavigationProperty Name="UserNotes" Relationship="Self.FK_QuestionID_UserNotes_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="UserNotes" />
-          <NavigationProperty Name="TestMarkAQuestion" Relationship="afterugdevModel.FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="TestMarkAQuestion" />
-          <Property Name="ChapterID" Type="Int32" />
-          <NavigationProperty Name="Chapter" Relationship="afterugdevModel.FK_ChapterID_QuestionsAfterUG_Chapter" FromRole="QuestionsAfterUG" ToRole="Chapter" />
-          <NavigationProperty Name="TestChild" Relationship="afterugdevModel.FK_QuestionID_TestChild_QuestionsAfterUG" FromRole="QuestionsAfterUG" ToRole="TestChild" />
         </EntityType>
         <EntityType Name="QuestionsAfterUG_Backup">
           <Key>
@@ -609,18 +665,37 @@
           <NavigationProperty Name="AfterUGNotePointsTags" Relationship="Self.FK_TagID_AfterUGNotePointsTags_Tags" FromRole="Tags" ToRole="AfterUGNotePointsTags" />
           <NavigationProperty Name="QuestionTags" Relationship="Self.TagID_QuestionTags_Tags" FromRole="Tags" ToRole="QuestionTags" />
         </EntityType>
-        <EntityType Name="UserAfterUGNotes">
+        <EntityType Name="TestChild">
           <Key>
-            <PropertyRef Name="UserAfterUGNotesID" />
+            <PropertyRef Name="TestID" />
+            <PropertyRef Name="QuestionID" />
+            <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserAfterUGNotesID" Type="Int32" Nullable="false" />
-          <Property Name="UserWhoCreatedNotesID" Type="Int32" Nullable="false" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
           <Property Name="QuestionID" Type="Int32" Nullable="false" />
-          <Property Name="IsToBeDisplayed" Type="Boolean" Nullable="false" />
-          <Property Name="NoteText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ForgetNotes" Relationship="Self.FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes" FromRole="UserAfterUGNotes" ToRole="ForgetNotes" />
-          <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG" FromRole="UserAfterUGNotes" ToRole="QuestionsAfterUG" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users" FromRole="UserAfterUGNotes" ToRole="Users" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="IsQuestionAttended" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestMarkAQuestion">
+          <Key>
+            <PropertyRef Name="TestMarkID" />
+          </Key>
+          <Property Name="TestMarkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG" FromRole="TestMarkAQuestion" ToRole="QuestionsAfterUG" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserID_TestMarkAQuestion_Users" FromRole="TestMarkAQuestion" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TestMaster">
+          <Key>
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="TestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="IsTestComplete" Type="Boolean" Nullable="false" />
+          <Property Name="IsTestOrStudySession" Type="Boolean" Nullable="false" />
+          <Property Name="IsReview" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserID_TestMaster_Users" FromRole="TestMaster" ToRole="Users" />
         </EntityType>
         <EntityType Name="UserNotes">
           <Key>
@@ -631,8 +706,12 @@
           <Property Name="QuestionID" Type="Int32" Nullable="false" />
           <Property Name="NoteText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsToBeDisplayed" Type="Boolean" Nullable="false" />
+          <Property Name="IsApprovedForPublicDisplay" Type="Boolean" />
+          <Property Name="ApprovedByAdminUserID" Type="Int32" />
+          <NavigationProperty Name="ForgetNotes" Relationship="Self.FK_UserNotesID_ForgetNotes_UserNotes" FromRole="UserNotes" ToRole="ForgetNotes" />
           <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_UserNotes_QuestionsAfterUG" FromRole="UserNotes" ToRole="QuestionsAfterUG" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UserID_UserNotes_Users" FromRole="UserNotes" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_ApprovedByAdminUserID_UserNotes_Users" FromRole="UserNotes" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_UserID_UserNotes_Users" FromRole="UserNotes" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -643,10 +722,11 @@
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Attempts" Relationship="Self.FK_UserID_Attempts_Users" FromRole="Users" ToRole="Attempts" />
           <NavigationProperty Name="ForgetNotes" Relationship="Self.FK_UserWhoWantsToForgetNotesID_ForgetNotes_Users" FromRole="Users" ToRole="ForgetNotes" />
-          <NavigationProperty Name="UserAfterUGNotes" Relationship="Self.FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users" FromRole="Users" ToRole="UserAfterUGNotes" />
-          <NavigationProperty Name="UserNotes" Relationship="Self.FK_UserID_UserNotes_Users" FromRole="Users" ToRole="UserNotes" />
-          <NavigationProperty Name="TestMarkAQuestion" Relationship="afterugdevModel.FK_UserID_TestMarkAQuestion_Users" FromRole="Users" ToRole="TestMarkAQuestion" />
-          <NavigationProperty Name="TestMaster" Relationship="afterugdevModel.FK_UserID_TestMaster_Users" FromRole="Users" ToRole="TestMaster" />
+          <NavigationProperty Name="QuestionDifficulty" Relationship="Self.FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users" FromRole="Users" ToRole="QuestionDifficulty" />
+          <NavigationProperty Name="TestMarkAQuestion" Relationship="Self.FK_UserID_TestMarkAQuestion_Users" FromRole="Users" ToRole="TestMarkAQuestion" />
+          <NavigationProperty Name="TestMaster" Relationship="Self.FK_UserID_TestMaster_Users" FromRole="Users" ToRole="TestMaster" />
+          <NavigationProperty Name="UserNotes" Relationship="Self.FK_ApprovedByAdminUserID_UserNotes_Users" FromRole="Users" ToRole="UserNotes" />
+          <NavigationProperty Name="UserNotes1" Relationship="Self.FK_UserID_UserNotes_Users" FromRole="Users" ToRole="UserNotes" />
         </EntityType>
         <Association Name="FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints">
           <End Role="AfterUGNotePoints" Type="Self.AfterUGNotePoints" Multiplicity="1" />
@@ -708,6 +788,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ChapterID_QuestionsAfterUG_Chapter">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="0..1" />
+          <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChapterID" />
+            </Principal>
+            <Dependent Role="QuestionsAfterUG">
+              <PropertyRef Name="ChapterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionID_Choices_QuestionsAfterUG">
           <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="1" />
           <End Role="Choices" Type="Self.Choices" Multiplicity="*" />
@@ -732,15 +824,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes">
-          <End Role="UserAfterUGNotes" Type="Self.UserAfterUGNotes" Multiplicity="1" />
+        <Association Name="FK_UserNotesID_ForgetNotes_UserNotes">
+          <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="1" />
           <End Role="ForgetNotes" Type="Self.ForgetNotes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserAfterUGNotes">
-              <PropertyRef Name="UserAfterUGNotesID" />
+            <Principal Role="UserNotes">
+              <PropertyRef Name="UserNotesID" />
             </Principal>
             <Dependent Role="ForgetNotes">
-              <PropertyRef Name="UserAfterUGNotesID" />
+              <PropertyRef Name="UserNotesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -756,6 +848,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_QuestionID_QuestionDifficulty_QuestionsAfterUG">
+          <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="1" />
+          <End Role="QuestionDifficulty" Type="Self.QuestionDifficulty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionsAfterUG">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionDifficulty">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="QuestionDifficulty" Type="Self.QuestionDifficulty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="QuestionDifficulty">
+              <PropertyRef Name="UserWhoRatedDifficultyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionID_QuestionTags_QuestionsAfterUG">
           <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="1" />
           <End Role="QuestionTags" Type="Self.QuestionTags" Multiplicity="*" />
@@ -768,14 +884,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG">
+        <Association Name="FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG">
           <End Role="QuestionsAfterUG" Type="Self.QuestionsAfterUG" Multiplicity="1" />
-          <End Role="UserAfterUGNotes" Type="Self.UserAfterUGNotes" Multiplicity="*" />
+          <End Role="TestMarkAQuestion" Type="Self.TestMarkAQuestion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QuestionsAfterUG">
               <PropertyRef Name="QuestionID" />
             </Principal>
-            <Dependent Role="UserAfterUGNotes">
+            <Dependent Role="TestMarkAQuestion">
               <PropertyRef Name="QuestionID" />
             </Dependent>
           </ReferentialConstraint>
@@ -804,15 +920,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users">
+        <Association Name="FK_UserID_TestMarkAQuestion_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserAfterUGNotes" Type="Self.UserAfterUGNotes" Multiplicity="*" />
+          <End Role="TestMarkAQuestion" Type="Self.TestMarkAQuestion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
             </Principal>
-            <Dependent Role="UserAfterUGNotes">
-              <PropertyRef Name="UserWhoCreatedNotesID" />
+            <Dependent Role="TestMarkAQuestion">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserID_TestMaster_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TestMaster" Type="Self.TestMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TestMaster">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApprovedByAdminUserID_UserNotes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserNotes">
+              <PropertyRef Name="ApprovedByAdminUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -828,18 +968,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="afterugdevEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="afterugdevEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AfterUGNotePoints" EntityType="Self.AfterUGNotePoints" />
           <EntitySet Name="AfterUGNotePointsTags" EntityType="Self.AfterUGNotePointsTags" />
           <EntitySet Name="Attempts" EntityType="Self.Attempts" />
+          <EntitySet Name="Chapter" EntityType="Self.Chapter" />
           <EntitySet Name="Choices" EntityType="Self.Choices" />
+          <EntitySet Name="DontShowQuestion" EntityType="Self.DontShowQuestion" />
           <EntitySet Name="ForgetNotes" EntityType="Self.ForgetNotes" />
           <EntitySet Name="Hits" EntityType="Self.Hits" />
+          <EntitySet Name="QuestionDifficulty" EntityType="Self.QuestionDifficulty" />
           <EntitySet Name="QuestionsAfterUG" EntityType="Self.QuestionsAfterUG" />
           <EntitySet Name="QuestionsAfterUG_Backup" EntityType="Self.QuestionsAfterUG_Backup" />
           <EntitySet Name="QuestionTags" EntityType="Self.QuestionTags" />
           <EntitySet Name="Tags" EntityType="Self.Tags" />
-          <EntitySet Name="UserAfterUGNotes" EntityType="Self.UserAfterUGNotes" />
+          <EntitySet Name="TestChild" EntityType="Self.TestChild" />
+          <EntitySet Name="TestMarkAQuestion" EntityType="Self.TestMarkAQuestion" />
+          <EntitySet Name="TestMaster" EntityType="Self.TestMaster" />
           <EntitySet Name="UserNotes" EntityType="Self.UserNotes" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints" Association="Self.FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints">
@@ -862,6 +1007,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Attempts" EntitySet="Attempts" />
           </AssociationSet>
+          <AssociationSet Name="FK_ChapterID_QuestionsAfterUG_Chapter" Association="Self.FK_ChapterID_QuestionsAfterUG_Chapter">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionID_Choices_QuestionsAfterUG" Association="Self.FK_QuestionID_Choices_QuestionsAfterUG">
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
             <End Role="Choices" EntitySet="Choices" />
@@ -870,21 +1019,29 @@
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
             <End Role="ForgetNotes" EntitySet="ForgetNotes" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes" Association="Self.FK_UserAfterUGNotesID_ForgetNotes_UserAfterUGNotes">
-            <End Role="UserAfterUGNotes" EntitySet="UserAfterUGNotes" />
+          <AssociationSet Name="FK_UserNotesID_ForgetNotes_UserNotes" Association="Self.FK_UserNotesID_ForgetNotes_UserNotes">
+            <End Role="UserNotes" EntitySet="UserNotes" />
             <End Role="ForgetNotes" EntitySet="ForgetNotes" />
           </AssociationSet>
           <AssociationSet Name="FK_UserWhoWantsToForgetNotesID_ForgetNotes_Users" Association="Self.FK_UserWhoWantsToForgetNotesID_ForgetNotes_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="ForgetNotes" EntitySet="ForgetNotes" />
           </AssociationSet>
+          <AssociationSet Name="FK_QuestionID_QuestionDifficulty_QuestionsAfterUG" Association="Self.FK_QuestionID_QuestionDifficulty_QuestionsAfterUG">
+            <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
+            <End Role="QuestionDifficulty" EntitySet="QuestionDifficulty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users" Association="Self.FK_UserWhoRatedDifficultyID_QuestionDifficulty_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="QuestionDifficulty" EntitySet="QuestionDifficulty" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionID_QuestionTags_QuestionsAfterUG" Association="Self.FK_QuestionID_QuestionTags_QuestionsAfterUG">
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
             <End Role="QuestionTags" EntitySet="QuestionTags" />
           </AssociationSet>
-          <AssociationSet Name="FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG" Association="Self.FK_QuestionID_UserAfterUGNotes_QuestionsAfterUG">
+          <AssociationSet Name="FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG" Association="Self.FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG">
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
-            <End Role="UserAfterUGNotes" EntitySet="UserAfterUGNotes" />
+            <End Role="TestMarkAQuestion" EntitySet="TestMarkAQuestion" />
           </AssociationSet>
           <AssociationSet Name="FK_QuestionID_UserNotes_QuestionsAfterUG" Association="Self.FK_QuestionID_UserNotes_QuestionsAfterUG">
             <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
@@ -894,147 +1051,29 @@
             <End Role="Tags" EntitySet="Tags" />
             <End Role="QuestionTags" EntitySet="QuestionTags" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users" Association="Self.FK_UserWhoCreatedNotesID_UserAfterUGNotes_Users">
+          <AssociationSet Name="FK_UserID_TestMarkAQuestion_Users" Association="Self.FK_UserID_TestMarkAQuestion_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="UserAfterUGNotes" EntitySet="UserAfterUGNotes" />
+            <End Role="TestMarkAQuestion" EntitySet="TestMarkAQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserID_TestMaster_Users" Association="Self.FK_UserID_TestMaster_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TestMaster" EntitySet="TestMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApprovedByAdminUserID_UserNotes_Users" Association="Self.FK_ApprovedByAdminUserID_UserNotes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserNotes" EntitySet="UserNotes" />
           </AssociationSet>
           <AssociationSet Name="FK_UserID_UserNotes_Users" Association="Self.FK_UserID_UserNotes_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserNotes" EntitySet="UserNotes" />
           </AssociationSet>
-          <EntitySet Name="TestMarkAQuestion" EntityType="afterugdevModel.TestMarkAQuestion" />
-          <AssociationSet Name="FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG" Association="afterugdevModel.FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG">
-            <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
-            <End Role="TestMarkAQuestion" EntitySet="TestMarkAQuestion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserID_TestMarkAQuestion_Users" Association="afterugdevModel.FK_UserID_TestMarkAQuestion_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="TestMarkAQuestion" EntitySet="TestMarkAQuestion" />
-          </AssociationSet>
-          <EntitySet Name="Chapter" EntityType="afterugdevModel.Chapter" />
-          <EntitySet Name="TestChild" EntityType="afterugdevModel.TestChild" />
-          <EntitySet Name="TestMaster" EntityType="afterugdevModel.TestMaster" />
-          <AssociationSet Name="FK_ChapterID_QuestionsAfterUG_Chapter" Association="afterugdevModel.FK_ChapterID_QuestionsAfterUG_Chapter">
-            <End Role="Chapter" EntitySet="Chapter" />
-            <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_QuestionID_TestChild_QuestionsAfterUG" Association="afterugdevModel.FK_QuestionID_TestChild_QuestionsAfterUG">
-            <End Role="QuestionsAfterUG" EntitySet="QuestionsAfterUG" />
-            <End Role="TestChild" EntitySet="TestChild" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserID_TestMaster_Users" Association="afterugdevModel.FK_UserID_TestMaster_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="TestMaster" EntitySet="TestMaster" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="TestMarkAQuestion">
-          <Key>
-            <PropertyRef Name="TestMarkID" />
-          </Key>
-          <Property Name="TestMarkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QuestionID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="QuestionsAfterUG" Relationship="afterugdevModel.FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG" FromRole="TestMarkAQuestion" ToRole="QuestionsAfterUG" />
-          <NavigationProperty Name="Users" Relationship="afterugdevModel.FK_UserID_TestMarkAQuestion_Users" FromRole="TestMarkAQuestion" ToRole="Users" />
-        </EntityType>
-        <Association Name="FK_QuestionID_TestMarkAQuestion_QuestionsAfterUG">
-          <End Type="afterugdevModel.QuestionsAfterUG" Role="QuestionsAfterUG" Multiplicity="1" />
-          <End Type="afterugdevModel.TestMarkAQuestion" Role="TestMarkAQuestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="QuestionsAfterUG">
-              <PropertyRef Name="QuestionID" />
-            </Principal>
-            <Dependent Role="TestMarkAQuestion">
-              <PropertyRef Name="QuestionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserID_TestMarkAQuestion_Users">
-          <End Type="afterugdevModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="afterugdevModel.TestMarkAQuestion" Role="TestMarkAQuestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="TestMarkAQuestion">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Chapter">
-          <Key>
-            <PropertyRef Name="ChapterID" />
-          </Key>
-          <Property Name="ChapterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChapterName" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="ChapterDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="QuestionsAfterUG" Relationship="afterugdevModel.FK_ChapterID_QuestionsAfterUG_Chapter" FromRole="Chapter" ToRole="QuestionsAfterUG" />
-        </EntityType>
-        <EntityType Name="TestChild">
-          <Key>
-            <PropertyRef Name="TestID" />
-            <PropertyRef Name="QuestionID" />
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="TestID" Type="Int32" Nullable="false" />
-          <Property Name="QuestionID" Type="Int32" Nullable="false" />
-          <Property Name="IsQuestionAttended" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="QuestionsAfterUG" Relationship="afterugdevModel.FK_QuestionID_TestChild_QuestionsAfterUG" FromRole="TestChild" ToRole="QuestionsAfterUG" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TestMaster">
-          <Key>
-            <PropertyRef Name="TestID" />
-          </Key>
-          <Property Name="TestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="IsTestComplete" Type="Boolean" Nullable="false" />
-          <Property Name="IsTestOrStudySession" Type="Boolean" Nullable="false" />
-          <Property Name="IsReview" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="afterugdevModel.FK_UserID_TestMaster_Users" FromRole="TestMaster" ToRole="Users" />
-        </EntityType>
-        <Association Name="FK_ChapterID_QuestionsAfterUG_Chapter">
-          <End Type="afterugdevModel.Chapter" Role="Chapter" Multiplicity="0..1" />
-          <End Type="afterugdevModel.QuestionsAfterUG" Role="QuestionsAfterUG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Chapter">
-              <PropertyRef Name="ChapterID" />
-            </Principal>
-            <Dependent Role="QuestionsAfterUG">
-              <PropertyRef Name="ChapterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_QuestionID_TestChild_QuestionsAfterUG">
-          <End Type="afterugdevModel.QuestionsAfterUG" Role="QuestionsAfterUG" Multiplicity="1" />
-          <End Type="afterugdevModel.TestChild" Role="TestChild" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="QuestionsAfterUG">
-              <PropertyRef Name="QuestionID" />
-            </Principal>
-            <Dependent Role="TestChild">
-              <PropertyRef Name="QuestionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserID_TestMaster_Users">
-          <End Type="afterugdevModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="afterugdevModel.TestMaster" Role="TestMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="TestMaster">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="afterugdevModelStoreContainer" CdmEntityContainer="afterugdevEntities3">
+        <EntityContainerMapping StorageEntityContainer="afterugdevModelStoreContainer" CdmEntityContainer="afterugdevEntities4">
           <EntitySetMapping Name="AfterUGNotePoints">
             <EntityTypeMapping TypeName="afterugdevModel.AfterUGNotePoints">
               <MappingFragment StoreEntitySet="AfterUGNotePoints">
@@ -1062,6 +1101,16 @@
                 <ScalarProperty Name="TestOrStudySession" ColumnName="TestOrStudySession" />
                 <ScalarProperty Name="TimeTaken" ColumnName="TimeTaken" />
                 <ScalarProperty Name="UserFinalHitAnswer" ColumnName="UserFinalHitAnswer" />
+                <ScalarProperty Name="AnswerStatus" ColumnName="AnswerStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chapter">
+            <EntityTypeMapping TypeName="afterugdevModel.Chapter">
+              <MappingFragment StoreEntitySet="Chapter">
+                <ScalarProperty Name="ChapterID" ColumnName="ChapterID" />
+                <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />
+                <ScalarProperty Name="ChapterDescription" ColumnName="ChapterDescription" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1075,13 +1124,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DontShowQuestion">
+            <EntityTypeMapping TypeName="afterugdevModel.DontShowQuestion">
+              <MappingFragment StoreEntitySet="DontShowQuestion">
+                <ScalarProperty Name="DontShowQuestionID" ColumnName="DontShowQuestionID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ForgetNotes">
             <EntityTypeMapping TypeName="afterugdevModel.ForgetNotes">
               <MappingFragment StoreEntitySet="ForgetNotes">
                 <ScalarProperty Name="ForgetNotesID" ColumnName="ForgetNotesID" />
                 <ScalarProperty Name="UserWhoWantsToForgetNotesID" ColumnName="UserWhoWantsToForgetNotesID" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
-                <ScalarProperty Name="UserAfterUGNotesID" ColumnName="UserAfterUGNotesID" />
+                <ScalarProperty Name="UserNotesID" ColumnName="UserNotesID" />
                 <ScalarProperty Name="ForgetStatus" ColumnName="ForgetStatus" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1096,10 +1154,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="QuestionDifficulty">
+            <EntityTypeMapping TypeName="afterugdevModel.QuestionDifficulty">
+              <MappingFragment StoreEntitySet="QuestionDifficulty">
+                <ScalarProperty Name="QuestionDifficultyID" ColumnName="QuestionDifficultyID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="UserWhoRatedDifficultyID" ColumnName="UserWhoRatedDifficultyID" />
+                <ScalarProperty Name="DifficultyLevel" ColumnName="DifficultyLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="QuestionsAfterUG">
             <EntityTypeMapping TypeName="afterugdevModel.QuestionsAfterUG">
               <MappingFragment StoreEntitySet="QuestionsAfterUG">
-                <ScalarProperty Name="ChapterID" ColumnName="ChapterID" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
@@ -1107,6 +1174,7 @@
                 <ScalarProperty Name="IsQuestionSpinned" ColumnName="IsQuestionSpinned" />
                 <ScalarProperty Name="IsCorrectChoiceVerified" ColumnName="IsCorrectChoiceVerified" />
                 <ScalarProperty Name="CorrectChoiceID" ColumnName="CorrectChoiceID" />
+                <ScalarProperty Name="ChapterID" ColumnName="ChapterID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1139,14 +1207,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserAfterUGNotes">
-            <EntityTypeMapping TypeName="afterugdevModel.UserAfterUGNotes">
-              <MappingFragment StoreEntitySet="UserAfterUGNotes">
-                <ScalarProperty Name="UserAfterUGNotesID" ColumnName="UserAfterUGNotesID" />
-                <ScalarProperty Name="UserWhoCreatedNotesID" ColumnName="UserWhoCreatedNotesID" />
+          <EntitySetMapping Name="TestChild">
+            <EntityTypeMapping TypeName="afterugdevModel.TestChild">
+              <MappingFragment StoreEntitySet="TestChild">
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
-                <ScalarProperty Name="IsToBeDisplayed" ColumnName="IsToBeDisplayed" />
-                <ScalarProperty Name="NoteText" ColumnName="NoteText" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsQuestionAttended" ColumnName="IsQuestionAttended" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestMarkAQuestion">
+            <EntityTypeMapping TypeName="afterugdevModel.TestMarkAQuestion">
+              <MappingFragment StoreEntitySet="TestMarkAQuestion">
+                <ScalarProperty Name="TestMarkID" ColumnName="TestMarkID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestMaster">
+            <EntityTypeMapping TypeName="afterugdevModel.TestMaster">
+              <MappingFragment StoreEntitySet="TestMaster">
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsTestComplete" ColumnName="IsTestComplete" />
+                <ScalarProperty Name="IsTestOrStudySession" ColumnName="IsTestOrStudySession" />
+                <ScalarProperty Name="IsReview" ColumnName="IsReview" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1158,6 +1245,8 @@
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="NoteText" ColumnName="NoteText" />
                 <ScalarProperty Name="IsToBeDisplayed" ColumnName="IsToBeDisplayed" />
+                <ScalarProperty Name="IsApprovedForPublicDisplay" ColumnName="IsApprovedForPublicDisplay" />
+                <ScalarProperty Name="ApprovedByAdminUserID" ColumnName="ApprovedByAdminUserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1167,45 +1256,6 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserNameOrEmailAddress" ColumnName="UserNameOrEmailAddress" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TestMarkAQuestion">
-            <EntityTypeMapping TypeName="afterugdevModel.TestMarkAQuestion">
-              <MappingFragment StoreEntitySet="TestMarkAQuestion">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
-                <ScalarProperty Name="TestMarkID" ColumnName="TestMarkID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Chapter">
-            <EntityTypeMapping TypeName="afterugdevModel.Chapter">
-              <MappingFragment StoreEntitySet="Chapter">
-                <ScalarProperty Name="ChapterDescription" ColumnName="ChapterDescription" />
-                <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />
-                <ScalarProperty Name="ChapterID" ColumnName="ChapterID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TestChild">
-            <EntityTypeMapping TypeName="afterugdevModel.TestChild">
-              <MappingFragment StoreEntitySet="TestChild">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="IsQuestionAttended" ColumnName="IsQuestionAttended" />
-                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
-                <ScalarProperty Name="TestID" ColumnName="TestID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TestMaster">
-            <EntityTypeMapping TypeName="afterugdevModel.TestMaster">
-              <MappingFragment StoreEntitySet="TestMaster">
-                <ScalarProperty Name="IsReview" ColumnName="IsReview" />
-                <ScalarProperty Name="IsTestOrStudySession" ColumnName="IsTestOrStudySession" />
-                <ScalarProperty Name="IsTestComplete" ColumnName="IsTestComplete" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="TestID" ColumnName="TestID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

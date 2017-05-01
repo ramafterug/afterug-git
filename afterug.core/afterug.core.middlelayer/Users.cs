@@ -19,10 +19,11 @@ namespace afterug.core.middlelayer
         {
             this.Attempts = new HashSet<Attempts>();
             this.ForgetNotes = new HashSet<ForgetNotes>();
-            this.UserAfterUGNotes = new HashSet<UserAfterUGNotes>();
-            this.UserNotes = new HashSet<UserNotes>();
+            this.QuestionDifficulty = new HashSet<QuestionDifficulty>();
             this.TestMarkAQuestion = new HashSet<TestMarkAQuestion>();
             this.TestMaster = new HashSet<TestMaster>();
+            this.UserNotes = new HashSet<UserNotes>();
+            this.UserNotes1 = new HashSet<UserNotes>();
         }
     
         public int UserID { get; set; }
@@ -34,12 +35,14 @@ namespace afterug.core.middlelayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ForgetNotes> ForgetNotes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserAfterUGNotes> UserAfterUGNotes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserNotes> UserNotes { get; set; }
+        public virtual ICollection<QuestionDifficulty> QuestionDifficulty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TestMarkAQuestion> TestMarkAQuestion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TestMaster> TestMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserNotes> UserNotes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserNotes> UserNotes1 { get; set; }
     }
 }

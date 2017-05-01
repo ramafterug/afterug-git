@@ -27,6 +27,7 @@ namespace afterug.core.middlelayer
         public string TestOrStudySession { get; set; }
         public long TimeTaken { get; set; }
         public long UserFinalHitAnswer { get; set; }
+        public int AnswerStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hits> Hits { get; set; }

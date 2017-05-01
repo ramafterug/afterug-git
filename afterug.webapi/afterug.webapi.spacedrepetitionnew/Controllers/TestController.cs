@@ -1,38 +1,120 @@
 ﻿using afterug.core.middlelayer;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
-using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace afterug.webapi.spacedrepetitionnew.Controllers
 {
-    public class TestController : Controller
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    public class TestController : ApiController
     {
-
         [HttpGet]
         [Route("api/Test/User/{userID}")]
         public HttpResponseMessage GetTestQuestions(int userID)
         {
-            var db = new afterugdevEntities3();
+            var db = new afterugdevEntities4();
 
             db.Configuration.ProxyCreationEnabled = false;
 
-            var Chapter1Questions = from Questions in db.QuestionsAfterUG
-                                    //where (Questions.ChapterID == 1)
-                                    select new { QuestionID = Questions.QuestionID, ChapterID = Questions.ChapterID };
-
-            var NonMatchingChapter1 = (from Questions in Chapter1Questions
-                                       where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
-                                       select new
-                                       { QuestionID = Questions.QuestionID,ChapterID = Questions.ChapterID });
-
-            
 
 
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(NonMatchingChapter1, Newtonsoft.Json.Formatting.Indented,
+            var NonMatchingChapterWiseQuestions = (from Questions in db.QuestionsAfterUG
+                                                   where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                                   where (Questions.ChapterID != null)
+                                                   select new
+                                                   { QuestionID = Questions.QuestionID, ChapterID = Questions.ChapterID });
+
+
+            var chapterIDList = NonMatchingChapterWiseQuestions
+                                                   .GroupBy(g => g.ChapterID)
+                                                   .Select(g => new 
+                                                   {
+                                                       ChapterID = g.Key,
+
+                                                   });
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in NonMatchingChapterWiseQuestions)
+                {
+                    if (item.ChapterID == chapter.ChapterID)
+                    {
+                        QuestionIDArray.Add(item.QuestionID);
+                    }
+
+                }
+                //shuffle the int list here itself
+                QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ChapterID.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 3;
+           
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+            foreach (var item in listQuestionsAndChapters)
+            {
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+                
+                for(var i = 0; i < finalNoOfButtons; i++)
+                {
+                    //List<int> segment = new List<int>();
+                    int index = ((noOfQuestionsPerTest * i) - 1) ;
+                    
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    else
+                    {
+                        
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+                    //i=0 index=0 endvalue=|| i=1 index=2;i=2 index=5;i=3 index=8;i=4 index=11
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+                    //ChapterFromDB chapterFromDB = new ChapterFromDB(item.Key.ToString);
+                    //chapterFromDB.ChapterID =  item.Key;
+
+                    // JObject jObject = JObject.Parse(item.Key);
+                    // JToken jUser = jObject["Key"];
+
+                    
+
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1); 
+                    listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                    
+                }
+                chapterButtonAndQuestionList.Add(listQuestionsAndButtons);
+            }
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
                 new Newtonsoft.Json.JsonSerializerSettings()
                 {
                     ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -46,82 +128,59 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
             };
 
         }
-        // GET: Test
-        public ActionResult Index()
+        // GET: api/Test
+        public IEnumerable<string> Get()
         {
-            return View();
+            return new string[] { "value1", "value2" };
         }
-
-        // GET: Test/Details/5
-        public ActionResult Details(int id)
+        public List<T> Shuffle<T>(List<T> list)
         {
-            return View();
-        }
-
-        // GET: Test/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Test/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+            int n = list.Count;
+            while (n > 1)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                byte[] box = new byte[1];
+                do provider.GetBytes(box);
+                while (!(box[0] < n * (Byte.MaxValue / n)));
+                int k = (box[0] % n);
+                n--;
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
             }
-            catch
-            {
-                return View();
-            }
+            return list;
         }
-
-        // GET: Test/Edit/5
-        public ActionResult Edit(int id)
+        // GET: api/Test/5
+        public string Get(int id)
         {
-            return View();
+            return "value";
         }
 
-        // POST: Test/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        // POST: api/Test
+        public void Post([FromBody]string value)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
-        // GET: Test/Delete/5
-        public ActionResult Delete(int id)
+        // PUT: api/Test/5
+        public void Put(int id, [FromBody]string value)
         {
-            return View();
         }
 
-        // POST: Test/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // DELETE: api/Test/5
+        public void Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
+    }
+
+    public class ChapterFromDB
+    {
+
+        public ChapterFromDB(string json)
+        {
+            JObject jObject = JObject.Parse(json);
+            JToken jUser = jObject["Key"];
+            this.ChapterID = (int)jUser["ChapterID"];
+        }
+        public int? ChapterID { get; set; }
     }
 }

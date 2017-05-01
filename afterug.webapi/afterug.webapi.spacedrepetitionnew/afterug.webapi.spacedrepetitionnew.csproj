@@ -292,8 +292,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\pub in e drive.pubxml" />
-    <None Include="Properties\PublishProfiles\PubForDev.pubxml" />
+    <None Include="Properties\PublishProfiles\Publish To E.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

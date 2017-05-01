@@ -12,22 +12,13 @@ namespace afterug.core.middlelayer
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAfterUGNotes
+    public partial class QuestionDifficulty
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserAfterUGNotes()
-        {
-            this.ForgetNotes = new HashSet<ForgetNotes>();
-        }
-    
-        public int UserAfterUGNotesID { get; set; }
-        public int UserWhoCreatedNotesID { get; set; }
+        public int QuestionDifficultyID { get; set; }
         public int QuestionID { get; set; }
-        public bool IsToBeDisplayed { get; set; }
-        public string NoteText { get; set; }
+        public int UserWhoRatedDifficultyID { get; set; }
+        public short DifficultyLevel { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ForgetNotes> ForgetNotes { get; set; }
         public virtual QuestionsAfterUG QuestionsAfterUG { get; set; }
         public virtual Users Users { get; set; }
     }

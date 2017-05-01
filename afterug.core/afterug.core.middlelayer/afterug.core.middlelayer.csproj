@@ -90,6 +90,9 @@
       <DependentUpon>afterugdev.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="DontShowQuestion.cs">
+      <DependentUpon>afterugdev.tt</DependentUpon>
+    </Compile>
     <Compile Include="ForgetNotes.cs">
       <DependentUpon>afterugdev.tt</DependentUpon>
     </Compile>
@@ -98,6 +101,9 @@
     </Compile>
     <Compile Include="PartialModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionDifficulty.cs">
+      <DependentUpon>afterugdev.tt</DependentUpon>
+    </Compile>
     <Compile Include="QuestionsAfterUG.cs">
       <DependentUpon>afterugdev.tt</DependentUpon>
     </Compile>
@@ -117,9 +123,6 @@
       <DependentUpon>afterugdev.tt</DependentUpon>
     </Compile>
     <Compile Include="TestMaster.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserAfterUGNotes.cs">
       <DependentUpon>afterugdev.tt</DependentUpon>
     </Compile>
     <Compile Include="UserNotes.cs">

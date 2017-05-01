@@ -14,13 +14,24 @@ namespace afterug.core.middlelayer
     
     public partial class UserNotes
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserNotes()
+        {
+            this.ForgetNotes = new HashSet<ForgetNotes>();
+        }
+    
         public int UserNotesID { get; set; }
         public int UserID { get; set; }
         public int QuestionID { get; set; }
         public string NoteText { get; set; }
         public bool IsToBeDisplayed { get; set; }
+        public Nullable<bool> IsApprovedForPublicDisplay { get; set; }
+        public Nullable<int> ApprovedByAdminUserID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ForgetNotes> ForgetNotes { get; set; }
         public virtual QuestionsAfterUG QuestionsAfterUG { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
     }
 }

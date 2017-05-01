@@ -17,11 +17,11 @@ namespace afterug.core.middlelayer
         public long ForgetNotesID { get; set; }
         public int UserWhoWantsToForgetNotesID { get; set; }
         public int QuestionID { get; set; }
-        public int UserAfterUGNotesID { get; set; }
+        public int UserNotesID { get; set; }
         public Nullable<bool> ForgetStatus { get; set; }
     
         public virtual QuestionsAfterUG QuestionsAfterUG { get; set; }
-        public virtual UserAfterUGNotes UserAfterUGNotes { get; set; }
+        public virtual UserNotes UserNotes { get; set; }
         public virtual Users Users { get; set; }
     }
 }
