@@ -1,0 +1,34 @@
+<h3>TestList</h3>
+
+
+<div class="row question">
+
+
+
+
+    <form action="#">
+        <div *ngIf="!showTest">
+            <div *ngFor="let chapter of chapterButtonsList">
+                <h2>Chapter</h2><br/><br/>
+                <div *ngFor="let buttons of chapter">
+                    <!-- <input type="radio" [(ngModel)]="userChoiceID" name="choices" [value]="choice.ChoiceText"  [checked]="userChoiceID==choice.ChoiceText" (change)="updateAndAddCurrentHit()"/> {{choice.ChoiceText}} -->
+                    <!-- <button [ngModel]="ClickedButtonName" name="TestButtons" [value]="buttons.Key" (click) ="TestButtonClicked(buttons.Key)" ngDefaultControl>{{buttons.Key}}</button><br/><br/>-->
+                    <button name="TestButtons" (click)="TestButtonClicked(buttons.Value)" ngDefaultControl>{{buttons.Key}}</button><br/><br/>
+                </div>
+                <hr/>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="showTest">
+        <test [questionIDArrayAndUserIDObject]="questionIDArrayAndUserIDObject"></test>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>

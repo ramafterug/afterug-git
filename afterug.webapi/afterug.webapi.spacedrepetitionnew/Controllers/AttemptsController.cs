@@ -29,16 +29,18 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
         // POST: api/Attempts
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
-        public HttpResponseMessage Post([FromBody]List<Attempts> listOfAttempts)
+        public HttpResponseMessage Post([FromBody]List<List<Attempts>> listOfAttemptsArray)
         {
             var db = new afterugdevEntities4();
             //List<Company> companies = new List<Company>();
 
             //listOfAttempts.ForEach(n => db.Attempts.AddRange(n));
-            foreach(var attempt in listOfAttempts)
+            foreach(var attemptArray in listOfAttemptsArray)
             {
-                
-                db.Attempts.Add(attempt);
+                foreach (var attempt in attemptArray)
+                {
+                    db.Attempts.Add(attempt);
+                }
             }
 
             try

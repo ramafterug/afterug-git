@@ -1,0 +1,219 @@
+<h3>Test</h3>
+<div class="col-md-4">
+	<label>Mark or UnMark the word: </label>
+	<label class="toggle col-sm-8">
+    <input type="checkbox" (click)="Existing()" name="MarkWord" [(ngModel)]="IsMarked">
+    <span class="handle"></span>
+  </label>
+</div>
+<div>
+
+	<div class="row question">
+		<div class="row ID">
+			{{test.currentQuestion?.QuestionID}}<br/>
+
+		</div>
+
+		<div class="row Question">
+			{{test.currentQuestion?.Question}}
+		</div>
+		<form action="">
+			<div *ngFor="let choice of test.currentQuestion?.FinalFourShuffledChoices">
+				<div class="row">
+					<input type="radio" [(ngModel)]="userChoiceID" name="choices" [value]="choice.ChoiceID" [checked]="userChoiceID==choice.ChoiceID"
+					 (change)="updateAndAddCurrentHit()" /> {{choice.ChoiceID}}
+					<!-- <input type="radio" [(ngModel)]="model.sex"  name="sex" value="male">Male<br>-->
+
+				</div>
+			</div>
+			<div>Selected Radio: {{userChoiceID}}</div>
+		</form>
+
+		<br/><br/>
+		<h3>Attempt History of you for this question</h3>
+		<div *ngFor="let attempt of test.currentQuestion?.Attempts">
+			<div class="row">
+
+				<b>Attempt Number: </b> {{attempt.AttemptNumber}} ||
+
+				<b>Test or STudy Session</b> {{attempt.TestOrStudySession}} ||
+
+				<b>You Took: </b> {{attempt.TimeTaken}} Seconds ||
+
+				<b>Your Final answer for the attempt: </b> {{attempt.UserFinalHitAnswer}}.
+				<br/><br/>
+			</div>
+		</div>
+
+		<br/><br/>
+
+		<b>Score: </b>{{test?.Score}}
+
+		<br/><br/>
+
+		<button (click)="NextQuestion()">Next</button><br/><br/>
+
+
+
+	</div>
+
+</div>
+
+<div class="col-md-12">
+	<div class="row" style="margin:0 auto;">
+		<h2>Immediate Summary Review</h2>
+	</div>
+
+
+
+	<div class="btn-group" role="group" aria-label="...">
+		<button type="button" class="btn btn-default">Review Incorrect</button>
+		<button type="button" class="btn btn-default">Review Unanswered</button>
+		<button type="button" class="btn btn-default">Review Most Time Taken</button>
+		<button type="button" class="btn btn-default">Review Marked</button>
+		<button type="button" class="btn btn-default">Review All</button>
+	</div>
+
+	<div class="row" style="margin:0 auto;">
+		<h3>Incorrectly answered Questions</h3>
+	</div>
+
+	<div class="row">
+		<div class="col-md-11" style="border:2px solid black;">
+			<div class="row">
+				<div class="col-md-5" style="border:1px solid black;">
+					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
+					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
+					here Question goes here Question goes here Question goes here
+				</div>
+				<div class="col-md-4" style="border:1px solid black;">
+					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
+					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
+					here answer goes here answer goes here answer goes here answer goes here answer goes here
+				</div>
+				<div class="col-md-3" style="border:1px solid black;">
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Mark</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Dont Show this Question</label>
+					</div>
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
+  							<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Hard</a></li>
+							<li><a href="#">Medium</a></li>
+							<li><a href="#">Easy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<br/><br/>
+<div class="row">
+		<div class="col-md-11" style="border:2px solid black;">
+			<div class="row">
+				<div class="col-md-5" style="border:1px solid black;">
+					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
+					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
+					here Question goes here Question goes here Question goes here
+				</div>
+				<div class="col-md-4" style="border:1px solid black;">
+					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
+					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
+					here answer goes here answer goes here answer goes here answer goes here answer goes here
+				</div>
+				<div class="col-md-3" style="border:1px solid black;">
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Mark</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Dont Show this Question</label>
+					</div>
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
+  							<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Hard</a></li>
+							<li><a href="#">Medium</a></li>
+							<li><a href="#">Easy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<br/><br/>
+
+	<div class="row">
+		<div class="col-md-11" style="border:2px solid black;">
+			<div class="row">
+				<div class="col-md-5" style="border:1px solid black;">
+					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
+					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
+					here Question goes here Question goes here Question goes here
+				</div>
+				<div class="col-md-4" style="border:1px solid black;">
+					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
+					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
+					here answer goes here answer goes here answer goes here answer goes here answer goes here
+				</div>
+				<div class="col-md-3" style="border:1px solid black;">
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Mark</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Dont Show this Question</label>
+					</div>
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
+  							<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Hard</a></li>
+							<li><a href="#">Medium</a></li>
+							<li><a href="#">Easy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<br/><br/>
+
+	<div class="row">
+		<div class="col-md-11" style="border:2px solid black;">
+			<div class="row">
+				<div class="col-md-5" style="border:1px solid black;">
+					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
+					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
+					here Question goes here Question goes here Question goes here
+				</div>
+				<div class="col-md-4" style="border:1px solid black;">
+					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
+					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
+					here answer goes here answer goes here answer goes here answer goes here answer goes here
+				</div>
+				<div class="col-md-3" style="border:1px solid black;">
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Mark</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Dont Show this Question</label>
+					</div>
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
+  							<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Hard</a></li>
+							<li><a href="#">Medium</a></li>
+							<li><a href="#">Easy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
