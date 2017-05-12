@@ -59,86 +59,92 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="afterugdev.Context.cs">
+    <Compile Include="afterugdevModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>afterugdev.Context.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="afterugdev.cs">
+    <Compile Include="afterugdevModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="afterugdev.Designer.cs">
+    <Compile Include="afterugdevModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>afterugdev.edmx</DependentUpon>
+      <DependentUpon>afterugdevModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="AfterUGNotePoints.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AfterUGNotePointsTags.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Attempts.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Chapter.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Choices.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="DontShowQuestion.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ForgetNotes.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSettings.cs">
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Hits.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PartialModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionDifficulty.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="QuestionsAfterUG.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="QuestionsAfterUG_Backup.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="QuestionTags.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Tags.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TestChild.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TestMarkAQuestion.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TestMaster.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserNotes.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
-      <DependentUpon>afterugdev.tt</DependentUpon>
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSettings.cs">
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="afterugdev.edmx">
+    <EntityDeploy Include="afterugdevModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>afterugdev.Designer.cs</LastGenOutput>
+      <LastGenOutput>afterugdevModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="afterugdev.edmx.diagram">
-      <DependentUpon>afterugdev.edmx</DependentUpon>
+    <None Include="afterugdevModel.edmx.diagram">
+      <DependentUpon>afterugdevModel.edmx</DependentUpon>
     </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -151,15 +157,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="afterugdev.Context.tt">
+    <Content Include="afterugdevModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>afterugdev.edmx</DependentUpon>
-      <LastGenOutput>afterugdev.Context.cs</LastGenOutput>
+      <DependentUpon>afterugdevModel.edmx</DependentUpon>
+      <LastGenOutput>afterugdevModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="afterugdev.tt">
+    <Content Include="afterugdevModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>afterugdev.edmx</DependentUpon>
-      <LastGenOutput>afterugdev.cs</LastGenOutput>
+      <DependentUpon>afterugdevModel.edmx</DependentUpon>
+      <LastGenOutput>afterugdevModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\TypeLite.Net4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

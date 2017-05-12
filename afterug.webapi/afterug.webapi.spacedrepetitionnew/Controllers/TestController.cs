@@ -19,7 +19,7 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
         [Route("api/Test/User/{userID}")]
         public HttpResponseMessage GetTestQuestions(int userID)
         {
-            var db = new afterugdevEntities4();
+            var db = new afterugdevEntities5();
 
             db.Configuration.ProxyCreationEnabled = false;
 

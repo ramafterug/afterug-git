@@ -1,5 +1,7 @@
 /// <reference path = "../models.ts" />
 import * as afterUGExtended from "../models";
+/// <reference path = "../custommodels.ts" />
+import * as afterUGExtendedCustom from "../custommodels";
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
@@ -36,7 +38,7 @@ export class TestQuestionService {
       
 
   }
-   getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtended.afterugExtended.QuestionIDArrayAndUserID): Observable<QuestionRawExtended[]> {
+   getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID): Observable<QuestionRawExtended[]> {
 
     /*return this.http.get(this.testQuestionUrl + testNo + '/User/' + userID)
       .map((res: Response) => res.json())

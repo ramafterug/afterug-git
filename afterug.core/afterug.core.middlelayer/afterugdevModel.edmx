@@ -32,6 +32,7 @@
           <Property Name="TimeTaken" Type="bigint" Nullable="false" />
           <Property Name="UserFinalHitAnswer" Type="bigint" Nullable="false" />
           <Property Name="AnswerStatus" Type="int" Nullable="false" />
+          <Property Name="CorrectAnswer" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Chapter">
           <Key>
@@ -68,6 +69,16 @@
           <Property Name="UserNotesID" Type="int" Nullable="false" />
           <Property Name="ForgetStatus" Type="bit" />
         </EntityType>
+        <EntityType Name="GlobalSettings">
+          <Key>
+            <PropertyRef Name="GlobalSettingsID" />
+          </Key>
+          <Property Name="GlobalSettingsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoOfQuestionsPerTest" Type="int" Nullable="false" />
+          <Property Name="NoOfChoicesPerQuestion" Type="int" Nullable="false" />
+          <Property Name="NoOfRepetitionsCorrect" Type="int" Nullable="false" />
+          <Property Name="NoOfRepetitionsIncorrect" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hits">
           <Key>
             <PropertyRef Name="HitID" />
@@ -75,7 +86,8 @@
           <Property Name="HitID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AttemptID" Type="bigint" Nullable="false" />
           <Property Name="WhichNoOfHit" Type="tinyint" Nullable="false" />
-          <Property Name="UserAnswerForTheHit" Type="bigint" />
+          <Property Name="UserChoiceIDForTheHit" Type="bigint" Nullable="false" />
+          <Property Name="UserChoiceTextForTheHit" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="QuestionDifficulty">
           <Key>
@@ -173,6 +185,17 @@
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserNameOrEmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSettings">
+          <Key>
+            <PropertyRef Name="UserSettingsID" />
+          </Key>
+          <Property Name="UserSettingsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="NoOfQuestionsPerTest" Type="int" />
+          <Property Name="NoOfChoicesPerQuestion" Type="int" />
+          <Property Name="NoOfRepetitionsCorrect" Type="int" />
+          <Property Name="NoOfRepetitionsIncorrect" Type="int" />
         </EntityType>
         <Association Name="FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints">
           <End Role="AfterUGNotePoints" Type="Self.AfterUGNotePoints" Multiplicity="1" />
@@ -366,6 +389,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserID_UserSettings_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserSettings" Type="Self.UserSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserSettings">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserNotesID_ForgetNotes_UserNotes">
           <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="1" />
           <End Role="ForgetNotes" Type="Self.ForgetNotes" Multiplicity="*" />
@@ -422,6 +457,7 @@
           <EntitySet Name="Choices" EntityType="Self.Choices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DontShowQuestion" EntityType="Self.DontShowQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForgetNotes" EntityType="Self.ForgetNotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GlobalSettings" EntityType="Self.GlobalSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hits" EntityType="Self.Hits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionDifficulty" EntityType="Self.QuestionDifficulty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionsAfterUG" EntityType="Self.QuestionsAfterUG" Schema="dbo" store:Type="Tables" />
@@ -433,6 +469,7 @@
           <EntitySet Name="TestMaster" EntityType="Self.TestMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserNotes" EntityType="Self.UserNotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSettings" EntityType="Self.UserSettings" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints" Association="Self.FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints">
             <End Role="AfterUGNotePoints" EntitySet="AfterUGNotePoints" />
             <End Role="AfterUGNotePointsTags" EntitySet="AfterUGNotePointsTags" />
@@ -497,6 +534,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserNotes" EntitySet="UserNotes" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserID_UserSettings_Users" Association="Self.FK_UserID_UserSettings_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserSettings" EntitySet="UserSettings" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserNotesID_ForgetNotes_UserNotes" Association="Self.FK_UserNotesID_ForgetNotes_UserNotes">
             <End Role="UserNotes" EntitySet="UserNotes" />
             <End Role="ForgetNotes" EntitySet="ForgetNotes" />
@@ -549,6 +590,7 @@
           <Property Name="TimeTaken" Type="Int64" Nullable="false" />
           <Property Name="UserFinalHitAnswer" Type="Int64" Nullable="false" />
           <Property Name="AnswerStatus" Type="Int32" Nullable="false" />
+          <Property Name="CorrectAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Hits" Relationship="Self.FK_AttemptID_Hits_Attempts" FromRole="Attempts" ToRole="Hits" />
           <NavigationProperty Name="QuestionsAfterUG" Relationship="Self.FK_QuestionID_Attempts_QuestionsAfterUG" FromRole="Attempts" ToRole="QuestionsAfterUG" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UserID_Attempts_Users" FromRole="Attempts" ToRole="Users" />
@@ -593,6 +635,16 @@
           <NavigationProperty Name="UserNotes" Relationship="Self.FK_UserNotesID_ForgetNotes_UserNotes" FromRole="ForgetNotes" ToRole="UserNotes" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UserWhoWantsToForgetNotesID_ForgetNotes_Users" FromRole="ForgetNotes" ToRole="Users" />
         </EntityType>
+        <EntityType Name="GlobalSettings">
+          <Key>
+            <PropertyRef Name="GlobalSettingsID" />
+          </Key>
+          <Property Name="GlobalSettingsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoOfQuestionsPerTest" Type="Int32" Nullable="false" />
+          <Property Name="NoOfChoicesPerQuestion" Type="Int32" Nullable="false" />
+          <Property Name="NoOfRepetitionsCorrect" Type="Int32" Nullable="false" />
+          <Property Name="NoOfRepetitionsIncorrect" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hits">
           <Key>
             <PropertyRef Name="HitID" />
@@ -600,7 +652,8 @@
           <Property Name="HitID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AttemptID" Type="Int64" Nullable="false" />
           <Property Name="WhichNoOfHit" Type="Byte" Nullable="false" />
-          <Property Name="UserAnswerForTheHit" Type="Int64" />
+          <Property Name="UserChoiceIDForTheHit" Type="Int64" Nullable="false" />
+          <Property Name="UserChoiceTextForTheHit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Attempts" Relationship="Self.FK_AttemptID_Hits_Attempts" FromRole="Hits" ToRole="Attempts" />
         </EntityType>
         <EntityType Name="QuestionDifficulty">
@@ -727,6 +780,19 @@
           <NavigationProperty Name="TestMaster" Relationship="Self.FK_UserID_TestMaster_Users" FromRole="Users" ToRole="TestMaster" />
           <NavigationProperty Name="UserNotes" Relationship="Self.FK_ApprovedByAdminUserID_UserNotes_Users" FromRole="Users" ToRole="UserNotes" />
           <NavigationProperty Name="UserNotes1" Relationship="Self.FK_UserID_UserNotes_Users" FromRole="Users" ToRole="UserNotes" />
+          <NavigationProperty Name="UserSettings" Relationship="Self.FK_UserID_UserSettings_Users" FromRole="Users" ToRole="UserSettings" />
+        </EntityType>
+        <EntityType Name="UserSettings">
+          <Key>
+            <PropertyRef Name="UserSettingsID" />
+          </Key>
+          <Property Name="UserSettingsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="NoOfQuestionsPerTest" Type="Int32" />
+          <Property Name="NoOfChoicesPerQuestion" Type="Int32" />
+          <Property Name="NoOfRepetitionsCorrect" Type="Int32" />
+          <Property Name="NoOfRepetitionsIncorrect" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserID_UserSettings_Users" FromRole="UserSettings" ToRole="Users" />
         </EntityType>
         <Association Name="FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints">
           <End Role="AfterUGNotePoints" Type="Self.AfterUGNotePoints" Multiplicity="1" />
@@ -968,7 +1034,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="afterugdevEntities4" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_UserID_UserSettings_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserSettings" Type="Self.UserSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserSettings">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="afterugdevEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AfterUGNotePoints" EntityType="Self.AfterUGNotePoints" />
           <EntitySet Name="AfterUGNotePointsTags" EntityType="Self.AfterUGNotePointsTags" />
           <EntitySet Name="Attempts" EntityType="Self.Attempts" />
@@ -976,6 +1054,7 @@
           <EntitySet Name="Choices" EntityType="Self.Choices" />
           <EntitySet Name="DontShowQuestion" EntityType="Self.DontShowQuestion" />
           <EntitySet Name="ForgetNotes" EntityType="Self.ForgetNotes" />
+          <EntitySet Name="GlobalSettings" EntityType="Self.GlobalSettings" />
           <EntitySet Name="Hits" EntityType="Self.Hits" />
           <EntitySet Name="QuestionDifficulty" EntityType="Self.QuestionDifficulty" />
           <EntitySet Name="QuestionsAfterUG" EntityType="Self.QuestionsAfterUG" />
@@ -987,6 +1066,7 @@
           <EntitySet Name="TestMaster" EntityType="Self.TestMaster" />
           <EntitySet Name="UserNotes" EntityType="Self.UserNotes" />
           <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="UserSettings" EntityType="Self.UserSettings" />
           <AssociationSet Name="FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints" Association="Self.FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints">
             <End Role="AfterUGNotePoints" EntitySet="AfterUGNotePoints" />
             <End Role="AfterUGNotePointsTags" EntitySet="AfterUGNotePointsTags" />
@@ -1067,13 +1147,17 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserNotes" EntitySet="UserNotes" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserID_UserSettings_Users" Association="Self.FK_UserID_UserSettings_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserSettings" EntitySet="UserSettings" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="afterugdevModelStoreContainer" CdmEntityContainer="afterugdevEntities4">
+        <EntityContainerMapping StorageEntityContainer="afterugdevModelStoreContainer" CdmEntityContainer="afterugdevEntities5">
           <EntitySetMapping Name="AfterUGNotePoints">
             <EntityTypeMapping TypeName="afterugdevModel.AfterUGNotePoints">
               <MappingFragment StoreEntitySet="AfterUGNotePoints">
@@ -1102,6 +1186,7 @@
                 <ScalarProperty Name="TimeTaken" ColumnName="TimeTaken" />
                 <ScalarProperty Name="UserFinalHitAnswer" ColumnName="UserFinalHitAnswer" />
                 <ScalarProperty Name="AnswerStatus" ColumnName="AnswerStatus" />
+                <ScalarProperty Name="CorrectAnswer" ColumnName="CorrectAnswer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1144,13 +1229,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="GlobalSettings">
+            <EntityTypeMapping TypeName="afterugdevModel.GlobalSettings">
+              <MappingFragment StoreEntitySet="GlobalSettings">
+                <ScalarProperty Name="GlobalSettingsID" ColumnName="GlobalSettingsID" />
+                <ScalarProperty Name="NoOfQuestionsPerTest" ColumnName="NoOfQuestionsPerTest" />
+                <ScalarProperty Name="NoOfChoicesPerQuestion" ColumnName="NoOfChoicesPerQuestion" />
+                <ScalarProperty Name="NoOfRepetitionsCorrect" ColumnName="NoOfRepetitionsCorrect" />
+                <ScalarProperty Name="NoOfRepetitionsIncorrect" ColumnName="NoOfRepetitionsIncorrect" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Hits">
             <EntityTypeMapping TypeName="afterugdevModel.Hits">
               <MappingFragment StoreEntitySet="Hits">
                 <ScalarProperty Name="HitID" ColumnName="HitID" />
                 <ScalarProperty Name="AttemptID" ColumnName="AttemptID" />
                 <ScalarProperty Name="WhichNoOfHit" ColumnName="WhichNoOfHit" />
-                <ScalarProperty Name="UserAnswerForTheHit" ColumnName="UserAnswerForTheHit" />
+                <ScalarProperty Name="UserChoiceIDForTheHit" ColumnName="UserChoiceIDForTheHit" />
+                <ScalarProperty Name="UserChoiceTextForTheHit" ColumnName="UserChoiceTextForTheHit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1256,6 +1353,18 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserNameOrEmailAddress" ColumnName="UserNameOrEmailAddress" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSettings">
+            <EntityTypeMapping TypeName="afterugdevModel.UserSettings">
+              <MappingFragment StoreEntitySet="UserSettings">
+                <ScalarProperty Name="UserSettingsID" ColumnName="UserSettingsID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NoOfQuestionsPerTest" ColumnName="NoOfQuestionsPerTest" />
+                <ScalarProperty Name="NoOfChoicesPerQuestion" ColumnName="NoOfChoicesPerQuestion" />
+                <ScalarProperty Name="NoOfRepetitionsCorrect" ColumnName="NoOfRepetitionsCorrect" />
+                <ScalarProperty Name="NoOfRepetitionsIncorrect" ColumnName="NoOfRepetitionsIncorrect" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

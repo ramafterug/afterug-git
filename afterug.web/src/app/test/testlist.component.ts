@@ -1,5 +1,7 @@
 /// <reference path = "../models.ts" />
+/// <reference path = "../custommodels.ts" />
 import * as afterUGExtended from "../models";
+import * as afterUGExtendedCustom from "../custommodels";
 //import afterugExtended = require('../models');
 import { Component, OnInit,Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -38,7 +40,7 @@ export class TestListComponent implements OnInit {
     questionIDArrayCurrentButton: number[];
     ClickedButtonArray: number[];
     showTest:boolean = false;
-questionIDArrayAndUserIDObject:afterUGExtended.afterugExtended.QuestionIDArrayAndUserID;
+questionIDArrayAndUserIDObject:afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID;
     ngOnInit(): void {
         this.getUserId();
         this.loadChapterButtons();
@@ -68,7 +70,7 @@ questionIDArrayAndUserIDObject:afterUGExtended.afterugExtended.QuestionIDArrayAn
         //console.log(btnValueArray);
         this.showTest = true;
         this.questionIDArrayCurrentButton = btnValueArray; 
-        this.questionIDArrayAndUserIDObject = new afterUGExtended.afterugExtended.QuestionIDArrayAndUserID();
+        this.questionIDArrayAndUserIDObject = new afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID();
         this.questionIDArrayAndUserIDObject.QuestionIDArray = btnValueArray;
         this.questionIDArrayAndUserIDObject.UserID = this.userID;
          //this.router.navigate(['/']);

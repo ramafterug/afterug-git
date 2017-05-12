@@ -28,17 +28,30 @@ namespace afterug.core.middlelayer
     public partial class Choices
     {
     }
-
+    [TsClass]
+    public partial class Chapter
+    {
+    }
+    [TsClass]
+    public partial class DontShowQuestion
+    {
+    }
     [TsClass]
     public partial class ForgetNotes
     {
     }
-
+    [TsClass]
+    public partial class GlobalSettings
+    {
+    }
     [TsClass]
     public partial class Hits
     {
     }
-
+    [TsClass]
+    public partial class QuestionDifficulty
+    {
+    }
     [TsClass]
     public partial class QuestionsAfterUG
     {
@@ -53,11 +66,15 @@ namespace afterug.core.middlelayer
     public partial class Tags
     {
     }
-
     [TsClass]
-    public partial class UserAfterUGNotes
+    public partial class TestChild
     {
     }
+    [TsClass]
+    public partial class TestMaster
+    {
+    }
+    
 
     [TsClass]
     public partial class UserNotes
@@ -70,6 +87,10 @@ namespace afterug.core.middlelayer
     }
     [TsClass]
     public partial class TestMarkAQuestion
+    {
+    }
+    [TsClass]
+    public partial class UserSettings
     {
     }
 }

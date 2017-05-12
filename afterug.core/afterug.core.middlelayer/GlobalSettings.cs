@@ -12,14 +12,12 @@ namespace afterug.core.middlelayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Hits
+    public partial class GlobalSettings
     {
-        public long HitID { get; set; }
-        public long AttemptID { get; set; }
-        public byte WhichNoOfHit { get; set; }
-        public long UserChoiceIDForTheHit { get; set; }
-        public string UserChoiceTextForTheHit { get; set; }
-    
-        public virtual Attempts Attempts { get; set; }
+        public int GlobalSettingsID { get; set; }
+        public int NoOfQuestionsPerTest { get; set; }
+        public int NoOfChoicesPerQuestion { get; set; }
+        public int NoOfRepetitionsCorrect { get; set; }
+        public int NoOfRepetitionsIncorrect { get; set; }
     }
 }

@@ -4,25 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="51ef1a5b86c14fbe8f9790ae28e61f7c" Name="Diagram1">
-        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePoints" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePointsTags" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Attempts" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Chapter" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Choices" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.DontShowQuestion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.ForgetNotes" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Hits" Width="1.5" PointX="7.5" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionDifficulty" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG_Backup" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionTags" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Tags" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.TestChild" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.TestMarkAQuestion" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.TestMaster" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.UserNotes" Width="1.5" PointX="11.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Users" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+      <Diagram DiagramId="64c89d750a7c46fcb5c4fd0eebc0b123" Name="Diagram1">
+        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePoints" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePointsTags" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Attempts" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Chapter" Width="1.5" PointX="1.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Choices" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.DontShowQuestion" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.ForgetNotes" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.GlobalSettings" Width="1.5" PointX="8.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Hits" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionDifficulty" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG_Backup" Width="1.5" PointX="8.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionTags" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Tags" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.TestChild" Width="1.5" PointX="8.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.TestMarkAQuestion" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.TestMaster" Width="1.5" PointX="3" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.UserNotes" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Users" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.UserSettings" Width="1.5" PointX="3" PointY="31.375" IsExpanded="true" />
         <AssociationConnector Association="afterugdevModel.FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_TagID_AfterUGNotePointsTags_Tags" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_AttemptID_Hits_Attempts" ManuallyRouted="false" />
@@ -43,6 +45,7 @@
         <AssociationConnector Association="afterugdevModel.FK_UserID_TestMaster_Users" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_ApprovedByAdminUserID_UserNotes_Users" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_UserID_UserNotes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="afterugdevModel.FK_UserID_UserSettings_Users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

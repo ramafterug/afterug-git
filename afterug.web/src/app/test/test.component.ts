@@ -1,5 +1,7 @@
 /// <reference path = "../models.ts" />
 import * as afterUGExtended from "../models";
+/// <reference path = "../custommodels.ts" />
+import * as afterUGExtendedCustom from "../custommodels";
 //import afterugExtended = require('../models');
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -39,11 +41,11 @@ export class TestComponent implements OnInit {
   singleQuestionHitCount: number = 0;
   NewAttempts: afterUGExtended.afterugExtended.Attempts[][];
   SSFinalAttempts: afterUGExtended.afterugExtended.Attempts[];
-  MarkedQuestions: afterUGExtended.afterugExtended.TestMarkAQuestion[];
+  MarkedQuestions: afterUGExtendedCustom.afterugExtended.TestMarkAQuestion[];
   IsMarked: boolean = false;
   TestMode: string = "SS"; //TT for test. SS for StudySession
 
-  @Input() questionIDArrayAndUserIDObject: afterUGExtended.afterugExtended.QuestionIDArrayAndUserID;
+  @Input() questionIDArrayAndUserIDObject: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID;
 
   newQuestion: number = 0;
   constructor(
@@ -62,7 +64,7 @@ export class TestComponent implements OnInit {
   Existing() {
     this.IsMarked = !this.IsMarked;
     // var tempUserID = 
-    var tempMarked = new afterUGExtended.afterugExtended.TestMarkAQuestion();
+    var tempMarked = new afterUGExtendedCustom.afterugExtended.TestMarkAQuestion();
     tempMarked.QuestionID = this.test.currentQuestion.QuestionID;
     tempMarked.UserID = this.userID;
     if (this.IsMarked == true) {
@@ -131,7 +133,7 @@ export class TestComponent implements OnInit {
     this.singleQuestionHitCount++;
     var currentHit = new afterUGExtended.afterugExtended.Hits();
     //this.currentHit.AttemptID = this.currentAttempt.AttemptID;// Confusion on this attempt id will be generated only on insert
-    currentHit.UserAnswerForTheHit = this.userChoiceID;
+    currentHit.UserChoiceIDForTheHit = this.userChoiceID;
     //console.log("UserAnswerForTheHit:-> " + currentHit.UserAnswerForTheHit);
     //console.log("userChoiceID:-> " + this.userChoiceID);
     var currentAttemptHit = new afterUGExtended.afterugExtended.Hits();
@@ -163,6 +165,76 @@ export class TestComponent implements OnInit {
   }
 
   prepareISR() {
+    var countForQuestionObjectLoad;
+
+    
+
+
+    this.NewAttempts.forEach(MasterElement => {
+      var correctCount = 0; var incorrectCount = 0; var unansweredCount = 0;
+      countForQuestionObjectLoad = 0;
+      var QuestionID_ISR;
+      var ActualAnswer_ISR;
+      var QuestionObject: afterUGExtended.afterugExtended.QuestionsAfterUG;
+      
+      var unansweredQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
+      var incorrectQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
+      var correctQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
+    
+      var mostTimeTakenQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
+
+    
+
+
+      MasterElement.forEach(ChildElement => {
+
+        if (countForQuestionObjectLoad == 0) {
+
+          QuestionID_ISR = ChildElement.QuestionID;
+          ActualAnswer_ISR = ChildElement.CorrectAnswer;
+          QuestionObject = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
+        }
+        countForQuestionObjectLoad++;
+        var userAnswer: string;
+        var hitsLength = ChildElement.Hits.length;
+        if (hitsLength == 0) {
+          userAnswer = "0";
+        } else {
+          if (this.TestMode == "SS") {
+            userAnswer = ChildElement.Hits[0].UserChoiceTextForTheHit;
+          } else {
+            userAnswer = ChildElement.Hits[hitsLength - 1].UserChoiceTextForTheHit;
+          }
+        }
+
+        if (userAnswer == "0") {
+          //add question object to unanswered array
+          unansweredQuestionsList.push(QuestionObject);
+        } else {
+          if (userAnswer == ChildElement.CorrectAnswer) {
+            //add question to correct object array
+            correctQuestionsList.push(QuestionObject);
+          } else {
+            //add question to incorrect object array
+            incorrectQuestionsList.push(QuestionObject);
+          }
+        }
+        //if(){} // Check for Answer status 0 - incorrect, 1 for unanswered, 2 for correct // Check for marked array too // Add question objects to respective arrays
+        // Bind to the HTML UI
+      });
+    });
+  }
+
+  fetchQuestionObjectByQuestionID(questionID: number): any {
+    // var objQuestion = afterUGExtended.afterugExtended.QuestionsAfterUG;
+    this.test.QuestionList.forEach(question => {
+      if (question.QuestionID == questionID) {
+
+        return question;
+
+      }
+
+    });
 
   }
   setCurrentAttempt() {
@@ -191,6 +263,14 @@ export class TestComponent implements OnInit {
     currentAttempt.TimeTaken = 0;// Start the time when question loads and stop before this statement and then compute difference and Assign
     currentAttempt.UserFinalHitAnswer = 1;//Current choiceID. GEt the value from radio click
     currentAttempt.UserID = 1;//Make it dynamic later
+    var CorrectChoiceID = this.test.currentQuestion.CorrectChoiceID;
+
+    this.test.currentQuestion.Choices.forEach(choice => {
+      if (choice.ChoiceID == CorrectChoiceID) {
+        currentAttempt.CorrectAnswer = choice.ChoiceText;
+      }
+    });
+
     //    this.currentAttempt.Hits = this.currentAttemptHits;
 
     var tempCurrentAttempt = currentAttempt;
@@ -292,10 +372,11 @@ export class TestComponent implements OnInit {
 
       if (this.test.QuestionOrder.length == 0) {
         this.SSCorrectOrIncorrect();
+        this.userChoiceID = 0;
       } else {
         this.IsMarked = false;
         //this.setCurrentAttempt();
-        this.saveAttempsts();
+        this.saveAttempsts(); // Uncomment later. This has to be called after ISR Ends
         alert('Cannot go further this is the last question');
       }
 

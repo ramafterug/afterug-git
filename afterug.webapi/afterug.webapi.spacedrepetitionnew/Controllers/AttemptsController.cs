@@ -31,7 +31,7 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
         [System.Web.Http.HttpPost]
         public HttpResponseMessage Post([FromBody]List<List<Attempts>> listOfAttemptsArray)
         {
-            var db = new afterugdevEntities4();
+            var db = new afterugdevEntities5();
             //List<Company> companies = new List<Company>();
 
             //listOfAttempts.ForEach(n => db.Attempts.AddRange(n));

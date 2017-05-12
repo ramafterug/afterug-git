@@ -13,10 +13,10 @@ namespace afterug.core.middlelayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class afterugdevEntities4 : DbContext
+    public partial class afterugdevEntities5 : DbContext
     {
-        public afterugdevEntities4()
-            : base("name=afterugdevEntities4")
+        public afterugdevEntities5()
+            : base("name=afterugdevEntities5")
         {
         }
     
@@ -32,6 +32,7 @@ namespace afterug.core.middlelayer
         public virtual DbSet<Choices> Choices { get; set; }
         public virtual DbSet<DontShowQuestion> DontShowQuestion { get; set; }
         public virtual DbSet<ForgetNotes> ForgetNotes { get; set; }
+        public virtual DbSet<GlobalSettings> GlobalSettings { get; set; }
         public virtual DbSet<Hits> Hits { get; set; }
         public virtual DbSet<QuestionDifficulty> QuestionDifficulty { get; set; }
         public virtual DbSet<QuestionsAfterUG> QuestionsAfterUG { get; set; }
@@ -43,5 +44,6 @@ namespace afterug.core.middlelayer
         public virtual DbSet<TestMaster> TestMaster { get; set; }
         public virtual DbSet<UserNotes> UserNotes { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UserSettings> UserSettings { get; set; }
     }
 }

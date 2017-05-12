@@ -12,14 +12,15 @@ namespace afterug.core.middlelayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Hits
+    public partial class UserSettings
     {
-        public long HitID { get; set; }
-        public long AttemptID { get; set; }
-        public byte WhichNoOfHit { get; set; }
-        public long UserChoiceIDForTheHit { get; set; }
-        public string UserChoiceTextForTheHit { get; set; }
+        public int UserSettingsID { get; set; }
+        public int UserID { get; set; }
+        public Nullable<int> NoOfQuestionsPerTest { get; set; }
+        public Nullable<int> NoOfChoicesPerQuestion { get; set; }
+        public Nullable<int> NoOfRepetitionsCorrect { get; set; }
+        public Nullable<int> NoOfRepetitionsIncorrect { get; set; }
     
-        public virtual Attempts Attempts { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

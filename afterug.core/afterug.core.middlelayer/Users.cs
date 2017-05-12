@@ -24,6 +24,7 @@ namespace afterug.core.middlelayer
             this.TestMaster = new HashSet<TestMaster>();
             this.UserNotes = new HashSet<UserNotes>();
             this.UserNotes1 = new HashSet<UserNotes>();
+            this.UserSettings = new HashSet<UserSettings>();
         }
     
         public int UserID { get; set; }
@@ -44,5 +45,7 @@ namespace afterug.core.middlelayer
         public virtual ICollection<UserNotes> UserNotes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserNotes> UserNotes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserSettings> UserSettings { get; set; }
     }
 }

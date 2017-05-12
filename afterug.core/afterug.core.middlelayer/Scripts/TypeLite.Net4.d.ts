@@ -20,8 +20,10 @@ declare namespace afterug.core.middlelayer {
 		Tags: afterug.core.middlelayer.Tags;
 	}
 	interface Attempts {
+		AnswerStatus: number;
 		AttemptID: number;
 		AttemptNumber: number;
+		CorrectAnswer: string;
 		Hits: afterug.core.middlelayer.Hits[];
 		QuestionID: number;
 		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
@@ -31,6 +33,12 @@ declare namespace afterug.core.middlelayer {
 		UserID: number;
 		Users: afterug.core.middlelayer.Users;
 	}
+	interface Chapter {
+		ChapterDescription: string;
+		ChapterID: number;
+		ChapterName: string;
+		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG[];
+	}
 	interface Choices {
 		ChoiceID: number;
 		ChoiceText: string;
@@ -38,25 +46,48 @@ declare namespace afterug.core.middlelayer {
 		QuestionID: number;
 		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
 	}
+	interface DontShowQuestion {
+		DontShowQuestionID: number;
+		QuestionID: number;
+		UserID: number;
+	}
 	interface ForgetNotes {
 		ForgetNotesID: number;
 		ForgetStatus: boolean;
 		QuestionID: number;
 		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
-		UserAfterUGNotes: afterug.core.middlelayer.UserAfterUGNotes;
-		UserAfterUGNotesID: number;
+		UserNotes: afterug.core.middlelayer.UserNotes;
+		UserNotesID: number;
 		Users: afterug.core.middlelayer.Users;
 		UserWhoWantsToForgetNotesID: number;
+	}
+	interface GlobalSettings {
+		GlobalSettingsID: number;
+		NoOfChoicesPerQuestion: number;
+		NoOfQuestionsPerTest: number;
+		NoOfRepetitionsCorrect: number;
+		NoOfRepetitionsIncorrect: number;
 	}
 	interface Hits {
 		AttemptID: number;
 		Attempts: afterug.core.middlelayer.Attempts;
 		HitID: number;
-		UserAnswerForTheHit: number;
+		UserChoiceIDForTheHit: number;
+		UserChoiceTextForTheHit: string;
 		WhichNoOfHit: number;
+	}
+	interface QuestionDifficulty {
+		DifficultyLevel: number;
+		QuestionDifficultyID: number;
+		QuestionID: number;
+		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
+		Users: afterug.core.middlelayer.Users;
+		UserWhoRatedDifficultyID: number;
 	}
 	interface QuestionsAfterUG {
 		Attempts: afterug.core.middlelayer.Attempts[];
+		Chapter: afterug.core.middlelayer.Chapter;
+		ChapterID: number;
 		Choices: afterug.core.middlelayer.Choices[];
 		CorrectChoiceID: number;
 		ForgetNotes: afterug.core.middlelayer.ForgetNotes[];
@@ -64,11 +95,11 @@ declare namespace afterug.core.middlelayer {
 		IsQuestionReviewed: boolean;
 		IsQuestionSpinned: boolean;
 		Question: string;
+		QuestionDifficulty: afterug.core.middlelayer.QuestionDifficulty[];
 		QuestionID: number;
 		QuestionTags: afterug.core.middlelayer.QuestionTags[];
 		QuestionType: number;
 		TestMarkAQuestion: afterug.core.middlelayer.TestMarkAQuestion[];
-		UserAfterUGNotes: afterug.core.middlelayer.UserAfterUGNotes[];
 		UserNotes: afterug.core.middlelayer.UserNotes[];
 	}
 	interface QuestionTags {
@@ -85,6 +116,12 @@ declare namespace afterug.core.middlelayer {
 		TagID: number;
 		TagName: string;
 	}
+	interface TestChild {
+		IsQuestionAttended: boolean;
+		QuestionID: number;
+		TestID: number;
+		UserID: number;
+	}
 	interface TestMarkAQuestion {
 		QuestionID: number;
 		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
@@ -92,17 +129,18 @@ declare namespace afterug.core.middlelayer {
 		UserID: number;
 		Users: afterug.core.middlelayer.Users;
 	}
-	interface UserAfterUGNotes {
-		ForgetNotes: afterug.core.middlelayer.ForgetNotes[];
-		IsToBeDisplayed: boolean;
-		NoteText: string;
-		QuestionID: number;
-		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
-		UserAfterUGNotesID: number;
+	interface TestMaster {
+		IsReview: boolean;
+		IsTestComplete: boolean;
+		IsTestOrStudySession: boolean;
+		TestID: number;
+		UserID: number;
 		Users: afterug.core.middlelayer.Users;
-		UserWhoCreatedNotesID: number;
 	}
 	interface UserNotes {
+		ApprovedByAdminUserID: number;
+		ForgetNotes: afterug.core.middlelayer.ForgetNotes[];
+		IsApprovedForPublicDisplay: boolean;
 		IsToBeDisplayed: boolean;
 		NoteText: string;
 		QuestionID: number;
@@ -110,16 +148,29 @@ declare namespace afterug.core.middlelayer {
 		UserID: number;
 		UserNotesID: number;
 		Users: afterug.core.middlelayer.Users;
+		Users1: afterug.core.middlelayer.Users;
 	}
 	interface Users {
 		Attempts: afterug.core.middlelayer.Attempts[];
 		ForgetNotes: afterug.core.middlelayer.ForgetNotes[];
 		Password: string;
+		QuestionDifficulty: afterug.core.middlelayer.QuestionDifficulty[];
 		TestMarkAQuestion: afterug.core.middlelayer.TestMarkAQuestion[];
-		UserAfterUGNotes: afterug.core.middlelayer.UserAfterUGNotes[];
+		TestMaster: afterug.core.middlelayer.TestMaster[];
 		UserID: number;
 		UserNameOrEmailAddress: string;
 		UserNotes: afterug.core.middlelayer.UserNotes[];
+		UserNotes1: afterug.core.middlelayer.UserNotes[];
+		UserSettings: afterug.core.middlelayer.UserSettings[];
+	}
+	interface UserSettings {
+		NoOfChoicesPerQuestion: number;
+		NoOfQuestionsPerTest: number;
+		NoOfRepetitionsCorrect: number;
+		NoOfRepetitionsIncorrect: number;
+		UserID: number;
+		Users: afterug.core.middlelayer.Users;
+		UserSettingsID: number;
 	}
 }
 

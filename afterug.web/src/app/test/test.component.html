@@ -66,13 +66,23 @@
 
 
 
-	<div class="btn-group" role="group" aria-label="...">
-		<button type="button" class="btn btn-default">Review Incorrect</button>
-		<button type="button" class="btn btn-default">Review Unanswered</button>
-		<button type="button" class="btn btn-default">Review Most Time Taken</button>
-		<button type="button" class="btn btn-default">Review Marked</button>
-		<button type="button" class="btn btn-default">Review All</button>
-	</div>
+	<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> Review Incorrect
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Review Unanswered
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option3" autocomplete="off"> Review Most Time Taken
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option3" autocomplete="off"> Review Marked
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option3" autocomplete="off"> Review All
+  </label>
+</div>
 
 	<div class="row" style="margin:0 auto;">
 		<h3>Incorrectly answered Questions</h3>
