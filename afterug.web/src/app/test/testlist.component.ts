@@ -58,7 +58,7 @@ questionIDArrayAndUserIDAndTestMode:afterUGExtendedCustom.afterugExtended.Questi
 
     }
 setTestMode(){
-    this.testMode = "SS";
+    this.testMode = "TT";
 }
     TestButtonClicked(btnValueArray:number[]) {
         /*for (var i=0;i<this.chapterButtonsList.length;i++){

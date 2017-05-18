@@ -511,16 +511,24 @@ export class TestComponent implements OnInit {
       this.TaskForCurrentAttempt();
       this.TasksForNextAttempt();
     } else {
-      if (this.test.QuestionOrder.length == 1) {
+      if (this.TestMode = "TT") {
         this.TaskForCurrentAttempt();
-        if (this.testOrSSComplete == false) {
-          this.TasksForNextAttempt();
-        } else {
-          console.log("this.NewAttempts");
-          console.log(this.NewAttempts);
-          this.TTOrSSCompleteDoFormalities();
+        console.log("this.NewAttempts");
+        console.log(this.NewAttempts);
+        this.TTOrSSCompleteDoFormalities();
+      } else {
+        if (this.test.QuestionOrder.length == 1) {
+          this.TaskForCurrentAttempt();
+          if (this.testOrSSComplete == false) {
+            this.TasksForNextAttempt();
+          } else {
+            console.log("this.NewAttempts");
+            console.log(this.NewAttempts);
+            this.TTOrSSCompleteDoFormalities();
+          }
         }
       }
+
     }
   }
 
