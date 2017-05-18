@@ -38,7 +38,7 @@ export class TestQuestionService {
       
 
   }
-   getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID): Observable<QuestionRawExtended[]> {
+   getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode): Observable<QuestionRawExtended[]> {
 
     /*return this.http.get(this.testQuestionUrl + testNo + '/User/' + userID)
       .map((res: Response) => res.json())

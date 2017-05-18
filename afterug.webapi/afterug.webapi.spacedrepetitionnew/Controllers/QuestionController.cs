@@ -116,7 +116,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
                                       b.Choices,
                                       b.ForgetNotes,
                                       b.QuestionTags,
-                                      
+                                      TestMarkAQuestion = b.TestMarkAQuestion.Where(a => a.UserID == userID),
                                       b.UserNotes,
                                       Attempts = b.Attempts.Where(a => a.UserID == userID)
 

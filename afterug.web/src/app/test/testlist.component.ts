@@ -36,13 +36,15 @@ export class TestListComponent implements OnInit {
 
 
     userID: number;
+    testMode:string;
     chapterButtonsList: any[];
     questionIDArrayCurrentButton: number[];
     ClickedButtonArray: number[];
     showTest:boolean = false;
-questionIDArrayAndUserIDObject:afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID;
+questionIDArrayAndUserIDAndTestMode:afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode;
     ngOnInit(): void {
         this.getUserId();
+        this.setTestMode();
         this.loadChapterButtons();
     }
     constructor(
@@ -55,7 +57,9 @@ questionIDArrayAndUserIDObject:afterUGExtendedCustom.afterugExtended.QuestionIDA
        //this.ClickedButtonName = "Name";
 
     }
-
+setTestMode(){
+    this.testMode = "SS";
+}
     TestButtonClicked(btnValueArray:number[]) {
         /*for (var i=0;i<this.chapterButtonsList.length;i++){
             for(var j=0;j<this.chapterButtonsList[i].length;j++){
@@ -70,9 +74,10 @@ questionIDArrayAndUserIDObject:afterUGExtendedCustom.afterugExtended.QuestionIDA
         //console.log(btnValueArray);
         this.showTest = true;
         this.questionIDArrayCurrentButton = btnValueArray; 
-        this.questionIDArrayAndUserIDObject = new afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID();
-        this.questionIDArrayAndUserIDObject.QuestionIDArray = btnValueArray;
-        this.questionIDArrayAndUserIDObject.UserID = this.userID;
+        this.questionIDArrayAndUserIDAndTestMode = new afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode();
+        this.questionIDArrayAndUserIDAndTestMode.QuestionIDArray = btnValueArray;
+        this.questionIDArrayAndUserIDAndTestMode.UserID = this.userID;
+        this.questionIDArrayAndUserIDAndTestMode.TestMode = this.testMode;
          //this.router.navigate(['/']);
     }
     loadChapterButtons() {

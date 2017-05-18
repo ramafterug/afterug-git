@@ -17,6 +17,7 @@ import { fakeBackendProvider } from './_helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
+import { SimpleTimer } from 'ng2-simple-timer';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BaseRequestOptions } from '@angular/http';
     AuthGuard,
     AuthenticationService,
     UserService,
-    TestQuestionService
+    TestQuestionService,
+    SimpleTimer
     // providers used to create fake backend
     // fakeBackendProvider,
     //MockBackend,

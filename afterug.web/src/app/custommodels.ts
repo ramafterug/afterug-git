@@ -15,10 +15,19 @@ export namespace afterugExtended {
         Token: string;
 
     }
-    export class QuestionIDArrayAndUserID {
+    export class QuestionIDArrayAndUserIDAndTestMode {
         UserID: number;
+        TestMode:string;
         QuestionIDArray: number[];
 
 
+    }
+
+    export class QuestionObjectISR{
+        TimeTaken:number;
+         QuestionsAfterUG: afterUGExtended.afterugExtended.QuestionsAfterUG;
+         UserChoiceID:number;
+         UserChoiceText:string;
+         IncorrectChoicesChoiceIDArray:number[];
     }
 }

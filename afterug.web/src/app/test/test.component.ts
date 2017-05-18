@@ -14,6 +14,10 @@ import { RadioControlValueAccessor } from "../radio_value_accessor";
 //import { Choices } from '../models';
 import { TestListComponent } from './testlist.component';
 import { TestQuestionService } from './test-questions.service';
+
+import { SimpleTimer } from 'ng2-simple-timer';
+//import { ButtonRadioDirective } from 'ng2-bootstrap/components/buttons';
+
 @Component({
   moduleId: module.id,
   selector: 'test',
@@ -38,62 +42,56 @@ export class TestComponent implements OnInit {
   idNo: number;
   userID: number;
   userChoiceID: number = 0;
+  toDisplayISR: number = 1;
+  userChoiceText: string;
   singleQuestionHitCount: number = 0;
   NewAttempts: afterUGExtended.afterugExtended.Attempts[][];
   SSFinalAttempts: afterUGExtended.afterugExtended.Attempts[];
-  MarkedQuestions: afterUGExtendedCustom.afterugExtended.TestMarkAQuestion[];
-  IsMarked: boolean = false;
-  TestMode: string = "SS"; //TT for test. SS for StudySession
+  MarkedQuestions: number[];
+  FinalMarkUnMarkCRUDData: number[][];
+  UnMarkedQuestionIDArray: number[];
+  testOrSSComplete:boolean = false;
 
-  @Input() questionIDArrayAndUserIDObject: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserID;
+  //ISR
+  unansweredQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
+  incorrectQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
+  correctQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
+  mostTimeTakenQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
+  markedQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
+  //ISR
+
+  IsMarked: boolean = false;
+  TestMode: string; //TT for test. SS for StudySession
+  //Timer Code
+  counter0 = 0;
+  timer0Id: string;
+  timer0button = 'Subscribe';
+  //Timer Code
+  @Input() questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode;
 
   newQuestion: number = 0;
   constructor(
     private testQuestionService: TestQuestionService,
     private route: ActivatedRoute,
+    private st: SimpleTimer,
     // private location: Location
   ) {
     //Randomise here
     this.test.IsQuestionRandom = true;
     this.MarkedQuestions = [];
 
+    //ISR
+    this.unansweredQuestionsList = [];
+    this.incorrectQuestionsList = [];
+    this.correctQuestionsList = [];
+    this.mostTimeTakenQuestionsList = [];
+    this.markedQuestionsList = [];
+    //ISR
   }
   updateModel() {
     //this.QuestionIDArrayFromParent;
   }
-  Existing() {
-    this.IsMarked = !this.IsMarked;
-    // var tempUserID = 
-    var tempMarked = new afterUGExtendedCustom.afterugExtended.TestMarkAQuestion();
-    tempMarked.QuestionID = this.test.currentQuestion.QuestionID;
-    tempMarked.UserID = this.userID;
-    if (this.IsMarked == true) {
-      //this.MarkedQuestions.push
 
-      this.MarkedQuestions.push(tempMarked);
-      //Dummy comment for git testing develop branch another commit
-      // alert("Word is marked");
-      //console.log(this.MarkedQuestions);
-    } else {
-
-      //this.test.currentQuestion.QuestionID;
-      for (var i = 0; i < this.MarkedQuestions.length; i++) {
-        if (this.MarkedQuestions[i].QuestionID == this.test.currentQuestion.QuestionID) {
-          this.MarkedQuestions.splice(i, 1);
-          // console.log(this.MarkedQuestions);
-          //    alert("Word is Unmarked");
-
-        }
-      }
-      /*var index = this.MarkedQuestions.indexOf(tempMarked, 0);
-      console.log("index: " + index);
-      if (index > -1) {
-        this.MarkedQuestions.splice(index, 1);
-         console.log(this.MarkedQuestions);
-      }*/
-
-    }
-  }
   ComputeScoreForAQuestion() {
 
   }
@@ -134,6 +132,7 @@ export class TestComponent implements OnInit {
     var currentHit = new afterUGExtended.afterugExtended.Hits();
     //this.currentHit.AttemptID = this.currentAttempt.AttemptID;// Confusion on this attempt id will be generated only on insert
     currentHit.UserChoiceIDForTheHit = this.userChoiceID;
+    currentHit.UserChoiceTextForTheHit = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.userChoiceID);
     //console.log("UserAnswerForTheHit:-> " + currentHit.UserAnswerForTheHit);
     //console.log("userChoiceID:-> " + this.userChoiceID);
     var currentAttemptHit = new afterUGExtended.afterugExtended.Hits();
@@ -148,6 +147,8 @@ export class TestComponent implements OnInit {
     currentHit.WhichNoOfHit = currentAttemptHitsWhichNoOfHit + 1;
 
     this.NewAttempts[attemptIndex][currentAttemptsLength - 1].Hits[currentHitArrayLength] = currentHit;
+
+
   }
 
   CalculateNextAttemptNumber(): number {
@@ -157,86 +158,173 @@ export class TestComponent implements OnInit {
     } else {
       return ((this.test.currentQuestion.Attempts[(this.test.currentQuestion.Attempts.length - 1)].AttemptNumber));//Change this
     }
+  }
 
-
-
-
-
+  ShowISR() {
+    console.log("What to Display Value : " + this.toDisplayISR);
   }
 
   prepareISR() {
     var countForQuestionObjectLoad;
 
-    
+
 
 
     this.NewAttempts.forEach(MasterElement => {
+
+      var averageTimeTakenForAttempt = 0;
       var correctCount = 0; var incorrectCount = 0; var unansweredCount = 0;
       countForQuestionObjectLoad = 0;
       var QuestionID_ISR;
       var ActualAnswer_ISR;
-      var QuestionObject: afterUGExtended.afterugExtended.QuestionsAfterUG;
-      
-      var unansweredQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
-      var incorrectQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
-      var correctQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
-    
-      var mostTimeTakenQuestionsList = new Array<afterUGExtended.afterugExtended.QuestionsAfterUG>();
+      var QuestionObject = new afterUGExtendedCustom.afterugExtended.QuestionObjectISR();
+      QuestionObject.IncorrectChoicesChoiceIDArray = [];
+      var timeTakenForAttempt = 0;
 
-    
+
+      var correctCount: number = 0;
+      var incorrectCount: number = 0;
 
 
       MasterElement.forEach(ChildElement => {
 
+
+        timeTakenForAttempt = timeTakenForAttempt + ChildElement.TimeTaken;
         if (countForQuestionObjectLoad == 0) {
 
           QuestionID_ISR = ChildElement.QuestionID;
           ActualAnswer_ISR = ChildElement.CorrectAnswer;
-          QuestionObject = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
+
+          QuestionObject.QuestionsAfterUG = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
+
+          //          QuestionObject.UserChoiceText
         }
         countForQuestionObjectLoad++;
         var userAnswer: string;
+        var userAnswerChoiceID: number;
         var hitsLength = ChildElement.Hits.length;
         if (hitsLength == 0) {
           userAnswer = "0";
+          userAnswerChoiceID = 0;
         } else {
           if (this.TestMode == "SS") {
+
             userAnswer = ChildElement.Hits[0].UserChoiceTextForTheHit;
+            userAnswerChoiceID = ChildElement.Hits[0].UserChoiceIDForTheHit;
           } else {
             userAnswer = ChildElement.Hits[hitsLength - 1].UserChoiceTextForTheHit;
+            userAnswerChoiceID = ChildElement.Hits[hitsLength - 1].UserChoiceIDForTheHit;
           }
         }
 
-        if (userAnswer == "0") {
-          //add question object to unanswered array
-          unansweredQuestionsList.push(QuestionObject);
+
+
+        if (userAnswer == ChildElement.CorrectAnswer) {
+
+          //Increment CorrectCount
+          correctCount++;
+
         } else {
-          if (userAnswer == ChildElement.CorrectAnswer) {
-            //add question to correct object array
-            correctQuestionsList.push(QuestionObject);
-          } else {
-            //add question to incorrect object array
-            incorrectQuestionsList.push(QuestionObject);
-          }
+          //Increment IncorrectCount
+          incorrectCount++;
+          QuestionObject.IncorrectChoicesChoiceIDArray.push(userAnswerChoiceID);
+
         }
+
+
+
         //if(){} // Check for Answer status 0 - incorrect, 1 for unanswered, 2 for correct // Check for marked array too // Add question objects to respective arrays
         // Bind to the HTML UI
       });
+
+
+      var uniq = QuestionObject.IncorrectChoicesChoiceIDArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+      QuestionObject.IncorrectChoicesChoiceIDArray = uniq;
+
+      if (incorrectCount >= correctCount) {
+        this.incorrectQuestionsList.push(QuestionObject);
+      } else {
+        this.correctQuestionsList.push(QuestionObject);
+      }
+
+
+      averageTimeTakenForAttempt = timeTakenForAttempt / MasterElement.length;
+      QuestionObject.TimeTaken = averageTimeTakenForAttempt;
+
+      this.mostTimeTakenQuestionsList.push(QuestionObject);
+      //console.log("Before Sort: " +  this.mostTimeTakenQuestionsList);
+
+
+
     });
+    var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+    this.MarkedQuestions = uniqMarked;
+    for (var i = 0; i < this.MarkedQuestions.length; i++) {
+      var tempMarkedISR = new afterUGExtendedCustom.afterugExtended.QuestionObjectISR();
+      tempMarkedISR.QuestionsAfterUG = this.fetchQuestionObjectByQuestionID(this.MarkedQuestions[i]);
+
+      this.markedQuestionsList.push(tempMarkedISR);
+    }
+    console.log("Most time taken before sort");
+    console.log(this.mostTimeTakenQuestionsList);
+    var sortedArray = this.mostTimeTakenQuestionsList.sort(this.compare);
+    this.mostTimeTakenQuestionsList = sortedArray;
+    console.log("Most time taken after sort");
+    console.log(this.mostTimeTakenQuestionsList);
+
+
+
+    console.log("incorrectQuestionsList: ");
+    console.log(this.incorrectQuestionsList);
+    console.log("correctQuestionsList: ");
+    console.log(this.correctQuestionsList);
+    console.log("markedQuestionsList: ");
+    console.log(this.markedQuestionsList);
+
   }
 
-  fetchQuestionObjectByQuestionID(questionID: number): any {
-    // var objQuestion = afterUGExtended.afterugExtended.QuestionsAfterUG;
+  getAverageTimeTakenFromAttemptsByQuestionID(qID: number): number {
+
+    return 0;
+  }
+
+  compare(a, b) {
+    if (a.TimeTaken > b.TimeTaken)
+      return -1;
+    if (a.TimeTaken < b.TimeTaken)
+      return 1;
+    return 0;
+  }
+
+  //objs.sort(compare);
+
+
+  fetchQuestionObjectByQuestionID(questionID: number): afterUGExtended.afterugExtended.QuestionsAfterUG {
+    var objQuestion = new afterUGExtended.afterugExtended.QuestionsAfterUG();
     this.test.QuestionList.forEach(question => {
       if (question.QuestionID == questionID) {
+        objQuestion = question;
 
-        return question;
 
       }
 
     });
-
+    return objQuestion;
   }
+
+  fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(choiceID: number): string {
+    var choiceText = "";
+    this.test.currentQuestion.Choices.forEach(choice => {
+      if (choice.ChoiceID == choiceID) {
+        choiceText = choice.ChoiceText;
+
+
+      }
+
+    });
+    return choiceText;
+  }
+
   setCurrentAttempt() {
 
 
@@ -260,8 +348,10 @@ export class TestComponent implements OnInit {
     currentAttempt.QuestionID = this.test.currentQuestion.QuestionID;
     //console.log("QID:->" +  currentAttempt.QuestionID);
     currentAttempt.TestOrStudySession = "PreTest";//Make it dynamic later based on it is a test or TestOrStudySession
-    currentAttempt.TimeTaken = 0;// Start the time when question loads and stop before this statement and then compute difference and Assign
-    currentAttempt.UserFinalHitAnswer = 1;//Current choiceID. GEt the value from radio click
+    currentAttempt.TimeTaken = this.counter0;// Start the time when question loads and stop before this statement and then compute difference and Assign
+    currentAttempt.UserFinalHitAnswer = this.userChoiceID;//Current choiceID. GEt the value from radio click
+    var correctAnswerFromDB = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.test.currentQuestion.CorrectChoiceID);
+    currentAttempt.CorrectAnswer = correctAnswerFromDB;
     currentAttempt.UserID = 1;//Make it dynamic later
     var CorrectChoiceID = this.test.currentQuestion.CorrectChoiceID;
 
@@ -286,16 +376,20 @@ export class TestComponent implements OnInit {
 
   }
 
+
+
   getCurrentQuestionNumber(): number {
     var currentQuestionNumber: number;
     var questionCount: number;
     if (this.TestMode == "SS") {
 
       //questionCount = this.test.questionCount - 1;
-
+      //console.log(this.test.QuestionOrder[0]);
+      //console.log("Current Question Number" + currentQuestionNumber);
       return currentQuestionNumber = this.test.QuestionOrder[0];
 
     } else {
+
       questionCount = this.test.questionCount - 1;
       return currentQuestionNumber = this.test.QuestionOrder[questionCount];
     }
@@ -304,6 +398,9 @@ export class TestComponent implements OnInit {
 
   CorrectSoRemove(): void {
     //Remove value from index
+    if (this.test.QuestionOrder.length == 1) {
+          this.testOrSSComplete = true;
+        }
     if (this.TestMode == "SS") {
       this.test.QuestionOrder.splice(0, 1);
       console.log("Correct After Splice Before Shuffle: " + this.test.QuestionOrder);
@@ -311,6 +408,8 @@ export class TestComponent implements OnInit {
       console.log("Correct After Splice After Shuffle: " + this.test.QuestionOrder);
 
     }
+
+    
   }
 
   InCorrectSoAdd(): void {
@@ -350,13 +449,75 @@ export class TestComponent implements OnInit {
       this.InCorrectSoAdd();
     }
   }
+
+  setTimeTakenForTheCurrentAttempt() {
+    console.log("Current Question Number before setting time: " + this.test.QuestionOrder[0]);
+    console.log("Question no: " + this.getCurrentQuestionNumber());
+    var attemptIndex = this.getCurrentQuestionNumber() - 1;
+    console.log(this.NewAttempts);
+    console.log("Attempt Index: " + attemptIndex);
+
+    var currentAttemptsLength = this.NewAttempts[attemptIndex].length;
+    /*  if (currentAttemptsLength == 0) {
+        this.NewAttempts[attemptIndex][currentAttemptsLength].TimeTaken = this.counter0;
+      } else {
+        this.NewAttempts[attemptIndex][currentAttemptsLength - 1].TimeTaken = this.counter0;
+      }*/
+    this.NewAttempts[attemptIndex][currentAttemptsLength - 1].TimeTaken = this.counter0;
+  }
+
+
+  MarkOrUnmarkQuestion() {
+    this.IsMarked = !this.IsMarked;
+    // var tempUserID = 
+    //var tempMarked = new afterUGExtendedCustom.afterugExtended.TestMarkAQuestion();
+
+
+    if (this.IsMarked == true) {
+      //this.MarkedQuestions.push
+
+      this.MarkedQuestions.push(this.test.currentQuestion.QuestionID);
+      //Dummy comment for git testing develop branch another commit
+      alert("Word is marked");
+      console.log(this.MarkedQuestions);
+    } else {
+
+      //this.test.currentQuestion.QuestionID;
+      for (var i = 0; i < this.MarkedQuestions.length; i++) {
+        if (this.MarkedQuestions[i] == this.test.currentQuestion.QuestionID) {
+          this.MarkedQuestions.splice(i, 1);
+          this.UnMarkedQuestionIDArray.push(this.test.currentQuestion.QuestionID);
+          console.log(this.MarkedQuestions);
+          alert("Word is Unmarked");
+
+
+        }
+      }
+
+      /*var index = this.MarkedQuestions.indexOf(tempMarked, 0);
+      console.log("index: " + index);
+      if (index > -1) {
+        this.MarkedQuestions.splice(index, 1);
+         console.log(this.MarkedQuestions);
+      }*/
+
+    }
+  }
+
+
   NextQuestion(): void {
     this.newQuestion++;
+
+
+
     console.log("Length of Question Order: " + this.test.QuestionOrder.length);
     console.log("Question Count: " + this.test.questionCount);
     if ((this.test.questionCount != this.test.QuestionList.length && this.TestMode == "TT") || (this.test.QuestionOrder.length != 1 && !(this.test.QuestionOrder.length <= 0) && this.TestMode == "SS")) {
-
+      this.setTimeTakenForTheCurrentAttempt();
       this.SSCorrectOrIncorrect();
+      // console.log(this.NewAttempts);
+      //  console.log("Current Question Number before setting time: " + this.test.QuestionOrder[0]);
+
       this.test.questionCount = this.test.questionCount + 1;
       console.log("Question to pick first in the array question order" + this.getCurrentQuestionNumber())
       for (var i = 0; i < this.test.QuestionList.length; i++) {
@@ -366,24 +527,55 @@ export class TestComponent implements OnInit {
       this.test.currentQuestion = this.test.QuestionList[this.getCurrentQuestionNumber() - 1];
       this.randomizeChoices();
       this.setCurrentAttempt();
+      this.resetTimer();
+
       this.IsMarked = false;
+      this.markOrUnMarkTheCurrentQuestion();
       this.userChoiceID = 0;
     } else {
 
-      if (this.test.QuestionOrder.length == 0) {
+      if (this.test.QuestionOrder.length == 1) {
+        //console.log("Attempt Array before setting timetaken: " + this.NewAttempts);
+        this.setTimeTakenForTheCurrentAttempt();
+        this.resetTimer();
+
         this.SSCorrectOrIncorrect();
-        this.userChoiceID = 0;
-      } else {
         this.IsMarked = false;
-        //this.setCurrentAttempt();
-        this.saveAttempsts(); // Uncomment later. This has to be called after ISR Ends
-        alert('Cannot go further this is the last question');
+        this.markOrUnMarkTheCurrentQuestion();
+        this.userChoiceID = 0;
+        this.subscribeTimer0();//Stop the timer
+        //Check properly if below line is working
+        if (this.testOrSSComplete == true) {
+          
+           this.TTOrSSCompleteDoFormalities();
+        }
+         
+        
+
       }
-
-
-
     }
 
+  }
+  TTOrSSCompleteDoFormalities() {
+   
+   
+    
+   
+    
+   // 
+    this.prepareISR();
+    console.log("this.NewAttempts");
+    console.log(this.NewAttempts);
+    //Club attempts and marked questions saving. Rating difficulty and all others that needs to be saved
+    this.saveDataAfterTest();
+    //Club attempts and marked questions saving. Rating difficulty and all others that needs to be saved
+
+    alert('Cannot go further this is the last question');
+  }
+  saveDataAfterTest() {
+    this.markedQuestionsCRUDDetermine();
+    //this.saveMarkedData();
+    //this.saveAttempsts(); // Uncomment later. This has to be called after ISR Ends
   }
 
   saveAttempsts() {
@@ -410,11 +602,42 @@ export class TestComponent implements OnInit {
     //this.questionIDArrayAndUserIDObject.UserID = 
   }
 
+  initialMarkedWordsPush() {
+    for (var i = 0; i < this.test.QuestionList.length; i++) {
+      if (this.test.QuestionList[i].TestMarkAQuestion.length != 0) {
+
+        this.MarkedQuestions.push(this.test.QuestionList[i].QuestionID);
+      }
+      console.log("Marked Questions from initial push");
+      console.log(this.MarkedQuestions);
+    }
+    this.UnMarkedQuestionIDArray = [];
+  }
+
+  markedQuestionsCRUDDetermine() {
+    var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+    this.MarkedQuestions = uniqMarked;
+    var uniqUnMarked = this.UnMarkedQuestionIDArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+    this.UnMarkedQuestionIDArray = uniqUnMarked;
+
+    console.log("Unmarked to delete");
+    console.log(this.UnMarkedQuestionIDArray);
+    console.log("marked to update");
+    console.log(this.MarkedQuestions);
+  }
+  markOrUnMarkTheCurrentQuestion() {
+    if (this.test.currentQuestion.TestMarkAQuestion.length == 0) {
+      this.IsMarked = false;
+    } else {
+      this.IsMarked = true;
+    }
+  }
+
   loadQuestions() {
-    this.testQuestionService.getQuestionsByQuestionIDArrayAndUserID(this.questionIDArrayAndUserIDObject)
+    this.testQuestionService.getQuestionsByQuestionIDArrayAndUserID(this.questionIDArrayAndUserIDAndTestMode)
       .subscribe(
       questions => {
-
+        this.TestMode = this.questionIDArrayAndUserIDAndTestMode.TestMode;
         this.test.questionCount = 1;
         this.test.QuestionList = questions;
         this.randomizeQuestions();
@@ -436,6 +659,11 @@ export class TestComponent implements OnInit {
 
           //this.NewAttempts[i].Hits = [];
         }
+        this.initialMarkedWordsPush();
+        this.markOrUnMarkTheCurrentQuestion();
+
+        this.st.newTimer('1sec', 1);
+        this.subscribeTimer0();
         this.setCurrentAttempt();
 
       },
@@ -446,6 +674,28 @@ export class TestComponent implements OnInit {
 
   }
 
+  timer0callback() {
+    this.counter0++;
+  }
+
+  resetTimer() {
+    this.counter0 = 0;
+  }
+  subscribeTimer0() {
+    if (this.timer0Id) {
+      // Unsubscribe if timer Id is defined
+      this.st.unsubscribe(this.timer0Id);
+      this.timer0Id = undefined;
+      this.timer0button = 'Subscribe';
+      console.log('timer 0 Unsubscribed.');
+    } else {
+      // Subscribe if timer Id is undefined
+      this.timer0Id = this.st.subscribe('1sec', e => this.timer0callback());
+      this.timer0button = 'Unsubscribe';
+      console.log('timer 0 Subscribed.');
+    }
+    console.log(this.st.getSubscription());
+  }
   saveNewQuestionAttempt() {
 
   }

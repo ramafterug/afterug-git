@@ -2,7 +2,7 @@
 <div class="col-md-4">
 	<label>Mark or UnMark the word: </label>
 	<label class="toggle col-sm-8">
-    <input type="checkbox" (click)="Existing()" name="MarkWord" [(ngModel)]="IsMarked">
+    <input type="checkbox" (click)="MarkOrUnmarkQuestion()" name="MarkWord" [(ngModel)]="IsMarked">
     <span class="handle"></span>
   </label>
 </div>
@@ -10,7 +10,8 @@
 
 	<div class="row question">
 		<div class="row ID">
-			{{test.currentQuestion?.QuestionID}}<br/>
+			{{counter0}}<br/> {{test.currentQuestion?.QuestionID}}
+			<br/>
 
 		</div>
 
@@ -65,165 +66,115 @@
 	</div>
 
 
+	<form action="">
 
-	<div class="btn-group" data-toggle="buttons">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Review Incorrect
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Review Unanswered
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Review Most Time Taken
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Review Marked
-  </label>
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Review All
-  </label>
-</div>
+		<label class="btn btn-primary active">
+    <input type="radio" name="options" [(ngModel)]="toDisplayISR" [value]="1" [checked]="toDisplayISR==1" (change)="ShowISR()" checked/> Review Incorrect
+	</label>
 
-	<div class="row" style="margin:0 auto;">
-		<h3>Incorrectly answered Questions</h3>
-	</div>
 
-	<div class="row">
-		<div class="col-md-11" style="border:2px solid black;">
+		<label class="btn btn-primary">
+    <input type="radio" name="options"  [(ngModel)]="toDisplayISR" [value]="2"  [checked]="toDisplayISR==2" (change)="ShowISR()"/> Review Most Time Taken
+</label>
+		<label class="btn btn-primary">
+    <input type="radio" name="options" [(ngModel)]="toDisplayISR" [value]="3"  [checked]="toDisplayISR==3" (change)="ShowISR()"/> Review Marked
+</label>
+		<label class="btn btn-primary">
+    <input type="radio" name="options"  [(ngModel)]="toDisplayISR" [value]="4"  [checked]="toDisplayISR==4" (change)="ShowISR()"/> Review Correct
+</label>
+
+	</form>
+	<div *ngIf="toDisplayISR=='1'">
+		<div class="row" style="margin:0 auto;">
+			<h3>Incorrectly answered Questions</h3>
+		</div>
+		<div class="MasterDiv" *ngFor="let question of incorrectQuestionsList" style="border:2px solid black;">
 			<div class="row">
-				<div class="col-md-5" style="border:1px solid black;">
-					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
-					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
-					here Question goes here Question goes here Question goes here
-				</div>
-				<div class="col-md-4" style="border:1px solid black;">
-					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
-					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
-					here answer goes here answer goes here answer goes here answer goes here answer goes here
-				</div>
-				<div class="col-md-3" style="border:1px solid black;">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Mark</label>
+				<div class="col-md-11">
+					<div class="row">
+						{{question.QuestionsAfterUG.Question}}<br/>
 					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Dont Show this Question</label>
-					</div>
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
-  							<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Hard</a></li>
-							<li><a href="#">Medium</a></li>
-							<li><a href="#">Easy</a></li>
-						</ul>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
+						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
+							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+						</div>
+						<div *ngFor="let incorrectChoiceID of question.IncorrectChoicesChoiceIDArray">
+							<div *ngIf="choice.ChoiceID == incorrectChoiceID" [ngClass]="{'my-classincorrect': choice.ChoiceID == incorrectChoiceID}">
+
+								{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<br/><br/>
 
-<br/><br/>
-<div class="row">
-		<div class="col-md-11" style="border:2px solid black;">
+<div *ngIf="toDisplayISR=='2'">
+		<div class="row" style="margin:0 auto;">
+			<h3>Correctly Answered Questions</h3>
+		</div>
+		<div class="MasterDiv" *ngFor="let question of mostTimeTakenQuestionsList" style="border:2px solid black;">
 			<div class="row">
-				<div class="col-md-5" style="border:1px solid black;">
-					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
-					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
-					here Question goes here Question goes here Question goes here
-				</div>
-				<div class="col-md-4" style="border:1px solid black;">
-					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
-					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
-					here answer goes here answer goes here answer goes here answer goes here answer goes here
-				</div>
-				<div class="col-md-3" style="border:1px solid black;">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Mark</label>
+				<div class="col-md-11">
+					<div class="row">
+						{{question.QuestionsAfterUG.Question}}<br/>
+						{{question.TimeTaken}} Seconds<br/>
 					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Dont Show this Question</label>
-					</div>
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
-  							<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Hard</a></li>
-							<li><a href="#">Medium</a></li>
-							<li><a href="#">Easy</a></li>
-						</ul>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
+						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
+							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<br/><br/>
+	<br/><br/>
 
-	<div class="row">
-		<div class="col-md-11" style="border:2px solid black;">
+	<div *ngIf="toDisplayISR=='4'">
+		<div class="row" style="margin:0 auto;">
+			<h3>Correctly Answered Questions</h3>
+		</div>
+		<div class="MasterDiv" *ngFor="let question of correctQuestionsList" style="border:2px solid black;">
 			<div class="row">
-				<div class="col-md-5" style="border:1px solid black;">
-					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
-					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
-					here Question goes here Question goes here Question goes here
-				</div>
-				<div class="col-md-4" style="border:1px solid black;">
-					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
-					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
-					here answer goes here answer goes here answer goes here answer goes here answer goes here
-				</div>
-				<div class="col-md-3" style="border:1px solid black;">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Mark</label>
+				<div class="col-md-11">
+					<div class="row">
+						{{question.QuestionsAfterUG.Question}}<br/>
 					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Dont Show this Question</label>
-					</div>
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
-  							<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Hard</a></li>
-							<li><a href="#">Medium</a></li>
-							<li><a href="#">Easy</a></li>
-						</ul>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
+						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
+							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<br/><br/>
+	<br/><br/>
 
-	<div class="row">
-		<div class="col-md-11" style="border:2px solid black;">
+<div *ngIf="toDisplayISR=='3'">
+		<div class="row" style="margin:0 auto;">
+			<h3>Marked Questions</h3>
+		</div>
+		<div class="MasterDiv" *ngFor="let question of markedQuestionsList" style="border:2px solid black;">
 			<div class="row">
-				<div class="col-md-5" style="border:1px solid black;">
-					Question goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question
-					goes here Question goes here Question goes here Question goes here Question goes here Question goes here Question goes
-					here Question goes here Question goes here Question goes here
-				</div>
-				<div class="col-md-4" style="border:1px solid black;">
-					<b>Correct Answer :</b> answer goes here answer goes here answer goes here answer goes here answer goes here answer
-					goes here answer goes here answer goes here <br/><b>Your Answer :</b> answer goes here answer goes here answer goes
-					here answer goes here answer goes here answer goes here answer goes here answer goes here
-				</div>
-				<div class="col-md-3" style="border:1px solid black;">
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Mark</label>
+				<div class="col-md-11">
+					<div class="row">
+						{{question.QuestionsAfterUG.Question}}<br/>
 					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Dont Show this Question</label>
-					</div>
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Rate the Question
-  							<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Hard</a></li>
-							<li><a href="#">Medium</a></li>
-							<li><a href="#">Easy</a></li>
-						</ul>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
+						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
+							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<br/><br/>
+
+
 </div>
