@@ -50,7 +50,7 @@ export class TestComponent implements OnInit {
   MarkedQuestions: number[];
   FinalMarkUnMarkCRUDData: number[][];
   UnMarkedQuestionIDArray: number[];
-  testOrSSComplete:boolean = false;
+  testOrSSComplete: boolean = false;
 
   //ISR
   unansweredQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
@@ -399,8 +399,8 @@ export class TestComponent implements OnInit {
   CorrectSoRemove(): void {
     //Remove value from index
     if (this.test.QuestionOrder.length == 1) {
-          this.testOrSSComplete = true;
-        }
+      this.testOrSSComplete = true;
+    }
     if (this.TestMode == "SS") {
       this.test.QuestionOrder.splice(0, 1);
       console.log("Correct After Splice Before Shuffle: " + this.test.QuestionOrder);
@@ -409,7 +409,7 @@ export class TestComponent implements OnInit {
 
     }
 
-    
+
   }
 
   InCorrectSoAdd(): void {
@@ -507,71 +507,45 @@ export class TestComponent implements OnInit {
 
   NextQuestion(): void {
     this.newQuestion++;
-
-
-
-    console.log("Length of Question Order: " + this.test.QuestionOrder.length);
-    console.log("Question Count: " + this.test.questionCount);
     if ((this.test.questionCount != this.test.QuestionList.length && this.TestMode == "TT") || (this.test.QuestionOrder.length != 1 && !(this.test.QuestionOrder.length <= 0) && this.TestMode == "SS")) {
-      this.setTimeTakenForTheCurrentAttempt();
-      this.SSCorrectOrIncorrect();
-      // console.log(this.NewAttempts);
-      //  console.log("Current Question Number before setting time: " + this.test.QuestionOrder[0]);
-
-      this.test.questionCount = this.test.questionCount + 1;
-      console.log("Question to pick first in the array question order" + this.getCurrentQuestionNumber())
-      for (var i = 0; i < this.test.QuestionList.length; i++) {
-        console.log("QuestionList: " + this.test.QuestionList[i].QuestionID);
-      }
-      //console.log("corresponding Element in question LIst: " + this.test.QuestionList[this.getCurrentQuestionNumber() - 1].QuestionID);
-      this.test.currentQuestion = this.test.QuestionList[this.getCurrentQuestionNumber() - 1];
-      this.randomizeChoices();
-      this.setCurrentAttempt();
-      this.resetTimer();
-
-      this.IsMarked = false;
-      this.markOrUnMarkTheCurrentQuestion();
-      this.userChoiceID = 0;
+      this.TaskForCurrentAttempt();
+      this.TasksForNextAttempt();
     } else {
-
       if (this.test.QuestionOrder.length == 1) {
-        //console.log("Attempt Array before setting timetaken: " + this.NewAttempts);
-        this.setTimeTakenForTheCurrentAttempt();
-        this.resetTimer();
-
-        this.SSCorrectOrIncorrect();
-        this.IsMarked = false;
-        this.markOrUnMarkTheCurrentQuestion();
-        this.userChoiceID = 0;
-        this.subscribeTimer0();//Stop the timer
-        //Check properly if below line is working
-        if (this.testOrSSComplete == true) {
-          
-           this.TTOrSSCompleteDoFormalities();
+        this.TaskForCurrentAttempt();
+        if (this.testOrSSComplete == false) {
+          this.TasksForNextAttempt();
+        } else {
+          console.log("this.NewAttempts");
+          console.log(this.NewAttempts);
+          this.TTOrSSCompleteDoFormalities();
         }
-         
-        
-
       }
     }
-
   }
-  TTOrSSCompleteDoFormalities() {
-   
-   
-    
-   
-    
-   // 
-    this.prepareISR();
-    console.log("this.NewAttempts");
-    console.log(this.NewAttempts);
-    //Club attempts and marked questions saving. Rating difficulty and all others that needs to be saved
-    this.saveDataAfterTest();
-    //Club attempts and marked questions saving. Rating difficulty and all others that needs to be saved
 
+  TasksForNextAttempt() {
+    this.test.questionCount = this.test.questionCount + 1;
+    this.test.currentQuestion = this.test.QuestionList[this.getCurrentQuestionNumber() - 1];
+    this.randomizeChoices();
+    this.setCurrentAttempt();
+    this.resetTimer();
+    this.IsMarked = false;
+    this.markOrUnMarkTheCurrentQuestion();
+    this.userChoiceID = 0;
+  }
+
+  TaskForCurrentAttempt() {
+    this.setTimeTakenForTheCurrentAttempt();
+    this.SSCorrectOrIncorrect();
+  }
+
+  TTOrSSCompleteDoFormalities() {
+    this.prepareISR();
+    this.saveDataAfterTest();
     alert('Cannot go further this is the last question');
   }
+
   saveDataAfterTest() {
     this.markedQuestionsCRUDDetermine();
     //this.saveMarkedData();
