@@ -18,6 +18,7 @@ namespace afterug.core.middlelayer
         public QuestionsAfterUG()
         {
             this.Attempts = new HashSet<Attempts>();
+            this.AUGNotes = new HashSet<AUGNotes>();
             this.Choices = new HashSet<Choices>();
             this.ForgetNotes = new HashSet<ForgetNotes>();
             this.QuestionDifficulty = new HashSet<QuestionDifficulty>();
@@ -32,11 +33,13 @@ namespace afterug.core.middlelayer
         public bool IsQuestionReviewed { get; set; }
         public bool IsQuestionSpinned { get; set; }
         public bool IsCorrectChoiceVerified { get; set; }
-        public long CorrectChoiceID { get; set; }
+        public int CorrectChoiceID { get; set; }
         public Nullable<int> ChapterID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attempts> Attempts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AUGNotes> AUGNotes { get; set; }
         public virtual Chapter Chapter { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Choices> Choices { get; set; }

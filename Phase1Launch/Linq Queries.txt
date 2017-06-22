@@ -1,7 +1,7 @@
 GET Questions and allied Data - TestNo and UserID
 
-var questionsQuery = (from b in QuestionsAfterUGs
-                                  where ((b.QuestionID >= (((testNo - 1) * 5) + 1) && b.QuestionID <= (testNo * 5)))
+         var questionsQuery = (from b in db.QuestionsAfterUG.AsNoTracking()
+                                  where questionIDArray.Contains(b.QuestionID) && !db.DontShowQuestion.Any(f => f.QuestionID == b.QuestionID && f.UserID == userID)
                                   select new
                                   {
                                       b.QuestionID,
@@ -14,12 +14,14 @@ var questionsQuery = (from b in QuestionsAfterUGs
                                       b.Choices,
                                       b.ForgetNotes,
                                       b.QuestionTags,
-                                      b.UserAfterUGNotes,
+                                      TestMarkAQuestion = b.TestMarkAQuestion.Where(a => a.UserID == userID),
                                       b.UserNotes,
-                                      Attempts = b.Attempts.Where(a => a.UserID == userID)
+                                      Attempts = b.Attempts.Where(a => a.UserID == userID),
+                                      AverageTimeTakenForQuestionForAllUsers = b.Attempts            .GroupBy(g => g.QuestionID, g => g.TimeTaken)  .Select(g => new { QuestionID = g.Key, AverageTimeTaken = g.Average() }),
+                                      DifficultyLevelsForAQuestionRatedByAllUsers = b.QuestionDifficulty  .GroupBy(g => g.DifficultyLevel)               .Select(g => new   { DifficultyLevel = g.Key, Count = g.Count() }),
+                                      PercentageCorrectIncorrect = b.Attempts                             .GroupBy(g => g.AnswerStatus)                  .Select(g => new   { AnswerStatus = g.Key, Count = g.Count() })
 
-                                  }).ToList();
-
+        }).ToList();
 Working and Testes in LinqPad
 Working and Tested in Visual Studio
 ----------------------------------------------------------------------------------------------------------------
@@ -173,6 +175,21 @@ Other users Hard Questions Random Test(highest % of Marked Hard)
 Other users [Marked + Hard] Questions Random Test(highest % of Marked Hard)
 
 ----------------------------------------------------------------------------------------------------------------
+Correct incorrect % for a question
+var percentageCorrectIncorrect = Attempts
+               
+               .GroupBy(g => g.AnswerStatus)
+               .Select( g => new
+                {
+                   AnswerStatus = g.Key,
+				   Count = g.Count()
+                   
+                }); 
+		
+// For list of question or a specific question pass the list of QuestionIDs or Particular QuestionID in where clause
+// FOr a particular user pass on UserID in where condition
+//.Also you can filter for Test Or StudySession in where clause
+percentageCorrectIncorrect.Dump();
 ----------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------
 

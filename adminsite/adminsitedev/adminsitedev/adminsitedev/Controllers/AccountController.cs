@@ -22,7 +22,7 @@ namespace adminsitedev.Controllers
         {
             if (username == "narphase1" && password == "SamNarRamFamily")
             {
-                FormsAuthentication.SetAuthCookie(username, false);
+                FormsAuthentication.SetAuthCookie(username, true);
                 //FormsAuthentication.GetAuthCookie()
                 return RedirectToAction("Index", "Home");
             }

@@ -18,6 +18,8 @@ namespace afterug.core.middlelayer
         public Users()
         {
             this.Attempts = new HashSet<Attempts>();
+            this.AUGNotes = new HashSet<AUGNotes>();
+            this.AUGNotes1 = new HashSet<AUGNotes>();
             this.ForgetNotes = new HashSet<ForgetNotes>();
             this.QuestionDifficulty = new HashSet<QuestionDifficulty>();
             this.TestMarkAQuestion = new HashSet<TestMarkAQuestion>();
@@ -33,6 +35,10 @@ namespace afterug.core.middlelayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attempts> Attempts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AUGNotes> AUGNotes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AUGNotes> AUGNotes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ForgetNotes> ForgetNotes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

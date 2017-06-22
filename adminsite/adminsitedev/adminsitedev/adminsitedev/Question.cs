@@ -21,24 +21,15 @@ namespace adminsitedev
         [UIHint("tinymce_jquery_full"), AllowHtml]
         [Required]
         public string QuestionOriginal { get; set; }
-        [Required]
         public string ChoiceAOriginal { get; set; }
-        [Required]
         public string ChoiceBOriginal { get; set; }
-        [Required]
         public string ChoiceCOriginal { get; set; }
-        [Required]
         public string ChoiceDOriginal { get; set; }
-        [Required]
         public string CorrectChoiceOriginal { get; set; }
-        [Required]
         public string QuestionMainCategory { get; set; }
         public string QuestionSubCategory { get; set; }
-        [Required]
         public bool IsPreviousYearExamQuestion { get; set; }
-        [Required]
         public string WhichExam { get; set; }
-        [Required]
         public int WhichYear { get; set; }
         public string QuestionSpinned { get; set; }
         public string ChoiceASpinned { get; set; }
@@ -67,11 +58,12 @@ namespace adminsitedev
         public Nullable<bool> IsFinalReviewCompleted { get; set; }
         public Nullable<bool> IsPeerCrossReviewCompleted { get; set; }
         public Nullable<bool> IsQuestionReadyForLive { get; set; }
-        [Required]
         public Nullable<int> BookPageNumber { get; set; }
-        [Required]
         public Nullable<int> BookQuestionNumber { get; set; }
-        [Required]
         public Nullable<int> OurQuestionNumber { get; set; }
+        public string ImageURL { get; set; }
+        [UIHint("tinymce_jquery_full"), AllowHtml]
+        [Required]
+        public string Explanation { get; set; }
     }
 }

@@ -3,7 +3,7 @@
 import * as afterUGExtended from "../models";
 import * as afterUGExtendedCustom from "../custommodels";
 //import afterugExtended = require('../models');
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 //import { Location } from '@angular/common';
 //import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TestQuestionService } from './test-questions.service';
-import {TestComponent} from './test.component';
+import { TestComponent } from './test.component';
 @Component({
     moduleId: module.id,
     selector: 'testlist',
@@ -23,12 +23,12 @@ import {TestComponent} from './test.component';
 })
 
 @NgModule({
-  imports: [
+    imports: [
 
-    FormsModule
-  ],
-  
-  
+        FormsModule
+    ],
+
+
 
 })
 
@@ -36,31 +36,31 @@ export class TestListComponent implements OnInit {
 
 
     userID: number;
-    testMode:string;
+    testMode: string;
     chapterButtonsList: any[];
     questionIDArrayCurrentButton: number[];
     ClickedButtonArray: number[];
-    showTest:boolean = false;
-questionIDArrayAndUserIDAndTestMode:afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode;
+    showTest: boolean = false;
+    questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode;
     ngOnInit(): void {
         this.getUserId();
         this.setTestMode();
         this.loadChapterButtons();
     }
     constructor(
-         private router: Router,
+        private router: Router,
         private testQuestionService: TestQuestionService,
         private route: ActivatedRoute,
         // private location: Location
     ) {
         //Randomise here
-       //this.ClickedButtonName = "Name";
+        //this.ClickedButtonName = "Name";
 
     }
-setTestMode(){
-    this.testMode = "TT";
-}
-    TestButtonClicked(btnValueArray:number[]) {
+    setTestMode() {
+        this.testMode = "TT";
+    }
+    TestButtonClicked(btnValueArray: number[]) {
         /*for (var i=0;i<this.chapterButtonsList.length;i++){
             for(var j=0;j<this.chapterButtonsList[i].length;j++){
                // console.log(this.chapterButtonsList[i][j].Key);
@@ -73,12 +73,12 @@ setTestMode(){
         }*/
         //console.log(btnValueArray);
         this.showTest = true;
-        this.questionIDArrayCurrentButton = btnValueArray; 
+        this.questionIDArrayCurrentButton = btnValueArray;
         this.questionIDArrayAndUserIDAndTestMode = new afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode();
         this.questionIDArrayAndUserIDAndTestMode.QuestionIDArray = btnValueArray;
         this.questionIDArrayAndUserIDAndTestMode.UserID = this.userID;
         this.questionIDArrayAndUserIDAndTestMode.TestMode = this.testMode;
-         //this.router.navigate(['/']);
+        //this.router.navigate(['/']);
     }
     loadChapterButtons() {
         this.testQuestionService.getChapterWiseQuestionButtons(this.userID)

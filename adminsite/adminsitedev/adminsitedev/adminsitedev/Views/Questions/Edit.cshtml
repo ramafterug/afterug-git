@@ -17,6 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.QuestionID)
 
+        <h2>Original</h2>
         <div class="row Original well well-lg" style="background-color:#CCFFCC;">
             <div class="col-md-11">
                 <div class="row Question">
@@ -29,16 +30,25 @@
                                 @Html.ValidationMessageFor(model => model.QuestionOriginal, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Explanation, htmlAttributes: new { @class = "control-label" })
+                            <br /><br />
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Explanation, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Explanation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row Choices" style="padding-left:50px;">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="row ChoiceA">
                             <div class="col-md-12 well well-sm">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ChoiceAOriginal, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         @Html.EditorFor(model => model.ChoiceAOriginal, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.ChoiceAOriginal, "", new { @class = "text-danger" })
                                     </div>
@@ -81,6 +91,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row ImageURL">
+                            <div class="col-md-12 well well-sm">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-4 well well-lg">
@@ -100,15 +123,30 @@
                             </div>
                         </div>
 
-                        <div class="form-group IsCorrectChoiceVerified">
-                            @Html.LabelFor(model => model.IsCorrectChoiceVerified, htmlAttributes: new { @class = "control-label col-md-10" })
-                            <div class="col-md-2">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.IsCorrectChoiceVerified)
-                                    @Html.ValidationMessageFor(model => model.IsCorrectChoiceVerified, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="form-group BookPageNo">
+                            @Html.LabelFor(model => model.BookPageNumber, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.BookPageNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BookPageNumber, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="form-group BookQuestionNumber">
+                            @Html.LabelFor(model => model.BookQuestionNumber, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.BookQuestionNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BookQuestionNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group OurQuestionNumber">
+                            @Html.LabelFor(model => model.OurQuestionNumber, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.OurQuestionNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.OurQuestionNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
                         <div class="form-group IsPreviousYearExamQuestion">
                             @Html.LabelFor(model => model.IsPreviousYearExamQuestion, htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-2">
@@ -161,355 +199,7 @@
                 </div>
             </div>
         </div>
-
-        <br/><br />
-        <h2>Spinned</h2>
-        <div class="row Spinned well well-lg" style="background-color:#CCFFCC;">
-            <div class="col-md-11">
-                <div class="row Question">
-                    <div class="col-md-12 well well-lg">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.QuestionSpinned, htmlAttributes: new { @class = "control-label" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.QuestionSpinned, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.QuestionSpinned, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row Choices">
-                    <div class="col-md-8">
-                        <div class="row ChoiceA">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceASpinned, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceASpinned, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceASpinned, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceB">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceBSpinned, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceBSpinned, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceBSpinned, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceC">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceCSpinned, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceCSpinned, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceCSpinned, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceD">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceDSpinned, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceDSpinned, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceDSpinned, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4 well well-lg">
-                        <div class="form-group CorrectChoiceSpinned">
-                            @Html.LabelFor(model => model.CorrectChoiceSpinned, htmlAttributes: new { @class = "control-label col-md-8" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.CorrectChoiceSpinned, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CorrectChoiceSpinned, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group IsQuestionSpinned">
-                            @Html.LabelFor(model => model.IsQuestionSpinned, htmlAttributes: new { @class = "control-label col-md-10" })
-                            <div class="col-md-2">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.IsQuestionSpinned)
-                                    @Html.ValidationMessageFor(model => model.IsQuestionSpinned, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </div>
-                <div class="row ErrorsSpinned">
-                    <div class="col-md-12">
-                        <div class="form-group ErrorsSpinned">
-                            @Html.LabelFor(model => model.ErrorsSpinned, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.ErrorsSpinned, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ErrorsSpinned, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <br /><br />
-        <h2>Final</h2>
-        <div class="row Final well well-lg" style="background-color:#CCFFCC;">
-            <div class="col-md-11">
-                <div class="row Question">
-                    <div class="col-md-12 well well-lg">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.QuestionFinal, htmlAttributes: new { @class = "control-label" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.QuestionFinal, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.QuestionFinal, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row Choices">
-                    <div class="col-md-8">
-                        <div class="row ChoiceA">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceAFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceAFinal, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceAFinal, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceB">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceBFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceBFinal, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceBFinal, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceC">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceCFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceCFinal, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceCFinal, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceD">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceDFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceDFinal, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceDFinal, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4 well well-lg">
-                        <div class="form-group CorrectChoiceFinal">
-                            @Html.LabelFor(model => model.CorrectChoiceFinal, htmlAttributes: new { @class = "control-label col-md-8" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.CorrectChoiceFinal, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CorrectChoiceFinal, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IsPeerCrossReviewCompleted, htmlAttributes: new { @class = "control-label col-md-10" })
-                            <div class="col-md-2">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.IsPeerCrossReviewCompleted)
-                                    @Html.ValidationMessageFor(model => model.IsPeerCrossReviewCompleted, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                </div>
-
-
-                <div class="row JustificationsFinal">
-                    <div class="col-md-12">
-                        <div class="form-group JustificationsFinal">
-                            @Html.LabelFor(model => model.JustificationsFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.JustificationsFinal, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.JustificationsFinal, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row ReviewComments">
-                    <div class="col-md-12">
-                        <div class="form-group ReviewComments">
-                            @Html.LabelFor(model => model.ReviewComments, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.ReviewComments, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ReviewComments, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row ResponseReviewComments">
-                    <div class="col-md-12">
-                        <div class="form-group ResponseReviewComments">
-                            @Html.LabelFor(model => model.ResponseReviewComments, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.ResponseReviewComments, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ResponseReviewComments, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <br /><br />
-        <h2>Live</h2>
-        <div class="row Live well well-lg" style="background-color:#CCFFCC;">
-            <div class="col-md-11">
-                <div class="row Question">
-                    <div class="col-md-12 well well-lg">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.QuestionLive, htmlAttributes: new { @class = "control-label" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.QuestionLive, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.QuestionLive, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row Choices" style="padding-left:50px;">
-                    <div class="col-md-8">
-                        <div class="row ChoiceA">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceALive, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceALive, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceALive, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceB">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceBLive, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceBLive, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceBLive, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceC">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceCLive, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceCLive, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceCLive, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ChoiceD">
-                            <div class="col-md-12 well well-sm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ChoiceDLive, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.ChoiceDLive, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ChoiceDLive, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 well well-lg">
-                        <div class="form-group CorrectChoiceLive">
-                            @Html.LabelFor(model => model.CorrectChoiceLive, htmlAttributes: new { @class = "control-label col-md-8" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.CorrectChoiceLive, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CorrectChoiceLive, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IsFinalReviewCompleted, htmlAttributes: new { @class = "control-label col-md-10" })
-                            <div class="col-md-2">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.IsFinalReviewCompleted)
-                                    @Html.ValidationMessageFor(model => model.IsFinalReviewCompleted, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.IsQuestionReadyForLive, htmlAttributes: new { @class = "control-label col-md-10" })
-                            <div class="col-md-2">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.IsQuestionReadyForLive)
-                                    @Html.ValidationMessageFor(model => model.IsQuestionReadyForLive, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
+    
 
 
 

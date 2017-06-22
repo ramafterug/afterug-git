@@ -26,16 +26,25 @@
                                 @Html.ValidationMessageFor(model => model.QuestionOriginal, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Explanation, htmlAttributes: new { @class = "control-label" })
+                            <br /><br />
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Explanation, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Explanation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row Choices" style="padding-left:50px;">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="row ChoiceA">
                             <div class="col-md-12 well well-sm">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ChoiceAOriginal, htmlAttributes: new { @class = "control-label col-md-2" })
                                     
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         @Html.EditorFor(model => model.ChoiceAOriginal, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.ChoiceAOriginal, "", new { @class = "text-danger" })
                                     </div>
@@ -74,6 +83,19 @@
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.ChoiceDOriginal, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.ChoiceDOriginal, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ImageURL">
+                            <div class="col-md-12 well well-sm">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>

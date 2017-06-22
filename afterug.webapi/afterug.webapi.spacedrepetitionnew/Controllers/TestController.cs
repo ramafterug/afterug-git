@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,14 +20,14 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
         [Route("api/Test/User/{userID}")]
         public HttpResponseMessage GetTestQuestions(int userID)
         {
-            var db = new afterugdevEntities5();
+            var db = new afterugdevEntities12();
 
             db.Configuration.ProxyCreationEnabled = false;
 
 
 
             var NonMatchingChapterWiseQuestions = (from Questions in db.QuestionsAfterUG
-                                                   where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                                   where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
                                                    where (Questions.ChapterID != null)
                                                    select new
                                                    { QuestionID = Questions.QuestionID, ChapterID = Questions.ChapterID });
@@ -59,7 +60,7 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
             }
 
             // No of questions per test = 3. GEt this from Database
-            int noOfQuestionsPerTest = 3;
+            int noOfQuestionsPerTest = 100;
            
             List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
             foreach (var item in listQuestionsAndChapters)
@@ -129,6 +130,153 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
 
         }
         // GET: api/Test
+
+        [System.Web.Http.AcceptVerbs("POST")]
+        [System.Web.Http.HttpPost]
+        [Route("api/SaveTTOrSSAndISRData")]
+            public HttpResponseMessage SaveTTOrSSAndISRData([FromBody]DataToBeSavedObject dataToBeSavedObject)
+        {
+
+            List<List<afterug.core.middlelayer.Attempts>> AttemptsToBeSaved = dataToBeSavedObject.AttemptsToBeSaved;
+            List<int> MarkedQuestionsToBeSaved = dataToBeSavedObject.MarkedQuestionsToBeSaved;
+            List<int> UnMarkedQuestionsToBeSaved = dataToBeSavedObject.UnMarkedQuestionsToBeSaved;
+            List<int> DontShowQuestionsToBeSaved = dataToBeSavedObject.DontShowQuestionsToBeSaved;
+            List<afterug.core.middlelayer.QuestionDifficulty> QuestionDifficultiesToBeSaved = dataToBeSavedObject.QuestionDifficultiesToBeSaved;
+            int UserID = dataToBeSavedObject.UserID;
+
+            var db = new afterugdevEntities12();
+            //List<Company> companies = new List<Company>();
+            #region SaveAttempts
+            //listOfAttempts.ForEach(n => db.Attempts.AddRange(n));
+            foreach (var attemptArray in AttemptsToBeSaved)
+            {
+                foreach (var attempt in attemptArray)
+                {
+                    db.Attempts.Add(attempt);
+                }
+            }
+
+
+
+            #endregion
+
+            #region SaveMarked
+            foreach (var markedQID in MarkedQuestionsToBeSaved)
+            {
+                var alreadyMarkedObjectInDB = db.TestMarkAQuestion.FirstOrDefault(o => o.QuestionID == markedQID && o.UserID == UserID);
+
+                if(alreadyMarkedObjectInDB == null)
+                {
+                    afterug.core.middlelayer.TestMarkAQuestion markedWord = new afterug.core.middlelayer.TestMarkAQuestion();
+                    markedWord.QuestionID = markedQID;
+                    markedWord.UserID = UserID;
+                    db.TestMarkAQuestion.Add(markedWord);
+                }
+               
+               
+
+            }
+
+            #endregion
+
+            #region RemoveUnMarked
+
+            foreach (var unMarkedQID in UnMarkedQuestionsToBeSaved)
+            {
+                var alreadyMarkedObjectInDB = db.TestMarkAQuestion.FirstOrDefault(o => o.QuestionID == unMarkedQID && o.UserID == UserID);
+
+                if (alreadyMarkedObjectInDB == null)
+                {
+                    //afterug.core.middlelayer.TestMarkAQuestion markedWord = new afterug.core.middlelayer.TestMarkAQuestion();
+                    //markedWord.QuestionID = markedQID;
+                    //markedWord.UserID = UserID;
+                    //db.TestMarkAQuestion.Add(markedWord);
+                }
+                else
+                {
+                    
+               
+                    db.TestMarkAQuestion.Remove(alreadyMarkedObjectInDB);
+                    //db.TestMarkAQuestion.Remove(o => o.QuestionID == unMarkedQID && o.UserID == UserID);
+                }
+
+
+            }
+
+            #endregion
+
+
+            #region SaveDontShow
+            foreach (var dontShowQID in DontShowQuestionsToBeSaved)
+            {
+                var alreadyMarkedObjectInDB = db.TestMarkAQuestion.FirstOrDefault(o => o.QuestionID == dontShowQID && o.UserID == UserID);
+
+                if (alreadyMarkedObjectInDB == null)
+                {
+                    afterug.core.middlelayer.DontShowQuestion dontShowWord = new afterug.core.middlelayer.DontShowQuestion();
+                    dontShowWord.QuestionID = dontShowQID;
+                    dontShowWord.UserID = UserID;
+                    db.DontShowQuestion.Add(dontShowWord);
+                }
+
+
+
+            }
+
+            #endregion
+
+            #region SaveDifficulties
+
+
+            foreach (var difficulty in QuestionDifficultiesToBeSaved)
+            {
+                if ((db.QuestionDifficulty.Any(o => o.QuestionID == difficulty.QuestionID && o.UserWhoRatedDifficultyID == difficulty.UserWhoRatedDifficultyID))) {
+
+                    db.Entry(difficulty).State = System.Data.Entity.EntityState.Modified;
+
+                    
+
+                }
+                else
+                {
+                    db.QuestionDifficulty.Add(difficulty);
+                }
+                
+            }
+            #endregion
+
+            #region FinalContextSaveChanges
+            try
+            {
+                // Your code...
+                // Could also be before try if you know the exception occurs in SaveChanges
+
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+
+            
+            #endregion
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent("Success", Encoding.UTF8, "application/json")
+            };
+
+            // DO other saving here
+        }
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -182,5 +330,17 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
             this.ChapterID = (int)jUser["ChapterID"];
         }
         public int? ChapterID { get; set; }
+    }
+
+    public class DataToBeSavedObject
+    {
+        public List<List<afterug.core.middlelayer.Attempts>> AttemptsToBeSaved { get; set; }
+        public List<int> MarkedQuestionsToBeSaved { get; set; }
+        public List<int> UnMarkedQuestionsToBeSaved { get; set; }
+        public List<int> DontShowQuestionsToBeSaved { get; set; }
+        public List<afterug.core.middlelayer.QuestionDifficulty> QuestionDifficultiesToBeSaved { get; set; }
+        public int UserID { get; set; }
+
+        
     }
 }

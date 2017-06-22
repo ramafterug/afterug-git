@@ -14,7 +14,6 @@ namespace afterug.core.middlelayer
     
     public partial class QuestionDifficulty
     {
-        public int QuestionDifficultyID { get; set; }
         public int QuestionID { get; set; }
         public int UserWhoRatedDifficultyID { get; set; }
         public short DifficultyLevel { get; set; }

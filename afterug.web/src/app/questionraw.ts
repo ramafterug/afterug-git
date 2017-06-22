@@ -11,6 +11,7 @@ export class QuestionRawExtended extends afterUGExtended.afterugExtended.Questio
   OriginalChoiceOrder: afterUGExtended.afterugExtended.Choices[];
   RandomChoiceOrder: afterUGExtended.afterugExtended.Choices[];
   FinalFourShuffledChoices: afterUGExtended.afterugExtended.Choices[];
-
+  DifficultyLevelsForAQuestionRatedByAllUsers: any[];
+  PercentageCorrectIncorrect: any[];
 }
 

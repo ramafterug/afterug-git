@@ -63,7 +63,7 @@ getChapterWiseQuestionButtons(userID:Number):Observable<any[]>{
 }
 
   saveAttemptsToDB(attemptsToSave: afterUGExtended.afterugExtended.Attempts[][]): Observable<string> {
-    var attemptsUrl = 'http://localhost:54347/api/Attempts'; 
+    var attemptsUrl = 'http://localhost:1980/api/Attempts'; 
  let bodyString = JSON.stringify(attemptsToSave); // Stringify payload
         let headers      = new Headers({ 'Content-Type': 'application/json','Accept': 'application/json' }); // ... Set content type to JSON
         let options       = new RequestOptions({ headers: headers }); 
@@ -74,6 +74,17 @@ getChapterWiseQuestionButtons(userID:Number):Observable<any[]>{
 
   }
 
+ISRCompleteSaveData(finalData: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject): Observable<string> {
+    var saveURL = 'http://localhost:1980/api/SaveTTOrSSAndISRData'; 
+ let bodyString = JSON.stringify(finalData); // Stringify payload
+        let headers      = new Headers({ 'Content-Type': 'application/json','Accept': 'application/json' }); // ... Set content type to JSON
+        let options       = new RequestOptions({ headers: headers }); 
+    
+    return this.http.post(saveURL, bodyString, options) // ...using post request
+                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
 
 }
 

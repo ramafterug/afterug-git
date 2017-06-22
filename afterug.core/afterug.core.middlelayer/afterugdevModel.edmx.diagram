@@ -4,32 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="64c89d750a7c46fcb5c4fd0eebc0b123" Name="Diagram1">
-        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePoints" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePointsTags" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Attempts" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Chapter" Width="1.5" PointX="1.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Choices" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.DontShowQuestion" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.ForgetNotes" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.GlobalSettings" Width="1.5" PointX="8.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Hits" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionDifficulty" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG_Backup" Width="1.5" PointX="8.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.QuestionTags" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Tags" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.TestChild" Width="1.5" PointX="8.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.TestMarkAQuestion" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.TestMaster" Width="1.5" PointX="3" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.UserNotes" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.Users" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="afterugdevModel.UserSettings" Width="1.5" PointX="3" PointY="31.375" IsExpanded="true" />
+      <Diagram DiagramId="3d8c4bdcdb694f1fab40cdcaec5bca55" Name="Diagram1">
+        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePoints" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.AfterUGNotePointsTags" Width="1.5" PointX="10" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Attempts" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.AUGNotes" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Chapter" Width="1.5" PointX="1.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Choices" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.DontShowQuestion" Width="1.5" PointX="8.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.ForgetNotes" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.GlobalSettings" Width="1.5" PointX="10.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Hits" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionDifficulty" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionsAfterUG_Backup" Width="1.5" PointX="12.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.QuestionTags" Width="1.5" PointX="10" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Tags" Width="1.5" PointX="7.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.TestChild" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.TestMarkAQuestion" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.TestMaster" Width="1.5" PointX="3" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.UserNotes" Width="1.5" PointX="6" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.Users" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="afterugdevModel.UserSettings" Width="1.5" PointX="3" PointY="36.5" IsExpanded="true" />
         <AssociationConnector Association="afterugdevModel.FK_AfterUGNotePointID_AfterUGNotePointsTags_AfterUGNotePoints" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_TagID_AfterUGNotePointsTags_Tags" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_AttemptID_Hits_Attempts" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_QuestionID_Attempts_QuestionsAfterUG" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_UserID_Attempts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="afterugdevModel.FK_AUGNotesAddedByEmployeeUserID_AUGNotes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="afterugdevModel.FK_AUGNotesApprovedByEmployeeUserID_AUGNotes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="afterugdevModel.FK_QuestionID_AUGNotes_QuestionsAfterUG" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_ChapterID_QuestionsAfterUG_Chapter" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_QuestionID_Choices_QuestionsAfterUG" ManuallyRouted="false" />
         <AssociationConnector Association="afterugdevModel.FK_QuestionID_ForgetNotes_QuestionsAfterUG" ManuallyRouted="false" />

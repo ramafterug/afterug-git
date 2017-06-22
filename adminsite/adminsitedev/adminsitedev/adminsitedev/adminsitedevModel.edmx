@@ -52,6 +52,8 @@
           <Property Name="IsFinalReviewCompleted" Type="bit" />
           <Property Name="IsPeerCrossReviewCompleted" Type="bit" />
           <Property Name="IsQuestionReadyForLive" Type="bit" />
+          <Property Name="ImageURL" Type="varchar(max)" />
+          <Property Name="Explanation" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="adminsitedevModelStoreContainer">
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
@@ -107,6 +109,8 @@
           <Property Name="BookPageNumber" Type="Int32" />
           <Property Name="BookQuestionNumber" Type="Int32" />
           <Property Name="OurQuestionNumber" Type="Int32" />
+          <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="adminsitedevEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Questions" EntityType="Self.Question" />
@@ -120,6 +124,8 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="adminsitedevModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
                 <ScalarProperty Name="OurQuestionNumber" ColumnName="OurQuestionNumber" />
                 <ScalarProperty Name="BookQuestionNumber" ColumnName="BookQuestionNumber" />
                 <ScalarProperty Name="BookPageNumber" ColumnName="BookPageNumber" />
@@ -180,7 +186,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

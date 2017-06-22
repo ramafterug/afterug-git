@@ -11,7 +11,7 @@ using System.Data.Entity.Validation;
 using adminsitedev.Models;
 namespace adminsitedev.Controllers
 {
-    [Authorize]
+    
     public class QuestionsController : Controller
     {
         private adminsitedevEntities1 db = new adminsitedevEntities1();
@@ -19,7 +19,7 @@ namespace adminsitedev.Controllers
         // GET: Questions
         public ActionResult Index()
         {
-            return View(db.Questions.ToList());
+            return View(db.Questions.ToList().OrderByDescending(question => question.QuestionID).Take(20));
         }
 
         // GET: Questions/Details/5
@@ -48,7 +48,7 @@ namespace adminsitedev.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QuestionID,QuestionType,QuestionOriginal,ChoiceAOriginal,ChoiceBOriginal,ChoiceCOriginal,ChoiceDOriginal,CorrectChoiceOriginal,QuestionMainCategory,QuestionSubCategory,IsPreviousYearExamQuestion,WhichExam,WhichYear,QuestionSpinned,ChoiceASpinned,ChoiceBSpinned,ChoiceCSpinned,ChoiceDSpinned,CorrectChoiceSpinned,ErrorsSpinned,JustificationsFinal,ReviewComments,ResponseReviewComments,QuestionFinal,ChoiceAFinal,ChoiceBFinal,ChoiceCFinal,ChoiceDFinal,CorrectChoiceFinal,QuestionLive,ChoiceALive,ChoiceBLive,ChoiceCLive,ChoiceDLive,CorrectChoiceLive,IsCorrectChoiceVerified,IsQuestionSpinned,IsFinalReviewCompleted,IsPeerCrossReviewCompleted,IsQuestionReadyForLive,BookPageNumber,BookQuestionNumber,OurQuestionNumber")] Question question)
+        public ActionResult Create([Bind(Include = "QuestionID,QuestionType,QuestionOriginal,Explanation,ImageURL,ChoiceAOriginal,ChoiceBOriginal,ChoiceCOriginal,ChoiceDOriginal,CorrectChoiceOriginal,QuestionMainCategory,QuestionSubCategory,IsPreviousYearExamQuestion,WhichExam,WhichYear,QuestionSpinned,ChoiceASpinned,ChoiceBSpinned,ChoiceCSpinned,ChoiceDSpinned,CorrectChoiceSpinned,ErrorsSpinned,JustificationsFinal,ReviewComments,ResponseReviewComments,QuestionFinal,ChoiceAFinal,ChoiceBFinal,ChoiceCFinal,ChoiceDFinal,CorrectChoiceFinal,QuestionLive,ChoiceALive,ChoiceBLive,ChoiceCLive,ChoiceDLive,CorrectChoiceLive,IsCorrectChoiceVerified,IsQuestionSpinned,IsFinalReviewCompleted,IsPeerCrossReviewCompleted,IsQuestionReadyForLive,BookPageNumber,BookQuestionNumber,OurQuestionNumber")] Question question)
         {
             if (ModelState.IsValid)
             {
@@ -104,15 +104,32 @@ namespace adminsitedev.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QuestionID,QuestionType,QuestionOriginal,ChoiceAOriginal,ChoiceBOriginal,ChoiceCOriginal,ChoiceDOriginal,CorrectChoiceOriginal,QuestionMainCategory,QuestionSubCategory,IsPreviousYearExamQuestion,WhichExam,WhichYear,QuestionSpinned,ChoiceASpinned,ChoiceBSpinned,ChoiceCSpinned,ChoiceDSpinned,CorrectChoiceSpinned,ErrorsSpinned,JustificationsFinal,ReviewComments,ResponseReviewComments,QuestionFinal,ChoiceAFinal,ChoiceBFinal,ChoiceCFinal,ChoiceDFinal,CorrectChoiceFinal,QuestionLive,ChoiceALive,ChoiceBLive,ChoiceCLive,ChoiceDLive,CorrectChoiceLive,IsCorrectChoiceVerified,IsQuestionSpinned,IsFinalReviewCompleted,IsPeerCrossReviewCompleted,IsQuestionReadyForLive")] Question question)
+        public ActionResult Edit([Bind(Include = "QuestionID,QuestionType,QuestionOriginal,Explanation,ImageURL,ChoiceAOriginal,ChoiceBOriginal,ChoiceCOriginal,ChoiceDOriginal,CorrectChoiceOriginal,QuestionMainCategory,QuestionSubCategory,IsPreviousYearExamQuestion,WhichExam,WhichYear,QuestionSpinned,ChoiceASpinned,ChoiceBSpinned,ChoiceCSpinned,ChoiceDSpinned,CorrectChoiceSpinned,ErrorsSpinned,JustificationsFinal,ReviewComments,ResponseReviewComments,QuestionFinal,ChoiceAFinal,ChoiceBFinal,ChoiceCFinal,ChoiceDFinal,CorrectChoiceFinal,QuestionLive,ChoiceALive,ChoiceBLive,ChoiceCLive,ChoiceDLive,CorrectChoiceLive,IsCorrectChoiceVerified,IsQuestionSpinned,IsFinalReviewCompleted,IsPeerCrossReviewCompleted,IsQuestionReadyForLive,BookPageNumber,BookQuestionNumber,OurQuestionNumber")] Question question)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            try
             {
                 db.Entry(question).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(question);
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            return RedirectToAction("Index");
+            //}
+            //return View(question);
         }
 
         // GET: Questions/Delete/5

@@ -21,6 +21,11 @@ namespace adminsitedev.Models
             [Required]
             [DisplayName("Actual Question")]
             public string QuestionOriginal { get; set; }
+
+            [UIHint("tinymce_jquery_full"), AllowHtml]
+            [Required]
+            [DisplayName("Answer Explanation")]
+            public string Explanation { get; set; }
         }
     }
 }

@@ -33,6 +33,17 @@ declare namespace afterug.core.middlelayer {
 		UserID: number;
 		Users: afterug.core.middlelayer.Users;
 	}
+	interface AUGNotes {
+		AUGNotePointText: string;
+		AUGNotesAddedByEmployeeUserID: number;
+		AUGNotesApprovedByEmployeeUserID: number;
+		AUGNotesID: number;
+		IsToBeDisplayed: boolean;
+		QuestionID: number;
+		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
+		Users: afterug.core.middlelayer.Users;
+		Users1: afterug.core.middlelayer.Users;
+	}
 	interface Chapter {
 		ChapterDescription: string;
 		ChapterID: number;
@@ -78,7 +89,6 @@ declare namespace afterug.core.middlelayer {
 	}
 	interface QuestionDifficulty {
 		DifficultyLevel: number;
-		QuestionDifficultyID: number;
 		QuestionID: number;
 		QuestionsAfterUG: afterug.core.middlelayer.QuestionsAfterUG;
 		Users: afterug.core.middlelayer.Users;
@@ -86,6 +96,7 @@ declare namespace afterug.core.middlelayer {
 	}
 	interface QuestionsAfterUG {
 		Attempts: afterug.core.middlelayer.Attempts[];
+		AUGNotes: afterug.core.middlelayer.AUGNotes[];
 		Chapter: afterug.core.middlelayer.Chapter;
 		ChapterID: number;
 		Choices: afterug.core.middlelayer.Choices[];
@@ -152,6 +163,8 @@ declare namespace afterug.core.middlelayer {
 	}
 	interface Users {
 		Attempts: afterug.core.middlelayer.Attempts[];
+		AUGNotes: afterug.core.middlelayer.AUGNotes[];
+		AUGNotes1: afterug.core.middlelayer.AUGNotes[];
 		ForgetNotes: afterug.core.middlelayer.ForgetNotes[];
 		Password: string;
 		QuestionDifficulty: afterug.core.middlelayer.QuestionDifficulty[];

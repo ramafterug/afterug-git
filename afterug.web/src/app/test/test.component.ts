@@ -47,10 +47,29 @@ export class TestComponent implements OnInit {
   singleQuestionHitCount: number = 0;
   NewAttempts: afterUGExtended.afterugExtended.Attempts[][];
   SSFinalAttempts: afterUGExtended.afterugExtended.Attempts[];
+  questionDifficultyArray: afterUGExtended.afterugExtended.QuestionDifficulty[];
+  currentQuestionDifficulty: afterUGExtended.afterugExtended.QuestionDifficulty;
+  percentageCorrectIncorrectForCurrentQuestion: afterUGExtendedCustom.afterugExtended.CurrentQuestionPercentageCorrectIncorrect;
   MarkedQuestions: number[];
-  FinalMarkUnMarkCRUDData: number[][];
+  DontShowQuestions: number[];//This will the final array will be added to CompleteDataObjectToSave object//A new class has to be created in both web and Webapi project
+  FinalUserDifficultyRatingArray: afterUGExtended.afterugExtended.QuestionDifficulty[];
   UnMarkedQuestionIDArray: number[];
-  testOrSSComplete: boolean = false;
+  isTTOrSSComplete: boolean = false;
+  isISRComplete: boolean = false;
+  difficultyTotalCount: number = 0;
+  percentageCorrectIncorrectTotalCount: number = 0;
+  questionDifficulty: number = 0;
+  ISRIsMarked: boolean = false;
+  FinalDataToBeSaved: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject;
+  addUserNote: boolean = false;
+  usrNote: string;
+  UserNotesArray: afterUGExtendedCustom.afterugExtended.UserNotes[];
+  //ISRMarkedArray: number[];
+
+  //Single question difficulty levels
+  currentQuestionDifficultySortArray: afterUGExtendedCustom.afterugExtended.CurrentQuestionDifficultySort[];
+  singleDifficulty: afterUGExtendedCustom.afterugExtended.CurrentQuestionDifficultySort;
+  //Single question difficulty levels
 
   //ISR
   unansweredQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
@@ -61,6 +80,7 @@ export class TestComponent implements OnInit {
   //ISR
 
   IsMarked: boolean = false;
+  IsDontShowQuestion: boolean = false;
   TestMode: string; //TT for test. SS for StudySession
   //Timer Code
   counter0 = 0;
@@ -79,6 +99,7 @@ export class TestComponent implements OnInit {
     //Randomise here
     this.test.IsQuestionRandom = true;
     this.MarkedQuestions = [];
+    this.DontShowQuestions = [];
 
     //ISR
     this.unansweredQuestionsList = [];
@@ -86,6 +107,7 @@ export class TestComponent implements OnInit {
     this.correctQuestionsList = [];
     this.mostTimeTakenQuestionsList = [];
     this.markedQuestionsList = [];
+    this.UserNotesArray = [];
     //ISR
   }
   updateModel() {
@@ -118,7 +140,7 @@ export class TestComponent implements OnInit {
   }
 
   updateAndAddCurrentHit(radioValue: number) {
-    // console.log(radioValue);
+    // //console.log(radioValue);
     var attemptIndex = this.getCurrentQuestionNumber() - 1;
     var currentAttemptsLength = this.NewAttempts[attemptIndex].length;
 
@@ -133,8 +155,8 @@ export class TestComponent implements OnInit {
     //this.currentHit.AttemptID = this.currentAttempt.AttemptID;// Confusion on this attempt id will be generated only on insert
     currentHit.UserChoiceIDForTheHit = this.userChoiceID;
     currentHit.UserChoiceTextForTheHit = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.userChoiceID);
-    //console.log("UserAnswerForTheHit:-> " + currentHit.UserAnswerForTheHit);
-    //console.log("userChoiceID:-> " + this.userChoiceID);
+    ////console.log("UserAnswerForTheHit:-> " + currentHit.UserAnswerForTheHit);
+    ////console.log("userChoiceID:-> " + this.userChoiceID);
     var currentAttemptHit = new afterUGExtended.afterugExtended.Hits();
     var currentAttemptHitsWhichNoOfHit = 0;
     var currentHitArrayLength = this.NewAttempts[attemptIndex][currentAttemptsLength - 1].Hits.length;
@@ -161,10 +183,35 @@ export class TestComponent implements OnInit {
   }
 
   ShowISR() {
-    console.log("What to Display Value : " + this.toDisplayISR);
+    //console.log("What to Display Value : " + this.toDisplayISR);
+  }
+  AddUserNotes() {
+    this.addUserNote = true;
   }
 
+  SaveUserNotes() {
+    // GEt note text
+
+    // Create usernotes object
+    var CurrentUserNotes = new afterUGExtendedCustom.afterugExtended.UserNotes();
+    CurrentUserNotes.ApprovedByAdminUserID = 2;
+    CurrentUserNotes.IsApprovedForPublicDisplay = true;
+    CurrentUserNotes.IsToBeDisplayed = true;
+    CurrentUserNotes.NoteText = this.usrNote;
+    CurrentUserNotes.QuestionID = this.test.currentQuestion.QuestionID;
+    CurrentUserNotes.UserID = this.userID;
+
+    //Fill necessary parameteres like notetext, QID, UID is to be displayed and all
+    //Add it to an array
+    this.UserNotesArray.push(CurrentUserNotes);
+    this.addUserNote = false;
+    //console.log("UserNotesArray: ");
+    //console.log(this.UserNotesArray);
+
+  }
   prepareISR() {
+    var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+    this.MarkedQuestions = uniqMarked;
     var countForQuestionObjectLoad;
 
 
@@ -185,7 +232,16 @@ export class TestComponent implements OnInit {
       var correctCount: number = 0;
       var incorrectCount: number = 0;
 
+      //FinalUserDifficultyRatingArray. Gett question difficulty from question listy
+      this.FinalUserDifficultyRatingArray = [];
+      this.test.QuestionList.forEach(question => {
+        if (question.QuestionDifficulty.length != 0) {
+          this.FinalUserDifficultyRatingArray.push(question.QuestionDifficulty[0]);
+        }
 
+      });
+      //console.log("ISR Difficulty LOg");
+      //console.log(this.FinalUserDifficultyRatingArray)
       MasterElement.forEach(ChildElement => {
 
 
@@ -196,6 +252,27 @@ export class TestComponent implements OnInit {
           ActualAnswer_ISR = ChildElement.CorrectAnswer;
 
           QuestionObject.QuestionsAfterUG = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
+          //Start Here update marked status, dont show question and difficulty Start
+          this.MarkedQuestions.forEach(markedQID => {
+            if (markedQID == QuestionID_ISR) {
+              QuestionObject.IsMarked = true;
+            }
+          });
+          this.DontShowQuestions.forEach(dontShowQID => {
+            if (dontShowQID == QuestionID_ISR) {
+              QuestionObject.IsDontShowQuestion = true;
+            }
+          });
+
+          this.FinalUserDifficultyRatingArray.forEach(difficultyObject => {
+            if (difficultyObject.QuestionID == QuestionObject.QuestionsAfterUG.QuestionID) {
+              QuestionObject.HardMediumOrEasy = difficultyObject.DifficultyLevel;
+            }
+          });
+
+          //End Here update marked status, dont show question and difficulty End
+
+
 
           //          QuestionObject.UserChoiceText
         }
@@ -233,9 +310,11 @@ export class TestComponent implements OnInit {
 
 
 
+
         //if(){} // Check for Answer status 0 - incorrect, 1 for unanswered, 2 for correct // Check for marked array too // Add question objects to respective arrays
         // Bind to the HTML UI
       });
+
 
 
       var uniq = QuestionObject.IncorrectChoicesChoiceIDArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
@@ -243,6 +322,7 @@ export class TestComponent implements OnInit {
 
       if (incorrectCount >= correctCount) {
         this.incorrectQuestionsList.push(QuestionObject);
+
       } else {
         this.correctQuestionsList.push(QuestionObject);
       }
@@ -252,34 +332,91 @@ export class TestComponent implements OnInit {
       QuestionObject.TimeTaken = averageTimeTakenForAttempt;
 
       this.mostTimeTakenQuestionsList.push(QuestionObject);
-      //console.log("Before Sort: " +  this.mostTimeTakenQuestionsList);
+      ////console.log("Before Sort: " +  this.mostTimeTakenQuestionsList);
 
-
+      this.MarkedQuestions.forEach(markedQID => {
+        if (markedQID == QuestionObject.QuestionsAfterUG.QuestionID) {
+          this.markedQuestionsList.push(QuestionObject);
+        }
+      });
 
     });
-    var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+    /*var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
     this.MarkedQuestions = uniqMarked;
     for (var i = 0; i < this.MarkedQuestions.length; i++) {
       var tempMarkedISR = new afterUGExtendedCustom.afterugExtended.QuestionObjectISR();
       tempMarkedISR.QuestionsAfterUG = this.fetchQuestionObjectByQuestionID(this.MarkedQuestions[i]);
 
+      tempMarkedISR.IsMarked = true;
+      this.DontShowQuestions.forEach(dontShowQID => {
+        if (dontShowQID == this.MarkedQuestions[i]) {
+          tempMarkedISR.IsDontShowQuestion = true;
+        }
+      });
       this.markedQuestionsList.push(tempMarkedISR);
-    }
-    console.log("Most time taken before sort");
-    console.log(this.mostTimeTakenQuestionsList);
-    var sortedArray = this.mostTimeTakenQuestionsList.sort(this.compare);
+    }*/
+    //console.log("Most time taken before sort");
+    //console.log(this.mostTimeTakenQuestionsList);
+    var sortedArray = this.mostTimeTakenQuestionsList.sort(this.compareTimeTaken);
     this.mostTimeTakenQuestionsList = sortedArray;
-    console.log("Most time taken after sort");
-    console.log(this.mostTimeTakenQuestionsList);
+    //console.log("Most time taken after sort");
+    //console.log(this.mostTimeTakenQuestionsList);
 
 
 
-    console.log("incorrectQuestionsList: ");
-    console.log(this.incorrectQuestionsList);
-    console.log("correctQuestionsList: ");
-    console.log(this.correctQuestionsList);
-    console.log("markedQuestionsList: ");
-    console.log(this.markedQuestionsList);
+    //console.log("incorrectQuestionsList: ");
+    //console.log(this.incorrectQuestionsList);
+    //console.log("correctQuestionsList: ");
+    //console.log(this.correctQuestionsList);
+    //console.log("markedQuestionsList: ");
+    //console.log(this.markedQuestionsList);
+
+    this.NewAttempts.forEach(attemptArray => {
+      attemptArray.forEach(element => {
+
+
+
+        // Start - For answer status
+
+        var userAnswer: string;
+        var userAnswerChoiceID: number;
+        var hitsLength = element.Hits.length;
+        if (hitsLength == 0) {
+          userAnswer = "0";
+          userAnswerChoiceID = 0;
+        } else {
+          if (this.TestMode == "SS") {
+
+            userAnswer = element.Hits[0].UserChoiceTextForTheHit;
+            userAnswerChoiceID = element.Hits[0].UserChoiceIDForTheHit;
+          } else {
+            userAnswer = element.Hits[hitsLength - 1].UserChoiceTextForTheHit;
+            userAnswerChoiceID = element.Hits[hitsLength - 1].UserChoiceIDForTheHit;
+          }
+        }
+
+
+
+        if (userAnswer == element.CorrectAnswer) {
+
+          //Increment CorrectCount
+          element.AnswerStatus = 1;
+
+
+        } else {
+          //Increment IncorrectCount
+          element.AnswerStatus = 0;
+
+        }
+
+
+
+
+        // End - For answer status
+
+
+      });
+    });
 
   }
 
@@ -288,10 +425,25 @@ export class TestComponent implements OnInit {
     return 0;
   }
 
-  compare(a, b) {
+
+
+  calculatePercentageCorrectIncorrectForAllQuestionsForUI() {
+
+  }
+
+
+  compareTimeTaken(a, b) {
     if (a.TimeTaken > b.TimeTaken)
       return -1;
     if (a.TimeTaken < b.TimeTaken)
+      return 1;
+    return 0;
+  }
+
+  compareDifficultyLevel(a, b) {
+    if (a.DifficultyCount > b.DifficultyCount)
+      return -1;
+    if (a.DifficultyCount < b.DifficultyCount)
       return 1;
     return 0;
   }
@@ -346,13 +498,13 @@ export class TestComponent implements OnInit {
     }
     currentAttempt.AttemptNumber = currentQuestionLastAttemptNumber + 1;
     currentAttempt.QuestionID = this.test.currentQuestion.QuestionID;
-    //console.log("QID:->" +  currentAttempt.QuestionID);
-    currentAttempt.TestOrStudySession = "PreTest";//Make it dynamic later based on it is a test or TestOrStudySession
+    ////console.log("QID:->" +  currentAttempt.QuestionID);
+    currentAttempt.TestOrStudySession = this.TestMode;//Make it dynamic later based on it is a test or TestOrStudySession
     currentAttempt.TimeTaken = this.counter0;// Start the time when question loads and stop before this statement and then compute difference and Assign
     currentAttempt.UserFinalHitAnswer = this.userChoiceID;//Current choiceID. GEt the value from radio click
     var correctAnswerFromDB = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.test.currentQuestion.CorrectChoiceID);
     currentAttempt.CorrectAnswer = correctAnswerFromDB;
-    currentAttempt.UserID = 1;//Make it dynamic later
+    currentAttempt.UserID = this.userID;//Make it dynamic later
     var CorrectChoiceID = this.test.currentQuestion.CorrectChoiceID;
 
     this.test.currentQuestion.Choices.forEach(choice => {
@@ -366,13 +518,9 @@ export class TestComponent implements OnInit {
     var tempCurrentAttempt = currentAttempt;
     var attemptIndex = this.getCurrentQuestionNumber() - 1;
     //this.NewAttempts[attemptIndex] = tempCurrentAttempt; //Older code
+
+
     this.NewAttempts[attemptIndex].push(tempCurrentAttempt);
-
-
-
-
-
-
 
   }
 
@@ -384,9 +532,10 @@ export class TestComponent implements OnInit {
     if (this.TestMode == "SS") {
 
       //questionCount = this.test.questionCount - 1;
+      //console.log(this.test.QuestionOrder);
       //console.log(this.test.QuestionOrder[0]);
-      //console.log("Current Question Number" + currentQuestionNumber);
-      return currentQuestionNumber = this.test.QuestionOrder[0];
+      ////console.log("Current Question Number" + currentQuestionNumber);
+      return this.test.QuestionOrder[0];
 
     } else {
 
@@ -397,15 +546,16 @@ export class TestComponent implements OnInit {
   }
 
   CorrectSoRemove(): void {
-    //Remove value from index
+
     if (this.test.QuestionOrder.length == 1) {
-      this.testOrSSComplete = true;
+      this.isTTOrSSComplete = true;
     }
+    //Remove value from index
     if (this.TestMode == "SS") {
       this.test.QuestionOrder.splice(0, 1);
-      console.log("Correct After Splice Before Shuffle: " + this.test.QuestionOrder);
+      //console.log("Correct After Splice Before Shuffle: " + this.test.QuestionOrder);
       this.test.QuestionOrder = this.shuffle(this.test.QuestionOrder);
-      console.log("Correct After Splice After Shuffle: " + this.test.QuestionOrder);
+      //console.log("Correct After Splice After Shuffle: " + this.test.QuestionOrder);
 
     }
 
@@ -430,9 +580,9 @@ export class TestComponent implements OnInit {
 
 
       }
-      console.log("Incorrect After Push and Before shuffle: " + this.test.QuestionOrder);
+      //console.log("Incorrect After Push and Before shuffle: " + this.test.QuestionOrder);
       this.test.QuestionOrder = this.shuffle(this.test.QuestionOrder);
-      console.log("Incorrect After Push and After shuffle: " + this.test.QuestionOrder);
+      //console.log("Incorrect After Push and After shuffle: " + this.test.QuestionOrder);
     }
 
   }
@@ -451,11 +601,11 @@ export class TestComponent implements OnInit {
   }
 
   setTimeTakenForTheCurrentAttempt() {
-    console.log("Current Question Number before setting time: " + this.test.QuestionOrder[0]);
-    console.log("Question no: " + this.getCurrentQuestionNumber());
-    var attemptIndex = this.getCurrentQuestionNumber() - 1;
-    console.log(this.NewAttempts);
-    console.log("Attempt Index: " + attemptIndex);
+    //console.log("Current Question Number before setting time: " + this.test.QuestionOrder[0]);
+    //console.log("Question no: " + this.getCurrentQuestionNumber());
+    var attemptIndex = this.test.QuestionOrder[0] - 1;
+    //console.log(this.NewAttempts);
+    //console.log("Attempt Index: " + attemptIndex);
 
     var currentAttemptsLength = this.NewAttempts[attemptIndex].length;
     /*  if (currentAttemptsLength == 0) {
@@ -466,64 +616,124 @@ export class TestComponent implements OnInit {
     this.NewAttempts[attemptIndex][currentAttemptsLength - 1].TimeTaken = this.counter0;
   }
 
+  ISRMarkOrUnmarkQuestion(value: number, state: boolean, question: afterUGExtendedCustom.afterugExtended.QuestionObjectISR) {
+    var qID = Number(value);
+    if (state == true) {
+      //console.log("marked");
+      this.MarkedQuestions.push(qID);
+      //console.log(this.MarkedQuestions);
+      question.IsMarked = true;
+    } else {
+      var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+      this.MarkedQuestions = uniqMarked;
+      for (var i = 0; i < this.MarkedQuestions.length; i++) {
+        if (qID == this.MarkedQuestions[i]) {
+          this.MarkedQuestions.splice(i, 1);
+
+          this.UnMarkedQuestionIDArray.push(value);
+          //console.log("UnMarked");
+          //console.log(this.UnMarkedQuestionIDArray);
+          question.IsMarked = false;
+          //To do . FInally reduce markedQuestions and UnMarkedQuestionIDArray
+        }
+      }
+
+    }
+
+  }
 
   MarkOrUnmarkQuestion() {
     this.IsMarked = !this.IsMarked;
-    // var tempUserID = 
-    //var tempMarked = new afterUGExtendedCustom.afterugExtended.TestMarkAQuestion();
-
-
     if (this.IsMarked == true) {
-      //this.MarkedQuestions.push
-
       this.MarkedQuestions.push(this.test.currentQuestion.QuestionID);
-      //Dummy comment for git testing develop branch another commit
       alert("Word is marked");
-      console.log(this.MarkedQuestions);
+      //console.log(this.MarkedQuestions);
     } else {
-
-      //this.test.currentQuestion.QuestionID;
       for (var i = 0; i < this.MarkedQuestions.length; i++) {
         if (this.MarkedQuestions[i] == this.test.currentQuestion.QuestionID) {
           this.MarkedQuestions.splice(i, 1);
           this.UnMarkedQuestionIDArray.push(this.test.currentQuestion.QuestionID);
-          console.log(this.MarkedQuestions);
+          //console.log(this.MarkedQuestions);
           alert("Word is Unmarked");
-
-
+          //console.log("UnMarked");
+          //console.log(this.UnMarkedQuestionIDArray);
         }
       }
+    }
+  }
 
-      /*var index = this.MarkedQuestions.indexOf(tempMarked, 0);
-      console.log("index: " + index);
-      if (index > -1) {
-        this.MarkedQuestions.splice(index, 1);
-         console.log(this.MarkedQuestions);
-      }*/
+  ISRDontShowQuestionChecked(value: number, state: boolean, question: afterUGExtendedCustom.afterugExtended.QuestionObjectISR) {
+    var qID = Number(value);
+    if (state == true) {
+      //console.log("Dont Show this question");
+      this.DontShowQuestions.push(qID);
+
+      //console.log(this.DontShowQuestions);
+      question.IsDontShowQuestion = true;
+    } else {
+      var uniqDontShow = this.DontShowQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+      this.DontShowQuestions = uniqDontShow;
+      for (var i = 0; i < this.DontShowQuestions.length; i++) {
+        if (qID == this.DontShowQuestions[i]) {
+          this.DontShowQuestions.splice(i, 1);
+
+
+          //console.log("Will show question");
+          //console.log(this.DontShowQuestions);
+          question.IsDontShowQuestion = false;
+          //To do . FInally reduce markedQuestions and UnMarkedQuestionIDArray
+        }
+      }
 
     }
   }
 
+  DontShowQuestionChecked() {
+    this.IsDontShowQuestion = !this.IsDontShowQuestion;
+    if (this.IsDontShowQuestion == true) {
+      this.DontShowQuestions.push(this.test.currentQuestion.QuestionID);
+      //Dummy comment for git testing develop branch another commit
+      alert("This question will not be shown in future");
+      //console.log(this.DontShowQuestions);
+    } else {
+      for (var i = 0; i < this.DontShowQuestions.length; i++) {
+        if (this.DontShowQuestions[i] == this.test.currentQuestion.QuestionID) {
+          this.DontShowQuestions.splice(i, 1);
+          //this.UnMarkedQuestionIDArray.push(this.test.currentQuestion.QuestionID);
+          //console.log(this.DontShowQuestions);
+          alert("Dont show disabled. SO this question will be shown in future");
+        }
+      }
+    }
+  }
 
+  SaveTTOrSSAndISRData() {
+    alert("We are now going to save data");
+    this.isISRComplete = true;
+    this.ISRCompleteSaveData(this.FinalDataToBeSaved);
+    alert("Done");
+  }
   NextQuestion(): void {
     this.newQuestion++;
     if ((this.test.questionCount != this.test.QuestionList.length && this.TestMode == "TT") || (this.test.QuestionOrder.length != 1 && !(this.test.QuestionOrder.length <= 0) && this.TestMode == "SS")) {
       this.TaskForCurrentAttempt();
+      this.RateDifficulty();
       this.TasksForNextAttempt();
     } else {
       if (this.TestMode = "TT") {
         this.TaskForCurrentAttempt();
-        console.log("this.NewAttempts");
-        console.log(this.NewAttempts);
+        this.RateDifficulty();
+        this.isTTOrSSComplete = true;
         this.TTOrSSCompleteDoFormalities();
       } else {
         if (this.test.QuestionOrder.length == 1) {
+
           this.TaskForCurrentAttempt();
-          if (this.testOrSSComplete == false) {
+          this.RateDifficulty();
+          if (this.isTTOrSSComplete == false) {
             this.TasksForNextAttempt();
           } else {
-            console.log("this.NewAttempts");
-            console.log(this.NewAttempts);
+            this.isTTOrSSComplete = true;
             this.TTOrSSCompleteDoFormalities();
           }
         }
@@ -532,13 +742,111 @@ export class TestComponent implements OnInit {
     }
   }
 
+  ISRRateDifficulty(value: number, state: boolean, question: afterUGExtendedCustom.afterugExtended.QuestionObjectISR) {
+    var qID = Number(value);
+    ////console.log("From RateDifficulty Function: " + this.questionDifficulty);
+
+    this.FinalUserDifficultyRatingArray.forEach(difficultyFromISR => {
+      if (difficultyFromISR.QuestionID == question.QuestionsAfterUG.QuestionID) {
+        difficultyFromISR.DifficultyLevel = value;
+      }
+    });
+    ////console.log("ISR From Review Click FinalUserDifficultyRatingArray");
+    ////console.log(this.FinalUserDifficultyRatingArray);
+  }
+
+  RateDifficulty() {
+    ////console.log("From RateDifficulty Function: " + this.questionDifficulty);
+
+    if (this.test.currentQuestion.QuestionDifficulty.length != 0) {
+      this.test.currentQuestion.QuestionDifficulty[0].DifficultyLevel = this.questionDifficulty;
+      ////console.log(this.test.currentQuestion.QuestionDifficulty[0]);
+    } else {
+      //create new question difficulty object and add it to the current question
+      var newQuestionDifficulty = new afterUGExtended.afterugExtended.QuestionDifficulty();
+      newQuestionDifficulty.QuestionID = this.test.currentQuestion.QuestionID;
+      newQuestionDifficulty.UserWhoRatedDifficultyID = this.userID;
+      newQuestionDifficulty.DifficultyLevel = this.questionDifficulty;
+      this.test.currentQuestion.QuestionDifficulty.push(newQuestionDifficulty);
+      ////console.log(this.test.currentQuestion.QuestionDifficulty[0]);
+    }
+
+  }
+
+  getPercenTageCorrectAndIncorrectForAQuestion() {
+    this.percentageCorrectIncorrectForCurrentQuestion = new afterUGExtendedCustom.afterugExtended.CurrentQuestionPercentageCorrectIncorrect();
+    //percentageCorrectIncorrectTotalCount
+    var TotalCount: number = 0;
+
+    this.test.currentQuestion.PercentageCorrectIncorrect.forEach(element => {
+      TotalCount = TotalCount + element.Count;
+
+    });
+
+
+    this.percentageCorrectIncorrectTotalCount = TotalCount;
+    this.test.currentQuestion.PercentageCorrectIncorrect.forEach(element => {
+
+      if (element.AnswerStatus == 0) {
+        this.percentageCorrectIncorrectForCurrentQuestion.IncorrectCount = element.Count;
+        this.percentageCorrectIncorrectForCurrentQuestion.IncorrectPercentage = ((element.Count * 100) / TotalCount);
+      } else if (element.AnswerStatus == 1) {
+        this.percentageCorrectIncorrectForCurrentQuestion.CorrectCount = element.Count;
+        this.percentageCorrectIncorrectForCurrentQuestion.CorrectPercentage = ((element.Count * 100) / TotalCount);
+      }
+    });
+
+
+
+  }
+  getDifficultyForAQuestion() {
+    this.currentQuestionDifficultySortArray = [];
+
+    var TotalCount: number = 0;
+
+    this.test.currentQuestion.DifficultyLevelsForAQuestionRatedByAllUsers.forEach(element => {
+      TotalCount = TotalCount + element.Count;
+
+    });
+    this.difficultyTotalCount = TotalCount;
+
+    for (var i = 0; i < this.test.currentQuestion.DifficultyLevelsForAQuestionRatedByAllUsers.length; i++) {
+
+      var tempDifficultyLevel = this.test.currentQuestion.DifficultyLevelsForAQuestionRatedByAllUsers[i];
+      var singleDifficulty = new afterUGExtendedCustom.afterugExtended.CurrentQuestionDifficultySort();
+      singleDifficulty.TotalCount = this.difficultyTotalCount;
+      singleDifficulty.DifficultyLevel = tempDifficultyLevel.DifficultyLevel;
+      singleDifficulty.DifficultyCount = tempDifficultyLevel.Count;
+      singleDifficulty.DifficultyPercentage = ((singleDifficulty.DifficultyCount * 100) / singleDifficulty.TotalCount);
+      this.currentQuestionDifficultySortArray.push(singleDifficulty);
+    }
+    var sortedArray = this.currentQuestionDifficultySortArray.sort(this.compareDifficultyLevel);
+    this.currentQuestionDifficultySortArray = sortedArray;
+    if (this.currentQuestionDifficultySortArray.length != 0) {
+      this.questionDifficulty = this.currentQuestionDifficultySortArray[0].DifficultyLevel;
+    } else {
+      this.questionDifficulty = 1;
+    }
+
+
+
+
+    //currentQuestionDifficultySort
+  }
   TasksForNextAttempt() {
+
     this.test.questionCount = this.test.questionCount + 1;
     this.test.currentQuestion = this.test.QuestionList[this.getCurrentQuestionNumber() - 1];
+
+
+    this.getDifficultyForAQuestion();
+    this.getPercenTageCorrectAndIncorrectForAQuestion();
     this.randomizeChoices();
     this.setCurrentAttempt();
     this.resetTimer();
     this.IsMarked = false;
+    this.IsDontShowQuestion = false;
+
     this.markOrUnMarkTheCurrentQuestion();
     this.userChoiceID = 0;
   }
@@ -554,10 +862,34 @@ export class TestComponent implements OnInit {
     alert('Cannot go further this is the last question');
   }
 
+  ISRCompleteSaveData(FinalDataToBeSavedToService: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject) {
+    this.testQuestionService.ISRCompleteSaveData(FinalDataToBeSavedToService)
+      .subscribe(
+      status => {
+        alert(status);
+      },
+      err => {
+        alert(err);
+        ////console.log(err);
+      });
+  }
+
+  prepareFinalDataForSaving() {
+    this.FinalDataToBeSaved = new afterUGExtendedCustom.afterugExtended.DataToBeSavedObject();
+    this.FinalDataToBeSaved.AttemptsToBeSaved = this.NewAttempts;
+    this.FinalDataToBeSaved.DontShowQuestionsToBeSaved = this.DontShowQuestions;
+    this.FinalDataToBeSaved.MarkedQuestionsToBeSaved = this.MarkedQuestions;
+    this.FinalDataToBeSaved.UnMarkedQuestionsToBeSaved = this.UnMarkedQuestionIDArray;
+    this.FinalDataToBeSaved.QuestionDifficultiesToBeSaved = this.FinalUserDifficultyRatingArray;
+    this.FinalDataToBeSaved.UserID = this.userID;
+  }
+
   saveDataAfterTest() {
     this.markedQuestionsCRUDDetermine();
     //this.saveMarkedData();
     //this.saveAttempsts(); // Uncomment later. This has to be called after ISR Ends
+    this.prepareFinalDataForSaving();
+    //this.ISRCompleteSaveData(this.FinalDataToBeSaved);
   }
 
   saveAttempsts() {
@@ -568,7 +900,7 @@ export class TestComponent implements OnInit {
       },
       err => {
         alert(err);
-        console.log(err);
+        ////console.log(err);
       });
 
   }
@@ -590,8 +922,8 @@ export class TestComponent implements OnInit {
 
         this.MarkedQuestions.push(this.test.QuestionList[i].QuestionID);
       }
-      console.log("Marked Questions from initial push");
-      console.log(this.MarkedQuestions);
+      ////console.log("Marked Questions from initial push");
+      ////console.log(this.MarkedQuestions);
     }
     this.UnMarkedQuestionIDArray = [];
   }
@@ -602,10 +934,10 @@ export class TestComponent implements OnInit {
     var uniqUnMarked = this.UnMarkedQuestionIDArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
     this.UnMarkedQuestionIDArray = uniqUnMarked;
 
-    console.log("Unmarked to delete");
-    console.log(this.UnMarkedQuestionIDArray);
-    console.log("marked to update");
-    console.log(this.MarkedQuestions);
+    ////console.log("Unmarked to delete");
+    ////console.log(this.UnMarkedQuestionIDArray);
+    ////console.log("marked to update");
+    ////console.log(this.MarkedQuestions);
   }
   markOrUnMarkTheCurrentQuestion() {
     if (this.test.currentQuestion.TestMarkAQuestion.length == 0) {
@@ -615,24 +947,26 @@ export class TestComponent implements OnInit {
     }
   }
 
+
   loadQuestions() {
     this.testQuestionService.getQuestionsByQuestionIDArrayAndUserID(this.questionIDArrayAndUserIDAndTestMode)
       .subscribe(
       questions => {
         this.TestMode = this.questionIDArrayAndUserIDAndTestMode.TestMode;
+        this.userID = this.questionIDArrayAndUserIDAndTestMode.UserID;
         this.test.questionCount = 1;
         this.test.QuestionList = questions;
         this.randomizeQuestions();
-        //console.log("FirstQuestionLoad: " + this.test.QuestionOrder);
-        console.log("Question to pick first in the array question order: " + this.getCurrentQuestionNumber());
+        //////console.log("FirstQuestionLoad: " + this.test.QuestionOrder);
+        ////console.log("Question to pick first in the array question order: " + this.getCurrentQuestionNumber());
         for (var i = 0; i < this.test.QuestionList.length; i++) {
-          console.log("QuestionList: " + this.test.QuestionList[i].QuestionID);
+          ////console.log("QuestionList: " + this.test.QuestionList[i].QuestionID);
         }
-        console.log("corresponding Element in question LIst: " + this.test.QuestionList[this.getCurrentQuestionNumber() - 1].QuestionID);
+        ////console.log("corresponding Element in question LIst: " + this.test.QuestionList[this.getCurrentQuestionNumber() - 1].QuestionID);
         this.test.currentQuestion = this.test.QuestionList[this.getCurrentQuestionNumber() - 1];
         this.randomizeChoices();
         this.NewAttempts = [];
-
+        //this.ISRMarkedArray = [];
         var i = 0;
         var finalLoopValue = this.test.QuestionList.length;
 
@@ -648,9 +982,11 @@ export class TestComponent implements OnInit {
         this.subscribeTimer0();
         this.setCurrentAttempt();
 
+        this.getDifficultyForAQuestion();
+        this.getPercenTageCorrectAndIncorrectForAQuestion();
       },
       err => {
-        console.log(err);
+        ////console.log(err);
       });
 
 
@@ -669,14 +1005,14 @@ export class TestComponent implements OnInit {
       this.st.unsubscribe(this.timer0Id);
       this.timer0Id = undefined;
       this.timer0button = 'Subscribe';
-      console.log('timer 0 Unsubscribed.');
+      ////console.log('timer 0 Unsubscribed.');
     } else {
       // Subscribe if timer Id is undefined
       this.timer0Id = this.st.subscribe('1sec', e => this.timer0callback());
       this.timer0button = 'Unsubscribe';
-      console.log('timer 0 Subscribed.');
+      ////console.log('timer 0 Subscribed.');
     }
-    console.log(this.st.getSubscription());
+    ////console.log(this.st.getSubscription());
   }
   saveNewQuestionAttempt() {
 
@@ -699,21 +1035,25 @@ export class TestComponent implements OnInit {
 
     if (this.test.IsQuestionRandom == true) {
       //Random true
-      console.log("FirstQuestionLoad before shuffle: " + this.test.QuestionOrder);
+      ////console.log("FirstQuestionLoad before shuffle: " + this.test.QuestionOrder);
       this.shuffle(this.test.QuestionOrder);
-      console.log("FirstQuestionLoad after shuffle: " + this.test.QuestionOrder);
+      ////console.log("FirstQuestionLoad after shuffle: " + this.test.QuestionOrder);
 
     }
 
   }
 
   randomizeChoices() {
+
     this.test.currentQuestion.OriginalChoiceOrder = [];
     this.test.currentQuestion.RandomChoiceOrder = [];
     this.test.currentQuestion.FinalFourShuffledChoices = [];
-
+    console.log("Choices for question");
+    console.log(this.test.currentQuestion.Choices);
+    console.log("Choices length");
+    console.log(this.test.currentQuestion.Choices.length);
     for (var i = 1; i <= this.test.currentQuestion.Choices.length; i++) {
-      var choice: afterUGExtended.afterugExtended.Choices;
+      var choice = new afterUGExtended.afterugExtended.Choices();
       choice = this.test.currentQuestion.Choices[i - 1];
       this.test.currentQuestion.OriginalChoiceOrder.push(choice);
     }
@@ -721,9 +1061,12 @@ export class TestComponent implements OnInit {
 
     // Assign originalChoice order to randomchoice order
     this.test.currentQuestion.RandomChoiceOrder = this.test.currentQuestion.OriginalChoiceOrder;
-
+    console.log("Random Choice Order Before Shuffle");
+    console.log(this.test.currentQuestion.RandomChoiceOrder);
     //Shuffle the randomchoiceorder array
     this.shuffle(this.test.currentQuestion.RandomChoiceOrder);
+    console.log("Random Choice Order After Shuffle");
+    console.log(this.test.currentQuestion.RandomChoiceOrder);
     //Remove the correctchoiceid from random choice order array
     //var indexDummy = this.test.currentQuestion.RandomChoiceOrder.indexOf(this.test.currentQuestion.CorrectChoiceID, 0);
 
@@ -735,11 +1078,16 @@ export class TestComponent implements OnInit {
       if (this.test.currentQuestion.CorrectChoiceID == tempChoice.ChoiceID) {
         index = i - 1;
         correctChoice = tempChoice;
+        console.log("CorrectChoice: ");
+        console.log(correctChoice);
       }
     }
-    if (index > -1) {
+    console.log("index: " + index);
+    //if (index > -1) {
       this.test.currentQuestion.RandomChoiceOrder.splice(index, 1);
-    }
+    //}
+    console.log("Random Choice Order After Shuffle and after splice removing correct choice");
+    console.log(this.test.currentQuestion.RandomChoiceOrder);
     //insert correctchoiceid in the beginning of finalfourchoices array. Add other 3 choices from first 3 elements of randomchoiceorder
     for (var i = 1; i <= 4; i++) {
       if (i == 1) {
@@ -749,10 +1097,14 @@ export class TestComponent implements OnInit {
       }
 
     }
+    console.log("Final four choice before shuffle");
+    console.log(this.test.currentQuestion.FinalFourShuffledChoices);
     //shuffle the final4 choiceorder array
     this.shuffle(this.test.currentQuestion.FinalFourShuffledChoices);
+    console.log("Final four choice after shuffle");
+    console.log(this.test.currentQuestion.FinalFourShuffledChoices);
     //Bind to the UI
-    //console.log(this.test.currentQuestion.FinalFourShuffledChoices);
+    ////console.log(this.test.currentQuestion.FinalFourShuffledChoices);
   }
 
 
@@ -779,7 +1131,7 @@ export class TestComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.getTestId();
+
     this.loadQuestionIDArrayAndUserID();
     this.test.QuestionList = [];
     this.loadQuestions();

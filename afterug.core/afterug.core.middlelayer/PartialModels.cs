@@ -93,4 +93,5 @@ namespace afterug.core.middlelayer
     public partial class UserSettings
     {
     }
+  
 }

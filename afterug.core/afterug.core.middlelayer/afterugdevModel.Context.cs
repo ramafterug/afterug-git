@@ -13,10 +13,10 @@ namespace afterug.core.middlelayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class afterugdevEntities5 : DbContext
+    public partial class afterugdevEntities12 : DbContext
     {
-        public afterugdevEntities5()
-            : base("name=afterugdevEntities5")
+        public afterugdevEntities12()
+            : base("name=afterugdevEntities12")
         {
         }
     
@@ -28,6 +28,7 @@ namespace afterug.core.middlelayer
         public virtual DbSet<AfterUGNotePoints> AfterUGNotePoints { get; set; }
         public virtual DbSet<AfterUGNotePointsTags> AfterUGNotePointsTags { get; set; }
         public virtual DbSet<Attempts> Attempts { get; set; }
+        public virtual DbSet<AUGNotes> AUGNotes { get; set; }
         public virtual DbSet<Chapter> Chapter { get; set; }
         public virtual DbSet<Choices> Choices { get; set; }
         public virtual DbSet<DontShowQuestion> DontShowQuestion { get; set; }

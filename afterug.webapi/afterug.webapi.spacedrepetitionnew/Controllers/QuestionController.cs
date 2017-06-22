@@ -18,7 +18,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
         // GET: api/Question
         public HttpResponseMessage Get()
         {
-            var db = new afterugdevEntities5();
+            var db = new afterugdevEntities12();
 
             var query = (from b in db.QuestionsAfterUG
                          select b).ToList();
@@ -27,7 +27,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
             {
                 Content = new StringContent(JArray.FromObject(query).ToString(), Encoding.UTF8, "application/json")
             };
-            
+
         }
 
 
@@ -40,7 +40,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
         [Route("api/Question/Test/{testNo}/User/{userID}")]
         public HttpResponseMessage GetTestQuestions(int testNo, int userID)
         {
-            var db = new afterugdevEntities5();
+            var db = new afterugdevEntities12();
 
             db.Configuration.ProxyCreationEnabled = false;
 
@@ -58,13 +58,13 @@ namespace afterug.webapi.spacedrepetition.Controllers
                                       b.Choices,
                                       b.ForgetNotes,
                                       b.QuestionTags,
-                                      
+
                                       b.UserNotes,
                                       Attempts = b.Attempts.Where(a => a.UserID == userID)
 
                                   }).ToList();
 
-            
+
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(questionsQuery, Newtonsoft.Json.Formatting.Indented,
                 new Newtonsoft.Json.JsonSerializerSettings()
                 {
@@ -91,19 +91,19 @@ namespace afterug.webapi.spacedrepetition.Controllers
 
         [HttpPost]
         [Route("api/Questions")]
-        public HttpResponseMessage GetQuestionsByIDArray([FromBody]QuestionIDArrayAndUserID value)
+        public HttpResponseMessage GetQuestionsByIDArray([FromBody]QuestionIDArrayAndUserIDAndTestMode value)
         {
 
             int[] questionIDArray;
             int userID;
             questionIDArray = value.QuestionIDArray;
             userID = value.UserID;
-            var db = new afterugdevEntities5();
+            var db = new afterugdevEntities12();
 
             db.Configuration.ProxyCreationEnabled = false;
 
             var questionsQuery = (from b in db.QuestionsAfterUG.AsNoTracking()
-                                  where questionIDArray.Contains(b.QuestionID)
+                                  where questionIDArray.Contains(b.QuestionID) && !db.DontShowQuestion.Any(f => f.QuestionID == b.QuestionID && f.UserID == userID)
                                   select new
                                   {
                                       b.QuestionID,
@@ -116,11 +116,16 @@ namespace afterug.webapi.spacedrepetition.Controllers
                                       b.Choices,
                                       b.ForgetNotes,
                                       b.QuestionTags,
+                                      QuestionDifficulty = b.QuestionDifficulty.Where(a => a.UserWhoRatedDifficultyID == userID),
                                       TestMarkAQuestion = b.TestMarkAQuestion.Where(a => a.UserID == userID),
-                                      b.UserNotes,
-                                      Attempts = b.Attempts.Where(a => a.UserID == userID)
+                                      UserNotes = b.UserNotes.Where(a => a.UserID == 1 && a.IsApprovedForPublicDisplay == true),
+                                      AUGNotes = b.AUGNotes.Where(a => a.IsToBeDisplayed == true),
+                                      Attempts = b.Attempts.Where(a => a.UserID == userID),
+                                      AverageTimeTakenForQuestionForAllUsers = b.Attempts            .GroupBy(g => g.QuestionID, g => g.TimeTaken)  .Select(g => new { QuestionID = g.Key, AverageTimeTaken = g.Average() }),
+                                      DifficultyLevelsForAQuestionRatedByAllUsers = b.QuestionDifficulty  .GroupBy(g => g.DifficultyLevel)               .Select(g => new   { DifficultyLevel = g.Key, Count = g.Count() }),
+                                      PercentageCorrectIncorrect = b.Attempts                             .GroupBy(g => g.AnswerStatus)                  .Select(g => new   { AnswerStatus = g.Key, Count = g.Count() })
 
-                                  }).ToList();
+        }).ToList();
 
 
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(questionsQuery, Newtonsoft.Json.Formatting.Indented,
@@ -158,9 +163,10 @@ namespace afterug.webapi.spacedrepetition.Controllers
         }
     }
 
-    public class QuestionIDArrayAndUserID
+    public class QuestionIDArrayAndUserIDAndTestMode
     {
         public int[] QuestionIDArray { get; set; }
         public int UserID { get; set; }
+        public string TestMode { get; set; }
     }
 }

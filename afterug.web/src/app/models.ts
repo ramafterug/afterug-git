@@ -78,7 +78,7 @@ export namespace afterugExtended {
 	}
 	export class  QuestionDifficulty {
 		DifficultyLevel: number;
-		QuestionDifficultyID: number;
+		
 		QuestionID: number;
 		QuestionsAfterUG: afterugExtended.QuestionsAfterUG;
 		Users: afterugExtended.Users;

@@ -1,0 +1,2200 @@
+﻿Word1: abdicate
+Meaning1: abandon
+Meaning2: leave
+Meaning3: give up
+Antonym1: claim
+Antonym2: remain	
+Sentence1: He decided to abdicate his bad habits for his family.
+Sentence2: The management decided to abdicate the new project because of lack of funds.
+FillinSentence1: He decided to _____ his bad habits for his family.
+FillinSentence2: The management decided to _____ the new project because of lack of funds.
+--------------------------------------------------------------------------------------------
+Word2: aberrant
+Meaning1: irregular
+Meaning2: peculiar
+Meaning3: strange
+Antonym1: regular
+Antonym2: standard	
+Sentence1: He does not have many friends because of his aberrant behavior.
+Sentence2: I have abandoned my aberrant eating habits and decided to follow strict diet from now on.
+FillinSentence1: He does not have many friends because of his _____ behavior.
+FillinSentence2: I have abandoned my _____ eating habits and decided to follow strict diet from now on.
+--------------------------------------------------------------------------------------------
+Word3: abeyance
+Meaning1: suspension
+Meaning2: pause
+Meaning3: intermission
+Antonym1: continuance
+Antonym2: action	
+Sentence1: John’s promotion was placed in abeyance in connection with the investigation of fraud at workplace.
+Sentence2: Due to the abeyance of several lecturers our classes were cancelled.
+FillinSentence1: John’s promotion was placed in _____ in connection with the investigation of fraud at workplace.
+FillinSentence2: Due to the _____ of several lecturers our classes were cancelled.
+--------------------------------------------------------------------------------------------
+Word4: abject
+Meaning1: low 
+Meaning2: vile
+Meaning3: mean
+Antonym1: noble
+Antonym2: royal	
+Sentence1: After the leg amputation, he has been very abject.
+Sentence2: She was abject when she found that her husband has been cheating on her.
+FillinSentence1: After the leg amputation, he has been very ____.
+FillinSentence2: She was _____ when she found that her husband has been cheating on her.
+--------------------------------------------------------------------------------------------
+Word5: abjure
+Meaning1: withdraw
+Meaning2: disclaim
+Meaning3: deny
+Antonym1: adopt
+Antonym2: accept	
+Sentence1: The CEO abjured the decision for hiking salary for the employees without any notice.
+Sentence2: The son promised his father that he will abjure from bad company and concentrate on his studies.
+FillinSentence1: The CEO ____ the decision for hiking salary for the employees without any notice.
+FillinSentence2: The son promised his father that he will _____ from bad company and concentrate on his studies.
+--------------------------------------------------------------------------------------------
+Word6: abscission
+Meaning1: removal
+Meaning2: amputation
+Meaning3: disconnect
+Antonym1: bridge
+Antonym2: link	
+Sentence1: During autumn, one can see the abscission of leaves from the trees.
+Sentence2: This is a rare disease found in birds where abscission of features and eventually the wings takes place.
+FillinSentence1: During autumn, one can see the _____ of leaves from the trees.
+FillinSentence2: This is a rare disease found in birds where _____ of features and eventually the wings takes place.
+--------------------------------------------------------------------------------------------
+Word7: abscond
+Meaning1: flee
+Meaning2: disappear
+Meaning3: run away
+Antonym1: stay
+Antonym2: remain	
+Sentence1: The management terminated all the employees who absconded for more than a week.
+Sentence2: The thief absconded from the police custody suddenly.
+FillinSentence1: The management terminated all the employees who _____ for more than a week.
+FillinSentence2: The thief _____ from the police custody suddenly.
+--------------------------------------------------------------------------------------------
+Word8: abstemious
+Meaning1: moderate
+Meaning2: sober
+Meaning3: temperate
+Antonym1: greedy
+Antonym2: hungry	
+Sentence1: She has wrong ideas about dieting by being abstemious from food itself.
+Sentence2: After being diagnosed with cancer, he is being abstemious from smoking.
+FillinSentence1: She has wrong ideas about dieting by being _____ from food itself.
+FillinSentence2: After being diagnosed with cancer, he is being _____ from smoking.
+--------------------------------------------------------------------------------------------
+Word9: abstinence
+Meaning1: restraint
+Meaning2: moderation
+Meaning3: sobriety
+Antonym1: excess
+Antonym2: indulgence	
+Sentence1: I promised my father to maintain abstinence from drugs.
+Sentence2: At the rehab, they taught us to be abstinence from alcohol. 
+FillinSentence1: I promised my father to maintain _____ from drugs.
+FillinSentence2: At the rehab, they taught us to be _____ from alcohol.
+--------------------------------------------------------------------------------------------
+Word10: abysmal
+Meaning1: terrible
+Meaning2: awful
+Meaning3: horrible
+Antonym1: good
+Antonym2: wonderful	
+Sentence1: Even after cleaning my room, it looks abysmal. 
+Sentence2: Everyone complained about his abysmal behavior at the party.
+FillinSentence1: Even after cleaning my room, it looks ______.
+FillinSentence2: Everyone complained about his _____ behavior at the party.
+--------------------------------------------------------------------------------------------
+Word11: accretion
+Meaning1: increase
+Meaning2: growth
+Meaning3: rise
+Antonym1: decline
+Antonym2: decrease	
+Sentence1: We created awareness on the ill effects of accretion of air pollution.
+Sentence2: There was an accretion of the growth of plants when we used organic fertilizers.
+FillinSentence1: We created awareness on the ill effects of _____ of air pollution.
+FillinSentence2: There was an _____ of the growth of plants when we used organic fertilizers.
+--------------------------------------------------------------------------------------------
+Word12: accrue
+Meaning1: grow
+Meaning2: increase
+Meaning3: accumulate
+Antonym1: decrease
+Antonym2: lose	
+Sentence1: I had to do two jobs to repay the loan and its accrued interest over the years.
+Sentence2: The bad effects of alcohol will accrue over the years.
+FillinSentence1: I had to do two jobs to repay the loan and its _____ interest over the years.
+FillinSentence2: The bad effects of _____ will accrue over the years.
+--------------------------------------------------------------------------------------------
+Word13: adamant
+Meaning1: inflexible
+Meaning2: stubborn
+Meaning3: rigid
+Antonym1: flexible
+Antonym2: responsive	
+Sentence1: He was adamant to achieve his goals in spite of failing several times.
+Sentence2: I was very adamant when it came to choosing my career.
+FillinSentence1: He was _____ to achieve his goals in spite of failing several times.
+FillinSentence2: I was very _____ when it came to choosing my career.
+--------------------------------------------------------------------------------------------
+Word14: adjunct
+Meaning1: supplement
+Meaning2: addition
+Meaning3: auxiliary
+Antonym1: attrition
+Antonym2: contraction	
+Sentence1: The management decided to include the adjunct members of the board for voting.
+Sentence2: The judiciary system has to include adjunct members of the Supreme Court to pass a new law.
+FillinSentence1: The management decided to include the _____ members of the board for voting.
+FillinSentence2: The judiciary system has to include _____ members of the Supreme Court to pass a new law.
+--------------------------------------------------------------------------------------------
+Word15: admonish
+Meaning1: caution
+Meaning2: scold
+Meaning3: warn
+Antonym1: praise
+Antonym2: applaud	
+Sentence1: At workplace nobody has the right to admonish anyone.
+Sentence2: He admonished his son for his wrong behavior.
+FillinSentence1: At workplace nobody has the right to _____ anyone.
+FillinSentence2: He _____ his son for his wrong behavior.
+--------------------------------------------------------------------------------------------
+Word16: adulterate
+Meaning1: contaminate
+Meaning2: pollute
+Meaning3: corrupt
+Antonym1: clean
+Antonym2: purify	
+Sentence1: Many fell sick after eating the adulterated food at the party.
+Sentence2: Most food products sold in the market these days are adulterated.
+FillinSentence1: Many fell sick after eating the _____ food at the party.
+FillinSentence2: Most food products sold in the market these days are _____.
+--------------------------------------------------------------------------------------------
+Word17: aesthetic
+Meaning1: artistic
+Meaning2: beautiful
+Meaning3: graceful
+Antonym1: ugly
+Antonym2: nasty	
+Sentence1: Though she wishes to become an artist, I do not see any aesthetic talent in her.
+Sentence2: The building is popular for its aesthetic design.
+FillinSentence1: Though she wishes to become an artist, I do not see any _____ talent in her.
+FillinSentence2: The building is popular for its ______ design.
+--------------------------------------------------------------------------------------------
+Word18: affected
+Meaning1: moved
+Meaning2: forced
+Meaning3: stirred
+Antonym1: genuine
+Antonym2: unmoved	
+Sentence1: He was greatly affected by the tragic accident.
+Sentence2: The disease affected her motor skills to a great extent.
+FillinSentence1: He was greatly _____ by the tragic accident.
+FillinSentence2: The disease ______ her motor skills to a great extent.
+--------------------------------------------------------------------------------------------
+Word19: affinity
+Meaning1: rapport
+Meaning2: relationship
+Meaning3: connection
+Antonym1: indifference
+Antonym2: dissimilarity	
+Sentence1: I was successful in my career because of my affinity towards art and architecture. 
+Sentence2: She donated money to the animal shelter due to her affinity towards animals.
+FillinSentence1: I was successful in my career because of my ______ towards art and architecture.
+FillinSentence2: She donated money to the animal shelter due to her _____ towards animals.
+--------------------------------------------------------------------------------------------
+Word20: aggrandize
+Meaning1: magnify
+Meaning2: expand
+Meaning3: increase
+Antonym1: decrease
+Antonym2: degrade	
+Sentence1: I do not like when people self-aggrandize about themselves.
+Sentence2: They aggrandized him for his contribution towards charity works.
+FillinSentence1: I do not like when people self-_____ about themselves.
+FillinSentence2: They _____ him for his contribution towards charity works.
+--------------------------------------------------------------------------------------------
+Word21: aggregate
+Meaning1: whole
+Meaning2: sum
+Meaning3: total
+Antonym1: divide
+Antonym2: part	
+Sentence1: Though I scored less in one subject, my aggregate marks seems very good.
+Sentence2: There were many additional charges in the bill that the aggregate amount was high.
+FillinSentence1: Though I scored less in one subject, my _____ marks seems very good.
+FillinSentence2: There were many additional charges in the bill that the _____ amount was high.
+--------------------------------------------------------------------------------------------
+Word22: alacrity
+Meaning1: enthusiasm
+Meaning2: eagerness
+Meaning3: willingness
+Antonym1: slowness
+Antonym2: laziness	
+Sentence1: On hearing the prize for the contest, the students participated with alacrity.
+Sentence2: All the employees who showed alacrity in contributing to the new project were rewarded.
+FillinSentence1: On hearing the prize for the contest, the students participated with _____.
+FillinSentence2: All the employees who showed _____ in contributing to the new project were rewarded.
+--------------------------------------------------------------------------------------------
+Word23: alchemy
+Meaning1: magic
+Meaning2: reformation
+Meaning3: chemistry
+Antonym1: normal
+Antonym2: usual	
+Sentence1: A rare combination of metals creates alchemy of high value elements such as gold.
+Sentence2: John and Rita share a good alchemy.
+FillinSentence1: A rare combination of metals creates _____ of high value elements such as gold.
+FillinSentence2: John and Rita share a good _____.
+--------------------------------------------------------------------------------------------
+Word24: allay
+Meaning1: soothe
+Meaning2: calm
+Meaning3: relieve
+Antonym1: aggravate
+Antonym2: provoke	
+Sentence1: The man tried to allay his wife for his bad behavior at the party.
+Sentence2: The husband tried to allay his wife’s labor pain but in vain.
+FillinSentence1: The man tried to _____ his wife for his bad behavior at the party.
+FillinSentence2: The husband tried to _____ his wife’s labor pain but in vain.
+--------------------------------------------------------------------------------------------
+Word25: alleviate
+Meaning1: soothe
+Meaning2: calm
+Meaning3: allay
+Antonym1: magnify
+Antonym2: aggravate	
+Sentence1: The doctor prescribed pain killers to alleviate the pain after my surgery.
+Sentence2: The coach tried to alleviate the pain of the injured player while the medics were on the way.
+FillinSentence1: The doctor prescribed pain killers to _____ the pain after my surgery.
+FillinSentence2: The coach tried to _____ the pain of the injured player while the medics were on the way.
+--------------------------------------------------------------------------------------------
+Word26: alloy
+Meaning1: blend
+Meaning2: compound
+Meaning3: mix
+Antonym1: clear
+Antonym2: purify	
+Sentence1: Iron and lead is an alloy of gold.
+Sentence2: It is common fact that alloy of metals are usually stronger than a single metal.
+FillinSentence1: Iron and lead is an _____ of gold.
+FillinSentence2: It is common fact that ____ of metals are usually stronger than a single metal.
+--------------------------------------------------------------------------------------------
+Word27: allure
+Meaning1: lure
+Meaning2: charm
+Meaning3: attract
+Antonym1: repel
+Antonym2: warn	
+Sentence1: I brought home the homeless puppy as it was so alluring.
+Sentence2: He fell in love with her for her alluring beauty.
+FillinSentence1: I brought home the homeless puppy as it was so ____.
+FillinSentence2: He fell in love with her for her _____ beauty.
+--------------------------------------------------------------------------------------------
+Word28: amalgamate
+Meaning1: combine
+Meaning2: mix
+Meaning3: blend
+Antonym1: divide
+Antonym2: part	
+Sentence1: I decided to amalgamate my business with her firm as it seemed mutually profitable. 
+Sentence2: She is known to amalgamate tradition and modern designs for her architecture.
+FillinSentence1: I decided to _____ my business with her firm as it seemed mutually profitable.
+FillinSentence2: She is known to ______ tradition and modern designs for her architecture.
+--------------------------------------------------------------------------------------------
+Word29: ambiguous 
+Meaning1: equivocal
+Meaning2: uncertain
+Meaning3: indefinite
+Antonym1: certain
+Antonym2: definite	
+Sentence1: None of us understood the management’s final decision due to his ambiguous speech.
+Sentence2: I scored poorly in the exam as the questions were ambiguous and vague.
+FillinSentence1: None of us understood the management’s final decision due to his _____ speech.
+FillinSentence2: I scored poorly in the exam as the questions were ______ and vague.
+--------------------------------------------------------------------------------------------
+Word30: ambivalence
+Meaning1: uncertain
+Meaning2: doubt
+Meaning3: inconsistent
+Antonym1: certain
+Antonym2: consistent	
+Sentence1: I have ambivalent feelings towards relocating to another country.
+Sentence2: He was ambivalent when it came to choosing between two great vacation spots.
+FillinSentence1: I have ______ feelings towards relocating to another country.
+FillinSentence2: He was _____ when it came to choosing between two great vacation spots.
+--------------------------------------------------------------------------------------------
+Word31: ambrosia
+Meaning1: nectar
+Meaning2: delicacy 
+Meaning3: treat
+Antonym1: poison
+Antonym2: reek	
+Sentence1: I have never met anyone like her whose words are ambrosia.
+Sentence2: The initial days of marriage is always like ambrosia.
+FillinSentence1: I have never met anyone like her whose words are _____.
+FillinSentence2: The initial days of marriage is always like _____.
+--------------------------------------------------------------------------------------------
+Word32: ameliorate
+Meaning1: improve
+Meaning2: better
+Meaning3: amend
+Antonym1: worsen
+Antonym2: decline	
+Sentence1: No words could ameliorate her sadness.
+Sentence2: We worked overtime to ameliorate the business.
+FillinSentence1: No words could _____ her sadness.
+FillinSentence2: We worked overtime to ______ the business.
+--------------------------------------------------------------------------------------------
+Word33: amenable
+Meaning1: responsible
+Meaning2: complaint
+Meaning3: meek
+Antonym1: irresponsible
+Antonym2: inflexible	
+Sentence1: A good manager should always be amenable to the opinions of his team.
+Sentence2: One has to be amenable for a long lasting relationship.
+FillinSentence1: A good manager should always be ______ to the opinions of his team.
+FillinSentence2: One has to be ______ for a long lasting relationship.
+--------------------------------------------------------------------------------------------
+Word34: amenity
+Meaning1: courtesy
+Meaning2: polite
+Meaning3: comfort
+Antonym1: impolite
+Antonym2: bad behavior	
+Sentence1: This hotel is well-known for its amenities.
+Sentence2: I will always put my children in schools where they have all the amenities. 
+FillinSentence1: This hotel is well-known for its _____.
+FillinSentence2: I will always put my children in schools where they have all the _____.
+--------------------------------------------------------------------------------------------
+Word35: amulet
+Meaning1: charm
+Meaning2: trinket
+Meaning3: fetish
+Antonym1: spell
+Antonym2: curse	
+Sentence1: My grandmother was very orthodox and used to wear amulets all the time.
+Sentence2: I am planning to auction the amulets I have been collecting to raise funds for my education.
+FillinSentence1: My grandmother was very orthodox and used to wear _____ all the time.
+FillinSentence2: I am planning to auction the ______  I have been collecting to raise funds for my education.
+--------------------------------------------------------------------------------------------
+Word36: anachronism
+Meaning1: misdate
+Meaning2: throwback
+Meaning3: lapse
+Antonym1: continue
+Antonym2: progress	
+Sentence1: Even usage of CD has become an anachronism.
+Sentence2: Very soon writing on paper will become an anachronism.
+FillinSentence1: Even usage of CD has become an ______.
+FillinSentence2: Very soon writing on paper will become an ______.
+--------------------------------------------------------------------------------------------
+Word37: analgesic
+Meaning1: numbing
+Meaning2: sedative
+Meaning3: painkiller
+Antonym1: painful
+Antonym2: aching	
+Sentence1: The drink was analgesic.
+Sentence2: Aloe vera is used as an analgesic for skin inflammation.
+FillinSentence1: The drink was ______.
+FillinSentence2: Aloe vera is used as an ______ for skin inflammation.
+--------------------------------------------------------------------------------------------
+Word38: analogous
+Meaning1: like
+Meaning2: similar
+Meaning3: alike
+Antonym1: different
+Antonym2: diverse	
+Sentence1: I am bored of doing analogous roles in movies. 
+Sentence2: The food in Sri Lanka and South India has been very analogous.
+FillinSentence1: I am bored of doing _____ roles in movies.
+FillinSentence2: The food in Sri Lanka and South India has been very _____.
+--------------------------------------------------------------------------------------------
+Word39: anarchy
+Meaning1: disorder
+Meaning2: chaos
+Meaning3: turmoil
+Antonym1: order
+Antonym2: rule	
+Sentence1: The police found it difficult to control the anarchy of the union workers.
+Sentence2: The anarchy became bigger when the celebrity appeared in public. 
+FillinSentence1: The police found it difficult to control the _____ of the union workers.
+FillinSentence2: The _____ became bigger when the celebrity appeared in public.
+--------------------------------------------------------------------------------------------
+Word40: anodyne
+Meaning1: palliative
+Meaning2: soothing
+Meaning3: sedative
+Antonym1: dangerous
+Antonym2: evil	
+Sentence1: Painting is an anodyne for me to relax after work.
+Sentence2: The medicines did not act as an anodyne for my pain after the surgery.
+FillinSentence1: Painting is an ______ for me to relax after work.
+FillinSentence2: The medicines did not act as an _____ for my pain after the surgery.
+--------------------------------------------------------------------------------------------
+Word41: anomalous
+Meaning1: strange
+Meaning2: peculiar
+Meaning3: odd
+Antonym1: common
+Antonym2: usual	
+Sentence1: The doctors detected a anomalous movement in his bowel during the surgery.
+Sentence2: The FBI decided to use the lie detector test on him as it was so difficult to spot any anomalous behavior in him.
+FillinSentence1: The doctors detected a _____ movement in his bowel during the surgery.
+FillinSentence2: The FBI decided to use the lie detector test on him as it was so difficult to spot any ______ behavior in him.
+--------------------------------------------------------------------------------------------
+Word42: antecedent
+Meaning1: prior
+Meaning2: former
+Meaning3: previous
+Antonym1: after
+Antonym2: later	
+Sentence1: This show is an antecedent of the original story of John F Kennedy. 
+Sentence2: None of us know what antecedent caused the break-up of our parents. 
+FillinSentence1: This show is an _____ of the original story of John F Kennedy.
+FillinSentence2: None of us know what _____ caused the break-up of our parents.
+--------------------------------------------------------------------------------------------
+Word43: antediluvian
+Meaning1: ancient
+Meaning2: archaic
+Meaning3: antique
+Antonym1: new
+Antonym2: modern	
+Sentence1: I still have the antediluvian gown that my great-grandmother wore for her wedding.
+Sentence2: My brother collects antediluvian things as his hobby.
+FillinSentence1: I still have the _____ gown that my great-grandmother wore for her wedding.
+FillinSentence2: My brother collects _____ things as his hobby.
+--------------------------------------------------------------------------------------------
+Word44: antipathy
+Meaning1:  hatred
+Meaning2: disgust
+Meaning3: dislike
+Antonym1: like
+Antonym2: love	
+Sentence1: Her antipathy towards bullying is because she was a victim of it herself.
+Sentence2: 
+FillinSentence1: Her antipathy towards bullying is because she was a victim of it herself. 
+FillinSentence2: 
+--------------------------------------------------------------------------------------------
+Word45: apathy
+Meaning1: disinterest
+Meaning2: indifference
+Meaning3: dislike
+Antonym1: passion
+Antonym2: interest	
+Sentence1: He never settles in job due to his apathy to work hard.
+Sentence2: No mother will show apathy to her children.
+FillinSentence1: He never settles in job due to his _____ to work hard.
+FillinSentence2: No mother will show ____ to her children.
+--------------------------------------------------------------------------------------------
+Word46: apex
+Meaning1: peak
+Meaning2: top
+Meaning3: summit
+Antonym1: bottom
+Antonym2: base	
+Sentence1: She resigned her job when she was at the apex in her career.
+Sentence2: I failed twice before climbing the apex of this mountain successfully.
+FillinSentence1: She resigned her job when she was at the _____ in her career.
+FillinSentence2: I failed twice before climbing the _____ of this mountain successfully.
+--------------------------------------------------------------------------------------------
+Word47: apogee
+Meaning1: apex
+Meaning2: climax
+Meaning3: top
+Antonym1: base
+Antonym2: bottom	
+Sentence1: The child was at apogee of happiness when he got a new puppy.
+Sentence2: The anger of the crowd reached apogee when the politician made a bad comment.
+FillinSentence1: The child was at _____ of happiness when he got a new puppy.
+FillinSentence2: The anger of the crowd reached _____ when the politician made a bad comment.
+--------------------------------------------------------------------------------------------
+Word48: apothegm
+Meaning1: proverb
+Meaning2: saying
+Meaning3: slogan
+Antonym1: shrewdness
+Antonym2: wile	
+Sentence1: My grandfather always quotes apothegm while speaking.
+Sentence2: I find great truth in apothegms.
+FillinSentence1: My grandfather always quotes _____ while speaking.
+FillinSentence2: I find great truth in _____.
+--------------------------------------------------------------------------------------------
+Word49: appease
+Meaning1: soothe
+Meaning2: calm
+Meaning3: pacify
+Antonym1: provoke
+Antonym2: aggravate	
+Sentence1: My husband was following me to appease my anger.
+Sentence2: He always appeases his boss by agreeing to everything blindly.
+FillinSentence1: My husband was following me to _____ my anger.
+FillinSentence2: He always _____ his boss by agreeing to everything blindly.
+--------------------------------------------------------------------------------------------
+Word50: appellation	
+Meaning1: designation
+Meaning2: title
+Meaning3: name
+Antonym1: possession
+Antonym2: ownership	
+Sentence1: We found it difficult to spot the company since there was no appellation of the firm.
+Sentence2: He is well known at his workplace especially because of the high appellation.
+FillinSentence1: We found it difficult to spot the company since there was no _____ of the firm.
+FillinSentence2: He is well known at his workplace especially because of the high _____.
+--------------------------------------------------------------------------------------------
+Word51: apposite
+Meaning1: appropriate
+Meaning2: apt
+Meaning3: relevant
+Antonym1: inappropriate
+Antonym2: inapt	
+Sentence1: Though they know each other for a long time, they were not apposite for each other.
+Sentence2: She always dresses in a way that is most apposite for her body type.
+FillinSentence1: Though they know each other for a long time, they were not _____ for each other.
+FillinSentence2: She always dresses in a way that is most _____ for her body type.
+--------------------------------------------------------------------------------------------
+Word52: apprise
+Meaning1: inform
+Meaning2: tell
+Meaning3: notify
+Antonym1: hide
+Antonym2: beg	
+Sentence1: Our manager always demands us to apprise him even the smallest of things at workplace.
+Sentence2: It was difficult to let the child apprise of his mother’s health condition.
+FillinSentence1: Our manager always demands us to _____ him even the smallest of things at workplace.
+FillinSentence2: It was difficult to let the child ______ of his mother’s health condition.
+--------------------------------------------------------------------------------------------
+Word53: approbation
+Meaning1: permission
+Meaning2: probation
+Meaning3: sanction 
+Antonym1: contempt
+Antonym2: disapproval	
+Sentence1: I was very impressed with his approbation letter to conduct research within the school campus.
+Sentence2: The secretary cannot schedule appointments without the approbation of the chief of staff.
+FillinSentence1: I was very impressed with his _____ letter to conduct research within the school campus.
+FillinSentence2: The secretary cannot schedule appointments without the _____ of the chief of staff.
+--------------------------------------------------------------------------------------------
+Word54: appropriate
+Meaning1: proper
+Meaning2: fit
+Meaning3: suitable
+Antonym1: unsuitable
+Antonym2: improper	
+Sentence1: The principal asked us to behave appropriately at the championship match.
+Sentence2: Everyone is required to dress appropriate to workplace.
+FillinSentence1: The principal asked us to behave ______ at the championship match.
+FillinSentence2: Everyone is required to dress _____ to workplace.
+--------------------------------------------------------------------------------------------
+Word55: apropos
+Meaning1: fit
+Meaning2: apt
+Meaning3: appropriate
+Antonym1: unfit
+Antonym2: irrelevant	
+Sentence1: Her joining the firm was apropos to control damage of the projects.
+Sentence2: He is good at conflict resolutions because of his apropos decisions and experience.
+FillinSentence1: Her joining the firm was ____ to control damage of the projects.
+FillinSentence2: He is good at conflict resolutions because of his ______ decisions and experience.
+--------------------------------------------------------------------------------------------
+Word56: arabesque
+Meaning1: florid
+Meaning2: flamboyant
+Meaning3: elaborate
+Antonym1: simple
+Antonym2: plain	
+Sentence1: I was in awe seeing the ancient fort with arabesque designs carved on it.
+Sentence2: The dancer was very elegant with her arabesque moves.
+FillinSentence1: I was in awe seeing the ancient fort with _____ designs carved on it.
+FillinSentence2: The dancer was very elegant with her _____ moves.
+--------------------------------------------------------------------------------------------
+Word57: archeology
+Meaning1: art
+Meaning2: history
+Meaning3: scripture
+Antonym1: present
+Antonym2: future	
+Sentence1: The place is known for its archeology and architecture. 
+Sentence2: I am a big fan of Egyptian archeology and surveys.
+FillinSentence1: The place is known for its _____ and architecture.
+FillinSentence2: I am a big fan of Egyptian _____ and surveys.
+--------------------------------------------------------------------------------------------
+Word58: ardor
+Meaning1: zeal
+Meaning2: passion
+Meaning3: enthusiasm
+Antonym1: coldness
+Antonym2: disregard	
+Sentence1: The man was looking at me with ardor and after few years we ended up in marriage.
+Sentence2: The child was glancing at the different flavors of ice-cream with ardor.
+FillinSentence1: The man was looking at me with ____ and after few years we ended up in marriage.
+FillinSentence2: The child was glancing at the different flavors of ice-cream with _____.
+--------------------------------------------------------------------------------------------
+Word59: arduous 
+Meaning1: difficult
+Meaning2: hard
+Meaning3: tough
+Antonym1: easy
+Antonym2: painless	
+Sentence1: It was so arduous to find a place to stay in this city.
+Sentence2: Chemotherapy is a very arduous treatment.
+FillinSentence1: It was so ____ to find a place to stay in this city.
+FillinSentence2: Chemotherapy is a very _____ treatment.
+--------------------------------------------------------------------------------------------
+Word60: argot
+Meaning1: idiom
+Meaning2: slang
+Meaning3: lingo
+Antonym1: standard
+Antonym2: usual	
+Sentence1: Each generation speaks their own argot to communicate within their circle.
+Sentence2: My father does not understand much of argot related to technology.
+FillinSentence1: Each generation speaks their own ______ to communicate within their circle.
+FillinSentence2: My father does not understand much of _____ related to technology.
+--------------------------------------------------------------------------------------------
+Word61: arrest
+Meaning1: stop
+Meaning2: capture
+Meaning3: seize
+Antonym1: release
+Antonym2: free	
+Sentence1: They arrested him on charges of kidnapping.
+Sentence2: The arrest of the chief of staff created commotion and confusion amongst the employees.
+FillinSentence1: They ______ him on charges of kidnapping.
+FillinSentence2: The _____ of the chief of staff created commotion and confusion amongst the employees.
+--------------------------------------------------------------------------------------------
+Word62: artifact
+Meaning1: creation
+Meaning2: invention
+Meaning3: ancient
+Antonym1: new
+Antonym2: natural	
+Sentence1: This is the artifact of the well-known artist.
+Sentence2: When the children were playing treasure hunt, they accidently damaged one the artifacts in the museum.
+FillinSentence1: This is the _____ of the well-known artist.
+FillinSentence2: When the children were playing treasure hunt, they accidently damaged one the ______ in the museum.
+--------------------------------------------------------------------------------------------
+Word63: artless
+Meaning1: naive
+Meaning2: honest
+Meaning3: candid
+Antonym1: cunning
+Antonym2: devious	
+Sentence1: I have great respect for him after hearing artless stories of his life.
+Sentence2: The child’s artless smile melts everyone’s heart.
+FillinSentence1: I have great respect for him after hearing _____ stories of his life.
+FillinSentence2: The child’s _____ smile melts everyone’s heart.
+--------------------------------------------------------------------------------------------
+Word64: ascetic
+Meaning1: monk
+Meaning2: religious
+Meaning3: Spartan
+Antonym1: hedonistic
+Antonym2: greedy	
+Sentence1: When everyone left John, he decided to live an ascetic life.
+Sentence2: I was never interested in pursuing an ascetic lifestyle. 
+FillinSentence1: When everyone left John, he decided to live an _____ life.
+FillinSentence2: I was never interested in pursuing an _____ lifestyle.
+--------------------------------------------------------------------------------------------
+Word65: asperity
+Meaning1: rigor
+Meaning2: severity
+Meaning3: hardship
+Antonym1: happiness
+Antonym2: courtesy	
+Sentence1: He has no friends as he always speaks with asperity.
+Sentence2: Asperity in conduct is not acceptable in a corporate environment.
+FillinSentence1: He has no friends as he always speaks with ______.
+FillinSentence2: ______ in conduct is not acceptable in a corporate environment.
+--------------------------------------------------------------------------------------------
+Word66: aspersion
+Meaning1: slander
+Meaning2: scorn
+Meaning3: insult
+Antonym1: appreciate
+Antonym2: applause	
+Sentence1: It is a bad habit to make an aspersion of someone’s character.
+Sentence2: A small rumor about him created an aspersion on his name.
+FillinSentence1: It is a bad habit to make an _____ of someone’s character.
+FillinSentence2: A small rumor about him created an _____ on his name.
+--------------------------------------------------------------------------------------------
+Word67: assiduous
+Meaning1: laborious 
+Meaning2: sedulous
+Meaning3: industrious
+Antonym1: lazy
+Antonym2: inactive	
+Sentence1: She was successful because of her assiduous nature.
+Sentence2: I was impressed to see her assiduous efforts to find the missing child. 
+FillinSentence1: She was successful because of her ______ nature.
+FillinSentence2: I was impressed to see her _____ efforts to find the missing child.
+--------------------------------------------------------------------------------------------
+Word68: assuage
+Meaning1: soothe
+Meaning2: calm
+Meaning3: relieve
+Antonym1: aggravate
+Antonym2: increase	
+Sentence1: He tried to assuage his angry wife.
+Sentence2: I tried many ways to assuage my stomach pain.
+FillinSentence1: He tried to _____ his angry wife.
+FillinSentence2: I tried many ways to _____ my stomach pain.
+--------------------------------------------------------------------------------------------
+Word69: astringent
+Meaning1: severe
+Meaning2: harsh
+Meaning3: sharp
+Antonym1: bland
+Antonym2: mild	
+Sentence1: I do not like hospitals because of the astringent smell of the cleaning agents.
+Sentence2: The food served at the party was too astringent for our taste.
+FillinSentence1: I do not like hospitals because of the _____ smell of the cleaning agents.
+FillinSentence2: The food served at the party was too ______ for our taste.
+--------------------------------------------------------------------------------------------
+Word70: asylum
+Meaning1: shelter
+Meaning2: retreat
+Meaning3: cover
+Antonym1: hazard
+Antonym2: threat	
+Sentence1: I have plans to build an asylum for orphan kids.
+Sentence2: Due to her love for animals she made an asylum in his own backyard.
+FillinSentence1: I have plans to build an _____ for orphan kids.
+FillinSentence2: Due to her love for animals she made an ______ in his own backyard.
+--------------------------------------------------------------------------------------------
+Word71: atavism
+Meaning1: lapse
+Meaning2: set back
+Meaning3: throw back
+Antonym1: progress
+Antonym2: forward	
+Sentence1: Everyone says I have atavism behavior of my grandmother.
+Sentence2: My aunt bakes cake which has atavism memories of my mother.
+FillinSentence1: Everyone says I have _____ behavior of my grandmother.
+FillinSentence2: My aunt bakes cake which has _____ memories of my mother.
+--------------------------------------------------------------------------------------------
+Word72: attenuate
+Meaning1: weaken
+Meaning2: reduce
+Meaning3: lessen
+Antonym1: strengthen
+Antonym2: increase	
+Sentence1: The doctors tried their best to attenuate the pain of the accident victim.
+Sentence2: She attenuated when her family members abandoned her.
+FillinSentence1: The doctors tried their best to ______ the pain of the accident victim.
+FillinSentence2: She _____ when her family members abandoned her.
+--------------------------------------------------------------------------------------------
+Word73: audacious
+Meaning1: bold
+Meaning2: brave
+Meaning3: courageous
+Antonym1: shy
+Antonym2: coward	
+Sentence1: He is an audacious person who loves even dangerous adventures.
+Sentence2: She crossed the mountains audaciously on a rope with no support.
+FillinSentence1: He is an _____ person who loves even dangerous adventures.
+FillinSentence2: She crossed the mountains ______ on a rope with no support.
+--------------------------------------------------------------------------------------------
+Word74: austere
+Meaning1: severe
+Meaning2: harsh
+Meaning3: rude
+Antonym1: calm
+Antonym2: mild	
+Sentence1: Her choice of art is very austere in nature.
+Sentence2: I decided to quit the austere lifestyle and enjoy life instead.
+FillinSentence1: Her choice of art is very _____ in nature.
+FillinSentence2: I decided to quit the _____ lifestyle and enjoy life instead.
+--------------------------------------------------------------------------------------------
+Word75: autonomous 
+Meaning1: self-supportive
+Meaning2: self-rule
+Meaning3: independent
+Antonym1: dependant
+Antonym2: addicted	
+Sentence1: I want my children to have autonomy over their choice of career unlike me.
+Sentence2: Though he is very demanding by nature, he gives us autonomy to work.
+FillinSentence1: I want my children to have _____ over their choice of career unlike me.
+FillinSentence2: Though he is very demanding by nature, he gives us ______ to work.
+--------------------------------------------------------------------------------------------
+Word76: avarice
+Meaning1: greedy
+Meaning2: voracious
+Meaning3: hungry
+Antonym1: charity
+Antonym2: generosity	
+Sentence1: Most politicians are avarice by nature.
+Sentence2: I do not like people who are avarice by nature.
+FillinSentence1: Most politicians are ______ by nature.
+FillinSentence2: I do not like people who are ______ by nature.
+--------------------------------------------------------------------------------------------
+Word77: aver
+Meaning1: affirm
+Meaning2: declare
+Meaning3: assert
+Antonym1: deny
+Antonym2: disclaim	
+Sentence1: We look up to him to aver our decision to top management.
+Sentence2: He is a leader who can aver his team to listen to him.
+FillinSentence1: We look up to him to _____ our decision to top management.
+FillinSentence2: He is a leader who can _____ his team to listen to him.
+--------------------------------------------------------------------------------------------
+Word78: avocation
+Meaning1: hobby 
+Meaning2: recreation
+Meaning3: interest
+Antonym1: business
+Antonym2: work	
+Sentence1: My favorite avocation is painting.
+Sentence2: After a period of time she turned her avocation into business.
+FillinSentence1: My favorite _____ is painting.
+FillinSentence2: After a period of time she turned her _____ into business.
+--------------------------------------------------------------------------------------------
+Word79: avuncular
+Meaning1: amiable
+Meaning2: advisory
+Meaning3: benevolent
+Antonym1: unkind
+Antonym2: unfriendly	
+Sentence1: I love my uncle because of his avuncular nature.
+Sentence2: The child’s feared disappeared because of the doctor’s avuncular attitude.
+FillinSentence1: I love my uncle because of his _____ nature.
+FillinSentence2: The child’s feared disappeared because of the doctor’s _____ attitude.
+--------------------------------------------------------------------------------------------
+Word80: axiomatic
+Meaning1: certain
+Meaning2: apparent
+Meaning3: evident
+Antonym1: uncertain
+Antonym2: questionable	
+Sentence1: His articles are axiomatic but interesting.
+Sentence2: She often gets into axiomatic arguments with her spouse.
+FillinSentence1: His articles are _____ but interesting.
+FillinSentence2: She often gets into _____ arguments with her spouse.
+--------------------------------------------------------------------------------------------
+Word81: bacchanalian
+Meaning1: alcoholic
+Meaning2: drunkard
+Meaning3: sot
+Antonym1: calm
+Antonym2: sober	
+Sentence1: The party became a bacchanalian when they served free drinks.
+Sentence2: I am a person who prefers to spend quality time with friends than wild bacchanalian ones.
+FillinSentence1: The party became a _____ when they served free drinks.
+FillinSentence2: I am a person who prefers to spend quality time with friends than wild _____ ones.
+--------------------------------------------------------------------------------------------
+Word82: banal
+Meaning1: stale
+Meaning2: common
+Meaning3: dull
+Antonym1: fresh
+Antonym2: new	
+Sentence1: I am disinterested in my work because it is banal in nature.
+Sentence2: At the get together I was bored of the banal talks of my teacher.
+FillinSentence1: I am disinterested in my work because it is _____ in nature.
+FillinSentence2: At the get together I was bored of the _____ talks of my teacher.
+--------------------------------------------------------------------------------------------
+Word83: banter
+Meaning1: tease
+Meaning2: ridicule
+Meaning3: joke
+Antonym1: serious
+Antonym2: calm	
+Sentence1: The banter between the duo kept us all entertained throughout the night.
+Sentence2: I get along very well with my peers, we spent lot of time by bantering each other.
+FillinSentence1: The _____ between the duo kept us all entertained throughout the night.
+FillinSentence2: I get along very well with my peers, we spent lot of time by _____ each other.
+--------------------------------------------------------------------------------------------
+Word84: bard
+Meaning1: poet
+Meaning2: lyricist 
+Meaning3: rhymester
+Antonym1: thoughtless
+Antonym2: wander	
+Sentence1: He is a well-known bard.
+Sentence2: As a bard I write poems for children.
+FillinSentence1: He is a well-known _____.
+FillinSentence2: As a _____ I write poems for children.
+--------------------------------------------------------------------------------------------
+Word85: bawdy
+Meaning1: obsene
+Meaning2: coarse
+Meaning3: vulgar
+Antonym1: decent
+Antonym2: clean	
+Sentence1: He taught the children not to show any bawdy behavior in public.
+Sentence2: I warned the boys that bawdy behavior is not acceptable at workplace.
+FillinSentence1: He taught the children not to show any _____ behavior in public.
+FillinSentence2: I warned the boys that ______ behavior is not acceptable at workplace.
+--------------------------------------------------------------------------------------------
+Word86: beatify
+Meaning1: bless
+Meaning2: worship
+Meaning3: aggrandize
+Antonym1: curse
+Antonym2: humiliate	
+Sentence1: The pope beatified us when we visited Rome.
+Sentence2: It is a tradition for the elders of the family to beatify the children during thanksgiving.
+FillinSentence1: The pope _____ us when we visited Rome.
+FillinSentence2: It is a tradition for the elders of the family to ______ the children during thanksgiving.
+--------------------------------------------------------------------------------------------
+Word87: bedizen
+Meaning1: adorn
+Meaning2: decorate
+Meaning3: deck
+Antonym1: ugly
+Antonym2: blemish	
+Sentence1: I cannot tolerate her bedizen taste in dressing.
+Sentence2: The furnishing of the new house was expensive but bedizen.
+FillinSentence1: I cannot tolerate her _____ taste in dressing.
+FillinSentence2: The furnishing of the new house was expensive but _____.
+--------------------------------------------------------------------------------------------
+Word88: behemoth
+Meaning1: giant
+Meaning2: mammoth
+Meaning3: huge
+Antonym1: tiny
+Antonym2: dwarf	
+Sentence1: When I was little, I was scared of his behemoth dog.
+Sentence2: The behemoth whale was so near our boat.
+FillinSentence1: When I was little, I was scared of his _____ dog.
+FillinSentence2: The _____ whale was so near our boat.
+--------------------------------------------------------------------------------------------
+Word89: belie
+Meaning1: distort
+Meaning2: misrepresent
+Meaning3: falsify
+Antonym1: prove
+Antonym2: attest	
+Sentence1: The man tried to belie the incident while explaining it to his wife.
+Sentence2: The teenager tried to belie the facts of the party.
+FillinSentence1: The man tried to _____ the incident while explaining it to his wife.
+FillinSentence2: The teenager tried to _____ the facts of the party.
+--------------------------------------------------------------------------------------------
+Word90: beneficent
+Meaning1: generous
+Meaning2: benevolent
+Meaning3: charitable
+Antonym1: selfish
+Antonym2: brutal	
+Sentence1: I joined the non-profit organization to volunteer for beneficent events conducted by them.
+Sentence2: The beneficent boss decided to give bonus to the employees even though the company was running at a loss.
+FillinSentence1: I joined the non-profit organization to volunteer for _____ events conducted by them.
+FillinSentence2: The ______ boss decided to give bonus to the employees even though the company was running at a loss.
+--------------------------------------------------------------------------------------------
+Word91: bifurcate
+Meaning1: split
+Meaning2: divide
+Meaning3: part
+Antonym1: join
+Antonym2: add	
+Sentence1: The roads here are bifurcated at every junction.
+Sentence2: We bifurcated the class into two to motivate competition among them.
+FillinSentence1: The roads here are _____ at every junction.
+FillinSentence2: We _____ the class into two to motivate competition among them.
+--------------------------------------------------------------------------------------------
+Word92: blandishment
+Meaning1: cajolery
+Meaning2: flattery
+Meaning3: adulation
+Antonym1: insult
+Antonym2: criticism	
+Sentence1: He tricks his manager with blandishment to get promotion at work.
+Sentence2: I tried blandishment to pursue my sister to join the club.
+FillinSentence1: He tricks his manager with _____ to get promotion at work.
+FillinSentence2: I tried _____ to pursue my sister to join the club.
+--------------------------------------------------------------------------------------------
+Word93: blase
+Meaning1: uncaring
+Meaning2: unconcerned
+Meaning3: indifference
+Antonym1: concerned
+Antonym2: caring	
+Sentence1: The reason for the accident is her blasé attitude.
+Sentence2: The father was blasé when his son stopped listening to him.
+FillinSentence1: The reason for the accident is her _____ attitude.
+FillinSentence2: The father was _____ when his son stopped listening to him.
+--------------------------------------------------------------------------------------------
+Word94: bolster
+Meaning1: support
+Meaning2: strengthen
+Meaning3: reinforce
+Antonym1: hinder
+Antonym2: destruct	
+Sentence1: She stood strong to bolster her rights.
+Sentence2: I kept looking at my parents while giving the speech as they bolster my confidence.
+FillinSentence1: She stood strong to ______ her rights.
+FillinSentence2: I kept looking at my parents while giving the speech as they ______ my confidence.
+--------------------------------------------------------------------------------------------
+Word95: bombastic
+Meaning1: turgid
+Meaning2: pompous
+Meaning3: inflated
+Antonym1: quiet
+Antonym2: calm	
+Sentence1: I cancelled the date with him when I realized he was all bombastic and fake.
+Sentence2: All of a sudden the car tire burst with a bombastic sound.
+FillinSentence1: I cancelled the date with him when I realized he was all _____ and fake.
+FillinSentence2: All of a sudden the car tire burst with a ______ sound.
+--------------------------------------------------------------------------------------------
+Word96: boorish
+Meaning1: uncultured
+Meaning2: vulgar
+Meaning3: indecent
+Antonym1: decent
+Antonym2: sophisticated	
+Sentence1: Though we joke about each other we are not boorish.
+Sentence2: He thinks being boorish is being friendly.
+FillinSentence1: Though we joke about each other we are not _____.
+FillinSentence2: He thinks being _____ is being friendly.
+--------------------------------------------------------------------------------------------
+Word97: bovine
+Meaning1: animal
+Meaning2: dull
+Meaning3: boring
+Antonym1: energetic
+Antonym2: lively	
+Sentence1: She gained more weight because of her bovine attitude towards exercising.
+Sentence2: Most of them walked out as his speech was bovine.
+FillinSentence1: She gained more weight because of her _____ attitude towards exercising.
+FillinSentence2: Most of them walked out as his speech was ______.
+--------------------------------------------------------------------------------------------
+Word98: brazen
+Meaning1: impudent
+Meaning2: unabashed
+Meaning3: disrespectful
+Antonym1: shy
+Antonym2: meek	
+Sentence1: Her jokes are often perverted and brazen by nature.
+Sentence2: He was arrested for his brazen acts in public.
+FillinSentence1: Her jokes are often perverted and _____ by nature.
+FillinSentence2: He was arrested for his ______ acts in public.
+--------------------------------------------------------------------------------------------
+Word99: broach
+Meaning1: open
+Meaning2: propose
+Meaning3: mention
+Antonym1: close
+Antonym2: conceal	
+Sentence1: I was afraid to broach about my failure in the final exams to my parents.
+Sentence2: The man shamelessly broached about his personal life to everyone.
+FillinSentence1: I was afraid to _____ about my failure in the final exams to my parents.
+FillinSentence2: The man shamelessly _____ about his personal life to everyone.
+--------------------------------------------------------------------------------------------
+Word100: bucolic
+Meaning1: pastoral
+Meaning2: rural
+Meaning3: country
+Antonym1: metropolitan
+Antonym2: urban	
+Sentence1: I love painting bucolic scenery during my pastime.
+Sentence2: We visited a bucolic village in Greece for our vacation.
+FillinSentence1: I love painting ____ scenery during my pastime.
+FillinSentence2: We visited a _____ village in Greece for our vacation.
+--------------------------------------------------------------------------------------------
+Word101: burgeon
+Meaning1: grow
+Meaning2: flourish
+Meaning3: develop
+Antonym1: fall
+Antonym2: decline	
+Sentence1: We are expecting the demand of our product to burgeon during the rainy season.
+Sentence2: Her video burgeoned quickly on social media because of her brave acts.
+FillinSentence1: We are expecting the demand of our product to _____ during the rainy season.
+FillinSentence2: Her video _____ quickly on social media because of her brave acts.
+--------------------------------------------------------------------------------------------
+Word102: burnish
+Meaning1: polish
+Meaning2: gloss
+Meaning3: shiny
+Antonym1: dull
+Antonym2: faded	
+Sentence1: He is a perfectionist and keeps burnishing his things all the time.
+Sentence2: He tried to burnish his mistakes so that nobody blames him.
+FillinSentence1: He is a perfectionist and keeps ______ his things all the time.
+FillinSentence2: He tried to _____ his mistakes so that nobody blames him.
+--------------------------------------------------------------------------------------------
+Word103: buttress
+Meaning1: support
+Meaning2: strengthen
+Meaning3: uphold
+Antonym1: debunk
+Antonym2: weaken	
+Sentence1: The businessman offered financial buttress for my research.
+Sentence2: The bridge fell down due to lack of buttress.
+FillinSentence1: The businessman offered financial _____ for my research.
+FillinSentence2: The bridge fell down due to lack of ______.
+--------------------------------------------------------------------------------------------
+Word104: cacophonous
+Meaning1: jarring
+Meaning2: inharmonious
+Meaning3: unpleasant
+Antonym1: harmonious
+Antonym2: melodious	
+Sentence1: The cacophonous cheering of the crowd gave me a headache.
+Sentence2: After the earthquake there was confusion and cacophony among the people.
+FillinSentence1: The ______ cheering of the crowd gave me a headache.
+FillinSentence2: After the earthquake there was confusion and ______ among the people.
+--------------------------------------------------------------------------------------------
+Word105: cadge
+Meaning1: beg
+Meaning2: borrow
+Meaning3: seek
+Antonym1: buy
+Antonym2: procure	
+Sentence1: He cadged for promotion with senior management.
+Sentence2: I dislike people who cadge for money instead of working.
+FillinSentence1: He _____ for promotion with senior management.
+FillinSentence2: I dislike people who _____ for money instead of working.
+--------------------------------------------------------------------------------------------
+Word106: callous
+Meaning1: insensitive
+Meaning2: cold
+Meaning3: unsympathetic
+Antonym1: sympathetic
+Antonym2: emotional	
+Sentence1: She divorced him as he was a callous person.
+Sentence2: He becomes emotionally upset and callous after couple of drinks.
+FillinSentence1: She divorced him as he was a _____ person.
+FillinSentence2: He becomes emotionally upset and _____ after couple of drinks.
+--------------------------------------------------------------------------------------------
+Word107: calumny
+Meaning1: scandal
+Meaning2: buzz
+Meaning3: chatter
+Antonym1: dignify
+Antonym2: applause 	
+Sentence1: He resigned after a calumny was published against him.
+Sentence2: She was determined to prove the calumny against her was wrong.
+FillinSentence1: He resigned after a _____ was published against him.
+FillinSentence2: She was determined to prove the _____ against her was wrong.
+--------------------------------------------------------------------------------------------
+Word108: canard
+Meaning1: rumor
+Meaning2: hoax
+Meaning3: lie
+Antonym1: truth
+Antonym2: fact	
+Sentence1: This paper is full of canard news.
+Sentence2: Reporters are so engaged in canard news articles these days.
+FillinSentence1: This paper is full of ______ news.
+FillinSentence2: Reporters are so engaged in _____ news articles these days.
+--------------------------------------------------------------------------------------------
+Word109: canon
+Meaning1: rule
+Meaning2: law
+Meaning3: principle
+Antonym1: disorganization
+Antonym2: disorder	
+Sentence1: The tribal people followed a strict canon of their tradition.
+Sentence2: The canon of conduct is very observed strictly during the Olympics.
+FillinSentence1: The tribal people followed a strict _____ of their tradition.
+FillinSentence2: The _____ of conduct is very observed strictly during the Olympics.
+--------------------------------------------------------------------------------------------
+Word110: cant
+Meaning1: jargon
+Meaning2: language
+Meaning3: idiom
+Antonym1: standard
+Antonym2: direct	
+Sentence1: My grandmother does not understand the cant we speak.
+Sentence2: Though we all speak the same language, the cant we use is very different.
+FillinSentence1: My grandmother does not understand the _____ we speak.
+FillinSentence2: Though we all speak the same language, the _____ we use is very different.
+--------------------------------------------------------------------------------------------
+Word111: cantankerous
+Meaning1: irritable
+Meaning2: cranky
+Meaning3: ill-tempered
+Antonym1: nice
+Antonym2: good	
+Sentence1: The riot broke out quickly because the crowd was cantankerous.
+Sentence2: I do not like the show where they provoke animals to perform by making them cantankerous.
+FillinSentence1: The riot broke out quickly because the crowd was _____.
+FillinSentence2: I do not like the show where they provoke animals to perform by making them _____.
+--------------------------------------------------------------------------------------------
+Word112: capricious
+Meaning1: unpredictable
+Meaning2: inconstant
+Meaning3: unstable
+Antonym1: stable
+Antonym2: constant	
+Sentence1: She rejected to marry him because of his capricious nature.
+Sentence2: The priest advised that life is capricious and we should embrace the change.
+FillinSentence1: She rejected to marry him because of his _____ nature.
+FillinSentence2: The priest advised that life is _____ and we should embrace the change.
+--------------------------------------------------------------------------------------------
+Word113: captious
+Meaning1: meticulous
+Meaning2: fault-finding
+Meaning3: demanding
+Antonym1: approving
+Antonym2: complimentary	
+Sentence1:  I developed an eye for detail because of my captious brother.
+Sentence2: It is sometimes irritable to work with captious boss.
+FillinSentence1: I developed an eye for detail because of my _____ brother.
+FillinSentence2: It is sometimes irritable to work with _____ boss.
+--------------------------------------------------------------------------------------------
+Word114: cardinal
+Meaning1: essential
+Meaning2: important
+Meaning3: foremost
+Antonym1: negligible
+Antonym2: unimportant	
+Sentence1: All workers are required to obey the cardinal rules of the company.
+Sentence2: The cardinal component of organic farming is using organic fertilizers.
+FillinSentence1: All workers are required to obey the _____ rules of the company.
+FillinSentence2: The ______ component of organic farming is using organic fertilizers.
+--------------------------------------------------------------------------------------------
+Word115: carnal
+Meaning1: physical
+Meaning2: bodily
+Meaning3: sensual
+Antonym1: spiritual
+Antonym2: mental	
+Sentence1: Carnal activities have become a basic necessity these days.
+Sentence2: My grandmother asked to me marry a person who has control over carnal temptations.
+FillinSentence1: _____ activities have become a basic necessity these days.
+FillinSentence2: My grandmother asked to me marry a person who has control over _____ temptations.
+--------------------------------------------------------------------------------------------
+Word116: carping
+Meaning1: censorious 
+Meaning2: demanding
+Meaning3: over-criticism
+Antonym1: charitable
+Antonym2: forgiving	
+Sentence1: I dislike people who do nothing but keep carping about others.
+Sentence2: Old people have the habit of carping as if they have been perfect throughout their life.
+FillinSentence1: I dislike people who do nothing but keep _____ about others.
+FillinSentence2: Old people have the habit of _____ as if they have been perfect throughout their life.
+--------------------------------------------------------------------------------------------
+Word117: cartography
+Meaning1: mapping
+Meaning2: geography
+Meaning3: designing
+Antonym1: fluke
+Antonym2: chance	
+Sentence1: I teach cartography at the University of Wales.
+Sentence2: At the summer camp lot of kids showed interest in cartography.
+FillinSentence1: I teach _____ at the University of Wales.
+FillinSentence2: At the summer camp lot of kids showed interest in ______.
+--------------------------------------------------------------------------------------------
+Word118: caste
+Meaning1: rank
+Meaning2: class
+Meaning3: order
+Antonym1: declassification
+Antonym2: mayhem	
+Sentence1: Even today people follow the caste system.
+Sentence2: I strongly believe that people should be divided based on caste or color.
+FillinSentence1: Even today people follow the _____ system.
+FillinSentence2: I strongly believe that people should be divided based on caste or color.
+--------------------------------------------------------------------------------------------
+Word119: castigation
+Meaning1: punishment
+Meaning2: correction
+Meaning3: reprimand
+Antonym1: forgive
+Antonym2: flattery	
+Sentence1: His childhood was miserable as he was abused and castigated by his own parents.
+Sentence2: It is an offense to castigate children here.
+FillinSentence1: His childhood was miserable as he was abused and _____ by his own parents.
+FillinSentence2: It is an offense to _____ children here.
+--------------------------------------------------------------------------------------------
+Word120: cataclysm	
+Meaning1: disaster
+Meaning2: calamity
+Meaning3: tragedy
+Antonym1: boon
+Antonym2: miracle	
+Sentence1: It took years for the refugees to overcome the cataclysm of destruction by the neighboring country.
+Sentence2: Karma is believed to be a cataclysm for the sinners.
+FillinSentence1: It took years for the refugees to overcome the _____ of destruction by the neighboring country.
+FillinSentence2: Karma is believed to be a _____ for the sinners.
+--------------------------------------------------------------------------------------------
+Word121: catalyst
+Meaning1: agent
+Meaning2: chemical
+Meaning3: stimulus
+Antonym1: block
+Antonym2: obstacle	
+Sentence1: He is a chemist who deals with various chemical reactors and catalysts.
+Sentence2: Today the teacher taught us the various catalysts using safe chemicals.
+FillinSentence1: He is a chemist who deals with various chemical reactors and _____.
+FillinSentence2: Today the teacher taught us the various _____ using safe chemicals.
+--------------------------------------------------------------------------------------------
+Word122: categorical
+Meaning1: definite
+Meaning2: classified
+Meaning3: unequivocal
+Antonym1: vague
+Antonym2: implied	
+Sentence1: After winning the election, the president prioritized to address the issues categorically.
+Sentence2: The admission process was carried out categorically to avoid confusion.
+FillinSentence1: After winning the election, the president prioritized to address the issues _____.
+FillinSentence2: The admission process was carried out _____ to avoid confusion.
+--------------------------------------------------------------------------------------------
+Word123: caucus
+Meaning1:  convention
+Meaning2: meeting
+Meaning3: conference
+Antonym1: evasion
+Antonym2: going	
+Sentence1: I do not miss any of the caucus meets related to technology to keep up with the industry standards.
+Sentence2: Today’s caucus was focused on electing the new chairperson.
+FillinSentence1: I do not miss any of the _____ meets related to technology to keep up with the industry standards.
+FillinSentence2: Today’s _____ was focused on electing the new chairperson.
+--------------------------------------------------------------------------------------------
+Word124: causal
+Meaning1: contributing
+Meaning2: formative
+Meaning3: generative
+Antonym1: additional
+Antonym2: consequent	
+Sentence1: The causal of good habits will be rewarding to one’s health.
+Sentence2: The tragedy was a causal of his carelessness.
+FillinSentence1: The _____ of good habits will be rewarding to one’s health.
+FillinSentence2: The tragedy was a _____ of his carelessness.
+--------------------------------------------------------------------------------------------
+Word125: caustic
+Meaning1: corrosive
+Meaning2: corroding
+Meaning3: burning
+Antonym1: supporting
+Antonym2: gentle	
+Sentence1: It is dangerous to keep caustic agents at home.
+Sentence2: The explosion happened due to the chemical reaction of the caustic elements.
+FillinSentence1: It is dangerous to keep _____ agents at home.
+FillinSentence2: The explosion happened due to the chemical reaction of the _____ elements.
+--------------------------------------------------------------------------------------------
+Word126: celestial
+Meaning1: heavenly
+Meaning2: angelic
+Meaning3: godly
+Antonym1: evil
+Antonym2: demonic	
+Sentence1: The palace had a celestial aura.
+Sentence2: The movie is all about celestial creatures and world.
+FillinSentence1: The palace had a _____ aura.
+FillinSentence2: The movie is all about ______ creatures and world.
+--------------------------------------------------------------------------------------------
+Word127: centrifugal
+Meaning1: diverging
+Meaning2: diffusive
+Meaning3: spreading
+Antonym1: focused
+Antonym2: center	
+Sentence1: The suction machine is used to remove centrifugal liquid from any given spot. 
+Sentence2: The vacuum cleaner cleans all the centrifugal dirt as well.
+FillinSentence1: The suction machine is used to remove ______ liquid from any given spot.
+FillinSentence2: The vacuum cleaner cleans all the _____ dirt as well.
+--------------------------------------------------------------------------------------------
+Word128: champion
+Meaning1: winner
+Meaning2: hero
+Meaning3: warrior
+Antonym1: loser
+Antonym2: foul	
+Sentence1: They emerged as true champions because of their hard work.
+Sentence2: He is a six times champion of the WWF title.
+FillinSentence1: They emerged as true _____ because of their hard work.
+FillinSentence2: He is a six times _____ of the WWF title.
+--------------------------------------------------------------------------------------------
+Word129: chasten
+Meaning1: punish
+Meaning2: correct
+Meaning3: discipline
+Antonym1: boost
+Antonym2: comfort	
+Sentence1: Kids should be taught good things rather than chastening.
+Sentence2: The child started to cry when the old man chastened her.
+FillinSentence1: Kids should be taught good things rather than _____.
+FillinSentence2: The child started to cry when the old man _____ her.
+--------------------------------------------------------------------------------------------
+Word130: chicanery
+Meaning1: cheat
+Meaning2: trick
+Meaning3: fraud
+Antonym1: honest
+Antonym2: candid	
+Sentence1: I felt chicanery from his body language.
+Sentence2: He was fired from his job due to chicanery. 
+FillinSentence1: I felt _____ from his body language.
+FillinSentence2: He was fired from his job due to ______.
+--------------------------------------------------------------------------------------------
+Word131: chivalry
+Meaning1: gallantry
+Meaning2: heroism
+Meaning3: courage
+Antonym1: fear
+Antonym2: cowardice	
+Sentence1: Though he was born poor and alone, his chivalry is very impressive. 
+Sentence2: She fell in love with him because of his chivalry.
+FillinSentence1: Though he was born poor and alone, his _____ is very impressive.
+FillinSentence2: She fell in love with him because of his ______.
+--------------------------------------------------------------------------------------------
+Word132: churlish
+Meaning1: rude
+Meaning2: harsh
+Meaning3: irritable
+Antonym1: polite
+Antonym2: nice	
+Sentence1: The children are afraid of the teacher’s churlish attitude.
+Sentence2: Sometimes when things don’t go as planned, we become churlish.
+FillinSentence1: The children are afraid of the teacher’s _____ attitude.
+FillinSentence2: Sometimes when things don’t go as planned, we become _____.
+--------------------------------------------------------------------------------------------
+Word133: circuitous
+Meaning1: indirect
+Meaning2: devious
+Meaning3: roundabout
+Antonym1: direct
+Antonym2: straight	
+Sentence1: It took many hours of drive to reach the destination due to the circuitous routes.
+Sentence2: Sometime long circuitous drive helps to relax.
+FillinSentence1: It took many hours of drive to reach the destination due to the _____ routes.
+FillinSentence2: Sometime long _____ drive helps to relax.
+--------------------------------------------------------------------------------------------
+Word134: clairvoyant
+Meaning1: psychic
+Meaning2: spiritual
+Meaning3: visionary
+Antonym1: unfeeling
+Antonym2: insensitive	
+Sentence1: The movie is about clairvoyant abilities of animals and the future of science.
+Sentence2: Many of my patients believe that they are being possessed and some have clairvoyant talents.
+FillinSentence1: The movie is about _____ abilities of animals and the future of science.
+FillinSentence2: Many of my patients believe that they are being possessed and some have ______ talents.
+--------------------------------------------------------------------------------------------
+Word135: clamor
+Meaning1: noise
+Meaning2: sound
+Meaning3: commotion
+Antonym1: quiet
+Antonym2: silence	
+Sentence1: The volunteers clamored for justice for the little girl. 
+Sentence2: I do not encourage children to clamor when they want something.
+FillinSentence1: The volunteers _____ for justice for the little girl.
+FillinSentence2: I do not encourage children to _____ when they want something.
+--------------------------------------------------------------------------------------------
+Word136: clique
+Meaning1: group
+Meaning2: circle
+Meaning3: company
+Antonym1: individual
+Antonym2: alone	
+Sentence1: The rich kids believed that they are a unique and elite clique and does not mingle with others.
+Sentence2: This clique is for those who are interested in artificial intelligence technology.
+FillinSentence1: The rich kids believed that they are a unique and elite _____ and does not mingle with others.
+FillinSentence2: This _____ is for those who are interested in artificial intelligence technology.
+--------------------------------------------------------------------------------------------
+Word137: coagulate
+Meaning1: solidify
+Meaning2: thicken
+Meaning3: harden
+Antonym1: dissolve
+Antonym2: melt	
+Sentence1: Her medical condition worsened when the blood in organs coagulated.
+Sentence2: My little niece was impatient to wait till the jelly coagulated.
+FillinSentence1: Her medical condition worsened when the blood in organs _____.
+FillinSentence2: My little niece was impatient to wait till the jelly ______.
+--------------------------------------------------------------------------------------------
+Word138: cloister
+Meaning1: nunnery
+Meaning2: monastery
+Meaning3: abbey
+Antonym1: secular
+Antonym2: terrestrial 	
+Sentence1: She tried to cloister when things when out of control at the party.
+Sentence2: It is human nature to cloister oneself when depressed.
+FillinSentence1: She tried to _____ when things when out of control at the party.
+FillinSentence2: It is human nature to _____ oneself when depressed.
+--------------------------------------------------------------------------------------------
+Word139: coalesce
+Meaning1: fuse
+Meaning2: combine
+Meaning3: join
+Antonym1: divide
+Antonym2: separate	
+Sentence1: Though each participant had a great idea in mind, it was difficult to coalesce all into one.
+Sentence2: Our family decided to coalesce to celebrate the 90th birthday of my grandfather.
+FillinSentence1: Though each participant had a great idea in mind, it was difficult to _____ all into one.
+FillinSentence2: Our family decided to _____ to celebrate the 90th birthday of my grandfather.
+--------------------------------------------------------------------------------------------
+Word140: coda
+Meaning1: finale
+Meaning2: last
+Meaning3: climax
+Antonym1: beginning
+Antonym2: introduction	
+Sentence1: The program became most interesting at the coda.
+Sentence2: The president’s coda speech was very impressive and a motivation for the youngsters.
+FillinSentence1: The program became most interesting at the _____.
+FillinSentence2: The president’s ______ speech was very impressive and a motivation for the youngsters.
+--------------------------------------------------------------------------------------------
+Word141: codify
+Meaning1: organize
+Meaning2: classify
+Meaning3: systematic
+Antonym1: disorganize
+Antonym2: confuse	
+Sentence1: We were asked to codify the results based on the scores of the participants.
+Sentence2: This website codifies movies based on the rating and reviews.
+FillinSentence1: We were asked to _____ the results based on the scores of the participants.
+FillinSentence2: This website ______ movies based on the rating and reviews.
+--------------------------------------------------------------------------------------------
+Word142: cognizant
+Meaning1: aware
+Meaning2: knowledgeable
+Meaning3: informed
+Antonym1: ignorant
+Antonym2: uninformed	
+Sentence1: My mentor taught me to be cognizant of the current economic conditions of the market to take big decisions for the company.
+Sentence2: She is a technical writer who is cognizant of all latest technologies and gadgets.
+FillinSentence1: My mentor taught me to be _____ of the current economic conditions of the market to take big decisions for the company.
+FillinSentence2: She is a technical writer who is _____ of all latest technologies and gadgets.
+--------------------------------------------------------------------------------------------
+Word143: collage
+Meaning1: combination
+Meaning2: mural
+Meaning3: assembly
+Antonym1: division
+Antonym2: classification	
+Sentence1: My daughter gifted me a beautiful collage of my favorite pictures. 
+Sentence2: The program was a beautiful collage of various techniques of fine arts.
+FillinSentence1: My daughter gifted me a beautiful _____ of my favorite pictures.
+FillinSentence2: The program was a beautiful _____ of various techniques of fine arts.
+--------------------------------------------------------------------------------------------
+Word144: commensurate
+Meaning1: compatible
+Meaning2: proportionate
+Meaning3: equivalent
+Antonym1: inappropriate
+Antonym2: unfitting	
+Sentence1: The management promised the workers that their salary will commensurate based on the sales of the product.
+Sentence2: The insurance company claimed to commensurate compensation based on the extent of damage.
+FillinSentence1: The management promised the workers that their salary will _____ based on the sales of the product.
+FillinSentence2: The insurance company claimed to ______ compensation based on the extent of damage.
+--------------------------------------------------------------------------------------------
+Word145: compendium
+Meaning1: summary
+Meaning2: epitome
+Meaning3: synopsis
+Antonym1: lengthy
+Antonym2: detail	
+Sentence1: My article was about the compendium of the pros and cons of social media.
+Sentence2: I designed the front page of the famous magazine with the compendium of the various articles.
+FillinSentence1: My article was about the _____ of the pros and cons of social media.
+FillinSentence2: I designed the front page of the famous magazine with the _____ of the various articles.
+--------------------------------------------------------------------------------------------
+Word146: complacent
+Meaning1: satisfied
+Meaning2: contented
+Meaning3: comfortable
+Antonym1: dissatisfied
+Antonym2: anxious	
+Sentence1: He is complacent by doing the right thing.
+Sentence2: I feel complacent to speak the truth though it may hurt people.
+FillinSentence1: He is _____ by doing the right thing.
+FillinSentence2: I feel _____ to speak the truth though it may hurt people.
+--------------------------------------------------------------------------------------------
+Word147: complaisant
+Meaning1: affable
+Meaning2: amiable
+Meaning3: candid
+Antonym1: angry
+Antonym2: hostile	
+Sentence1: The little boy is complaisant by nature and gets along very well with others.
+Sentence2: People often take advantage of my complaisant nature.
+FillinSentence1: The little boy is _____ by nature and gets along very well with others.
+FillinSentence2: People often take advantage of my _____ nature.
+--------------------------------------------------------------------------------------------
+Word148: complement
+Meaning1: addition
+Meaning2: supplement
+Meaning3: enhance
+Antonym1: diminish
+Antonym2: decrease	
+Sentence1: Her dress complements her personality.
+Sentence2: Butter peanut is one of my favorite complement for bread.
+FillinSentence1: Her dress _____ her personality.
+FillinSentence2: Butter peanut is one of my favorite _____ for bread.
+--------------------------------------------------------------------------------------------
+Word149: complaint
+Meaning1: accusation
+Meaning2: grievance
+Meaning3: disorder
+Antonym1: approve
+Antonym2: applause	
+Sentence1: When the boss was too demanding, we decided to complaint to higher authority.
+Sentence2: My task is to address the complaints of the customers.
+FillinSentence1: When the boss was too demanding, we decided to _____ to higher authority.
+FillinSentence2: My task is to address the ______ of the customers.
+--------------------------------------------------------------------------------------------
+Word150: compunction
+Meaning1: remorse
+Meaning2: regret
+Meaning3: sorrow
+Antonym1: merciless
+Antonym2: cruelty	
+Sentence1: She did not feel compunction for murdering a person who killed her little girl.
+Sentence2: Even after doing wrong, he had no sense of guilty or compunction.
+FillinSentence1: She did not feel _____ for murdering a person who killed her little girl.
+FillinSentence2: Even after doing wrong, he had no sense of guilty or _____.
+--------------------------------------------------------------------------------------------
+Word151: concave
+Meaning1: pit
+Meaning2: depressed
+Meaning3: arched
+Antonym1: convex
+Antonym2: bulging 	
+Sentence1: The child’s stomach was concave due to starvation and poverty.
+Sentence2: The concave design of the room decreased the space inside the room. 
+FillinSentence1: The child’s stomach was _____ due to starvation and poverty.
+FillinSentence2: The _____ design of the room decreased the space inside the room.
+--------------------------------------------------------------------------------------------
+Word152: conciliatory
+Meaning1: agreeable
+Meaning2: appeasing
+Meaning3: compromising
+Antonym1: uncompromising
+Antonym2: stubborn	
+Sentence1: His conciliatory attitude changed on knowing that he was being cheated by his own friends.
+Sentence2: His good deeds and conciliatory attitude is what is the most impressive character in him.
+FillinSentence1: His _____ attitude changed on knowing that he was being cheated by his own friends.
+FillinSentence2: His good deeds and ______ attitude is what is the most impressive character in him.
+--------------------------------------------------------------------------------------------
+Word153: concoct
+Meaning1: cook up
+Meaning2: formulate
+Meaning3: prepare
+Antonym1: destroy
+Antonym2: demolish	
+Sentence1: She managed to concoct some story to avoid the company of her boring relatives.
+Sentence2: The bartender can concoct excellent cocktails and entertain the guests at the same time. 
+FillinSentence1: She managed to _____ some story to avoid the company of her boring relatives.
+FillinSentence2: The bartender can ______ excellent cocktails and entertain the guests at the same time.
+--------------------------------------------------------------------------------------------
+Word154: concomitant
+Meaning1: mate
+Meaning2: accompanying
+Meaning3: attendant
+Antonym1: accidental
+Antonym2: unrelated	
+Sentence1: He is a specialist who observes the concomitant of drugs to the patient during surgeries.
+Sentence2: The earthquake occurred in concomitant with storm destroying the entire village.
+FillinSentence1: He is a specialist who observes the ______ of drugs to the patient during surgeries.
+FillinSentence2: The earthquake occurred in _____ with storm destroying the entire village.
+--------------------------------------------------------------------------------------------
+Word155: condone
+Meaning1: excuse
+Meaning2: forgive
+Meaning3: pardon
+Antonym1: revenge
+Antonym2: punish	
+Sentence1: Our teacher is very fair and never condones cheating in exams. 
+Sentence2: The good man condoned the child’s mistake.
+FillinSentence1: Our teacher is very fair and never _____ cheating in exams.
+FillinSentence2: The good man _____ the child’s mistake.
+--------------------------------------------------------------------------------------------
+Word156: confound
+Meaning1: confuse
+Meaning2: bewilder
+Meaning3: puzzle
+Antonym1: clear
+Antonym2: explain	
+Sentence1: Though she explained the safety instructions we were all confound.
+Sentence2: I was unable to solve the confound mathematics equation.
+FillinSentence1: Though she explained the safety instructions we were all _____.
+FillinSentence2: I was unable to solve the ______ mathematics equation.
+--------------------------------------------------------------------------------------------
+Word157: congenial
+Meaning1: amiable
+Meaning2: affable
+Meaning3: candid
+Antonym1: hostile
+Antonym2: hateful	
+Sentence1: I loved the hotel’s ambiance and their congenial service.
+Sentence2: We were surprised to see our strict teacher being so congenial at the field trip.
+FillinSentence1: I loved the hotel’s ambiance and their _____ service.
+FillinSentence2: We were surprised to see our strict teacher being so ______ at the field trip.
+--------------------------------------------------------------------------------------------
+Word158: conjugal
+Meaning1: marital
+Meaning2: marriage
+Meaning3: nuptial
+Antonym1: separated
+Antonym2: divorced	
+Sentence1: Since the scientists have to work for long hours, they are allowed conjugal visits and family time during weekends.
+Sentence2: He is a dangerous criminal so his spouse was denied conjugal time for her own safety.
+FillinSentence1: Since the scientists have to work for long hours, they are allowed _____ visits and family time during weekends.
+FillinSentence2: He is a dangerous criminal so his spouse was denied ______ time for her own safety.
+--------------------------------------------------------------------------------------------
+Word159: connoisseur
+Meaning1: expert
+Meaning2: master
+Meaning3: specialist
+Antonym1: amateur
+Antonym2: beginner	
+Sentence1: She is a connoisseur in modern art.
+Sentence2: He is a technology connoisseur in our firm.
+FillinSentence1: She is a ____ in modern art.
+FillinSentence2: He is a technology _____ in our firm.
+--------------------------------------------------------------------------------------------
+Word160: conscript
+Meaning1: enroll
+Meaning2: induct
+Meaning3: recruit
+Antonym1: volunteer
+Antonym2: function	
+Sentence1: During world war, young men were threatened and conscripted to take part in battles.
+Sentence2: My documentary was about the life of a young man who was conscripted to join the terror group.
+FillinSentence1: During world war, young men were threatened and _____ to take part in battles.
+FillinSentence2: My documentary was about the life of a young man who was _____ to join the terror group.
+--------------------------------------------------------------------------------------------
+Word161: consecrate
+Meaning1: dedicate
+Meaning2: commit
+Meaning3: devote
+Antonym1: curse
+Antonym2: abuse	
+Sentence1: Lily and John decided to consecrate to marriage.
+Sentence2: The young girl decided to consecrate her life to charity.
+FillinSentence1: Lily and John decided to _____ to marriage.
+FillinSentence2: The young girl decided to _____ her life to charity.
+--------------------------------------------------------------------------------------------
+Word162: contend
+Meaning1: fight
+Meaning2: dispute
+Meaning3: argue
+Antonym1: abandon
+Antonym2: surrender	
+Sentence1: They suspended him for contending with the authority.
+Sentence2: She contends for what she believe is correct.
+FillinSentence1: They suspended him for _____ with the authority. 
+FillinSentence2: She ____ for what she believe is correct.
+--------------------------------------------------------------------------------------------
+Word163: contentious
+Meaning1: quarrelsome
+Meaning2: combative
+Meaning3: argumentative
+Antonym1: agreeable
+Antonym2: peaceful	
+Sentence1: The manager asked his team not to be contentious.
+Sentence2: The contentious nature of the author was seen in his articles.
+FillinSentence1: The manager asked his team not to be _____.
+FillinSentence2: The _____ nature of the author was seen in his articles.
+--------------------------------------------------------------------------------------------
+Word164: continence
+Meaning1: celibacy
+Meaning2: control
+Meaning3: restraint
+Antonym1: excess
+Antonym2: wildness	
+Sentence1: Old people have difficulties with physical continence.
+Sentence2: It is a common disorder for children to continence but it is curable.
+FillinSentence1: Old people have difficulties with physical _____.
+FillinSentence2: It is a common disorder for children to ____ but it is curable.
+--------------------------------------------------------------------------------------------
+Word165: contrite
+Meaning1: remorseful
+Meaning2: regretful
+Meaning3: sorry
+Antonym1: shameless
+Antonym2: unashamed	
+Sentence1: I appreciated when the child felt contrite for stealing.
+Sentence2: Feeling contrite for your mistakes is not a sign of weakness.
+FillinSentence1: I appreciated when the child felt _____ for stealing.
+FillinSentence2: Feeling _____ for your mistakes is not a sign of weakness.
+--------------------------------------------------------------------------------------------
+Word166: contumacious
+Meaning1: rebellious
+Meaning2: head-strong
+Meaning3: stubborn
+Antonym1: obedient
+Antonym2: submissive	
+Sentence1: Though he was a contumacious student, he was very intelligent.
+Sentence2: It was indeed a surprise to see the contumacious man turn into a good person.
+FillinSentence1: Though he was a _____ student, he was very intelligent.
+FillinSentence2: It was indeed a surprise to see the _____ man turn into a good person.
+--------------------------------------------------------------------------------------------
+Word167: conundrum
+Meaning1: riddle
+Meaning2: mystery
+Meaning3: puzzle
+Antonym1: answer
+Antonym2: solution	
+Sentence1: I won the best conundrum award in this year’s science exhibition.
+Sentence2: The conundrums in this book are some of the most difficult ones ever created.
+FillinSentence1: I won the best ______ award in this year’s science exhibition.
+FillinSentence2: The _____ in this book are some of the most difficult ones ever created.
+--------------------------------------------------------------------------------------------
+Word168: contiguous
+Meaning1: adjacent
+Meaning2: adjoining
+Meaning3: nearby
+Antonym1: lonely
+Antonym2: apart	
+Sentence1: Since only one river runs near the contiguous villages, they suffer scarcity of water.
+Sentence2: The security in our street is high as the contiguous houses belong to high government officials.
+FillinSentence1: Since only one river runs near the ______ villages, they suffer scarcity of water.
+FillinSentence2: The security in our street is high as the _____ houses belong to high government officials.
+--------------------------------------------------------------------------------------------
+Word169: convention
+Meaning1: meeting
+Meaning2: assembly
+Meaning3: conference
+Antonym1: disagreement
+Antonym2: loneliness	
+Sentence1: We conduct the annual convention every year at the company headquarters.	
+Sentence2: The convention was cancelled due to the union stike.
+FillinSentence1: We conduct the annual _____ every year at the company headquarters.
+FillinSentence2: The _____ was cancelled due to the union stike.
+--------------------------------------------------------------------------------------------
+Word170: converge
+Meaning1: gather
+Meaning2: join
+Meaning3: unite
+Antonym1: diverge
+Antonym2: split	
+Sentence1: Architecture is a converge between science and art.
+Sentence2: Today doctors have to converge both medicine and technology to treat patients.
+FillinSentence1: Architecture is a ______ between science and art.
+FillinSentence2: Today doctors have to _____ both medicine and technology to treat patients.
+--------------------------------------------------------------------------------------------
+Word171: convex
+Meaning1: bent
+Meaning2: bulged
+Meaning3: curved
+Antonym1: depressed
+Antonym2: hollow	
+Sentence1: The camera lenses have convex caps to protect the lens from damage.
+Sentence2: Vessels with convex bottom cannot stand still.
+FillinSentence1: The camera lenses have _____ caps to protect the lens from damage.
+FillinSentence2: Vessels with _____ bottom cannot stand still.
+--------------------------------------------------------------------------------------------
+Word172: convivial
+Meaning1: jovial
+Meaning2: happy
+Meaning3: jolly
+Antonym1: sad
+Antonym2: antisocial	
+Sentence1: She was very convivial by nature and could get along well with everyone. 
+Sentence2: The manager is both convivial and at the same time very demanding at workplace.
+FillinSentence1: She was very _____ by nature and could get along well with everyone.
+FillinSentence2: The manager is both _____ and at the same time very demanding at workplace.
+--------------------------------------------------------------------------------------------
+Word173: convoluted
+Meaning1: complex
+Meaning2: complicated
+Meaning3: difficult
+Antonym1: easy
+Antonym2: basic	
+Sentence1: The argument between the friends became convoluted when more people were involved to resolve the issue.
+Sentence2: I lost marks as I was unable to solve the convoluted mathematics problem.
+FillinSentence1: The argument between the friends became _____ when more people were involved to resolve the issue.
+FillinSentence2: I lost marks as I was unable to solve the _____ mathematics problem.
+--------------------------------------------------------------------------------------------
+Word174: copious
+Meaning1: abundant
+Meaning2: rich
+Meaning3: ample
+Antonym1: lacking
+Antonym2: scare	
+Sentence1: I felt bad when copious amount of food was wasted at the party.
+Sentence2: The celebrity gets copious gifts from her fans every day.
+FillinSentence1: I felt bad when _____ amount of food was wasted at the party.
+FillinSentence2: The celebrity gets _____ gifts from her fans every day.
+--------------------------------------------------------------------------------------------
+Word175: coquette
+Meaning1: wanton
+Meaning2: flirt
+Meaning3: seduce
+Antonym1: faithful
+Antonym2: sincere	
+Sentence1: I dislike talking the men who are coquettes.
+Sentence2: He pleases and coquettes his manager to get promotion.
+FillinSentence1: I dislike talking the men who are _____.
+FillinSentence2: He pleases and _____ his manager to get promotion.
+--------------------------------------------------------------------------------------------
+Word176: cornucopia
+Meaning1: plenty
+Meaning2: rich
+Meaning3: abundance
+Antonym1: poor
+Antonym2: lack	
+Sentence1: This market is famous for its cornucopia of organic food.
+Sentence2: Children love theme parks for its cornucopia of rides and entertainment.
+FillinSentence1: This market is famous for its _____ of organic food.
+FillinSentence2: Children love theme parks for its cornucopia of rides and entertainment.
+--------------------------------------------------------------------------------------------
+Word177: cosmology
+Meaning1: astronomy
+Meaning2: ethics
+Meaning3: logic
+Antonym1: biologist
+Antonym2: zoologist	
+Sentence1: I have a good collection of books on cosmology.
+Sentence2: Cosmology is about universe and the planets.
+FillinSentence1: I have a good collection of books on ______.
+FillinSentence2: _____ is about universe and the planets.
+--------------------------------------------------------------------------------------------
+Word178: covert
+Meaning1: hidden
+Meaning2: secret
+Meaning3: private
+Antonym1: public
+Antonym2: open	
+Sentence1: He was involved in covert meetings with his ex-girlfriend even after marriage.
+Sentence2: John is a person who covertly talks behind ones back.
+FillinSentence1: He was involved in _____ meetings with his ex-girlfriend even after marriage.
+FillinSentence2: John is a person who _____ talks behind ones back.
+--------------------------------------------------------------------------------------------
+Word179: covetous
+Meaning1: greedy
+Meaning2: selfish
+Meaning3: grabby
+Antonym1: selfless
+Antonym2: generous	
+Sentence1: My pet dog is very covetous when it comes to food.
+Sentence2: I decided to stop talking to my covetous people who were pretending to be my friends.
+FillinSentence1: My pet dog is very ______ when it comes to food.
+FillinSentence2: I decided to stop talking to my _____ people who were pretending to be my friends.
+--------------------------------------------------------------------------------------------
+Word180: cozen
+Meaning1: dishonest
+Meaning2: cheat
+Meaning3: trick
+Antonym1: honest
+Antonym2: disclose	
+Sentence1: He cozened her into a relationship without intention of getting married.
+Sentence2: It is not acceptable to cozen people to invest their money with no returns.
+FillinSentence1: He _____ her into a relationship without intention of getting married.
+FillinSentence2: It is not acceptable to _____ people to invest their money with no returns.
+--------------------------------------------------------------------------------------------
+Word181: craven
+Meaning1: coward
+Meaning2: scared
+Meaning3: spineless
+Antonym1: brave
+Antonym2: bold	
+Sentence1: Our teacher motivated us to be bold instead of being craven.
+Sentence2: The craven man started to accuse his wife of cheating as he wanted to hide his infidelity.
+FillinSentence1: Our teacher motivated us to be bold instead of being ______.
+FillinSentence2: The _____ man started to accuse his wife of cheating as he wanted to hide his infidelity.
+--------------------------------------------------------------------------------------------
+Word182: credence
+Meaning1: trust
+Meaning2: faith
+Meaning3: belief
+Antonym1: betrayal
+Antonym2: distrust	
+Sentence1: No one gave credence for his story because of his history of cheating in the past. 
+Sentence2: With a good rapport she was able to gain credence from all.
+FillinSentence1: No one gave _____ for his story because of his history of cheating in the past.
+FillinSentence2: With a good rapport she was able to gain _____ from all.
+-------------------------------------------------------------------------------------------- 
+Word183: credo
+Meaning1: belief
+Meaning2: principle
+Meaning3: faith
+Antonym1: demise
+Antonym2: unbelief	
+Sentence1: Children have to be taught to have the credo to help self and each other.
+Sentence2: Never force others to the credo religion you believe in.
+FillinSentence1: Children have to be taught to have the _____ to help self and each other.
+FillinSentence2: Never force others to the credo religion you believe in.
+--------------------------------------------------------------------------------------------
+Word184: daunt
+Meaning1: frighten
+Meaning2: alarm
+Meaning3: deter
+Antonym1: assist
+Antonym2: aid	
+Sentence1: Rita finds it daunting to go scuba diving.
+Sentence2: It was a daunting task to write this difficult exam.
+FillinSentence1: Rita finds it _____ to go scuba diving.
+FillinSentence2: It was a _____ task to write this difficult exam.
+--------------------------------------------------------------------------------------------
+Word185: dearth
+Meaning1: insufficient
+Meaning2: scarce
+Meaning3: deficiency 
+Antonym1: surplus
+Antonym2: excess	
+Sentence1: Dearth of attention to children can cause stress in them.
+Sentence2: Some children in Somalia are dying due to dearth of food.
+FillinSentence1: _____ of attention to children can cause stress in them.
+FillinSentence2: Some children in Somalia are dying due to _____ of food.
+--------------------------------------------------------------------------------------------
+Word186: debauchery
+Meaning1: indulgence
+Meaning2: disgraceful
+Meaning3: dishonor
+Antonym1: honor
+Antonym2: virtue	
+Sentence1: One cannot preach about good things and indulge in debauchery.
+Sentence2: The youngsters were warned not to engage in debauchery to avoid arrest.
+FillinSentence1: One cannot preach about good things and indulge in _____.
+FillinSentence2: The youngsters were warned not to engage in _____ to avoid arrest.
+--------------------------------------------------------------------------------------------
+Word187: decorum
+Meaning1: etiquette
+Meaning2: decent
+Meaning3: polite
+Antonym1: impolite
+Antonym2: indecent	
+Sentence1: He lost the job interview as he lacked decorum.
+Sentence2: All employees of the company are required to maintain the decorum at workplace.
+FillinSentence1: He lost the job interview as he lacked ____.
+FillinSentence2: All employees of the company are required to maintain the _____ at workplace.
+--------------------------------------------------------------------------------------------
+Word188: defame
+Meaning1: tarnish
+Meaning2: slander
+Meaning3: ruin
+Antonym1: approve
+Antonym2: appraise	
+Sentence1: The celebrity was angry at the reporter for defaming her.
+Sentence2: Nobody has the right to defame another person.
+FillinSentence1: The celebrity was angry at the reporter for _____ her.
+FillinSentence2: Nobody has the right to _____ another person.
+--------------------------------------------------------------------------------------------
+Word189: default
+Meaning1: lack
+Meaning2: fail
+Meaning3: nonpayment
+Antonym1: pay
+Antonym2: support	
+Sentence1: Those who did not pay the school fees were called out as defaulters.
+Sentence2: Defaulting loan payment will lead to additional payment in interest.
+FillinSentence1: Those who did not pay the school fees were called out as ______.
+FillinSentence2: ______ loan payment will lead to additional payment in interest.
+--------------------------------------------------------------------------------------------
+Word190: deference
+Meaning1: respect
+Meaning2: honor
+Meaning3: loyalty
+Antonym1: disrespect
+Antonym2: disregard	
+Sentence1: Have deference for those who respect others.
+Sentence2: It is a general expectation to show deference to authoritative people.
+FillinSentence1: Have ______ for those who respect others.
+FillinSentence2: It is a general expectation to show _____ to authoritative people.
+--------------------------------------------------------------------------------------------
+Word191: defunct
+Meaning1: dead
+Meaning2: expired
+Meaning3: extinct
+Antonym1: alive
+Antonym2: active	
+Sentence1: This computer is defunct and does not have any resale value.
+Sentence2: I am not able to reach my friend as his mobile number is defunct.
+FillinSentence1: This computer is _____ and does not have any resale value.
+FillinSentence2: I am not able to reach my friend as his mobile number is _____.
+--------------------------------------------------------------------------------------------
+Word192: delineate
+Meaning1: represent
+Meaning2: portray
+Meaning3: depict
+Antonym1: misrepresent
+Antonym2: distort	
+Sentence1: He has a very good memory and can delineate what happened clearly.
+Sentence2: In the exams, students are required to delineate the theories they studied.
+FillinSentence1: He has a very good memory and can _____ what happened clearly.
+FillinSentence2: In the exams, students are required to _____ the theories they studied.
+--------------------------------------------------------------------------------------------
+Word193: demographic
+Meaning1: population
+Meaning2: demographics
+Meaning3: statistics
+Antonym1: solitary
+Antonym2: lonely	
+Sentence1: Global warming is changing the demography of living beings slowly.
+Sentence2: Even though this place is known for volcanic eruptions, the demography of human existence has not changed much.
+FillinSentence1: Global warming is changing the ______ of living beings slowly.
+FillinSentence2: Even though this place is known for volcanic eruptions, the ______ of human existence has not changed much.
+--------------------------------------------------------------------------------------------
+Word194: demotic
+Meaning1: colloquial
+Meaning2: common
+Meaning3: folk
+Antonym1: uncommon
+Antonym2: unusual	
+Sentence1: People here speak only demotic dialect and hence it is difficult to communicate with them.
+Sentence2: The old poems discovered were written in demotic language.
+FillinSentence1: People here speak only ______ dialect and hence it is difficult to communicate with them.
+FillinSentence2: The old poems discovered were written in _____ language.
+--------------------------------------------------------------------------------------------
+Word195: demur
+Meaning1: hesitant
+Meaning2: protest
+Meaning3: object
+Antonym1: agree
+Antonym2: accept	
+Sentence1: Though she is a celebrity she has a demur and quiet nature.
+Sentence2: After joining the new school, the boy changed his demur behavior to an out-going one.
+FillinSentence1: Though she is a celebrity she has a _____ and quiet nature.
+FillinSentence2: After joining the new school, the boy changed his ______ behavior to an out-going one.
+--------------------------------------------------------------------------------------------
+Word196: denigrate
+Meaning1: criticize 
+Meaning2: reproach
+Meaning3: blame
+Antonym1: praise
+Antonym2: boost	
+Sentence1: He denigrated his in-laws on purpose.
+Sentence2: The rude manager denigrated his team accusing them of low productivity.
+FillinSentence1: He _____ his in-laws on purpose.
+FillinSentence2: The rude manager _____ his team accusing them of low productivity.
+--------------------------------------------------------------------------------------------
+Word197: denizen
+Meaning1: resident
+Meaning2: habitant
+Meaning3: citizen
+Antonym1: foreigner
+Antonym2: alien	
+Sentence1: We had a good experience with the denizen guide.
+Sentence2: The denizen host of the show was spontaneous and knew how to keep the audience entertained.
+FillinSentence1: We had a good experience with the ______ guide.
+FillinSentence2: The _____ host of the show was spontaneous and knew how to keep the audience entertained.
+--------------------------------------------------------------------------------------------
+Word198: denouement
+Meaning1: outcome
+Meaning2: conclusion
+Meaning3: result
+Antonym1: boon
+Antonym2: break	
+Sentence1: The movie had a tragic & unexpected denouement.
+Sentence2: The child’s speech had an outstanding denouement.
+FillinSentence1: The movie had a tragic & unexpected ______.
+FillinSentence2: The child’s speech had an outstanding denouement.
+--------------------------------------------------------------------------------------------
+Word199: deride
+Meaning1: ridicule
+Meaning2: mock
+Meaning3: scorn
+Antonym1: praise
+Antonym2: respect	
+Sentence1: He derides people as if he is perfect.
+Sentence2: The TV host derides guests in her show on purpose.
+FillinSentence1: He _____ people as if he is perfect.
+FillinSentence2: The TV host _____ guests in her show on purpose.
+--------------------------------------------------------------------------------------------
+Word200: derivative
+Meaning1: copy
+Meaning2: source
+Meaning3: secondary
+Antonym1: original
+Antonym2: creative	
+Sentence1: My music composition is a derivative from country music.
+Sentence2: She is a talented cook who can replace unhealthy ingredients from similar derivative ingredients.
+FillinSentence1: My music composition is a _____ from country music.
+FillinSentence2: She is a talented cook who can replace unhealthy ingredients from similar ______ ingredients.
+--------------------------------------------------------------------------------------------

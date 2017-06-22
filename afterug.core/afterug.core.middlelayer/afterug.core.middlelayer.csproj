@@ -83,6 +83,9 @@
     <Compile Include="Attempts.cs">
       <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AUGNotes.cs">
+      <DependentUpon>afterugdevModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Chapter.cs">
       <DependentUpon>afterugdevModel.tt</DependentUpon>
     </Compile>
