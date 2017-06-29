@@ -11,11 +11,12 @@ import { TestQuestionService } from './test/test-questions.service';
 import { LoginComponent } from './login/index';
 import { HomeComponent } from './home/index';
 import { AuthGuard } from './_guards/index';
-import { AuthenticationService, UserService } from './_services/index';
+import { AuthenticationService, UserService,AlertService } from './_services/index';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
+import { RegisterComponent } from './register/index';
 
 import { SimpleTimer } from 'ng2-simple-timer';
 
@@ -25,7 +26,8 @@ import { SimpleTimer } from 'ng2-simple-timer';
     TestComponent,
     TestListComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+     RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { SimpleTimer } from 'ng2-simple-timer';
   ],
   providers: [
     AuthGuard,
+    AlertService,
     AuthenticationService,
     UserService,
     TestQuestionService,

@@ -13,10 +13,10 @@ namespace afterug.core.middlelayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class afterugdevEntities12 : DbContext
+    public partial class afterugdevEntities1 : DbContext
     {
-        public afterugdevEntities12()
-            : base("name=afterugdevEntities12")
+        public afterugdevEntities1()
+            : base("name=afterugdevEntities1")
         {
         }
     

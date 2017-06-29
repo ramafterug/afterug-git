@@ -32,6 +32,10 @@ namespace afterug.core.middlelayer
         public int UserID { get; set; }
         public string UserNameOrEmailAddress { get; set; }
         public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Mobile { get; set; }
+        public Nullable<bool> EmailVerificationStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attempts> Attempts { get; set; }

@@ -18,7 +18,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
         // GET: api/Question
         public HttpResponseMessage Get()
         {
-            var db = new afterugdevEntities12();
+            var db = new afterugdevEntities1();
 
             var query = (from b in db.QuestionsAfterUG
                          select b).ToList();
@@ -40,7 +40,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
         [Route("api/Question/Test/{testNo}/User/{userID}")]
         public HttpResponseMessage GetTestQuestions(int testNo, int userID)
         {
-            var db = new afterugdevEntities12();
+            var db = new afterugdevEntities1();
 
             db.Configuration.ProxyCreationEnabled = false;
 
@@ -98,7 +98,7 @@ namespace afterug.webapi.spacedrepetition.Controllers
             int userID;
             questionIDArray = value.QuestionIDArray;
             userID = value.UserID;
-            var db = new afterugdevEntities12();
+            var db = new afterugdevEntities1();
 
             db.Configuration.ProxyCreationEnabled = false;
 

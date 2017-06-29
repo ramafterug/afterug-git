@@ -196,6 +196,10 @@
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserNameOrEmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="Mobile" Type="varchar" MaxLength="12" />
+          <Property Name="EmailVerificationStatus" Type="bit" />
         </EntityType>
         <EntityType Name="UserSettings">
           <Key>
@@ -848,6 +852,10 @@
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserNameOrEmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="EmailVerificationStatus" Type="Boolean" />
           <NavigationProperty Name="Attempts" Relationship="Self.FK_UserID_Attempts_Users" FromRole="Users" ToRole="Attempts" />
           <NavigationProperty Name="AUGNotes" Relationship="Self.FK_AUGNotesAddedByEmployeeUserID_AUGNotes_Users" FromRole="Users" ToRole="AUGNotes" />
           <NavigationProperty Name="AUGNotes1" Relationship="Self.FK_AUGNotesApprovedByEmployeeUserID_AUGNotes_Users" FromRole="Users" ToRole="AUGNotes" />
@@ -1159,7 +1167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="afterugdevEntities12" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="afterugdevEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AfterUGNotePoints" EntityType="Self.AfterUGNotePoints" />
           <EntitySet Name="AfterUGNotePointsTags" EntityType="Self.AfterUGNotePointsTags" />
           <EntitySet Name="Attempts" EntityType="Self.Attempts" />
@@ -1283,7 +1291,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="afterugdevModelStoreContainer" CdmEntityContainer="afterugdevEntities12">
+        <EntityContainerMapping StorageEntityContainer="afterugdevModelStoreContainer" CdmEntityContainer="afterugdevEntities1">
           <EntitySetMapping Name="AfterUGNotePoints">
             <EntityTypeMapping TypeName="afterugdevModel.AfterUGNotePoints">
               <MappingFragment StoreEntitySet="AfterUGNotePoints">
@@ -1490,6 +1498,10 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserNameOrEmailAddress" ColumnName="UserNameOrEmailAddress" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="EmailVerificationStatus" ColumnName="EmailVerificationStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

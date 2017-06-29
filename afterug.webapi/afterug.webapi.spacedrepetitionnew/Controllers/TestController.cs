@@ -17,10 +17,10 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
     public class TestController : ApiController
     {
         [HttpGet]
-        [Route("api/Test/User/{userID}")]
+        [Route("api/Test/OriginalBackup/{userID}")]
         public HttpResponseMessage GetTestQuestions(int userID)
         {
-            var db = new afterugdevEntities12();
+            var db = new afterugdevEntities1();
 
             db.Configuration.ProxyCreationEnabled = false;
 
@@ -35,7 +35,7 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
 
             var chapterIDList = NonMatchingChapterWiseQuestions
                                                    .GroupBy(g => g.ChapterID)
-                                                   .Select(g => new 
+                                                   .Select(g => new
                                                    {
                                                        ChapterID = g.Key,
 
@@ -60,8 +60,8 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
             }
 
             // No of questions per test = 3. GEt this from Database
-            int noOfQuestionsPerTest = 100;
-           
+            int noOfQuestionsPerTest = 10;
+
             List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
             foreach (var item in listQuestionsAndChapters)
             {
@@ -78,19 +78,19 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
                 {
                     finalNoOfButtons = noOfButtons + 1;
                 }
-                
-                for(var i = 0; i < finalNoOfButtons; i++)
+
+                for (var i = 0; i < finalNoOfButtons; i++)
                 {
                     //List<int> segment = new List<int>();
-                    int index = ((noOfQuestionsPerTest * i) - 1) ;
-                    
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+
                     if (i == 0)
                     {
                         index = 0;
                     }
                     else
                     {
-                        
+
                     }
                     int noOfItemsToFetch = noOfQuestionsPerTest;
                     int finalloopvalue = finalNoOfButtons - 1;
@@ -106,11 +106,11 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
                     // JObject jObject = JObject.Parse(item.Key);
                     // JToken jUser = jObject["Key"];
 
-                    
 
-                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1); 
+
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
                     listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
-                    
+
                 }
                 chapterButtonAndQuestionList.Add(listQuestionsAndButtons);
             }
@@ -131,10 +131,1155 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
         }
         // GET: api/Test
 
+
+        [HttpGet]
+        [Route("api/Test/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsInOrder(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var NonMatchingChapterWiseQuestions = (from Questions in db.QuestionsAfterUG
+                                                       //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                                       //where (Questions.ChapterID != null)
+                                                   select new
+                                                   { QuestionID = Questions.QuestionID, ChapterID = Questions.ChapterID });
+
+
+            var chapterIDList = NonMatchingChapterWiseQuestions
+                                                   .GroupBy(g => g.ChapterID)
+                                                   .Select(g => new
+                                                   {
+                                                       ChapterID = g.Key,
+
+                                                   });
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in NonMatchingChapterWiseQuestions)
+                {
+                    if (item.ChapterID == chapter.ChapterID)
+                    {
+                        QuestionIDArray.Add(item.QuestionID);
+                    }
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ChapterID.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+
+        }
+
+
+        [HttpGet]
+        [Route("api/Test/Marked/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsMarked(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var MarkedQuestionIDS = (from Questions in db.TestMarkAQuestion
+                                         //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                     where (Questions.UserID == userID)
+                                     select new
+                                     { QuestionID = Questions.QuestionID }).ToList();
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in MarkedQuestionIDS)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+
+        [HttpGet]
+        [Route("api/Test/SelfHard/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsSelfHard(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var HardRandomForAUser = (from HardQuestions in db.QuestionDifficulty
+                                      where (HardQuestions.DifficultyLevel == 3 && HardQuestions.UserWhoRatedDifficultyID == userID)
+                                      select new { HardQuestions.QuestionID }).ToList();
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in HardRandomForAUser)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+
+        [HttpGet]
+        [Route("api/Test/OthersHard/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsOthersHard(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var HardRandomOfAllUsers = (from HardQuestions in db.QuestionDifficulty
+                                        where (HardQuestions.DifficultyLevel == 3)
+                                        select new { HardQuestions.QuestionID }).ToList();
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in HardRandomOfAllUsers)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/Test/SelfMedium/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsSelfMedium(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var HardRandomForAUser = (from HardQuestions in db.QuestionDifficulty
+                                      where (HardQuestions.DifficultyLevel == 2 && HardQuestions.UserWhoRatedDifficultyID == userID)
+                                      select new { HardQuestions.QuestionID }).ToList();
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in HardRandomForAUser)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+
+        [HttpGet]
+        [Route("api/Test/OthersMedium/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsOthersMedium(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var HardRandomOfAllUsers = (from HardQuestions in db.QuestionDifficulty
+                                        where (HardQuestions.DifficultyLevel == 2)
+                                        select new { HardQuestions.QuestionID }).ToList();
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in HardRandomOfAllUsers)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/Test/OthersMostTimeTaken/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsOthersMostTimeTaken(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var AverageTimeTakenForQuestionForAllUsers = db.Attempts
+                                                        .GroupBy(g => g.QuestionID, g => g.TimeTaken)
+                                                        .Select(g => new { QuestionID = g.Key, AverageTimeTaken = g.Average() });
+
+
+
+            var MostTimeTakenQuestions = from avgTT in AverageTimeTakenForQuestionForAllUsers
+                                         join TT in db.Attempts on avgTT.QuestionID equals TT.QuestionID
+                                         where TT.UserID == 1
+
+                                         where TT.TimeTaken > avgTT.AverageTimeTaken
+
+                                         select new
+                                         {
+                                             TT.QuestionID
+                                         };
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in MostTimeTakenQuestions)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+
+        [HttpGet]
+        [Route("api/Test/SelfMostTimeTaken/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsSelfMostTimeTaken(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+            var FinalAttemptQIDs = db.Attempts
+ .Where(g => g.UserID == 2)
+ .GroupBy(g => g.QuestionID, g => g.AttemptNumber)
+
+ .Select(g => new { QuestionID = g.Key, MaximumAttemptNumber = g.Max() });
+
+            
+
+            var FinalAttemptTimeTaken = from FinalAttemptRecords in db.Attempts
+                                        join maxTTQID in FinalAttemptQIDs on FinalAttemptRecords.QuestionID equals maxTTQID.QuestionID
+                                        where (FinalAttemptRecords.UserID == 2)
+                                        where (maxTTQID.MaximumAttemptNumber == FinalAttemptRecords.AttemptNumber)
+                                        select new
+                                        {
+                                            FinalAttemptRecords.QuestionID,
+                                            FinalAttemptRecords.TimeTaken,
+                                            FinalAttemptRecords.AttemptNumber
+                                        };
+
+            
+
+
+            var PrevAttemptTimeTaken = from PreviousAttemptRecords in db.Attempts
+                                       join maxTTQID in FinalAttemptQIDs on PreviousAttemptRecords.QuestionID equals maxTTQID.QuestionID
+                                       where (PreviousAttemptRecords.UserID == 2)
+                                       where (maxTTQID.MaximumAttemptNumber - 1 == PreviousAttemptRecords.AttemptNumber)
+                                       select new
+                                       {
+                                           PreviousAttemptRecords.QuestionID,
+                                           PreviousAttemptRecords.TimeTaken,
+                                           PreviousAttemptRecords.AttemptNumber
+                                       };
+
+            
+
+            var MostTimeTakenQuestions = from PreviousAttemptRecords in PrevAttemptTimeTaken
+                              join FinalAttemptRecords in FinalAttemptTimeTaken on PreviousAttemptRecords.QuestionID equals FinalAttemptRecords.QuestionID
+                              where (FinalAttemptRecords.TimeTaken > PreviousAttemptRecords.TimeTaken)
+                              select new
+                              {
+                                  PreviousAttemptRecords.QuestionID,
+                               
+                              };
+            
+
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in MostTimeTakenQuestions)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+                var DontAdd = true;
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+                    foreach (var QIDObject in DontShowQuestionIDS)
+                    {
+                        if (range.Contains(QIDObject.QuestionID))
+                        {
+                            var indexOfElementToRemove = range.IndexOf(QIDObject.QuestionID);
+                            range.RemoveAt(indexOfElementToRemove);
+                        }
+                    }
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+                        DontAdd = false;
+                    }
+                }
+                if (DontAdd != true)
+                {
+                    chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+                }
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+
+
+        [HttpGet]
+        [Route("api/Test/DontShowQuestions/User/{userID}")]
+        public HttpResponseMessage GetTestQuestionsDontShowQuestions(int userID)
+        {
+            var db = new afterugdevEntities1();
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var DontShowQuestionIDS = (from Questions in db.DontShowQuestion
+                                           //where !db.TestChild.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID) && !db.DontShowQuestion.Any(f => f.QuestionID == Questions.QuestionID && f.UserID == userID)
+                                           //where (Questions.ChapterID != null)
+                                       where (Questions.UserID == userID)
+                                       select new
+                                       { QuestionID = Questions.QuestionID });
+
+
+
+
+            List<int> chapterIDList = new List<int>();
+            chapterIDList.Add(1);
+
+
+            var listQuestionsAndChapters = new List<KeyValuePair<string, List<int>>>();
+            foreach (var chapter in chapterIDList)
+            {
+                var QuestionIDArray = new List<int>();
+                foreach (var item in DontShowQuestionIDS)
+                {
+
+                    QuestionIDArray.Add(item.QuestionID);
+
+
+                }
+                //shuffle the int list here itself
+                //QuestionIDArray = Shuffle<int>(QuestionIDArray);
+                listQuestionsAndChapters.Add(new KeyValuePair<string, List<int>>(chapter.ToString(), QuestionIDArray));
+            }
+
+            // No of questions per test = 3. GEt this from Database
+            int noOfQuestionsPerTest = 20;
+
+            List<List<KeyValuePair<string, List<int>>>> chapterButtonAndQuestionList = new List<List<KeyValuePair<string, List<int>>>>();
+
+            foreach (var item in listQuestionsAndChapters)
+            {
+
+                List<KeyValuePair<string, List<int>>> listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                List<KeyValuePair<string, List<int>>> SortedListQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+
+                //var listQuestionsAndButtons = new List<KeyValuePair<string, List<int>>>();
+                int noOfButtons = (item.Value.Count) / noOfQuestionsPerTest;
+                int reminder = (item.Value.Count) % noOfQuestionsPerTest;
+                int finalNoOfButtons;
+                if (item.Value.Count % noOfQuestionsPerTest == 0)
+                {
+                    finalNoOfButtons = noOfButtons;
+                }
+                else
+                {
+                    finalNoOfButtons = noOfButtons + 1;
+                }
+
+                for (var i = 0; i < finalNoOfButtons; i++)
+                {
+                    int index = ((noOfQuestionsPerTest * i) - 1);
+                    if (i == 0)
+                    {
+                        index = 0;
+                    }
+                    int noOfItemsToFetch = noOfQuestionsPerTest;
+                    int finalloopvalue = finalNoOfButtons - 1;
+                    if (reminder != 0 && i == finalloopvalue)
+                    {
+                        noOfItemsToFetch = reminder;
+                    }
+
+                    List<int> range = item.Value.GetRange(index, noOfItemsToFetch);
+
+
+                    var buttonName = "btnchapter_" + item.Key + "_test_" + (i + 1);
+                    if (range.Count != 0)
+                    {
+                        listQuestionsAndButtons.Add(new KeyValuePair<string, List<int>>(buttonName.ToString(), range));
+                        SortedListQuestionsAndButtons = listQuestionsAndButtons.OrderBy(o => o.Key).ToList();
+
+                    }
+                }
+
+                chapterButtonAndQuestionList.Add(SortedListQuestionsAndButtons);
+
+
+            }
+            // Sort the array by chapter
+
+
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(chapterButtonAndQuestionList, Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                }
+                );
+
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+
+            };
+        }
+
+
         [System.Web.Http.AcceptVerbs("POST")]
         [System.Web.Http.HttpPost]
         [Route("api/SaveTTOrSSAndISRData")]
-            public HttpResponseMessage SaveTTOrSSAndISRData([FromBody]DataToBeSavedObject dataToBeSavedObject)
+        public HttpResponseMessage SaveTTOrSSAndISRData([FromBody]DataToBeSavedObject dataToBeSavedObject)
         {
 
             List<List<afterug.core.middlelayer.Attempts>> AttemptsToBeSaved = dataToBeSavedObject.AttemptsToBeSaved;
@@ -144,7 +1289,7 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
             List<afterug.core.middlelayer.QuestionDifficulty> QuestionDifficultiesToBeSaved = dataToBeSavedObject.QuestionDifficultiesToBeSaved;
             int UserID = dataToBeSavedObject.UserID;
 
-            var db = new afterugdevEntities12();
+            var db = new afterugdevEntities1();
             //List<Company> companies = new List<Company>();
             #region SaveAttempts
             //listOfAttempts.ForEach(n => db.Attempts.AddRange(n));
@@ -165,15 +1310,15 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
             {
                 var alreadyMarkedObjectInDB = db.TestMarkAQuestion.FirstOrDefault(o => o.QuestionID == markedQID && o.UserID == UserID);
 
-                if(alreadyMarkedObjectInDB == null)
+                if (alreadyMarkedObjectInDB == null)
                 {
                     afterug.core.middlelayer.TestMarkAQuestion markedWord = new afterug.core.middlelayer.TestMarkAQuestion();
                     markedWord.QuestionID = markedQID;
                     markedWord.UserID = UserID;
                     db.TestMarkAQuestion.Add(markedWord);
                 }
-               
-               
+
+
 
             }
 
@@ -194,8 +1339,8 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
                 }
                 else
                 {
-                    
-               
+
+
                     db.TestMarkAQuestion.Remove(alreadyMarkedObjectInDB);
                     //db.TestMarkAQuestion.Remove(o => o.QuestionID == unMarkedQID && o.UserID == UserID);
                 }
@@ -230,18 +1375,19 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
 
             foreach (var difficulty in QuestionDifficultiesToBeSaved)
             {
-                if ((db.QuestionDifficulty.Any(o => o.QuestionID == difficulty.QuestionID && o.UserWhoRatedDifficultyID == difficulty.UserWhoRatedDifficultyID))) {
+                if ((db.QuestionDifficulty.Any(o => o.QuestionID == difficulty.QuestionID && o.UserWhoRatedDifficultyID == difficulty.UserWhoRatedDifficultyID)))
+                {
 
                     db.Entry(difficulty).State = System.Data.Entity.EntityState.Modified;
 
-                    
+
 
                 }
                 else
                 {
                     db.QuestionDifficulty.Add(difficulty);
                 }
-                
+
             }
             #endregion
 
@@ -268,7 +1414,7 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
                 throw;
             }
 
-            
+
             #endregion
             return new HttpResponseMessage()
             {
@@ -341,6 +1487,6 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
         public List<afterug.core.middlelayer.QuestionDifficulty> QuestionDifficultiesToBeSaved { get; set; }
         public int UserID { get; set; }
 
-        
+
     }
 }

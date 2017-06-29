@@ -35,54 +35,92 @@ export class TestQuestionService {
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
 
-      
+
 
   }
-   getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode): Observable<QuestionRawExtended[]> {
+  getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode): Observable<QuestionRawExtended[]> {
 
     /*return this.http.get(this.testQuestionUrl + testNo + '/User/' + userID)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));*/
-   var loadQuestionsURL = 'http://localhost:1980/api/Questions'; 
- let bodyString = JSON.stringify(questionIDArrayAndUserID); // Stringify payload
-        let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-        let options       = new RequestOptions({ headers: headers }); 
-    
+    var loadQuestionsURL = 'http://localhost:1980/api/Questions';
+    let bodyString = JSON.stringify(questionIDArrayAndUserID); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers });
+
     return this.http.post(loadQuestionsURL, bodyString, options) // ...using post request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error:any) => Observable.throw(error || 'Server error'));
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error || 'Server error'));
 
 
   }
 
-getChapterWiseQuestionButtons(userID:Number):Observable<any[]>{
-  var chapterButtonsUrl = 'http://localhost:1980/api/Test/User/'; 
- return this.http.get(chapterButtonsUrl +  userID)
+  getChapterWiseQuestionButtons(userID: Number, qType: Number): Observable<any[]> {
+var chapterButtonsUrl = "";
+    if (qType == 1) {
+      //Marked
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/Marked/User/';
+
+    } else if (qType == 2) {
+      //SelfHard
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/SelfHard/User/';
+
+    } else if (qType == 3) {
+      //OthersHard
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/OthersHard/User/';
+
+    } else if (qType == 4) {
+      //SelfMedium
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/SelfMedium/User/';
+
+    } else if (qType == 5) {
+      //OthersMedium
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/OthersMedium/User/';
+
+    } else if (qType == 6) {
+      //SelfMostTimeTaken
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/SelfMostTimeTaken/User/';
+
+    } else if (qType == 7) {
+      //OthersMostTimeTaken
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/OthersMostTimeTaken/User/';
+
+    } else if (qType == 8) {
+      //DontShowQuestions
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/DontShowQuestions/User/';
+
+    }else if (qType == 9) {
+      //Normal Chapter List
+      chapterButtonsUrl = 'http://localhost:1980/api/Test/User/';
+
+    }
+    
+    return this.http.get(chapterButtonsUrl + userID)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
-}
+  }
 
   saveAttemptsToDB(attemptsToSave: afterUGExtended.afterugExtended.Attempts[][]): Observable<string> {
-    var attemptsUrl = 'http://localhost:1980/api/Attempts'; 
- let bodyString = JSON.stringify(attemptsToSave); // Stringify payload
-        let headers      = new Headers({ 'Content-Type': 'application/json','Accept': 'application/json' }); // ... Set content type to JSON
-        let options       = new RequestOptions({ headers: headers }); 
-    
+    var attemptsUrl = 'http://localhost:1980/api/Attempts';
+    let bodyString = JSON.stringify(attemptsToSave); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers });
+
     return this.http.post(attemptsUrl, bodyString, options) // ...using post request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
 
-ISRCompleteSaveData(finalData: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject): Observable<string> {
-    var saveURL = 'http://localhost:1980/api/SaveTTOrSSAndISRData'; 
- let bodyString = JSON.stringify(finalData); // Stringify payload
-        let headers      = new Headers({ 'Content-Type': 'application/json','Accept': 'application/json' }); // ... Set content type to JSON
-        let options       = new RequestOptions({ headers: headers }); 
-    
+  ISRCompleteSaveData(finalData: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject): Observable<string> {
+    var saveURL = 'http://localhost:1980/api/SaveTTOrSSAndISRData';
+    let bodyString = JSON.stringify(finalData); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers });
+
     return this.http.post(saveURL, bodyString, options) // ...using post request
-                         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
 

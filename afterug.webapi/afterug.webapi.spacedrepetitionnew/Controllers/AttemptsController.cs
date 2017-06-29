@@ -31,11 +31,11 @@ namespace afterug.webapi.spacedrepetitionnew.Controllers
         [System.Web.Http.HttpPost]
         public HttpResponseMessage Post([FromBody]List<List<Attempts>> listOfAttemptsArray)
         {
-            var db = new afterugdevEntities12();
+            var db = new afterugdevEntities1();
             //List<Company> companies = new List<Company>();
 
             //listOfAttempts.ForEach(n => db.Attempts.AddRange(n));
-            foreach(var attemptArray in listOfAttemptsArray)
+            foreach (var attemptArray in listOfAttemptsArray)
             {
                 foreach (var attempt in attemptArray)
                 {

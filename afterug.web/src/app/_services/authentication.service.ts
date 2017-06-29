@@ -16,9 +16,9 @@ export class AuthenticationService {
 
    
 
-     login(username: string, password: string): Observable<boolean> {
-        var loginUrl = 'http://localhost:1980/api/authenticate'; 
- let bodyString = JSON.stringify({ username: username, password: password }); // Stringify payload
+     login(UserNameOrEmailAddress: string, password: string): Observable<boolean> {
+        var loginUrl = 'http://localhost:54347/api/authenticate'; 
+ let bodyString = JSON.stringify({ UserNameOrEmailAddress: UserNameOrEmailAddress, password: password }); // Stringify payload
         let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options       = new RequestOptions({ headers: headers }); 
         return this.http.post(loginUrl, bodyString, options)
@@ -30,7 +30,7 @@ export class AuthenticationService {
                     this.token = token;
 
                     // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+                    localStorage.setItem('currentUser', JSON.stringify({ username: UserNameOrEmailAddress, token: token }));
 
                     // return true to indicate successful login
                     return true;
@@ -46,4 +46,19 @@ export class AuthenticationService {
         this.token = null;
         localStorage.removeItem('currentUser');
     }
+
+
+     /* login(username: string, password: string) {
+        return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let user = response.json();
+                if (user && user.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                }
+
+                return user;
+            });
+    }*/
 }

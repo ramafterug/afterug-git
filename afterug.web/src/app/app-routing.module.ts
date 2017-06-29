@@ -9,14 +9,16 @@ import { LoginComponent } from './login/index';
 import { HomeComponent } from './home/index';
 import { AuthGuard } from './_guards/index';
 
-
+import { RegisterComponent } from './register/index';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  
-  { path: 'Test/User/:userID', component: TestListComponent, canActivate: [AuthGuard] }
-
+  { path: 'register', component: RegisterComponent },
+  { path: 'Test/User/:userID/Mode/:mode/QType/:qType', component: TestListComponent, canActivate: [AuthGuard] }
+// this.userID = +params['userID'];
+  //          this.testModeNum = +params['mode'];
+    //        this.QType = +params['qType'];
 ];
 
 @NgModule({
