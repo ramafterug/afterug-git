@@ -1,5 +1,5 @@
 export class Choices {
-  ChoiceID: number;
+  ChoiceId: number;
   QuestionID: number;
   ChoiceText: string;
   IsChoiceReviewed: boolean;

@@ -20,7 +20,7 @@ export class TestQuestionService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   //private testQuestionUrl = '/api/Question/Test/';
 
-  private testQuestionUrl = 'http://localhost:1980/api/Question/Test/';
+  private testQuestionUrl = 'http://localhost:5000/api/Question/Test/';
   constructor(private http: Http) { }
 
   private handleError(error: any): Promise<any> {
@@ -38,12 +38,12 @@ export class TestQuestionService {
 
 
   }
-  getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode): Observable<QuestionRawExtended[]> {
+  getQuestionsByQuestionIDArrayAndUserID(questionIDArrayAndUserID: afterUGExtendedCustom.afterugExtended.QuestionIdArrayAndUserIdAndTestMode): Observable<QuestionRawExtended[]> {
 
     /*return this.http.get(this.testQuestionUrl + testNo + '/User/' + userID)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));*/
-    var loadQuestionsURL = 'http://localhost:1980/api/Questions';
+    var loadQuestionsURL = 'http://localhost:5000/api/Questions';
     let bodyString = JSON.stringify(questionIDArrayAndUserID); // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
@@ -59,39 +59,39 @@ export class TestQuestionService {
 var chapterButtonsUrl = "";
     if (qType == 1) {
       //Marked
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/Marked/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/Marked/User/';
 
     } else if (qType == 2) {
       //SelfHard
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/SelfHard/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/SelfHard/User/';
 
     } else if (qType == 3) {
       //OthersHard
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/OthersHard/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/OthersHard/User/';
 
     } else if (qType == 4) {
       //SelfMedium
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/SelfMedium/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/SelfMedium/User/';
 
     } else if (qType == 5) {
       //OthersMedium
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/OthersMedium/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/OthersMedium/User/';
 
     } else if (qType == 6) {
       //SelfMostTimeTaken
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/SelfMostTimeTaken/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/SelfMostTimeTaken/User/';
 
     } else if (qType == 7) {
       //OthersMostTimeTaken
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/OthersMostTimeTaken/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/OthersMostTimeTaken/User/';
 
     } else if (qType == 8) {
       //DontShowQuestions
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/DontShowQuestions/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/DontShowQuestions/User/';
 
     }else if (qType == 9) {
       //Normal Chapter List
-      chapterButtonsUrl = 'http://localhost:1980/api/Test/User/';
+      chapterButtonsUrl = 'http://localhost:5000/api/Test/User/';
 
     }
     
@@ -100,8 +100,10 @@ var chapterButtonsUrl = "";
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
 
+ 
+
   saveAttemptsToDB(attemptsToSave: afterUGExtended.afterugExtended.Attempts[][]): Observable<string> {
-    var attemptsUrl = 'http://localhost:1980/api/Attempts';
+    var attemptsUrl = 'http://localhost:5000/api/Attempts';
     let bodyString = JSON.stringify(attemptsToSave); // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
@@ -113,7 +115,7 @@ var chapterButtonsUrl = "";
   }
 
   ISRCompleteSaveData(finalData: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject): Observable<string> {
-    var saveURL = 'http://localhost:1980/api/SaveTTOrSSAndISRData';
+    var saveURL = 'http://localhost:5000/api/SaveTTOrSSAndISRData';
     let bodyString = JSON.stringify(finalData); // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });

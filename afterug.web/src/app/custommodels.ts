@@ -3,11 +3,11 @@ import * as afterUGExtended from "./models";
 
 export namespace afterugExtended {
 
-    export class TestMarkAQuestion {
-        QuestionID: number;
-        QuestionsAfterUG: afterUGExtended.afterugExtended.QuestionsAfterUG;
-        TestMarkID: number;
-        UserID: number;
+    export class TestMarkAquestion {
+        QuestionId: number;
+        QuestionsAfterUg: afterUGExtended.afterugExtended.QuestionsAfterUg;
+        TestMarkId: number;
+        UserId: number;
         Users: afterUGExtended.afterugExtended.Users;
     }
 
@@ -15,20 +15,20 @@ export namespace afterugExtended {
         Token: string;
 
     }
-    export class QuestionIDArrayAndUserIDAndTestMode {
-        UserID: number;
+    export class QuestionIdArrayAndUserIdAndTestMode {
+        UserId: number;
         TestMode:string;
-        QuestionIDArray: number[];
+        QuestionIdArray: number[];
 
 
     }
 
     export class QuestionObjectISR{
         TimeTaken:number;
-         QuestionsAfterUG: afterUGExtended.afterugExtended.QuestionsAfterUG;
-         UserChoiceID:number;
+         QuestionsAfterUg: afterUGExtended.afterugExtended.QuestionsAfterUg;
+         UserChoiceId:number;
          UserChoiceText:string;
-         IncorrectChoicesChoiceIDArray:number[];
+         IncorrectChoicesChoiceIdArray:number[];
          IsMarked:boolean = false;
          IsDontShowQuestion:boolean = false;
          HardMediumOrEasy:number;
@@ -56,19 +56,19 @@ export namespace afterugExtended {
         UnMarkedQuestionsToBeSaved:number[]; //UnMarkedQuestions: number[];
         DontShowQuestionsToBeSaved: number[];//DontShowQuestions: number[];
         QuestionDifficultiesToBeSaved:afterUGExtended.afterugExtended.QuestionDifficulty[];//FinalUserDifficultyRatingArray
-        UserID:number;
+        UserId:number;
     }
 
     export class UserNotes {
-		ApprovedByAdminUserID: number;
+		ApprovedByAdminUserId: number;
 		ForgetNotes: afterUGExtended.afterugExtended.ForgetNotes[];
 		IsApprovedForPublicDisplay: boolean;
 		IsToBeDisplayed: boolean;
 		NoteText: string;
-		QuestionID: number;
-		QuestionsAfterUG: afterUGExtended.afterugExtended.QuestionsAfterUG;
-		UserID: number;
-		UserNotesID: number;
+		QuestionId: number;
+		QuestionsAfterUg: afterUGExtended.afterugExtended.QuestionsAfterUg;
+		UserId: number;
+		UserNotesId: number;
 		Users: afterUGExtended.afterugExtended.Users;
 		
 	}

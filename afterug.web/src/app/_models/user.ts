@@ -1,8 +1,10 @@
 ﻿export class User {
-    UserID: number;
+    UserId: number;
     UserNameOrEmailAddress: string;
     Password: string;
     FirstName: string;
     LastName: string;
-    Mobile:string;
+    Mobile: string;
+    EmailVerificationStatus:boolean;
+    
 }

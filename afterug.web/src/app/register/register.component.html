@@ -1,20 +1,20 @@
 ﻿<div class="col-md-6 col-md-offset-3">
     <h2>Register</h2>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !UserNameOrEmailAddress.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !FirstName.valid }">
             <label for="FirstName">First Name</label>
             <input type="text" class="form-control" name="FirstName" [(ngModel)]="model.FirstName" #FirstName="ngModel" required />
             <div *ngIf="f.submitted && !FirstName.valid" class="help-block">First Name is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !UserNameOrEmailAddress.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !LastName.valid }">
             <label for="LastName">Last Name</label>
             <input type="text" class="form-control" name="LastName" [(ngModel)]="model.LastName" #LastName="ngModel" required />
             <div *ngIf="f.submitted && !LastName.valid" class="help-block">Last Name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !UserNameOrEmailAddress.valid }">
-            <label for="UserNameOrEmailAddress">Username</label>
+            <label for="UserNameOrEmailAddress">UserNameOrEmailAddress</label>
             <input type="text" class="form-control" name="UserNameOrEmailAddress" [(ngModel)]="model.UserNameOrEmailAddress" #UserNameOrEmailAddress="ngModel" required />
-            <div *ngIf="f.submitted && !UserNameOrEmailAddress.valid" class="help-block">Username is required</div>
+            <div *ngIf="f.submitted && !UserNameOrEmailAddress.valid" class="help-block">UserNameOrEmailAddress is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !Password.valid }">
             <label for="Password">Password</label>

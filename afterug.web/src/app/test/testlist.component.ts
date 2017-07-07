@@ -43,7 +43,7 @@ export class TestListComponent implements OnInit {
     questionIDArrayCurrentButton: number[];
     ClickedButtonArray: number[];
     showTest: boolean = false;
-    questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode;
+    questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIdArrayAndUserIdAndTestMode;
     ngOnInit(): void {
         this.getUserIDAndTestModeAndQType();
         this.setTestMode();
@@ -81,12 +81,15 @@ export class TestListComponent implements OnInit {
         //console.log(btnValueArray);
         this.showTest = true;
         this.questionIDArrayCurrentButton = btnValueArray;
-        this.questionIDArrayAndUserIDAndTestMode = new afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode();
-        this.questionIDArrayAndUserIDAndTestMode.QuestionIDArray = btnValueArray;
-        this.questionIDArrayAndUserIDAndTestMode.UserID = this.userID;
+        this.questionIDArrayAndUserIDAndTestMode = new afterUGExtendedCustom.afterugExtended.QuestionIdArrayAndUserIdAndTestMode();
+        this.questionIDArrayAndUserIDAndTestMode.QuestionIdArray = btnValueArray;
+        this.questionIDArrayAndUserIDAndTestMode.UserId = this.userID;
         this.questionIDArrayAndUserIDAndTestMode.TestMode = this.testMode;
         //this.router.navigate(['/']);
     }
+
+     
+
     loadChapterButtons() {
         this.testQuestionService.getChapterWiseQuestionButtons(this.userID,this.QType)
             .subscribe(
@@ -97,14 +100,13 @@ export class TestListComponent implements OnInit {
                 //bind questions ids to button. or pass the array when button is clicked
 
 
-            },
-            err => {
-                console.log(err);
             });
 
 
     }
-
+ //private loadAllUsers() {
+   //     this.userService.getAll().subscribe(users => { this.users = users; });
+    //}
     getUserIDAndTestModeAndQType() {
         this.route.params.forEach((params: Params) => {
 

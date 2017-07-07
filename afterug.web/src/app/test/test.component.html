@@ -68,7 +68,7 @@
 			<form action="">
 				<div *ngFor="let choice of test.currentQuestion?.FinalFourShuffledChoices">
 					<div class="row">
-						<input type="radio" [(ngModel)]="userChoiceID" name="choices" [value]="choice.ChoiceID" [checked]="userChoiceID==choice.ChoiceID"
+						<input type="radio" [(ngModel)]="userChoiceID" name="choices" [value]="choice.ChoiceId" [checked]="userChoiceID==choice.ChoiceId"
 						 (change)="updateAndAddCurrentHit()" /> {{choice.ChoiceText}}
 						<!-- <input type="radio" [(ngModel)]="model.sex"  name="sex" value="male">Male<br>-->
 
@@ -177,14 +177,14 @@
 				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -196,14 +196,14 @@
 				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -253,18 +253,18 @@
 			<div class="row">
 				<div class="col-md-11">
 					<div class="row">
-						{{question.QuestionsAfterUG.Question}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<!--Average Time Taken: {{question.QuestionsAfterUG.AverageTimeTakenForQuestionForAllUsers[0].AverageTimeTaken}}-->Your Time Taken: {{question.TimeTaken}} Seconds
+						{{question.QuestionsAfterUg.Question}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<!--Average Time Taken: {{question.QuestionsAfterUg.AverageTimeTakenForQuestionForAllUsers[0].AverageTimeTaken}}-->Your Time Taken: {{question.TimeTaken}} Seconds
 						<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
-						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
-							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUg.Choices">
+						<div *ngIf="choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId" [ngClass]="{'my-classcorrect': choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId }">
+							{{choice.ChoiceText}} {{choice.ChoiceId}}<br/>
 						</div>
-						<div *ngFor="let incorrectChoiceID of question.IncorrectChoicesChoiceIDArray">
-							<div *ngIf="choice.ChoiceID == incorrectChoiceID" [ngClass]="{'my-classincorrect': choice.ChoiceID == incorrectChoiceID}">
+						<div *ngFor="let incorrectChoiceID of question.IncorrectChoicesChoiceIdArray">
+							<div *ngIf="choice.ChoiceId == incorrectChoiceID" [ngClass]="{'my-classincorrect': choice.ChoiceId == incorrectChoiceID}">
 
-								{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+								{{choice.ChoiceText}} {{choice.ChoiceId}}<br/>
 
 							</div>
 						</div>
@@ -285,14 +285,14 @@
 				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -304,14 +304,14 @@
 				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -319,11 +319,11 @@
 			<div class="row">
 				<div class="col-md-11"> 
 					<div class="row">
-						{{question.QuestionsAfterUG.Question}}<br/> {{question.TimeTaken}} Seconds<br/>
+						{{question.QuestionsAfterUg.Question}}<br/> {{question.TimeTaken}} Seconds<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
-						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
-							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUg.Choices">
+						<div *ngIf="choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId" [ngClass]="{'my-classcorrect': choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId }">
+							{{choice.ChoiceText}} {{choice.ChoiceId}}<br/>
 						</div>
 					</div>
 				</div>
@@ -342,14 +342,14 @@
 				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -361,14 +361,14 @@
 				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -376,11 +376,11 @@
 			<div class="row">
 				<div class="col-md-11">
 					<div class="row">
-						{{question.QuestionsAfterUG.Question}}<br/>
+						{{question.QuestionsAfterUg.Question}}<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
-						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
-							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUg.Choices">
+						<div *ngIf="choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId" [ngClass]="{'my-classcorrect': choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId }">
+							{{choice.ChoiceText}} {{choice.ChoiceId}}<br/>
 						</div>
 					</div>
 				</div>
@@ -399,14 +399,14 @@
 				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -418,14 +418,14 @@
 				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
 				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.QuestionID}}" (click)="ISRMarkOrUnmarkQuestion(question.QuestionID)" name="question.QuestionID" >-->
-							<input type="checkbox" id="{{question.QuestionsAfterUG.QuestionID}}" name="{{question.QuestionsAfterUG.QuestionID}}" value="{{question.QuestionsAfterUG.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
+							<input type="checkbox" id="{{question.QuestionsAfterUg.QuestionID}}" name="{{question.QuestionsAfterUg.QuestionID}}" value="{{question.QuestionsAfterUg.QuestionID}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
 							<span class="handle"></span>
   						</label>
 				</div>
@@ -433,11 +433,11 @@
 			<div class="row">
 				<div class="col-md-11">
 					<div class="row">
-						{{question.QuestionsAfterUG.Question}}<br/>
+						{{question.QuestionsAfterUg.Question}}<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.QuestionsAfterUG.Choices">
-						<div *ngIf="choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID" [ngClass]="{'my-classcorrect': choice.ChoiceID == question.QuestionsAfterUG.CorrectChoiceID }">
-							{{choice.ChoiceText}} {{choice.ChoiceID}}<br/>
+					<div class="row" *ngFor="let choice of question.QuestionsAfterUg.Choices">
+						<div *ngIf="choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId" [ngClass]="{'my-classcorrect': choice.ChoiceId == question.QuestionsAfterUg.CorrectChoiceId }">
+							{{choice.ChoiceText}} {{choice.ChoiceId}}<br/>
 						</div>
 					</div>
 				</div>

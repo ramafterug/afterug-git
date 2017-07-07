@@ -1,48 +1,36 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map'
 
-import { AuthenticationService } from './index';
+import { AppConfig } from '../app.config';
 import { User } from '../_models/index';
 
 @Injectable()
 export class UserService {
-    constructor(
-        private http: Http,
-        private authenticationService: AuthenticationService) {
-    }
-   getAll() {
-        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+    constructor(private http: Http, private config: AppConfig) { }
+
+    getAll() {
+        return this.http.get(this.config.apiUrl + '/users', this.jwt()).map((response: Response) => response.json());
     }
 
     getById(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.config.apiUrl + '/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     create(user: User) {
-        return this.http.post('http://localhost:1980/api/register', user, this.jwt()).map((response: Response) => response.json());
+        return this.http.post(this.config.apiUrl + '/users', user, this.jwt());
     }
 
     update(user: User) {
-        return this.http.put('/api/users/' + user.UserID, user, this.jwt()).map((response: Response) => response.json());
+        return this.http.put(this.config.apiUrl + '/users/' + user.UserId, user, this.jwt());
     }
 
     delete(id: number) {
-        return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
-    }
-    getUsers(): Observable<User[]> {
-        // add authorization header with jwt token
-        let headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
-        let options = new RequestOptions({ headers: headers });
-
-        // get users from api
-        return this.http.get('/api/users', options)
-            .map((response: Response) => response.json());
+        return this.http.delete(this.config.apiUrl + '/users/' + id, this.jwt());
     }
 
+    // private helper methods
 
-private jwt() {
+    private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
@@ -50,5 +38,4 @@ private jwt() {
             return new RequestOptions({ headers: headers });
         }
     }
-
 }

@@ -1,10 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-/// <reference path = "../models.ts" />
-import * as afterUGExtended from "../models";
-
 
 import { AlertService, AuthenticationService } from '../_services/index';
+
 @Component({
     moduleId: module.id,
     templateUrl: 'login.component.html'
@@ -13,8 +11,8 @@ import { AlertService, AuthenticationService } from '../_services/index';
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
-    error = '';
-  returnUrl: string;
+    returnUrl: string;
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -24,20 +22,21 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
-           this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-     login() {
+    login() {
         this.loading = true;
-        this.authenticationService.login(this.model.UserNameOrEmailAddress, this.model.password)
-            .subscribe(result => {
-                if (result === true) {
-                    this.router.navigate(['/']);
-                } else {
-                    this.error = 'Username or password is incorrect';
-                      this.alertService.error(this.error);
+        this.authenticationService.login(this.model.UserNameOrEmailAddress, this.model.Password)
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.alertService.error('Username or password is incorrect');
                     this.loading = false;
-                }
-            });
+                });
     }
 }

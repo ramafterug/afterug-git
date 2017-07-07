@@ -11,7 +11,7 @@ import { AlertService, UserService } from '../_services/index';
 export class RegisterComponent {
     model: any = {};
     loading = false;
-    ServerMessage: string;
+
     constructor(
         private router: Router,
         private userService: UserService,
@@ -21,23 +21,13 @@ export class RegisterComponent {
         this.loading = true;
         this.userService.create(this.model)
             .subscribe(
-            data => {
-                this.ServerMessage = data.toString()
-                if (this.ServerMessage == "Success") {
-                    this.loading = false;
+                data => {
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
-                    
-                } else if(this.ServerMessage == "User Already Exists"){
-                    this.alertService.error(this.ServerMessage);
-                    alert('User already exists');
+                },
+                error => {
+                    this.alertService.error(error._body);
                     this.loading = false;
-                }
-
-            },
-            error => {
-                this.alertService.error(error);
-                this.loading = false;
-            });
+                });
     }
 }

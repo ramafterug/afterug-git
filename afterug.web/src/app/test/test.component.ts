@@ -87,7 +87,7 @@ export class TestComponent implements OnInit {
   timer0Id: string;
   timer0button = 'Subscribe';
   //Timer Code
-  @Input() questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIDArrayAndUserIDAndTestMode;
+  @Input() questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIdArrayAndUserIdAndTestMode;
 
   newQuestion: number = 0;
   constructor(
@@ -153,7 +153,7 @@ export class TestComponent implements OnInit {
     this.singleQuestionHitCount++;
     var currentHit = new afterUGExtended.afterugExtended.Hits();
     //this.currentHit.AttemptID = this.currentAttempt.AttemptID;// Confusion on this attempt id will be generated only on insert
-    currentHit.UserChoiceIDForTheHit = this.userChoiceID;
+    currentHit.UserChoiceIdforTheHit = this.userChoiceID;
     currentHit.UserChoiceTextForTheHit = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.userChoiceID);
     ////console.log("UserAnswerForTheHit:-> " + currentHit.UserAnswerForTheHit);
     ////console.log("userChoiceID:-> " + this.userChoiceID);
@@ -194,12 +194,12 @@ export class TestComponent implements OnInit {
 
     // Create usernotes object
     var CurrentUserNotes = new afterUGExtendedCustom.afterugExtended.UserNotes();
-    CurrentUserNotes.ApprovedByAdminUserID = 2;
+    CurrentUserNotes.ApprovedByAdminUserId = 2;
     CurrentUserNotes.IsApprovedForPublicDisplay = true;
     CurrentUserNotes.IsToBeDisplayed = true;
     CurrentUserNotes.NoteText = this.usrNote;
-    CurrentUserNotes.QuestionID = this.test.currentQuestion.QuestionID;
-    CurrentUserNotes.UserID = this.userID;
+    CurrentUserNotes.QuestionId = this.test.currentQuestion.QuestionId;
+    CurrentUserNotes.UserId = this.userID;
 
     //Fill necessary parameteres like notetext, QID, UID is to be displayed and all
     //Add it to an array
@@ -225,7 +225,7 @@ export class TestComponent implements OnInit {
       var QuestionID_ISR;
       var ActualAnswer_ISR;
       var QuestionObject = new afterUGExtendedCustom.afterugExtended.QuestionObjectISR();
-      QuestionObject.IncorrectChoicesChoiceIDArray = [];
+      QuestionObject.IncorrectChoicesChoiceIdArray = [];
       var timeTakenForAttempt = 0;
 
 
@@ -248,10 +248,10 @@ export class TestComponent implements OnInit {
         timeTakenForAttempt = timeTakenForAttempt + ChildElement.TimeTaken;
         if (countForQuestionObjectLoad == 0) {
 
-          QuestionID_ISR = ChildElement.QuestionID;
+          QuestionID_ISR = ChildElement.QuestionId;
           ActualAnswer_ISR = ChildElement.CorrectAnswer;
 
-          QuestionObject.QuestionsAfterUG = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
+          QuestionObject.QuestionsAfterUg = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
           //Start Here update marked status, dont show question and difficulty Start
           this.MarkedQuestions.forEach(markedQID => {
             if (markedQID == QuestionID_ISR) {
@@ -265,7 +265,7 @@ export class TestComponent implements OnInit {
           });
 
           this.FinalUserDifficultyRatingArray.forEach(difficultyObject => {
-            if (difficultyObject.QuestionID == QuestionObject.QuestionsAfterUG.QuestionID) {
+            if (difficultyObject.QuestionId == QuestionObject.QuestionsAfterUg.QuestionId) {
               QuestionObject.HardMediumOrEasy = difficultyObject.DifficultyLevel;
             }
           });
@@ -287,10 +287,10 @@ export class TestComponent implements OnInit {
           if (this.TestMode == "SS") {
 
             userAnswer = ChildElement.Hits[0].UserChoiceTextForTheHit;
-            userAnswerChoiceID = ChildElement.Hits[0].UserChoiceIDForTheHit;
+            userAnswerChoiceID = ChildElement.Hits[0].UserChoiceIdforTheHit;
           } else {
             userAnswer = ChildElement.Hits[hitsLength - 1].UserChoiceTextForTheHit;
-            userAnswerChoiceID = ChildElement.Hits[hitsLength - 1].UserChoiceIDForTheHit;
+            userAnswerChoiceID = ChildElement.Hits[hitsLength - 1].UserChoiceIdforTheHit;
           }
         }
 
@@ -304,7 +304,7 @@ export class TestComponent implements OnInit {
         } else {
           //Increment IncorrectCount
           incorrectCount++;
-          QuestionObject.IncorrectChoicesChoiceIDArray.push(userAnswerChoiceID);
+          QuestionObject.IncorrectChoicesChoiceIdArray.push(userAnswerChoiceID);
 
         }
 
@@ -317,8 +317,8 @@ export class TestComponent implements OnInit {
 
 
 
-      var uniq = QuestionObject.IncorrectChoicesChoiceIDArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
-      QuestionObject.IncorrectChoicesChoiceIDArray = uniq;
+      var uniq = QuestionObject.IncorrectChoicesChoiceIdArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+      QuestionObject.IncorrectChoicesChoiceIdArray = uniq;
 
       if (incorrectCount >= correctCount) {
         this.incorrectQuestionsList.push(QuestionObject);
@@ -335,7 +335,7 @@ export class TestComponent implements OnInit {
       ////console.log("Before Sort: " +  this.mostTimeTakenQuestionsList);
 
       this.MarkedQuestions.forEach(markedQID => {
-        if (markedQID == QuestionObject.QuestionsAfterUG.QuestionID) {
+        if (markedQID == QuestionObject.QuestionsAfterUg.QuestionId) {
           this.markedQuestionsList.push(QuestionObject);
         }
       });
@@ -345,7 +345,7 @@ export class TestComponent implements OnInit {
     this.MarkedQuestions = uniqMarked;
     for (var i = 0; i < this.MarkedQuestions.length; i++) {
       var tempMarkedISR = new afterUGExtendedCustom.afterugExtended.QuestionObjectISR();
-      tempMarkedISR.QuestionsAfterUG = this.fetchQuestionObjectByQuestionID(this.MarkedQuestions[i]);
+      tempMarkedISR.QuestionsAfterUg = this.fetchQuestionObjectByQuestionID(this.MarkedQuestions[i]);
 
       tempMarkedISR.IsMarked = true;
       this.DontShowQuestions.forEach(dontShowQID => {
@@ -388,10 +388,10 @@ export class TestComponent implements OnInit {
           if (this.TestMode == "SS") {
 
             userAnswer = element.Hits[0].UserChoiceTextForTheHit;
-            userAnswerChoiceID = element.Hits[0].UserChoiceIDForTheHit;
+            userAnswerChoiceID = element.Hits[0].UserChoiceIdforTheHit;
           } else {
             userAnswer = element.Hits[hitsLength - 1].UserChoiceTextForTheHit;
-            userAnswerChoiceID = element.Hits[hitsLength - 1].UserChoiceIDForTheHit;
+            userAnswerChoiceID = element.Hits[hitsLength - 1].UserChoiceIdforTheHit;
           }
         }
 
@@ -451,10 +451,10 @@ export class TestComponent implements OnInit {
   //objs.sort(compare);
 
 
-  fetchQuestionObjectByQuestionID(questionID: number): afterUGExtended.afterugExtended.QuestionsAfterUG {
-    var objQuestion = new afterUGExtended.afterugExtended.QuestionsAfterUG();
+  fetchQuestionObjectByQuestionID(questionID: number): afterUGExtended.afterugExtended.QuestionsAfterUg {
+    var objQuestion = new afterUGExtended.afterugExtended.QuestionsAfterUg();
     this.test.QuestionList.forEach(question => {
-      if (question.QuestionID == questionID) {
+      if (question.QuestionId == questionID) {
         objQuestion = question;
 
 
@@ -467,7 +467,7 @@ export class TestComponent implements OnInit {
   fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(choiceID: number): string {
     var choiceText = "";
     this.test.currentQuestion.Choices.forEach(choice => {
-      if (choice.ChoiceID == choiceID) {
+      if (choice.ChoiceId == choiceID) {
         choiceText = choice.ChoiceText;
 
 
@@ -497,18 +497,18 @@ export class TestComponent implements OnInit {
       currentQuestionLastAttemptNumber = currentQuestionLastAttempt.AttemptNumber;
     }
     currentAttempt.AttemptNumber = currentQuestionLastAttemptNumber + 1;
-    currentAttempt.QuestionID = this.test.currentQuestion.QuestionID;
-    ////console.log("QID:->" +  currentAttempt.QuestionID);
+    currentAttempt.QuestionId = this.test.currentQuestion.QuestionId;
+    ////console.log("QID:->" +  currentAttempt.QuestionId);
     currentAttempt.TestOrStudySession = this.TestMode;//Make it dynamic later based on it is a test or TestOrStudySession
     currentAttempt.TimeTaken = this.counter0;// Start the time when question loads and stop before this statement and then compute difference and Assign
     currentAttempt.UserFinalHitAnswer = this.userChoiceID;//Current choiceID. GEt the value from radio click
-    var correctAnswerFromDB = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.test.currentQuestion.CorrectChoiceID);
+    var correctAnswerFromDB = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.test.currentQuestion.CorrectChoiceId);
     currentAttempt.CorrectAnswer = correctAnswerFromDB;
-    currentAttempt.UserID = this.userID;//Make it dynamic later
-    var CorrectChoiceID = this.test.currentQuestion.CorrectChoiceID;
+    currentAttempt.UserId = this.userID;//Make it dynamic later
+    var CorrectChoiceId = this.test.currentQuestion.CorrectChoiceId;
 
     this.test.currentQuestion.Choices.forEach(choice => {
-      if (choice.ChoiceID == CorrectChoiceID) {
+      if (choice.ChoiceId == CorrectChoiceId) {
         currentAttempt.CorrectAnswer = choice.ChoiceText;
       }
     });
@@ -588,7 +588,7 @@ export class TestComponent implements OnInit {
   }
 
   SSCorrectOrIncorrect(): void {
-    if (this.userChoiceID == this.test.currentQuestion.CorrectChoiceID) {
+    if (this.userChoiceID == this.test.currentQuestion.CorrectChoiceId) {
       // Correct Answer
       // Remove 1 from Question Order
       this.CorrectSoRemove();
@@ -645,14 +645,14 @@ export class TestComponent implements OnInit {
   MarkOrUnmarkQuestion() {
     this.IsMarked = !this.IsMarked;
     if (this.IsMarked == true) {
-      this.MarkedQuestions.push(this.test.currentQuestion.QuestionID);
+      this.MarkedQuestions.push(this.test.currentQuestion.QuestionId);
       alert("Word is marked");
       //console.log(this.MarkedQuestions);
     } else {
       for (var i = 0; i < this.MarkedQuestions.length; i++) {
-        if (this.MarkedQuestions[i] == this.test.currentQuestion.QuestionID) {
+        if (this.MarkedQuestions[i] == this.test.currentQuestion.QuestionId) {
           this.MarkedQuestions.splice(i, 1);
-          this.UnMarkedQuestionIDArray.push(this.test.currentQuestion.QuestionID);
+          this.UnMarkedQuestionIDArray.push(this.test.currentQuestion.QuestionId);
           //console.log(this.MarkedQuestions);
           alert("Word is Unmarked");
           //console.log("UnMarked");
@@ -691,15 +691,15 @@ export class TestComponent implements OnInit {
   DontShowQuestionChecked() {
     this.IsDontShowQuestion = !this.IsDontShowQuestion;
     if (this.IsDontShowQuestion == true) {
-      this.DontShowQuestions.push(this.test.currentQuestion.QuestionID);
+      this.DontShowQuestions.push(this.test.currentQuestion.QuestionId);
       //Dummy comment for git testing develop branch another commit
       alert("This question will not be shown in future");
       //console.log(this.DontShowQuestions);
     } else {
       for (var i = 0; i < this.DontShowQuestions.length; i++) {
-        if (this.DontShowQuestions[i] == this.test.currentQuestion.QuestionID) {
+        if (this.DontShowQuestions[i] == this.test.currentQuestion.QuestionId) {
           this.DontShowQuestions.splice(i, 1);
-          //this.UnMarkedQuestionIDArray.push(this.test.currentQuestion.QuestionID);
+          //this.UnMarkedQuestionIDArray.push(this.test.currentQuestion.QuestionId);
           //console.log(this.DontShowQuestions);
           alert("Dont show disabled. SO this question will be shown in future");
         }
@@ -747,7 +747,7 @@ export class TestComponent implements OnInit {
     ////console.log("From RateDifficulty Function: " + this.questionDifficulty);
 
     this.FinalUserDifficultyRatingArray.forEach(difficultyFromISR => {
-      if (difficultyFromISR.QuestionID == question.QuestionsAfterUG.QuestionID) {
+      if (difficultyFromISR.QuestionId == question.QuestionsAfterUg.QuestionId) {
         difficultyFromISR.DifficultyLevel = value;
       }
     });
@@ -764,8 +764,8 @@ export class TestComponent implements OnInit {
     } else {
       //create new question difficulty object and add it to the current question
       var newQuestionDifficulty = new afterUGExtended.afterugExtended.QuestionDifficulty();
-      newQuestionDifficulty.QuestionID = this.test.currentQuestion.QuestionID;
-      newQuestionDifficulty.UserWhoRatedDifficultyID = this.userID;
+      newQuestionDifficulty.QuestionId = this.test.currentQuestion.QuestionId;
+      newQuestionDifficulty.UserWhoRatedDifficultyId = this.userID;
       newQuestionDifficulty.DifficultyLevel = this.questionDifficulty;
       this.test.currentQuestion.QuestionDifficulty.push(newQuestionDifficulty);
       ////console.log(this.test.currentQuestion.QuestionDifficulty[0]);
@@ -881,7 +881,7 @@ export class TestComponent implements OnInit {
     this.FinalDataToBeSaved.MarkedQuestionsToBeSaved = this.MarkedQuestions;
     this.FinalDataToBeSaved.UnMarkedQuestionsToBeSaved = this.UnMarkedQuestionIDArray;
     this.FinalDataToBeSaved.QuestionDifficultiesToBeSaved = this.FinalUserDifficultyRatingArray;
-    this.FinalDataToBeSaved.UserID = this.userID;
+    this.FinalDataToBeSaved.UserId = this.userID;
   }
 
   saveDataAfterTest() {
@@ -913,14 +913,14 @@ export class TestComponent implements OnInit {
   loadQuestionIDArrayAndUserID(): void {
     // this.questionIDArrayAndUserIDObject = new afterUGExtended.afterugExtended.QuestionIDArrayAndUserID();
     // this.questionIDArrayAndUserIDObject.QuestionIDArray = 
-    //this.questionIDArrayAndUserIDObject.UserID = 
+    //this.questionIDArrayAndUserIDObject.UserId = 
   }
 
   initialMarkedWordsPush() {
     for (var i = 0; i < this.test.QuestionList.length; i++) {
-      if (this.test.QuestionList[i].TestMarkAQuestion.length != 0) {
+      if (this.test.QuestionList[i].TestMarkAquestion.length != 0) {
 
-        this.MarkedQuestions.push(this.test.QuestionList[i].QuestionID);
+        this.MarkedQuestions.push(this.test.QuestionList[i].QuestionId);
       }
       ////console.log("Marked Questions from initial push");
       ////console.log(this.MarkedQuestions);
@@ -940,7 +940,7 @@ export class TestComponent implements OnInit {
     ////console.log(this.MarkedQuestions);
   }
   markOrUnMarkTheCurrentQuestion() {
-    if (this.test.currentQuestion.TestMarkAQuestion.length == 0) {
+    if (this.test.currentQuestion.TestMarkAquestion.length == 0) {
       this.IsMarked = false;
     } else {
       this.IsMarked = true;
@@ -953,16 +953,21 @@ export class TestComponent implements OnInit {
       .subscribe(
       questions => {
         this.TestMode = this.questionIDArrayAndUserIDAndTestMode.TestMode;
-        this.userID = this.questionIDArrayAndUserIDAndTestMode.UserID;
+        this.userID = this.questionIDArrayAndUserIDAndTestMode.UserId;
         this.test.questionCount = 1;
+        
         this.test.QuestionList = questions;
+        console.log("questions json: ");
+        console.log(questions);
+        console.log("questions object: ");
+        console.log(this.test.QuestionList);
         this.randomizeQuestions();
         //////console.log("FirstQuestionLoad: " + this.test.QuestionOrder);
         ////console.log("Question to pick first in the array question order: " + this.getCurrentQuestionNumber());
         for (var i = 0; i < this.test.QuestionList.length; i++) {
-          ////console.log("QuestionList: " + this.test.QuestionList[i].QuestionID);
+          ////console.log("QuestionList: " + this.test.QuestionList[i].QuestionId);
         }
-        ////console.log("corresponding Element in question LIst: " + this.test.QuestionList[this.getCurrentQuestionNumber() - 1].QuestionID);
+        ////console.log("corresponding Element in question LIst: " + this.test.QuestionList[this.getCurrentQuestionNumber() - 1].QuestionId);
         this.test.currentQuestion = this.test.QuestionList[this.getCurrentQuestionNumber() - 1];
         this.randomizeChoices();
         this.NewAttempts = [];
@@ -1068,14 +1073,14 @@ export class TestComponent implements OnInit {
     console.log("Random Choice Order After Shuffle");
     console.log(this.test.currentQuestion.RandomChoiceOrder);
     //Remove the correctchoiceid from random choice order array
-    //var indexDummy = this.test.currentQuestion.RandomChoiceOrder.indexOf(this.test.currentQuestion.CorrectChoiceID, 0);
+    //var indexDummy = this.test.currentQuestion.RandomChoiceOrder.indexOf(this.test.currentQuestion.CorrectChoiceId, 0);
 
     var index: number;
     var correctChoice: afterUGExtended.afterugExtended.Choices;
     for (var i = 1; i <= this.test.currentQuestion.Choices.length; i++) {
       var tempChoice: afterUGExtended.afterugExtended.Choices;
       tempChoice = this.test.currentQuestion.RandomChoiceOrder[i - 1];
-      if (this.test.currentQuestion.CorrectChoiceID == tempChoice.ChoiceID) {
+      if (this.test.currentQuestion.CorrectChoiceId == tempChoice.ChoiceId) {
         index = i - 1;
         correctChoice = tempChoice;
         console.log("CorrectChoice: ");

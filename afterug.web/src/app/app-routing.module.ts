@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
-  { path: 'Test/User/:userID/Mode/:mode/QType/:qType', component: TestListComponent, canActivate: [AuthGuard] }
+  { path: 'Test/User/:userID/Mode/:mode/QType/:qType', component: TestListComponent }
 // this.userID = +params['userID'];
   //          this.testModeNum = +params['mode'];
     //        this.QType = +params['qType'];

@@ -13,12 +13,11 @@ import { HomeComponent } from './home/index';
 import { AuthGuard } from './_guards/index';
 import { AuthenticationService, UserService,AlertService } from './_services/index';
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
+
 import { RegisterComponent } from './register/index';
 
 import { SimpleTimer } from 'ng2-simple-timer';
+import {AppConfig} from './app.config';
 
 @NgModule({
   declarations: [
@@ -41,7 +40,8 @@ import { SimpleTimer } from 'ng2-simple-timer';
     AuthenticationService,
     UserService,
     TestQuestionService,
-    SimpleTimer
+    SimpleTimer,
+    AppConfig
     // providers used to create fake backend
     // fakeBackendProvider,
     //MockBackend,

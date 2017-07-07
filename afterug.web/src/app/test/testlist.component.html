@@ -12,7 +12,7 @@
                 <h2>Chapter</h2><br/><br/>
                 <div *ngFor="let buttons of chapter">
                     
-                    <button name="TestButtons" (click)="TestButtonClicked(buttons.Value)" ngDefaultControl>{{buttons.Key}}</button> -- {{buttons.Value}}<br/><br/>
+                    <button name="TestButtons" (click)="TestButtonClicked(buttons.value)" ngDefaultControl>{{buttons.key}}</button> -- {{buttons.value}}<br/><br/>
                 </div>
                 <hr/>
             </div>
