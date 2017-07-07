@@ -1,190 +1,190 @@
 export namespace afterugExtended {
 	export class AfterUgnotePoints {
-		AfterUgnotePointId: number;
-		AfterUgnotePointsTags: afterugExtended.AfterUgnotePointsTags[];
-		AfterUgnotePointText: string;
+		afterUgnotePointId: number;
+		afterUgnotePointsTags: afterugExtended.AfterUgnotePointsTags[];
+		afterUgnotePointText: string;
 	}
 
 	export class AfterUgnotePointsTags {
-		AfterUgnotePoint: afterugExtended.AfterUgnotePoints;
-		AfterUgnotePointId: number;
-		AfterUgnotePointsTagsId: number;
-		Tag: afterugExtended.Tags;
-		TagId: number;
+		afterUgnotePoint: afterugExtended.AfterUgnotePoints;
+		afterUgnotePointId: number;
+		afterUgnotePointsTagsId: number;
+		tag: afterugExtended.Tags;
+		tagId: number;
 	}
 
 	export class Attempts {
-		AnswerStatus: number;
-		AttemptId: number;
-		AttemptNumber: number;
-		CorrectAnswer: string;
-		Hits: afterugExtended.Hits[];
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
-		TestOrStudySession: string;
-		TimeTaken: number;
-		User: afterugExtended.Users;
-		UserFinalHitAnswer: number;
-		UserId: number;
+		answerStatus: number;
+		attemptId: number;
+		attemptNumber: number;
+		correctAnswer: string;
+		hits: afterugExtended.Hits[];
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
+		testOrStudySession: string;
+		timeTaken: number;
+		user: afterugExtended.Users;
+		userFinalHitAnswer: number;
+		userId: number;
 	}
 	export class Augnotes {
-		AugnotePointText: string;
-		AugnotesAddedByEmployeeUser: afterugExtended.Users;
-		AugnotesAddedByEmployeeUserId: number;
-		AugnotesApprovedByEmployeeUser: afterugExtended.Users;
-		AugnotesApprovedByEmployeeUserId: number;
-		AugnotesId: number;
-		IsToBeDisplayed: boolean;
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
+		augnotePointText: string;
+		augnotesAddedByEmployeeUser: afterugExtended.Users;
+		augnotesAddedByEmployeeUserId: number;
+		augnotesApprovedByEmployeeUser: afterugExtended.Users;
+		augnotesApprovedByEmployeeUserId: number;
+		augnotesId: number;
+		isToBeDisplayed: boolean;
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
 	}
 	export class Chapter {
-		ChapterDescription: string;
-		ChapterId: number;
-		ChapterName: string;
-		QuestionsAfterUg: afterugExtended.QuestionsAfterUg[];
+		chapterDescription: string;
+		chapterId: number;
+		chapterName: string;
+		cuestionsAfterUg: afterugExtended.QuestionsAfterUg[];
 	}
 	export class Choices {
-		ChoiceId: number;
-		ChoiceText: string;
-		IsChoiceReviewed: boolean;
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
+		choiceId: number;
+		choiceText: string;
+		isChoiceReviewed: boolean;
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
 	}
 	export class DontShowQuestion {
-		DontShowQuestionId: number;
-		QuestionId: number;
-		UserId: number;
+		dontShowQuestionId: number;
+		questionId: number;
+		userId: number;
 	}
 	export class ForgetNotes {
-		ForgetNotesId: number;
-		ForgetStatus: boolean;
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
-		UserNotes: afterugExtended.UserNotes;
-		UserNotesId: number;
-		UserWhoWantsToForgetNotes: afterugExtended.Users;
-		UserWhoWantsToForgetNotesId: number;
+		forgetNotesId: number;
+		forgetStatus: boolean;
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
+		userNotes: afterugExtended.UserNotes;
+		userNotesId: number;
+		userWhoWantsToForgetNotes: afterugExtended.Users;
+		userWhoWantsToForgetNotesId: number;
 	}
 	export class GlobalSettings {
-		GlobalSettingsId: number;
-		NoOfChoicesPerQuestion: number;
-		NoOfQuestionsPerTest: number;
-		NoOfRepetitionsCorrect: number;
-		NoOfRepetitionsIncorrect: number;
+		globalSettingsId: number;
+		noOfChoicesPerQuestion: number;
+		noOfQuestionsPerTest: number;
+		noOfRepetitionsCorrect: number;
+		noOfRepetitionsIncorrect: number;
 	}
 	export class Hits {
-		Attempt: afterugExtended.Attempts;
-		AttemptId: number;
-		HitId: number;
-		UserChoiceIdforTheHit: number;
-		UserChoiceTextForTheHit: string;
-		WhichNoOfHit: number;
+		attempt: afterugExtended.Attempts;
+		attemptId: number;
+		hitId: number;
+		userChoiceIdforTheHit: number;
+		userChoiceTextForTheHit: string;
+		whichNoOfHit: number;
 	}
 	export class QuestionDifficulty {
-		DifficultyLevel: number;
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
-		UserWhoRatedDifficulty: afterugExtended.Users;
-		UserWhoRatedDifficultyId: number;
+		difficultyLevel: number;
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
+		userWhoRatedDifficulty: afterugExtended.Users;
+		userWhoRatedDifficultyId: number;
 	}
 	export class QuestionsAfterUg {
-		Attempts: afterugExtended.Attempts[];
-		Augnotes: afterugExtended.Augnotes[];
-		Chapter: afterugExtended.Chapter;
-		ChapterId: number;
-		Choices: afterugExtended.Choices[];
-		CorrectChoiceId: number;
-		ForgetNotes: afterugExtended.ForgetNotes[];
-		IsCorrectChoiceVerified: boolean;
-		IsQuestionReviewed: boolean;
-		IsQuestionSpinned: boolean;
-		Question: string;
-		QuestionDifficulty: afterugExtended.QuestionDifficulty[];
-		QuestionId: number;
-		QuestionTags: afterugExtended.QuestionTags[];
-		QuestionType: number;
-		TestMarkAquestion: afterugExtended.TestMarkAquestion[];
-		UserNotes: afterugExtended.UserNotes[];
+		attempts: afterugExtended.Attempts[];
+		augnotes: afterugExtended.Augnotes[];
+		chapter: afterugExtended.Chapter;
+		chapterId: number;
+		choices: afterugExtended.Choices[];
+		correctChoiceId: number;
+		forgetNotes: afterugExtended.ForgetNotes[];
+		isCorrectChoiceVerified: boolean;
+		isQuestionReviewed: boolean;
+		isQuestionSpinned: boolean;
+		question: string;
+		questionDifficulty: afterugExtended.QuestionDifficulty[];
+		questionId: number;
+		questionTags: afterugExtended.QuestionTags[];
+		questionType: number;
+		testMarkAquestion: afterugExtended.TestMarkAquestion[];
+		userNotes: afterugExtended.UserNotes[];
 	}
 	
 	export class QuestionTags {
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
-		QuestionTagsId: number;
-		Tag: afterugExtended.Tags;
-		TagId: number;
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
+		questionTagsId: number;
+		tag: afterugExtended.Tags;
+		tagId: number;
 	}
 	export class Tags {
-		AfterUgnotePointsTags: afterugExtended.AfterUgnotePointsTags[];
-		Description: string;
-		QuestionTags: afterugExtended.QuestionTags[];
-		TagId: number;
-		TagName: string;
+		afterUgnotePointsTags: afterugExtended.AfterUgnotePointsTags[];
+		description: string;
+		questionTags: afterugExtended.QuestionTags[];
+		tagId: number;
+		tagName: string;
 	}
 	export class TestChild {
-		IsQuestionAttended: boolean;
-		QuestionId: number;
-		TestId: number;
-		UserId: number;
+		isQuestionAttended: boolean;
+		questionId: number;
+		testId: number;
+		userId: number;
 	}
 	export class TestMarkAquestion {
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
-		TestMarkId: number;
-		User: afterugExtended.Users;
-		UserId: number;
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
+		testMarkId: number;
+		user: afterugExtended.Users;
+		userId: number;
 	}
 
 	export class TestMaster {
-		IsReview: boolean;
-		IsTestComplete: boolean;
-		IsTestOrStudySession: boolean;
-		TestId: number;
-		User: afterugExtended.Users;
-		UserId: number;
+		isReview: boolean;
+		isTestComplete: boolean;
+		isTestOrStudySession: boolean;
+		testId: number;
+		user: afterugExtended.Users;
+		userId: number;
 	}
 	export class UserNotes {
-		ApprovedByAdminUser: afterugExtended.Users;
-		ApprovedByAdminUserId: number;
-		ForgetNotes: afterugExtended.ForgetNotes[];
-		IsApprovedForPublicDisplay: boolean;
-		IsToBeDisplayed: boolean;
-		NoteText: string;
-		Question: afterugExtended.QuestionsAfterUg;
-		QuestionId: number;
-		User: afterugExtended.Users;
-		UserId: number;
-		UserNotesId: number;
+		approvedByAdminUser: afterugExtended.Users;
+		approvedByAdminUserId: number;
+		forgetNotes: afterugExtended.ForgetNotes[];
+		isApprovedForPublicDisplay: boolean;
+		isToBeDisplayed: boolean;
+		noteText: string;
+		question: afterugExtended.QuestionsAfterUg;
+		questionId: number;
+		user: afterugExtended.Users;
+		userId: number;
+		userNotesId: number;
 	}
 	export class Users {
-		Attempts: afterugExtended.Attempts[];
-		AugnotesAugnotesAddedByEmployeeUser: afterugExtended.Augnotes[];
-		AugnotesAugnotesApprovedByEmployeeUser: afterugExtended.Augnotes[];
-		EmailVerificationStatus: boolean;
-		FirstName: string;
-		ForgetNotes: afterugExtended.ForgetNotes[];
-		LastName: string;
-		Mobile: string;
-		PasswordHash: number[];
-		PasswordSalt: number[];
-		QuestionDifficulty: afterugExtended.QuestionDifficulty[];
-		TestMarkAquestion: afterugExtended.TestMarkAquestion[];
-		TestMaster: afterugExtended.TestMaster[];
-		UserId: number;
-		UserNameOrEmailAddress: string;
-		UserNotesApprovedByAdminUser: afterugExtended.UserNotes[];
-		UserNotesUser: afterugExtended.UserNotes[];
-		UserSettings: afterugExtended.UserSettings[];
+		attempts: afterugExtended.Attempts[];
+		augnotesAugnotesAddedByEmployeeUser: afterugExtended.Augnotes[];
+		augnotesAugnotesApprovedByEmployeeUser: afterugExtended.Augnotes[];
+		emailVerificationStatus: boolean;
+		firstName: string;
+		forgetNotes: afterugExtended.ForgetNotes[];
+		lastName: string;
+		mobile: string;
+		passwordHash: number[];
+		passwordSalt: number[];
+		questionDifficulty: afterugExtended.QuestionDifficulty[];
+		testMarkAquestion: afterugExtended.TestMarkAquestion[];
+		testMaster: afterugExtended.TestMaster[];
+		userId: number;
+		userNameOrEmailAddress: string;
+		userNotesApprovedByAdminUser: afterugExtended.UserNotes[];
+		userNotesUser: afterugExtended.UserNotes[];
+		userSettings: afterugExtended.UserSettings[];
 	}
 	export class UserSettings {
-		NoOfChoicesPerQuestion: number;
-		NoOfQuestionsPerTest: number;
-		NoOfRepetitionsCorrect: number;
-		NoOfRepetitionsIncorrect: number;
-		User: afterugExtended.Users;
-		UserId: number;
-		UserSettingsId: number;
+		noOfChoicesPerQuestion: number;
+		noOfQuestionsPerTest: number;
+		noOfRepetitionsCorrect: number;
+		noOfRepetitionsIncorrect: number;
+		user: afterugExtended.Users;
+		userId: number;
+		userSettingsId: number;
 	}
 }
 
