@@ -225,7 +225,7 @@ export class TestComponent implements OnInit {
       var QuestionID_ISR;
       var ActualAnswer_ISR;
       var QuestionObject = new afterUGExtendedCustom.afterugExtended.QuestionObjectISR();
-      QuestionObject.IncorrectChoicesChoiceIdArray = [];
+      QuestionObject.incorrectChoicesChoiceIdArray = [];
       var timeTakenForAttempt = 0;
 
 
@@ -251,22 +251,22 @@ export class TestComponent implements OnInit {
           QuestionID_ISR = ChildElement.questionId;
           ActualAnswer_ISR = ChildElement.correctAnswer;
 
-          QuestionObject.QuestionsAfterUg = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
+          QuestionObject.questionsAfterUg = this.fetchQuestionObjectByQuestionID(QuestionID_ISR);
           //Start Here update marked status, dont show question and difficulty Start
           this.MarkedQuestions.forEach(markedQID => {
             if (markedQID == QuestionID_ISR) {
-              QuestionObject.IsMarked = true;
+              QuestionObject.isMarked = true;
             }
           });
           this.DontShowQuestions.forEach(dontShowQID => {
             if (dontShowQID == QuestionID_ISR) {
-              QuestionObject.IsDontShowQuestion = true;
+              QuestionObject.isDontShowQuestion = true;
             }
           });
 
           this.FinalUserDifficultyRatingArray.forEach(difficultyObject => {
-            if (difficultyObject.questionId == QuestionObject.QuestionsAfterUg.questionId) {
-              QuestionObject.HardMediumOrEasy = difficultyObject.difficultyLevel;
+            if (difficultyObject.questionId == QuestionObject.questionsAfterUg.questionId) {
+              QuestionObject.hardMediumOrEasy = difficultyObject.difficultyLevel;
             }
           });
 
@@ -304,7 +304,7 @@ export class TestComponent implements OnInit {
         } else {
           //Increment IncorrectCount
           incorrectCount++;
-          QuestionObject.IncorrectChoicesChoiceIdArray.push(userAnswerChoiceID);
+          QuestionObject.incorrectChoicesChoiceIdArray.push(userAnswerChoiceID);
 
         }
 
@@ -317,8 +317,8 @@ export class TestComponent implements OnInit {
 
 
 
-      var uniq = QuestionObject.IncorrectChoicesChoiceIdArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
-      QuestionObject.IncorrectChoicesChoiceIdArray = uniq;
+      var uniq = QuestionObject.incorrectChoicesChoiceIdArray.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
+      QuestionObject.incorrectChoicesChoiceIdArray = uniq;
 
       if (incorrectCount >= correctCount) {
         this.incorrectQuestionsList.push(QuestionObject);
@@ -329,13 +329,13 @@ export class TestComponent implements OnInit {
 
 
       averageTimeTakenForAttempt = timeTakenForAttempt / MasterElement.length;
-      QuestionObject.TimeTaken = averageTimeTakenForAttempt;
+      QuestionObject.timeTaken = averageTimeTakenForAttempt;
 
       this.mostTimeTakenQuestionsList.push(QuestionObject);
       ////console.log("Before Sort: " +  this.mostTimeTakenQuestionsList);
 
       this.MarkedQuestions.forEach(markedQID => {
-        if (markedQID == QuestionObject.QuestionsAfterUg.questionId) {
+        if (markedQID == QuestionObject.questionsAfterUg.questionId) {
           this.markedQuestionsList.push(QuestionObject);
         }
       });
@@ -347,10 +347,10 @@ export class TestComponent implements OnInit {
       var tempMarkedISR = new afterUGExtendedCustom.afterugExtended.QuestionObjectISR();
       tempMarkedISR.QuestionsAfterUg = this.fetchQuestionObjectByQuestionID(this.MarkedQuestions[i]);
 
-      tempMarkedISR.IsMarked = true;
+      tempMarkedISR.isMarked = true;
       this.DontShowQuestions.forEach(dontShowQID => {
         if (dontShowQID == this.MarkedQuestions[i]) {
-          tempMarkedISR.IsDontShowQuestion = true;
+          tempMarkedISR.isDontShowQuestion = true;
         }
       });
       this.markedQuestionsList.push(tempMarkedISR);
@@ -502,10 +502,10 @@ export class TestComponent implements OnInit {
     currentAttempt.testOrStudySession = this.TestMode;//Make it dynamic later based on it is a test or TestOrStudySession
     currentAttempt.timeTaken = this.counter0;// Start the time when question loads and stop before this statement and then compute difference and Assign
     currentAttempt.userFinalHitAnswer = this.userChoiceID;//Current choiceID. GEt the value from radio click
-    var correctAnswerFromDB = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.test.currentQuestion.CorrectChoiceId);
+    var correctAnswerFromDB = this.fetchChoiceTextObjectByChoiceIDFromCurrentQuestion(this.test.currentQuestion.correctChoiceId);
     currentAttempt.correctAnswer = correctAnswerFromDB;
     currentAttempt.userId = this.userID;//Make it dynamic later
-    var CorrectChoiceId = this.test.currentQuestion.CorrectChoiceId;
+    var CorrectChoiceId = this.test.currentQuestion.correctChoiceId;
 
     this.test.currentQuestion.choices.forEach(choice => {
       if (choice.choiceId == CorrectChoiceId) {
@@ -588,7 +588,7 @@ export class TestComponent implements OnInit {
   }
 
   SSCorrectOrIncorrect(): void {
-    if (this.userChoiceID == this.test.currentQuestion.CorrectChoiceId) {
+    if (this.userChoiceID == this.test.currentQuestion.correctChoiceId) {
       // Correct Answer
       // Remove 1 from Question Order
       this.CorrectSoRemove();
@@ -622,7 +622,7 @@ export class TestComponent implements OnInit {
       //console.log("marked");
       this.MarkedQuestions.push(qID);
       //console.log(this.MarkedQuestions);
-      question.IsMarked = true;
+      question.isMarked = true;
     } else {
       var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
       this.MarkedQuestions = uniqMarked;
@@ -633,7 +633,7 @@ export class TestComponent implements OnInit {
           this.UnMarkedQuestionIDArray.push(value);
           //console.log("UnMarked");
           //console.log(this.UnMarkedQuestionIDArray);
-          question.IsMarked = false;
+          question.isMarked = false;
           //To do . FInally reduce markedQuestions and UnMarkedQuestionIDArray
         }
       }
@@ -669,7 +669,7 @@ export class TestComponent implements OnInit {
       this.DontShowQuestions.push(qID);
 
       //console.log(this.DontShowQuestions);
-      question.IsDontShowQuestion = true;
+      question.isDontShowQuestion = true;
     } else {
       var uniqDontShow = this.DontShowQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
       this.DontShowQuestions = uniqDontShow;
@@ -680,7 +680,7 @@ export class TestComponent implements OnInit {
 
           //console.log("Will show question");
           //console.log(this.DontShowQuestions);
-          question.IsDontShowQuestion = false;
+          question.isDontShowQuestion = false;
           //To do . FInally reduce markedQuestions and UnMarkedQuestionIDArray
         }
       }
@@ -747,7 +747,7 @@ export class TestComponent implements OnInit {
     ////console.log("From RateDifficulty Function: " + this.questionDifficulty);
 
     this.FinalUserDifficultyRatingArray.forEach(difficultyFromISR => {
-      if (difficultyFromISR.questionId == question.QuestionsAfterUg.questionId) {
+      if (difficultyFromISR.questionId == question.questionsAfterUg.questionId) {
         difficultyFromISR.difficultyLevel = value;
       }
     });
@@ -778,14 +778,14 @@ export class TestComponent implements OnInit {
     //percentageCorrectIncorrectTotalCount
     var TotalCount: number = 0;
 
-    this.test.currentQuestion.PercentageCorrectIncorrect.forEach(element => {
+    this.test.currentQuestion.percentageCorrectIncorrect.forEach(element => {
       TotalCount = TotalCount + element.Count;
 
     });
 
 
     this.percentageCorrectIncorrectTotalCount = TotalCount;
-    this.test.currentQuestion.PercentageCorrectIncorrect.forEach(element => {
+    this.test.currentQuestion.percentageCorrectIncorrect.forEach(element => {
 
       if (element.AnswerStatus == 0) {
         this.percentageCorrectIncorrectForCurrentQuestion.IncorrectCount = element.Count;
@@ -804,15 +804,15 @@ export class TestComponent implements OnInit {
 
     var TotalCount: number = 0;
 
-    this.test.currentQuestion.DifficultyLevelsForAQuestionRatedByAllUsers.forEach(element => {
+    this.test.currentQuestion.difficultyLevelsForAQuestionRatedByAllUsers.forEach(element => {
       TotalCount = TotalCount + element.Count;
 
     });
     this.difficultyTotalCount = TotalCount;
 
-    for (var i = 0; i < this.test.currentQuestion.DifficultyLevelsForAQuestionRatedByAllUsers.length; i++) {
+    for (var i = 0; i < this.test.currentQuestion.difficultyLevelsForAQuestionRatedByAllUsers.length; i++) {
 
-      var tempDifficultyLevel = this.test.currentQuestion.DifficultyLevelsForAQuestionRatedByAllUsers[i];
+      var tempDifficultyLevel = this.test.currentQuestion.difficultyLevelsForAQuestionRatedByAllUsers[i];
       var singleDifficulty = new afterUGExtendedCustom.afterugExtended.CurrentQuestionDifficultySort();
       singleDifficulty.TotalCount = this.difficultyTotalCount;
       singleDifficulty.DifficultyLevel = tempDifficultyLevel.DifficultyLevel;
@@ -918,7 +918,7 @@ export class TestComponent implements OnInit {
 
   initialMarkedWordsPush() {
     for (var i = 0; i < this.test.QuestionList.length; i++) {
-      if (this.test.QuestionList[i].testMarkAquestion.length != 0) {
+      if (this.test.QuestionList[i].testMarkAQuestion.length != 0) {
 
         this.MarkedQuestions.push(this.test.QuestionList[i].questionId);
       }
@@ -940,7 +940,7 @@ export class TestComponent implements OnInit {
     ////console.log(this.MarkedQuestions);
   }
   markOrUnMarkTheCurrentQuestion() {
-    if (this.test.currentQuestion.testMarkAquestion.length == 0) {
+    if (this.test.currentQuestion.testMarkAQuestion.length == 0) {
       this.IsMarked = false;
     } else {
       this.IsMarked = true;
@@ -1077,10 +1077,12 @@ export class TestComponent implements OnInit {
 
     var index: number;
     var correctChoice: afterUGExtended.afterugExtended.Choices;
+    console.log("this.test.currentQuestion.CorrectChoiceId");
+    console.log(this.test.currentQuestion.correctChoiceId);
     for (var i = 1; i <= this.test.currentQuestion.choices.length; i++) {
       var tempChoice: afterUGExtended.afterugExtended.Choices;
       tempChoice = this.test.currentQuestion.RandomChoiceOrder[i - 1];
-      if (this.test.currentQuestion.CorrectChoiceId == tempChoice.choiceId) {
+      if (this.test.currentQuestion.correctChoiceId == tempChoice.choiceId) {
         index = i - 1;
         correctChoice = tempChoice;
         console.log("CorrectChoice: ");

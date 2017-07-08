@@ -1,146 +1,3 @@
-<div *ngIf="isTTOrSSComplete == false">
-	<h3>Test</h3>
-
-	<div class="col-md-4">
-		<label>Mark or UnMark the word: </label>
-		<label class="toggle col-sm-8">
-    <input type="checkbox" (click)="MarkOrUnmarkQuestion()" name="MarkWord" [(ngModel)]="IsMarked">
-    <span class="handle"></span>
-  </label>
-	</div>
-
-	<div class="col-md-4">
-		<label>Dont show this question I know this very well: </label>
-		<label class="toggle col-sm-8">
-    <input type="checkbox" (click)="DontShowQuestionChecked()" name="DontShowQuestion" [(ngModel)]="IsDontShowQuestion">
-    <span class="handle"></span>
-  </label>
-	</div>
-	<div>
-
-
-		<form action="">
-			<p>Your rating of difficulty</p>
-			<label class="btn btn-primary active">
-    <input type="radio" name="options" [(ngModel)]="questionDifficulty" [value]="3" [checked]="questionDifficulty==1" (change)="RateDifficulty()" checked/> Hard
-	</label>
-
-
-			<label class="btn btn-primary">
-    <input type="radio" name="options"  [(ngModel)]="questionDifficulty" [value]="2"  [checked]="questionDifficulty==2" (change)="RateDifficulty()"/> Medium
-</label>
-			<label class="btn btn-primary">
-    <input type="radio" name="options" [(ngModel)]="questionDifficulty" [value]="1"  [checked]="questionDifficulty==3" (change)="RateDifficulty()"/> Easy
-</label>
-
-
-		</form>
-
-
-
-
-		<div class="row question">
-			<div class="row ID">
-				{{counter0}}<br/> {{test.currentQuestion?.QuestionID}}
-				<div *ngIf="test.currentQuestion?.averageTimeTakenForQuestionForAllUsers.length != 0">
-					<br/> Average Time Taken: <b>{{test.currentQuestion?.averageTimeTakenForQuestionForAllUsers[0].averageTimeTaken}}</b>
-
-				</div>
-				<p>All users rating percentages</p>
-				<div *ngFor="let level of currentQuestionDifficultySortArray">
-					<div *ngIf="level.DifficultyLevel == 1 && level.DifficultyPercentage != 0"><b>Easy Percentage is {{level.DifficultyPercentage}}</b></div>
-					<div *ngIf="level.DifficultyLevel == 2 && level.DifficultyPercentage != 0"><b>Medium Percentage is {{level.DifficultyPercentage}}</b></div>
-					<div *ngIf="level.DifficultyLevel == 3 && level.DifficultyPercentage != 0"><b>Hard Percentage is {{level.DifficultyPercentage}}</b></div>
-
-
-				</div>
-
-				<div>
-					<div *ngIf="percentageCorrectIncorrectForCurrentQuestion?.IncorrectPercentage != 0"><b>Incorrect Percentage is {{percentageCorrectIncorrectForCurrentQuestion?.IncorrectPercentage}}</b></div>
-					<div *ngIf="percentageCorrectIncorrectForCurrentQuestion?.CorrectPercentage != 0"><b>Correct Percentage is {{percentageCorrectIncorrectForCurrentQuestion?.CorrectPercentage}}</b></div>
-				</div>
-
-			</div>
-
-			<div class="row Question">
-				<h2>{{test.currentQuestion?.question}}</h2>
-			</div>
-			<form action="">
-				<div *ngFor="let choice of test.currentQuestion?.FinalFourShuffledChoices">
-					<div class="row">
-						<input type="radio" [(ngModel)]="userChoiceID" name="choices" [value]="choice.choiceId" [checked]="userChoiceID==choice.choiceId"
-						 (change)="updateAndAddCurrentHit()" /> {{choice.choiceText}}
-						<!-- <input type="radio" [(ngModel)]="model.sex"  name="sex" value="male">Male<br>-->
-
-					</div>
-				</div>
-				<br/><br/>
-				<div>Selected Radio: {{userChoiceID}}</div>
-			</form>
-
-			<br/><br/>
-			<button (click)="NextQuestion()">Next</button><br/><br/>
-			<br/><br/>
-			<h3>Attempt History of you for this question</h3>
-			<div *ngFor="let attempt of test.currentQuestion?.attempts">
-				<div class="row">
-
-					<b>Attempt Number: </b> {{attempt.attemptNumber}} ||
-
-					<b>Test or STudy Session</b> {{attempt.testOrStudySession}} ||
-
-					<b>You Took: </b> {{attempt.timeTaken}} Seconds ||
-
-					<b>Your Final answer for the attempt: </b> {{attempt.userFinalHitAnswer}}.
-					<br/><br/>
-				</div>
-			</div>
-
-			<br/><br/>
-
-			<h3>AUG Notes</h3>
-			<div *ngFor="let augnote of test.currentQuestion?.augnotes">
-				<div class="row">
-
-					<h4>{{augnote.augnotePointText}}</h4>
-					<br/>
-				</div>
-			</div>
-
-			<br/><br/>
-
-			<div class="UserNotes">
-				<h3>User Notes</h3>
-				<div *ngFor="let note of test.currentQuestion?.userNotes">
-					<div class="row">
-
-						<h4>{{note.noteText}}</h4>
-						<br/>
-					</div>
-				</div>
-				<div>
-					<button (click)="AddUserNotes()">AddNote</button><br/><br/>
-				</div>
-				<div *ngIf="addUserNote">
-					NoteText: <input type="text" name="userNote" [(ngModel)]="usrNote"> <br>
-					<button (click)="SaveUserNotes()">SaveNote</button><br/><br/>
-				</div>
-			</div>
-
-			<br/><br/>
-
-			<b>Score: </b>{{test?.Score}}
-
-			<br/><br/>
-
-			
-
-
-
-		</div>
-
-	</div>
-</div>
 <div class="col-md-12" *ngIf="isTTOrSSComplete == true">
 	<div class="row" style="margin:0 auto;">
 		<h2>Immediate Summary Review</h2>
@@ -174,14 +31,14 @@
 
 			<div>
 				<label>Mark or UnMark the word: </label>
-				<div *ngIf="question.isMarked == true">
+				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isMarked == false">
+				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -193,14 +50,14 @@
 
 			<div>
 				<label>Show or dont show question: </label>
-				<div *ngIf="question.isDontShowQuestion == true">
+				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isDontShowQuestion == false">
+				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -212,36 +69,36 @@
 			<form action="">
 				<p>Your rating of difficulty</p>
 				<div>
-					<div *ngIf="question.hardMediumOrEasy == 3">
+					<div *ngIf="question.HardMediumOrEasy == 3">
 						<label class="btn btn-primary active">
     <input type="radio" name="options"  [value]="3"  (change)="ISRRateDifficulty($event.target.getAttribute('value'), $event.target.checked,question)" checked/> Hard
 	</label>
 					</div>
-					<div *ngIf="question.hardMediumOrEasy != 3">
+					<div *ngIf="question.HardMediumOrEasy != 3">
 						<label class="btn btn-primary active">
     <input type="radio" name="options"  [value]="3"  (change)="ISRRateDifficulty($event.target.getAttribute('value'), $event.target.checked,question)" /> Hard
 	</label>
 					</div>
 				</div>
 				<div>
-					<div *ngIf="question.hardMediumOrEasy == 2">
+					<div *ngIf="question.HardMediumOrEasy == 2">
 						<label class="btn btn-primary active">
     <input type="radio" name="options"  [value]="2"  (change)="ISRRateDifficulty($event.target.getAttribute('value'), $event.target.checked,question)" checked/> Medium
 	</label>
 					</div>
-					<div *ngIf="question.hardMediumOrEasy != 2">
+					<div *ngIf="question.HardMediumOrEasy != 2">
 						<label class="btn btn-primary active">
     <input type="radio" name="options"  [value]="2"  (change)="ISRRateDifficulty($event.target.getAttribute('value'), $event.target.checked,question)" /> Medium
 	</label>
 					</div>
 				</div>
 				<div>
-					<div *ngIf="question.hardMediumOrEasy == 1">
+					<div *ngIf="question.HardMediumOrEasy == 1">
 						<label class="btn btn-primary active">
     <input type="radio" name="options"  [value]="1"  (change)="ISRRateDifficulty($event.target.getAttribute('value'), $event.target.checked,question)" checked/> Easy
 	</label>
 					</div>
-					<div *ngIf="question.hardMediumOrEasy != 1">
+					<div *ngIf="question.HardMediumOrEasy != 1">
 						<label class="btn btn-primary active">
     <input type="radio" name="options"  [value]="1"  (change)="ISRRateDifficulty($event.target.getAttribute('value'), $event.target.checked,question)" /> Easy
 	</label>
@@ -253,18 +110,18 @@
 			<div class="row">
 				<div class="col-md-11">
 					<div class="row">
-						{{question.questionsAfterUg.question}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<!--Average Time Taken: {{question.questionsAfterUg.averageTimeTakenForQuestionForAllUsers[0].averageTimeTaken}}-->Your Time Taken: {{question.timeTaken}} Seconds
+						{{question.questionsAfterUg.Question}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<!--Average Time Taken: {{question.questionsAfterUg.averageTimeTakenForQuestionForAllUsers[0].averageTimeTaken}}-->Your Time Taken: {{question.TimeTaken}} Seconds
 						<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.questionsAfterUg.choices">
+					<div class="row" *ngFor="let choice of question.questionsAfterUg.Choices">
 						<div *ngIf="choice.choiceId == question.questionsAfterUg.correctChoiceId" [ngClass]="{'my-classcorrect': choice.choiceId == question.questionsAfterUg.correctChoiceId }">
-							{{choice.choiceText}} {{choice.choiceId}}<br/>
+							{{choice.ChoiceText}} {{choice.choiceId}}<br/>
 						</div>
 						<div *ngFor="let incorrectChoiceID of question.IncorrectChoicesChoiceIdArray">
 							<div *ngIf="choice.choiceId == incorrectChoiceID" [ngClass]="{'my-classincorrect': choice.choiceId == incorrectChoiceID}">
 
-								{{choice.choiceText}} {{choice.choiceId}}<br/>
+								{{choice.ChoiceText}} {{choice.choiceId}}<br/>
 
 							</div>
 						</div>
@@ -282,14 +139,14 @@
 		<div class="MasterDiv" *ngFor="let question of mostTimeTakenQuestionsList" style="border:2px solid black;">
 			<div>
 				<label>Mark or UnMark the word: </label>
-				<div *ngIf="question.isMarked == true">
+				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isMarked == false">
+				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -301,14 +158,14 @@
 
 			<div>
 				<label>Show or dont show question: </label>
-				<div *ngIf="question.isDontShowQuestion == true">
+				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isDontShowQuestion == false">
+				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -319,11 +176,11 @@
 			<div class="row">
 				<div class="col-md-11"> 
 					<div class="row">
-						{{question.questionsAfterUg.question}}<br/> {{question.timeTaken}} Seconds<br/>
+						{{question.questionsAfterUg.Question}}<br/> {{question.TimeTaken}} Seconds<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.questionsAfterUg.choices">
+					<div class="row" *ngFor="let choice of question.questionsAfterUg.Choices">
 						<div *ngIf="choice.choiceId == question.questionsAfterUg.correctChoiceId" [ngClass]="{'my-classcorrect': choice.choiceId == question.questionsAfterUg.correctChoiceId }">
-							{{choice.choiceText}} {{choice.choiceId}}<br/>
+							{{choice.ChoiceText}} {{choice.choiceId}}<br/>
 						</div>
 					</div>
 				</div>
@@ -339,14 +196,14 @@
 		<div class="MasterDiv" *ngFor="let question of correctQuestionsList" style="border:2px solid black;">
 			<div>
 				<label>Mark or UnMark the word: </label>
-				<div *ngIf="question.isMarked == true">
+				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isMarked == false">
+				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -358,14 +215,14 @@
 
 			<div>
 				<label>Show or dont show question: </label>
-				<div *ngIf="question.isDontShowQuestion == true">
+				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isDontShowQuestion == false">
+				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -376,11 +233,11 @@
 			<div class="row">
 				<div class="col-md-11">
 					<div class="row">
-						{{question.questionsAfterUg.question}}<br/>
+						{{question.questionsAfterUg.Question}}<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.questionsAfterUg.choices">
+					<div class="row" *ngFor="let choice of question.questionsAfterUg.Choices">
 						<div *ngIf="choice.choiceId == question.questionsAfterUg.correctChoiceId" [ngClass]="{'my-classcorrect': choice.choiceId == question.questionsAfterUg.correctChoiceId }">
-							{{choice.choiceText}} {{choice.choiceId}}<br/>
+							{{choice.ChoiceText}} {{choice.choiceId}}<br/>
 						</div>
 					</div>
 				</div>
@@ -396,14 +253,14 @@
 		<div class="MasterDiv" *ngFor="let question of markedQuestionsList" style="border:2px solid black;">
 			<div>
 				<label>Mark or UnMark the word: </label>
-				<div *ngIf="question.isMarked == true">
+				<div *ngIf="question.IsMarked == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isMarked == false">
+				<div *ngIf="question.IsMarked == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRMarkOrUnmarkQuestion($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -415,14 +272,14 @@
 
 			<div>
 				<label>Show or dont show question: </label>
-				<div *ngIf="question.isDontShowQuestion == true">
+				<div *ngIf="question.IsDontShowQuestion == true">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)" checked>
 							<span class="handle"></span>
   						</label>
 				</div>
-				<div *ngIf="question.isDontShowQuestion == false">
+				<div *ngIf="question.IsDontShowQuestion == false">
 					<label class="toggle col-sm-8">
 							<!--<input type="checkbox" value="{{question.questionId}}" (click)="ISRMarkOrUnmarkQuestion(question.questionId)" name="question.questionId" >-->
 							<input type="checkbox" id="{{question.questionsAfterUg.questionId}}" name="{{question.questionsAfterUg.questionId}}" value="{{question.questionsAfterUg.questionId}}" (click)="ISRDontShowQuestionChecked($event.target.getAttribute('value'), $event.target.checked,question)">
@@ -433,11 +290,11 @@
 			<div class="row">
 				<div class="col-md-11">
 					<div class="row">
-						{{question.questionsAfterUg.question}}<br/>
+						{{question.questionsAfterUg.Question}}<br/>
 					</div>
-					<div class="row" *ngFor="let choice of question.questionsAfterUg.choices">
+					<div class="row" *ngFor="let choice of question.questionsAfterUg.Choices">
 						<div *ngIf="choice.choiceId == question.questionsAfterUg.correctChoiceId" [ngClass]="{'my-classcorrect': choice.choiceId == question.questionsAfterUg.correctChoiceId }">
-							{{choice.choiceText}} {{choice.choiceId}}<br/>
+							{{choice.ChoiceText}} {{choice.choiceId}}<br/>
 						</div>
 					</div>
 				</div>

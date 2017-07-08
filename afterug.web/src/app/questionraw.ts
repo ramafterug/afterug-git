@@ -7,11 +7,11 @@ export class QuestionRawExtended extends afterUGExtended.afterugExtended.Questio
 
   NewAttempt: afterUGExtended.afterugExtended.Attempts;
   IsCorrectChoiceVerified: boolean;
-  CorrectChoiceId: number;
+  //CorrectChoiceId: number;
   OriginalChoiceOrder: afterUGExtended.afterugExtended.Choices[];
   RandomChoiceOrder: afterUGExtended.afterugExtended.Choices[];
   FinalFourShuffledChoices: afterUGExtended.afterugExtended.Choices[];
-  DifficultyLevelsForAQuestionRatedByAllUsers: any[];
-  PercentageCorrectIncorrect: any[];
+  difficultyLevelsForAQuestionRatedByAllUsers: any[];
+  percentageCorrectIncorrect: any[];
 }
 

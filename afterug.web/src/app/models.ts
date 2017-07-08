@@ -104,7 +104,7 @@ export namespace afterugExtended {
 		questionId: number;
 		questionTags: afterugExtended.QuestionTags[];
 		questionType: number;
-		testMarkAquestion: afterugExtended.TestMarkAquestion[];
+		testMarkAQuestion: afterugExtended.TestMarkAquestion[];
 		userNotes: afterugExtended.UserNotes[];
 	}
 	

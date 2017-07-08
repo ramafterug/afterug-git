@@ -24,14 +24,14 @@ export namespace afterugExtended {
     }
 
     export class QuestionObjectISR{
-        TimeTaken:number;
-         QuestionsAfterUg: afterUGExtended.afterugExtended.QuestionsAfterUg;
-         UserChoiceId:number;
-         UserChoiceText:string;
-         IncorrectChoicesChoiceIdArray:number[];
-         IsMarked:boolean = false;
-         IsDontShowQuestion:boolean = false;
-         HardMediumOrEasy:number;
+        timeTaken:number;
+         questionsAfterUg: afterUGExtended.afterugExtended.QuestionsAfterUg;
+         userChoiceId:number;
+         userChoiceText:string;
+         incorrectChoicesChoiceIdArray:number[];
+         isMarked:boolean = false;
+         isDontShowQuestion:boolean = false;
+         hardMediumOrEasy:number;
     }
 
     export class CurrentQuestionDifficultySort{

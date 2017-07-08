@@ -31,7 +31,7 @@ export class TestQuestionService {
 
   getQuestions(testNo: Number, userID: Number): Observable<QuestionRawExtended[]> {
 
-    return this.http.get(this.testQuestionUrl + testNo + '/User/' + userID)
+    return this.http.get(this.testQuestionUrl + testNo + '/User/' + userID,this.jwt())
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
 
@@ -44,11 +44,11 @@ export class TestQuestionService {
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));*/
     var loadQuestionsURL = 'http://localhost:5000/api/Questions';
-    let bodyString = JSON.stringify(questionIDArrayAndUserID); // Stringify payload
+    let bodyString = questionIDArrayAndUserID; // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(loadQuestionsURL, bodyString, options) // ...using post request
+    return this.http.post(loadQuestionsURL, bodyString, this.jwt()) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error || 'Server error'));
 
@@ -95,7 +95,7 @@ var chapterButtonsUrl = "";
 
     }
     
-    return this.http.get(chapterButtonsUrl + userID)
+    return this.http.get(chapterButtonsUrl + userID, this.jwt())
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
@@ -108,7 +108,7 @@ var chapterButtonsUrl = "";
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(attemptsUrl, bodyString, options) // ...using post request
+    return this.http.post(attemptsUrl, bodyString, this.jwt()) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
@@ -120,11 +120,21 @@ var chapterButtonsUrl = "";
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(saveURL, bodyString, options) // ...using post request
+    return this.http.post(saveURL, bodyString, this.jwt()) // ...using post request
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
+   //return this.http.post(this.config.apiUrl + '/users', user, return this.http.post(this.config.apiUrl + '/users', user, this.jwt()););
+ //return this.http.get(this.config.apiUrl + '/users', this.jwt()).map((response: Response) => response.json());
+   private jwt() {
+        // create authorization header with jwt token
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.token) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            return new RequestOptions({ headers: headers });
+        }
+    }
 
 }
 
