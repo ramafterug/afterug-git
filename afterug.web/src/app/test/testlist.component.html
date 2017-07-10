@@ -1,33 +1,53 @@
-<h3>TestList</h3>
+<div class="row">
+    <div class="col-sm-4">
+
+<h2>Study Session</h2>
+<ul>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/9">Chapter Wise</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/1">Marked Questions</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/8">Dont Show Questions</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/2">Self Hard</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/3">Others Hard</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/4">Self Medium</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/5">Others Medium</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/6">Self Most Time Taken</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/2/QType/7">Others Most Time Taken</a></li>
+</ul>
+<h2>Test</h2>
+<ul>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/9">Chapter Wise</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/1">Marked Questions</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/8">Dont Show Questions</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/2">Self Hard</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/3">Others Hard</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/4">Self Medium</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/5">Others Medium</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/6">Self Most Time Taken</a></li>
+    <li><a href="/Test/User/{{userID}}/Mode/1/QType/7">Others Most Time Taken</a></li>
+</ul>
 
 
-<div class="row question">
-
-
-
-
-    <form action="#">
-        <div *ngIf="!showTest">
-            <div *ngFor="let chapter of chapterButtonsList">
-                <h2>Chapter</h2><br/><br/>
-                <div *ngFor="let buttons of chapter">
-                    
-                    <button name="TestButtons" (click)="TestButtonClicked(buttons.value)" ngDefaultControl>{{buttons.key}}</button> -- {{buttons.value}}<br/><br/>
-                </div>
-                <hr/>
-            </div>
-        </div>
-    </form>
-    <div *ngIf="showTest">
-        <test [questionIDArrayAndUserIDAndTestMode]="questionIDArrayAndUserIDAndTestMode"></test>
     </div>
 
 
 
+    <div class="col-sm-8">
+        <div class="row question">
+            <form action="#">
+                <div *ngIf="!showTest">
+                    <div *ngFor="let chapter of chapterButtonsList">
+                        <h2>Chapter</h2><br/><br/>
+                        <div *ngFor="let buttons of chapter">
 
-
-
-
-
-
+                            <button name="TestButtons" (click)="TestButtonClicked(buttons.value)" ngDefaultControl>{{buttons.key}}</button>                            -- {{buttons.value}}<br/><br/>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="showTest">
+                <test [questionIDArrayAndUserIDAndTestMode]="questionIDArrayAndUserIDAndTestMode"></test>
+            </div>
+        </div>
+    </div>
 </div>

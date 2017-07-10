@@ -38,7 +38,9 @@ import { SimpleTimer } from 'ng2-simple-timer';
 export class TestComponent implements OnInit {
 
   //Properties
+
   private test = new Test();
+  loading: boolean = false;
   idNo: number;
   userID: number;
   userChoiceID: number = 0;
@@ -78,7 +80,7 @@ export class TestComponent implements OnInit {
   mostTimeTakenQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
   markedQuestionsList: afterUGExtendedCustom.afterugExtended.QuestionObjectISR[];
   //ISR
-
+fullImagePath:string;
   IsMarked: boolean = false;
   IsDontShowQuestion: boolean = false;
   TestMode: string; //TT for test. SS for StudySession
@@ -86,6 +88,9 @@ export class TestComponent implements OnInit {
   counter0 = 0;
   timer0Id: string;
   timer0button = 'Subscribe';
+
+  //NoOfCountsFromGlobalSettings
+
   //Timer Code
   @Input() questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIdArrayAndUserIdAndTestMode;
 
@@ -108,6 +113,7 @@ export class TestComponent implements OnInit {
     this.mostTimeTakenQuestionsList = [];
     this.markedQuestionsList = [];
     this.UserNotesArray = [];
+    this.fullImagePath = '/assets/images/loading.png'
     //ISR
   }
   updateModel() {
@@ -185,7 +191,7 @@ export class TestComponent implements OnInit {
   ShowISR() {
     //console.log("What to Display Value : " + this.toDisplayISR);
   }
-  AddUserNotes() {
+  /*AddUserNotes() {
     this.addUserNote = true;
   }
 
@@ -209,6 +215,7 @@ export class TestComponent implements OnInit {
     //console.log(this.UserNotesArray);
 
   }
+  */
   prepareISR() {
     var uniqMarked = this.MarkedQuestions.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, []);
     this.MarkedQuestions = uniqMarked;
@@ -574,7 +581,7 @@ export class TestComponent implements OnInit {
         }
 
       }
-      NoOfTimesToAdd = this.test.IncorrectNoOfTimesToAdd - ExistingCount
+      NoOfTimesToAdd = this.test.currentQuestion.noOfRepetitionsIncorrect - ExistingCount
       for (var i = 0; i < NoOfTimesToAdd; i++) {
         this.test.QuestionOrder.push(questionNoToAdd);
 
@@ -708,10 +715,13 @@ export class TestComponent implements OnInit {
   }
 
   SaveTTOrSSAndISRData() {
-    alert("We are now going to save data");
+
     this.isISRComplete = true;
+    //this.loading = true;
     this.ISRCompleteSaveData(this.FinalDataToBeSaved);
+    //this.loading = false;
     alert("Done");
+
   }
   NextQuestion(): void {
     this.newQuestion++;
@@ -863,15 +873,18 @@ export class TestComponent implements OnInit {
   }
 
   ISRCompleteSaveData(FinalDataToBeSavedToService: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject) {
+this.loading = true;
     this.testQuestionService.ISRCompleteSaveData(FinalDataToBeSavedToService)
       .subscribe(
       status => {
-        alert(status);
+
+        this.loading = false;
       },
       err => {
-        alert(err);
+        //alert(err);
         ////console.log(err);
       });
+
   }
 
   prepareFinalDataForSaving() {
@@ -896,7 +909,11 @@ export class TestComponent implements OnInit {
     this.testQuestionService.saveAttemptsToDB(this.NewAttempts)
       .subscribe(
       status => {
-        alert(status);
+        if (status == "true") {
+          alert("Data saved successfully");
+        } else {
+          alert("Some error occurred.Data not saved. Click save data button to save again");
+        }
       },
       err => {
         alert(err);
@@ -955,7 +972,7 @@ export class TestComponent implements OnInit {
         this.TestMode = this.questionIDArrayAndUserIDAndTestMode.TestMode;
         this.userID = this.questionIDArrayAndUserIDAndTestMode.UserId;
         this.test.questionCount = 1;
-        
+
         this.test.QuestionList = questions;
         console.log("questions json: ");
         console.log(questions);
@@ -1027,8 +1044,12 @@ export class TestComponent implements OnInit {
     if (this.TestMode == "SS") {
       for (var i = 1; i <= this.test.QuestionList.length; i++) {
 
-        this.test.QuestionOrder.push(i);
-        //this.test.QuestionOrder.push(i);
+        for (var j = 0; j < this.test.QuestionList[0].noOfRepetitionsCorrect; j++) {
+          this.test.QuestionOrder.push(i);
+        }
+
+
+
       }
     } else {
       for (var i = 1; i <= this.test.QuestionList.length; i++) {
@@ -1091,12 +1112,12 @@ export class TestComponent implements OnInit {
     }
     console.log("index: " + index);
     //if (index > -1) {
-      this.test.currentQuestion.RandomChoiceOrder.splice(index, 1);
+    this.test.currentQuestion.RandomChoiceOrder.splice(index, 1);
     //}
     console.log("Random Choice Order After Shuffle and after splice removing correct choice");
     console.log(this.test.currentQuestion.RandomChoiceOrder);
     //insert correctchoiceid in the beginning of finalfourchoices array. Add other 3 choices from first 3 elements of randomchoiceorder
-    for (var i = 1; i <= 4; i++) {
+    for (var i = 1; i <= this.test.currentQuestion.noOfChoicesPerQuestion; i++) {
       if (i == 1) {
         this.test.currentQuestion.FinalFourShuffledChoices[i - 1] = correctChoice;
       } else {

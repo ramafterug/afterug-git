@@ -13,5 +13,8 @@ export class QuestionRawExtended extends afterUGExtended.afterugExtended.Questio
   FinalFourShuffledChoices: afterUGExtended.afterugExtended.Choices[];
   difficultyLevelsForAQuestionRatedByAllUsers: any[];
   percentageCorrectIncorrect: any[];
+  noOfChoicesPerQuestion:number;
+  noOfRepetitionsCorrect:number;
+  noOfRepetitionsIncorrect:number;
 }
 

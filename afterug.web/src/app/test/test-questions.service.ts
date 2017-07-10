@@ -116,7 +116,7 @@ var chapterButtonsUrl = "";
 
   ISRCompleteSaveData(finalData: afterUGExtendedCustom.afterugExtended.DataToBeSavedObject): Observable<string> {
     var saveURL = 'http://localhost:5000/api/SaveTTOrSSAndISRData';
-    let bodyString = JSON.stringify(finalData); // Stringify payload
+    let bodyString = finalData; // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
 

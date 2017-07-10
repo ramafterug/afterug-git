@@ -45,6 +45,7 @@ export class TestListComponent implements OnInit {
     showTest: boolean = false;
     questionIDArrayAndUserIDAndTestMode: afterUGExtendedCustom.afterugExtended.QuestionIdArrayAndUserIdAndTestMode;
     ngOnInit(): void {
+        this.prepareNavigationMenu();
         this.getUserIDAndTestModeAndQType();
         this.setTestMode();
         this.loadChapterButtons();
@@ -58,6 +59,9 @@ export class TestListComponent implements OnInit {
         //Randomise here
         //this.ClickedButtonName = "Name";
 
+    }
+    prepareNavigationMenu(){
+        
     }
     setTestMode() {
         if (this.testModeNum == 1) {

@@ -12,7 +12,7 @@ export class Test {
     IsQuestionRandom:boolean = false;
     IsChoiceRandom:boolean = true;
     CorrectNoOfTimesToShow:number;
-    IncorrectNoOfTimesToAdd:number = 2;
+    IncorrectNoOfTimesToAdd:number;
     
     
 }
